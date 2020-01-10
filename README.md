@@ -5,5 +5,5 @@ The people working on this project are four Senoir Western Oregon University stu
 Hanna Kristensen
 Brittany Miller
 Abi Johnson
-Jasmit
+Jasmit Singh
 
