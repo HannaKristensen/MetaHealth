@@ -52,88 +52,13 @@ We are going to make a web application that holds and displays athletes race tim
         9. Search Bar to search for athletes
         10. Profile for each athlete
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ###Initial Modeling
   
-
-
-
-
-
-
-
-
-
-
+![UML.png](./UML.png)
 
 ### Use Case Diagrams
   
-
-
-
-
-
-
-
-
+![UseCase.png](./UseCase.png)
 
 ###Identify Non-Functional Requirements
 
@@ -201,39 +126,10 @@ T: Task
 
 
 ###Initial Architecture Envisioning
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![AcDrawing.png](./AcDrawing.png)  
 
 ###Agile Data Modeling
-  
-
-
-
-
-
-
-
-
-
-
+![UML.png](./UML.png)  
 
 ## Timeline and Release Plan
+![TimeLine](./TimeLine.png)
