@@ -1,12 +1,12 @@
-﻿###Summary of Our Approach to Software Development:
+﻿### Summary of Our Approach to Software Development:
 The process we are following is the Disciplined Agile Delivery(DAD) approach. This approach allows us to work efficiently and smoothly, delivering product to the client in a proficient manner. We are choosing to keep this as simple as possible, while developing clean cut and efficient code. 
 
 
-###Initial Vision Discussion with Stakeholders:
+### Initial Vision Discussion with Stakeholders:
 The initial vision discussion gave us quite a bit of information. Our client wants a tool for recording, storing, viewing, and tracking of race results for swim teams. On top of this, our client would like a tool to provide analysis for athlete’s current and future performances, as well as a tool that will optimize a coach’s strategy for winning a specific meet. This concept is accomplishable within our skillset, and we will stick to DAD style programming approaches to remain organized and efficient. 
 
 
-###Initial Requirements Elaboration and Elicitation:
+### Initial Requirements Elaboration and Elicitation:
 The major requirements given to us by the client are listed as follows:
 1. Record, store and provide tracking, viewing and simple stats for race results for swimming athletes.  This would have a number of features found in [Athletic.net](https://www.athletic.net/), which is used for Track and Cross Country running.
 2. Provide complex analysis of athlete performance over time and over different race types, to give coaches deep insight into their athlete's fitness and performance that they cannot get from their own analyses.  This includes machine learning to predict future performance based on records of past race performance, given different training scenarios.  Validation of this feature will enable the next feature.
@@ -52,15 +52,15 @@ We are going to make a web application that holds and displays athletes race tim
         9. Search Bar to search for athletes
         10. Profile for each athlete
 
-###Initial Modeling
+### Initial Modeling
   
-![UML.png](./UML.png)
+![UML.png](./UML.PNG)
 
 ### Use Case Diagrams
   
-![UseCase.png](./UseCase.png)
+![UseCase.png](./UseCase.PNG)
 
-###Identify Non-Functional Requirements
+### Identify Non-Functional Requirements
 
 
 1. User accounts and data must be stored indefinitely.  They don't want to delete; rather, mark items as "deleted" but don't actually delete them.  They also used the word "inactive" as a synonym for deleted.
@@ -75,7 +75,7 @@ We are going to make a web application that holds and displays athletes race tim
 10. Search Bar autofill
 
 
-###Identify Functional Requirements (User Stories)
+### Identify Functional Requirements (User Stories)
 
 
 E: Epic  
@@ -125,11 +125,11 @@ T: Task
 11. [U] As a robot I would like to be prevented from creating an account on your website so I don't ask millions of my friends to join your website and try to add comments about male enhancement drugs.
 
 
-###Initial Architecture Envisioning
-![AcDrawing.png](./AcDrawing.png)  
+### Initial Architecture Envisioning
+![AcDrawing.png](./AcDrawing.PNG)  
 
-###Agile Data Modeling
-![UML.png](./UML.png)  
+### Agile Data Modeling
+![UML.png](./UML.PNG)  
 
 ## Timeline and Release Plan
-![TimeLine](./TimeLine.png)
+![TimeLine](./TimeLine.PNG)
