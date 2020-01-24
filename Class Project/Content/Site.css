@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image:url("../Content/background.jpg")
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,4 +22,40 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+#searchText {
+    align-content: center;
+    text-align: center;
+    font-family: Georgia
+}
+
+#jumbo {
+    align-content: center;
+    text-align: center;
+    font-family:Georgia
+}
+
+#searchBar {
+    align-content: center;
+    text-align: center;
+    font-family: Georgia
+}
+
+.navbar navbar-inverse navbar-fixed-top {
+    background-color: #2a4269;
+    color: white;
+    font-family: Georgia
+}
+
+.navbar-header {
+    background-color: #2a4269;
+    color: white;
+    font-family: Georgia
+}
+
+#navBar {
+    background-color: #2a4269;
+    color: white;
+    font-family: Georgia
 }
