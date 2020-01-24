@@ -2,8 +2,8 @@
 
 
 The project idea that we have chosen to continue with is a mental health management site. We have brainstormed over this topic for many hours, and here is one drawing specifically that we had come up with:   
-![Ideas.JPG](./Ideas.JPG)
-![Weboutline.JPG](./Weboutline.JPG)
+![Ideas.jpg](./Ideas.JPG)
+![Weboutline.jpg](./Weboutline.JPG)
 To explain a bit, the first photo is a brainstorm of what categories of mental health we would like to cater to. We tried to keep it as simple as possible as far as categories go, because there are a plethora of specific mental health issues, and while we would absolutely love to have individual services for every single one, we do have to keep this as simple as we can for this project. This is also the benefit of this idea though, because there is a lot of room for expansion and improvement..  The second photo is us brainstorming website layout ideas, this of course is subject to change but gives us an idea of how we’d like it to look. 
 
 
