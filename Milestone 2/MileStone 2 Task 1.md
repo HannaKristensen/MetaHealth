@@ -37,7 +37,7 @@ Is there an excel sheet or already recorded times for athletes?
         
 ### Other Elicitation Activities?
 Refined Vision Statement:
-We are going to make a web application that holds and displays athletes race times. Coaches will be able to have privileges to upload and pull together sheets for what athletes are in what races. We will also develop multiple tools for coaches to use, such as a tool to optimize a coach’s strategy for winning a specific meet and a tool to provide complex analysis of athlete performance over time and over different race types. This will take a couple of months to accomplish. This will cost nothing since as students we are doing this for the experience. We are going to build this in ASP.NET using MVC 5 model. We understand that we are only getting experience and might suffer some long nights but as a team we will persevere. We will use DAD style software development approaches, and utilize our communication skills to be as efficient and timely as possible. 
+For a coach or athlete who need a site to store and preview race data, the website is a system that will provide a platform to view and add data. It will also have features like being able to predict times for athletes as well as calculate what event athletes should participate in. It will also have a space for athletes to view their data and be able to search and view other athletes data. Unlike the current system which is all in excel ours provides these resources to make it easier for athletes and coaches to use.
 
 
 ### List of Needs and Features
@@ -48,9 +48,9 @@ We are going to make a web application that holds and displays athletes race tim
 5. "Standard" logins are fine.  Use email (must be unique) for username and then require an 8+ character password.  Will eventually need to confirm email to try to prevent some forms of misuse.  Admins and contractors must have an offline confirmation by our employees and then the "super" admin adds them manually.
 6. The core entity is the athlete.  They are essentially free agents in the system.  They can be a member of one or more teams at one time, then change at any time.  Later when we want to have teams and do predictive analysis we'll let the coaches assemble their own teams and add/remove athletes from their rosters.
 7. The first stats we want are: 1) display PR's prominently in each race event, 2) show a historical picture/plot of performance, per race type and distance, 3) some measure of how they rank compared to other athletes, both current and historical, 4) something that shows how often they compete in each race event, i.e. which events are they competing in most frequently, and alternately, which events are they "avoiding"
-        8. Results are nicely organized and easy to read or navigate. Like 100 meter dash and 200 meter dash
-        9. Search Bar to search for athletes
-        10. Profile for each athlete
+8. Results are nicely organized and easy to read or navigate. There can be a tab to look through each event and how the time has changed. So you can pick 100 meters and see a list of the times they have done. As well as having the Athletes name displayed.
+9. Search Bar to search for athletes and coaches. This will provide a list of 50 athletes that match the input text. You will be able to click on them to see their profile. 
+10. Profile for each athlete. This will show the times they have done as well as what time they are on. It will also show the school and coach for that school. Their names will be the only identifying item there
 
 ### Initial Modeling
   
@@ -98,7 +98,7 @@ T: Task
 5. [U] As an admin (or coach) I would like a calculator to predict information about races and athletic events 
 
 
-6.[U] As a visitor to the site I would like to see a fantastic and modern homepage that introduces me to the site and the features currently available.
+6.[U] As a visitor to the site I would like to see a fantastic and modern website that introduces me to the site and the features currently available.
     [T] Create starter ASP dot NET MVC 5 Web Application with Individual User Accounts and no unit test project
    [T] Choose CSS library (Bootstrap 3, 4, or ?) and use it for all pages
    [T] Create nice homepage: write initial content, customize navbar, hide links to login/register
@@ -133,3 +133,6 @@ T: Task
 
 ## Timeline and Release Plan
 ![TimeLine](./TimeLine.PNG)
+
+
+
