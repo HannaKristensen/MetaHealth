@@ -195,6 +195,8 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Views\AthleteResultsController.cs" />
     <Compile Include="Views\AthletesController.cs" />
+    <Compile Include="Views\CoachesController.cs" />
+    <Compile Include="Views\TeamsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Database.mdf" />
@@ -366,6 +368,16 @@
     <Content Include="Views\AthleteResults\Details.cshtml" />
     <Content Include="Views\AthleteResults\Edit.cshtml" />
     <Content Include="Views\AthleteResults\Index.cshtml" />
+    <Content Include="Views\Teams\Create.cshtml" />
+    <Content Include="Views\Teams\Delete.cshtml" />
+    <Content Include="Views\Teams\Details.cshtml" />
+    <Content Include="Views\Teams\Edit.cshtml" />
+    <Content Include="Views\Teams\Index.cshtml" />
+    <Content Include="Views\Coaches\Create.cshtml" />
+    <Content Include="Views\Coaches\Delete.cshtml" />
+    <Content Include="Views\Coaches\Details.cshtml" />
+    <Content Include="Views\Coaches\Edit.cshtml" />
+    <Content Include="Views\Coaches\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
