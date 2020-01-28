@@ -8,8 +8,11 @@ namespace Class_Project.Models
     public partial class DBContext : DbContext
     {
         public DBContext()
-            : base("name=DBContext")
+              //: base("DefaultConnection")
+              : base("AzureContext")
         {
+            // Disable code-first migrations
+            Database.SetInitializer<ApplicationDbContext>(null);
         }
 
         public virtual DbSet<AthleteResult> AthleteResults { get; set; }
