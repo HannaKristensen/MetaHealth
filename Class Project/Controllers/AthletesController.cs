@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Class_Project.Models;
+using Class_Project.Models.View_Models;
 
 namespace Class_Project.Views
 {
@@ -29,11 +30,14 @@ namespace Class_Project.Views
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Athlete athlete = db.Athletes.Find(id);
+
             if (athlete == null)
             {
                 return HttpNotFound();
             }
-            return View(athlete);
+            AthleteDetailsViewModelcs viewModel = new AthleteDetailsViewModelcs(athlete);
+
+            return View(viewModel);
         }
 
         // GET: Athletes/Create
@@ -44,7 +48,7 @@ namespace Class_Project.Views
         }
 
         // POST: Athletes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -78,7 +82,7 @@ namespace Class_Project.Views
         }
 
         // POST: Athletes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
