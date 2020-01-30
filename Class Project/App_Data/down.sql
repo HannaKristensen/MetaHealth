@@ -4,4 +4,4 @@ DROP TABLE [dbo].[Athletes];
 DROP TABLE [dbo].[Teams];
 DROP TABLE [dbo].[Coaches];
 DROP TABLE [dbo].[Locations];
-DROP TABLE [dbo].[AllData];s
+DROP TABLE [dbo].[AllData];

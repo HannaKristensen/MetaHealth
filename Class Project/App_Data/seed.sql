@@ -8,7 +8,7 @@ INSERT INTO [dbo].[Teams] VALUES
 
 INSERT INTO [dbo].[Athletes] VALUES
 ('Ash Garcia' , 'Boy' , 1), 
-('Sue Timothy' , 'Girl' , 2) 
+('Sue Timothy' , 'Girl' , 2)
 
 INSERT INTO [dbo].[Locations] VALUES
 ( 'Aloha High School', '5/25/2020'),

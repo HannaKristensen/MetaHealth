@@ -3,28 +3,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Class_Project.Models.View_Models;
+using Class_Project.Models;
+using System.Net;
 
 namespace Class_Project.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private DBContext db = new DBContext(); 
+
+        [HttpGet]
+        public ActionResult Index(string SearchQ)
         {
-            return View();
+            var name = db.Athletes.Where(s => s.Name.Contains(SearchQ));
+
+            if (name == null)
+            {
+                return View("Item Not found!");
+            }
+
+            return View(name);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
+        public ActionResult GetDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Athlete theAthlete = db.Athletes.Find(id);
+
+            if (theAthlete == null)
+            {
+                return HttpNotFound();
+            }
+
+            AthleteDetailsViewModelcs viewModel = new AthleteDetailsViewModelcs(theAthlete);
+
+            //viewModel = new StockItemViewModel(theItem);
+
+            return View(viewModel);
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
+
     }
 }
