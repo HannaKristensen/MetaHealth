@@ -1,12 +1,11 @@
-﻿@model IEnumerable<Class_Project.Models.AthleteResult>
+﻿<link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+@model IEnumerable<Class_Project.Models.AthleteResult>
 
-@{
-    ViewBag.Title = "Index";
-}
+
 
 <h2>Index</h2>
 
-<p>
+<p id="create">
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
