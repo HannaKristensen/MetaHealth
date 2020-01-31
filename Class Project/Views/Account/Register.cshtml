@@ -1,12 +1,23 @@
 ﻿@model Class_Project.Models.RegisterViewModel
 @{
+
     ViewBag.Title = "Register";
 }
+@using Recaptcha.Web.Mvc;
+
+<head>
+    <!--click captcha should call this function
+    <script type="text/javascript">
+        var onloadCallback = function () {
+            grecaptcha.render('div', {
+                'sitekey': 'your_site_key'
+            });
+    </script>-->
+</head>
 
 <h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
     @Html.AntiForgeryToken()
     <h4>Create a new account.</h4>
     <hr />
@@ -29,11 +40,17 @@
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
     </div>
+    <div>
+        @Html.Recaptcha()
+    </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Register" />
         </div>
     </div>
+
+    <!--Captcha script-->
+    <!--<script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
 }
 
 @section Scripts {

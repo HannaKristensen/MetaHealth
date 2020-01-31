@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Class_Project.Models;
+using Recaptcha.Web;
+using Recaptcha.Web.Mvc;
 
 namespace Class_Project.Controllers
 {
@@ -137,8 +139,7 @@ namespace Class_Project.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
-        {
+        public ActionResult Register() { 
             return View();
         }
 
@@ -151,8 +152,19 @@ namespace Class_Project.Controllers
         {
             if (ModelState.IsValid)
             {
+                RecaptchaVerificationHelper recaptchaHelper = this.GetRecaptchaVerificationHelper(); 
+                if (String.IsNullOrEmpty(recaptchaHelper.Response)) { 
+                    ModelState.AddModelError("", "Captcha answer cannot be empty."); 
+                    return View(model); 
+                }
+                RecaptchaVerificationResult recaptchaResult = await recaptchaHelper.VerifyRecaptchaResponseTaskAsync(); 
+                if (recaptchaResult != RecaptchaVerificationResult.Success) { 
+                    ModelState.AddModelError("", "Incorrect captcha answer."); 
+                }
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
