@@ -1,12 +1,13 @@
-﻿@model Class_Project.Models.View_Models.AthleteDetailsViewModelcs
+﻿<link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+@model Class_Project.Models.View_Models.AthleteDetailsViewModelcs
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>@Html.DisplayFor(model => model.Name)</h2>
+<h2 id="create">@Html.DisplayFor(model => model.Name)</h2>
 
-<div>
+<div id="create">
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -28,7 +29,11 @@
 </div>
 
 <div>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+
+>>>>>>> 8e5d926b7dd83c0e3341575e0b7ad3d6f9bf0693
     <h4>Events</h4>
 =======
 
@@ -36,7 +41,7 @@
 >>>>>>> Stashed changes
     <hr />
     <dl class="dl-horizontal">
-        @{ for (int i = 0; i < Model.Times.Length; i++)
+        @{ for (int i = 0; i < Model.Events.Length; i++)
             {
                 <dt>
                     @Model.Events[i]
