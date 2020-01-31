@@ -4,6 +4,10 @@
     background-image: url("https://www.desu.edu/sites/flagship/files/styles/region_background_2280/public/fpp/2681/region-background/image/athletics-ncaa-back2.jpg?itok=UBExvbp9")
 }
 
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+=======
 .searchTable {
     align-content: center;
     font-family: Georgia;
@@ -49,6 +53,7 @@
     margin-right: 300px;
 }
 
+>>>>>>> 8e5d926b7dd83c0e3341575e0b7ad3d6f9bf0693
 .form-horizontal {
     font-family: Georgia
 }
@@ -57,16 +62,28 @@
     font-family: Georgia
 }
 
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+=======
+>>>>>>> 8e5d926b7dd83c0e3341575e0b7ad3d6f9bf0693
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+    text-align: center;
+    align-content: center;
+>>>>>>> Stashed changes
+=======
     text-align:center;
     align-content:center;
+>>>>>>> 8e5d926b7dd83c0e3341575e0b7ad3d6f9bf0693
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
 */
 .dl-horizontal dt {
     white-space: normal;
@@ -88,7 +105,7 @@ textarea {
 #jumbo {
     align-content: center;
     text-align: center;
-    font-family:Georgia
+    font-family: Georgia
 }
 
 #searchBar {
