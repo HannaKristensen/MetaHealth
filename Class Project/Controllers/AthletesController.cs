@@ -44,6 +44,7 @@ namespace Class_Project.Views
         public ActionResult Create()
         {
             ViewBag.TeamID = new SelectList(db.Teams, "TeamID", "Name");
+            ViewBag.Gender = new SelectList(db.Athletes, "Gender", "Gender");
             return View();
         }
 
@@ -62,6 +63,7 @@ namespace Class_Project.Views
             }
 
             ViewBag.TeamID = new SelectList(db.Teams, "TeamID", "Name", athlete.TeamID);
+            ViewBag.GenderID = new SelectList(db.Athletes, "Gender", "Gender", athlete.Gender);
             return View(athlete);
         }
 
