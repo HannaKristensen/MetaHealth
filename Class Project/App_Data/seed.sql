@@ -30,3 +30,4 @@ INSERT INTO [dbo].[AthleteResults] VALUES
 (15, 2, 2, 7),
 ( 1, 2, 2, 5),
 ( 70, 1, 2, 3)
+
