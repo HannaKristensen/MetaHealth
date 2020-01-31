@@ -14,7 +14,7 @@ namespace Class_Project.Models.View_Models
             Gender = athlete.Gender;
             Team = athlete.Team.Name;
             Events = new string[athlete.AthleteResults.Select(x => x.Result.ToString()).ToArray().Count()];
-            Events = athlete.AthleteResults.Select(x => x.Result.ToString()).ToArray();
+            Events = athlete.AthleteResults.Select(x => x.Result.Event).ToArray();
             Times = new string[athlete.AthleteResults.Select(x => x.RaceTime.ToString()).ToArray().Count()];
             Times = athlete.AthleteResults.Select(x => x.RaceTime.ToString()).ToArray();
             AthelteID = athlete.AthleteID;

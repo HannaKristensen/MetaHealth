@@ -1,0 +1,66 @@
+﻿<link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+@model IEnumerable<Class_Project.Models.Athlete>
+<<<<<<< HEAD
+    @{
+    ViewBag.Title = "Home Page";
+    }
+
+
+    <div class="row" id="searchText">
+        <h1>Search For An Athlete Here:</h1>
+    </div>
+
+    <div class="row" id="searchBar">
+        @using (Html.BeginForm("HomePage", "Athletes", FormMethod.Get))
+=======
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="row" id="searchText">
+    <h1>Search For An Athlete Here:</h1>
+</div>
+
+<div id="searchBar">
+    @using (Html.BeginForm("HomePage", "Athletes", FormMethod.Get))
+>>>>>>> 8e5d926b7dd83c0e3341575e0b7ad3d6f9bf0693
+    {
+        <p>
+            <input type="text" name="SearchQ">
+            <input type="submit" value="Search!" />
+        </p>
+    }
+<<<<<<< HEAD
+    </div>
+
+    <div class="row" id="searchTable">
+        @if (Model != null)
+    {
+        <table class="table" border="1">
+            @foreach (var i in Model)
+            {
+            <tr>
+                <td>
+                    @Html.ActionLink(i.Name, "Details", new { id = i.AthleteID })
+                </td>
+            </tr>
+=======
+</div>
+
+    <div class="row" id="searchTable">
+    @if (Model != null)
+    {
+        <table class="table" border="1" id="searchTable">
+            @foreach (var i in Model)
+            {
+                <tr id="searchTable">
+                    <td id="searchTable">
+                        @Html.ActionLink(i.Name, "Details", new { id = i.AthleteID })
+                    </td>
+                </tr>
+>>>>>>> 8e5d926b7dd83c0e3341575e0b7ad3d6f9bf0693
+            }
+        </table>
+    }
+    </div>

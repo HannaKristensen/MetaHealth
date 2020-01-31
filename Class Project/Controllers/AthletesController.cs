@@ -15,13 +15,57 @@ namespace Class_Project.Views
     {
         private DBContext db = new DBContext();
 
+        [HttpGet]
+        public ActionResult HomePage(string SearchQ)
+        {
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+            var athletes = db.Athletes.Include(a => a.Team);
+            return View(athletes.ToList());
+        }
+
+=======
+            var name = db.Athletes.Where(s => s.Name.Contains(SearchQ)).ToList();
+
+            if (name == null)
+            {
+                return View("Item Not found!");
+            }
+
+            return View(name);
+        }
+
         // GET: Athletes
+
         public ActionResult Index()
         {
             var athletes = db.Athletes.Include(a => a.Team);
             return View(athletes.ToList());
         }
 
+>>>>>>> Stashed changes
+=======
+            var name = db.Athletes.Where(s => s.Name.Contains(SearchQ));
+
+            if (name == null)
+            {
+                return View("Item Not found!");
+            }
+
+            return View(name);
+        }
+
+
+
+            // GET: Athletes
+
+            public ActionResult Index()
+            {
+                var athletes = db.Athletes.Include(a => a.Team);
+                return View(athletes.ToList());
+            }
+
+>>>>>>> 8e5d926b7dd83c0e3341575e0b7ad3d6f9bf0693
         // GET: Athletes/Details/5
         public ActionResult Details(int? id)
         {
@@ -44,6 +88,7 @@ namespace Class_Project.Views
         public ActionResult Create()
         {
             ViewBag.TeamID = new SelectList(db.Teams, "TeamID", "Name");
+            ViewBag.Gender = new SelectList(db.Athletes, "Gender", "Gender");
             return View();
         }
 
@@ -62,6 +107,7 @@ namespace Class_Project.Views
             }
 
             ViewBag.TeamID = new SelectList(db.Teams, "TeamID", "Name", athlete.TeamID);
+            ViewBag.GenderID = new SelectList(db.Athletes, "Gender", "Gender", athlete.Gender);
             return View(athlete);
         }
 

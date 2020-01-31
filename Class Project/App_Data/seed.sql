@@ -8,7 +8,7 @@ INSERT INTO [dbo].[Teams] VALUES
 
 INSERT INTO [dbo].[Athletes] VALUES
 ('Ash Garcia' , 'Boy' , 1), 
-('Sue Timothy' , 'Girl' , 2) 
+('Sue Timothy' , 'Girl' , 2)
 
 INSERT INTO [dbo].[Locations] VALUES
 ( 'Aloha High School', '5/25/2020'),
@@ -24,9 +24,9 @@ INSERT INTO [dbo].[Results] VALUES
 ( '4x400')
 
 INSERT INTO [dbo].[AthleteResults] VALUES
-( 20, 1, 1, 1),
-( 15, 2, 1, 2),
-( 200, 1, 1, 4),
+(20, 1, 1, 1),
+(15, 2, 1, 2),
+(200, 1, 1, 4),
 (15, 2, 2, 7),
 ( 1, 2, 2, 5),
 ( 70, 1, 2, 3)

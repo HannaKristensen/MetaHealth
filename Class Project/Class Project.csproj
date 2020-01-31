@@ -391,6 +391,7 @@
     <Content Include="Views\Coaches\Details.cshtml" />
     <Content Include="Views\Coaches\Edit.cshtml" />
     <Content Include="Views\Coaches\Index.cshtml" />
+    <Content Include="Views\Athletes\HomePage.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
