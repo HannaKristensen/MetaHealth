@@ -18,10 +18,31 @@ namespace Class_Project.Views
         // GET: Athletes
         public ActionResult Index()
         {
+<<<<<<< Updated upstream
             var athletes = db.Athletes.Include(a => a.Team);
             return View(athletes.ToList());
         }
 
+=======
+            var name = db.Athletes.Where(s => s.Name.Contains(SearchQ)).ToList();
+
+            if (name == null)
+            {
+                return View("Item Not found!");
+            }
+
+            return View(name);
+        }
+
+        // GET: Athletes
+
+        public ActionResult Index()
+        {
+            var athletes = db.Athletes.Include(a => a.Team);
+            return View(athletes.ToList());
+        }
+
+>>>>>>> Stashed changes
         // GET: Athletes/Details/5
         public ActionResult Details(int? id)
         {
