@@ -16,6 +16,7 @@ namespace Class_Project.Views
         private DBContext db = new DBContext();
 
         [HttpGet]
+        [Authorize]
         public ActionResult HomePage(string SearchQ)
         {
             var name = db.Athletes.Where(s => s.Name.Contains(SearchQ)).ToList();
