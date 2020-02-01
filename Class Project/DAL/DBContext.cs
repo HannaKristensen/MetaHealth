@@ -8,8 +8,8 @@ namespace Class_Project.Models
     public partial class DBContext : DbContext
     {
         public DBContext()
-              //: base("LocalContext")
-              : base("AzureContext")
+              : base("Database")
+              //: base("AzureContext")
         {
             // Disable code-first migrations
             Database.SetInitializer<ApplicationDbContext>(null);

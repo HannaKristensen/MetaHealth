@@ -21,12 +21,7 @@
                 @Html.ActionLink("Athlete Viewer", "HomePage", "Athletes", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav" id="navBar">
-                    <li>@Html.ActionLink("Home", "HomePage", "Athletes")</li>
-                    <li>@Html.ActionLink("Athletes", "Index", "Athletes")</li>
-                    <li>@Html.ActionLink("Add Athlete", "Create", "Athletes")</li>
-                    <li>@Html.ActionLink("Add Times", "Create", "AthleteResults")
-                </ul>
+                
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
