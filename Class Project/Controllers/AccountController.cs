@@ -11,6 +11,8 @@ using Microsoft.Owin.Security;
 using Class_Project.Models;
 using Recaptcha.Web;
 using Recaptcha.Web.Mvc;
+using Newtonsoft.Json;
+using System.Net;
 
 namespace Class_Project.Controllers
 {
@@ -144,6 +146,14 @@ namespace Class_Project.Controllers
         }
 
         //
+        //Captcha requestion function
+        public static CaptchaResponse ValidateCaptcha(string response) {
+            string secret = System.Web.Configuration.WebConfigurationManager.AppSettings["recaptchaPrivateKey"];
+            var client = new WebClient();
+            var jsonResult = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
+            return JsonConvert.DeserializeObject<CaptchaResponse>(jsonResult.ToString());
+        }
+        //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -152,21 +162,11 @@ namespace Class_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                RecaptchaVerificationHelper recaptchaHelper = this.GetRecaptchaVerificationHelper(); 
-                if (String.IsNullOrEmpty(recaptchaHelper.Response)) { 
-                    ModelState.AddModelError("", "Captcha answer cannot be empty."); 
-                    return View(model); 
-                }
-                RecaptchaVerificationResult recaptchaResult = await recaptchaHelper.VerifyRecaptchaResponseTaskAsync(); 
-                if (recaptchaResult != RecaptchaVerificationResult.Success) { 
-                    ModelState.AddModelError("", "Incorrect captcha answer."); 
-                }
+                
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
-
-
-                if (result.Succeeded)
-                {
+                CaptchaResponse response = ValidateCaptcha(Request["g-recaptcha-response"]);
+                if (response.Success && result.Succeeded) {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
