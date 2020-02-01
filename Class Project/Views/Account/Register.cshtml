@@ -1,22 +1,14 @@
 ﻿@model Class_Project.Models.RegisterViewModel
-@{
 
+@{
     ViewBag.Title = "Register";
 }
 @using Recaptcha.Web.Mvc;
 
-<head>
-    <!--click captcha should call this function
-    <script type="text/javascript">
-        var onloadCallback = function () {
-            grecaptcha.render('div', {
-                'sitekey': 'your_site_key'
-            });
-    </script>-->
-</head>
-
 <h2>@ViewBag.Title.</h2>
-
+<head>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
     @Html.AntiForgeryToken()
     <h4>Create a new account.</h4>
@@ -41,16 +33,13 @@
         </div>
     </div>
     <div>
-        @Html.Recaptcha()
+        <div class="g-recaptcha" data-sitekey="6Lc9FdQUAAAAAKWATPTiRjSZFJQbo4IbS5N1f0K2"></div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Register" />
         </div>
     </div>
-
-    <!--Captcha script-->
-    <!--<script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
 }
 
 @section Scripts {

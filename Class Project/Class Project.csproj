@@ -197,6 +197,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Athlete.cs" />
     <Compile Include="Models\AthleteResult.cs" />
+    <Compile Include="Models\CaptchaResponse.cs" />
     <Compile Include="Models\Coach.cs" />
     <Compile Include="DAL\DBContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
