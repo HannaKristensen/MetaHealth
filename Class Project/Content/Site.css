@@ -1,0 +1,133 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-image: url("https://www.desu.edu/sites/flagship/files/styles/region_background_2280/public/fpp/2681/region-background/image/athletics-ncaa-back2.jpg?itok=UBExvbp9")
+}
+
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+=======
+.searchTable {
+    align-content: center;
+    font-family: Georgia;
+    padding-left: 500px;
+    padding-right: 500px;
+    color: #2a4269;
+    text-align: center;
+    margin-left: 500px;
+    margin-right: 500px;
+}
+
+#searchTable {
+    align-content: center;
+    font-family: Georgia;
+    padding-left: 1000px;
+    padding-right: 1000px;
+    color: black ;
+    text-align: center;
+    margin-left: 1000px;
+    margin-right: 1000px; 
+}
+
+#table {
+    align-content: center;
+    font-family: Georgia;
+    padding-left: 100px;
+    padding-right: 100px;
+    color: #2a4269;
+    text-align: center;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+
+.table {
+    font-family: Georgia;
+    align-content: center;
+    font-family: Georgia;
+    padding-left: 100px;
+    padding-right: 100px;
+    color: #2a4269;
+    text-align: center;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+
+>>>>>>> 8e5d926b7dd83c0e3341575e0b7ad3d6f9bf0693
+.form-horizontal {
+    font-family: Georgia
+}
+
+#create {
+    font-family: Georgia
+}
+
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+=======
+>>>>>>> 8e5d926b7dd83c0e3341575e0b7ad3d6f9bf0693
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+    text-align: center;
+    align-content: center;
+>>>>>>> Stashed changes
+=======
+    text-align:center;
+    align-content:center;
+>>>>>>> 8e5d926b7dd83c0e3341575e0b7ad3d6f9bf0693
+}
+
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#searchText {
+    align-content: center;
+    text-align: center;
+    font-family: Georgia
+}
+
+#jumbo {
+    align-content: center;
+    text-align: center;
+    font-family: Georgia
+}
+
+#searchBar {
+    align-content: center;
+    text-align: center;
+    font-family: Georgia
+}
+
+.navbar navbar-inverse navbar-fixed-top {
+    background-color: #2a4269;
+    color: white;
+    font-family: Georgia
+}
+
+.navbar-header {
+    background-color: #2a4269;
+    color: white;
+    font-family: Georgia
+}
+
+#navBar {
+    background-color: #2a4269;
+    color: white;
+    font-family: Georgia
+}
