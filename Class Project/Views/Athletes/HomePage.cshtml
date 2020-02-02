@@ -18,14 +18,14 @@
     }
 </div>
 
-<div class="row" id="searchTable">
+<div class="row">
     @if (Model != null)
     {
-        <table class="table" border="1" id="searchTable">
+        <table border="1">
             @foreach (var i in Model)
             {
-                <tr id="searchTable">
-                    <td id="searchTable">
+                <tr>
+                    <td>
                         @Html.ActionLink(i.Name, "Details", new { id = i.AthleteID })
                     </td>
                 </tr>
