@@ -69,7 +69,7 @@ Is this a diagnostic tool?
 
 ### Use Case Diagrams
   
-![UseCaseDiagram.jpg](./UseCaseDigram.jpg)
+![UseCaseDiagram.jpg](./UseCaseDiagram.jpg)
 
 
 ### Identify Non-Functional Requirements
