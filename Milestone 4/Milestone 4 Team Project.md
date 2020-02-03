@@ -33,7 +33,7 @@ Does this cost anything for the user?
 No 
 
 
-Will there be adds on the site?
+Will there be ads on the site?
           No
 
 
@@ -49,7 +49,7 @@ What mental health problems are you helping?
 
 
 Is this a diagnostic tool?
-        We are not licensed therapists so we always recommend consulting a doctor, especially in the event of a medical emergency. HelpAlong is not meant to be used to diagnose users and leave that up to the professionals
+        We are not licensed therapists so we always recommend consulting a doctor, especially in the event of a medical emergency. HelpAlong is not meant to be used to diagnose users and we leave that up to the professionals. 
        
 
 
@@ -76,7 +76,7 @@ Is this a diagnostic tool?
       1.) Passwords should not expire
       2.) Custom 404 page that is cute and funny
       3.) Database will store users login and password
-      4.) Site in general will be nice and appeasing to the eye
+      4.) Site in general will be nice and pleasing to the eye
       5.) Consistent styling throughout all page
       6.) Webpage should work on all platforms / devices
       7.) New users are added to an existing database
@@ -100,6 +100,40 @@ E: Epic
 U: User Story  
 T: Task
 
+
+1. [E] As a user, I want to be able to make a list of daily tasks and be reminded of them so I can stay on top of my day. 
+   1. [U] As a user, I want to be able to add my Google account information to the website so that I can access my personal information.
+      1. Assumptions/Preconditions: The website should be hooked up to google calendar already
+         1. Description: The stakeholders want a streamlined experience for the user to enter reminders and dates. Since google calendars are fairly common amongst the general public, it makes sense to link up the tracker with a common application amongst users. Adding a task in the web app automatically adds it to a user’s google calendar and sets a reminder based off the time entered in the website for the task. This will be part of the toolbar under something called “manage tasks”. Users will be able to categorize tasks based on their own preferences (i.e “homework”, “chores”, “hobby”, “work”, etc) and assign a priority number to it.
+            
+            1. Tasks:
+               1. Create button on taskbar for “calendar”
+               2. Have a calendar pop-up upon clicking the button
+               3. Trigger a JSON function upon clicking the calendar square
+               4. Having the user set the type, priority and details of a calendar 
+               5. Grab hold of Google Calendar api
+
+   2. [U] As a user I want to be notified by google calendar to get the things on my list done so that I can accomplish my goals for the day. 
+      2. Assumptions/Preconditions: There should be a way to send someone a notification from the web application
+         2. Description: In our application users can get different types of notifications. One will be a reminder to take their medicine. If the user hasn’t checked off the reminder they will get another reminder to make sure that they take it. Some other notifications they will get is for their list of items. They will get notifications about what is on their list. The list will have things the user wants to get done. This will help keep the user focused on what they need to do.  They can choose the time and date like a normal google calendar event. They can also choose when to be notified.
+            
+         1. Tasks:
+               1. Set up the Google Calendar API. Make sure you have keys
+               2. Make a space where a list can be made and where you can add to a list
+               3. Set up google Calendar API so that you create events when you add to list
+               4. Set up reminders for the events so that the user gets notified.
+
+   3. [U] As a user, I want to see a nice interface for my daily list to do that it is clear and easy to use. 
+      1. Assumptions/Preconditions: There is a database in place that tracks tasks and assigns them in order of priority assigned which is chosen by the user
+         1. Description: A user will have no problem adding and editing their daily task list with a clean and simple user interface. This will allow them to visualize and keep track of their tasks and goals better, and ultimately improve their daily life. Also, having a clean/nice interface will encourage users to continue to use their lists and encourage them to be excited about checking things off and staying organized. The database portion of the list is crucial, because this will not only keep track of the list but also keep track of the priorities and the order of them (the user will order these tasks themselves). As tasks are checked off, they should be removed from the database to keep it clean and take up less space. However, daily tasks that are static everyday (brush your teeth, take a shower, etc.) should remain in the database even if it is checked off. This will contribute to the easy-to-use interface because this way the user will not have to continually add the same tasks each day, and only have to add extra tasks alongside their daily to-do’s.
+            
+            1. Tasks:
+               1. Initialize a database for this specific feature
+               2. Add a way to prioritize tasks in the database
+               3. Create checkboxes for tasks that specify whether this is a recurring task or a task only specific to that same day 
+               4. Create UI wireframes to visualize the layout of the feature itself 
+               5. Create a modern, simple UI for this feature using HTML and CSS
+               6. Add scripts to connect to checkboxes that drop specific tasks once they are clicked on at the end of the day (11:59pm). Dependent on whether this is a recurring task or not. 
 
 1. [E] As a user, I want a safe space to be able to write down my feelings or meditate.  
    1. [U] As a user, I want to choose  gif on the page to do meditation breathing too
