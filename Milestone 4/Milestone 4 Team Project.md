@@ -69,7 +69,7 @@ Is this a diagnostic tool?
 
 ### Use Case Diagrams
   
-![UseCaseDiagram.png](./UseCaseDigram.png)
+![UseCaseDiagram.jpg](./UseCaseDigram.jpg)
 
 
 ### Identify Non-Functional Requirements
@@ -173,4 +173,4 @@ T: Task
 
 
 ## Timeline and Release Plan
-![TimeLine1.png](./TimeLine1.png)
+![TimeLine1.jpg](./TimeLine1.jpg)
