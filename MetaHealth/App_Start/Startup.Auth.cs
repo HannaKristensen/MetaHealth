@@ -58,11 +58,11 @@ namespace MetaHealth
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "180774585516-7nm3okoofj8am2efsvvdom563vdu056i.apps.googleusercontent.com",
+                ClientSecret = "oujTGlZd2YcSU3wEAc_xReUV"
+            });
         }
     }
 }
