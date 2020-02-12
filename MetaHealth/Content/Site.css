@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #E9E6D4 ; 
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -26,4 +27,9 @@ textarea {
 #welcomeText{
     text-align:center;
     align-content:center;
+}
+
+#visionText {
+    text-align: center;
+    align-content: center;
 }
