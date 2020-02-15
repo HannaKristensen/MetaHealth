@@ -1,21 +1,35 @@
-﻿@{
+﻿<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+
+@using MetaHealth.Models
+@model LoginViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="row" id="welcomeText">
-    <h1>HelpAlong</h1>
-    <h2>Do better. Be better. Feel Better.</h2>
-    <br />
-    <h4>For those of us who  can be overwhelmed by the day-to-day,</h4>
-    <h4>the  HelpAlong web app is an all encompassing coping tool that</h4>
-    <h4>provides a single point of access to various coping strategies. The website </h4>
-    <h4>will offer a variety of services that help users find a therapist in their area, </h4>
-    <h4>figure out which methods of self-care work best for them, keeps their daily lives </h4>
-    <h4>organized and on track, and provides a coping space filled with positive activities. </h4>
-    <h4>Unlike  other mental health management applications, our product  will provide </h4>
-    <h4>a cohesive experience for the user to explore what self care and mental well-being </h4>
-    <h4>means to them. </h4>
-    <br />
-    <h4>https://github.com/HannaKristensen/MetaHealth</h4>
+<div class="container">
+    <div class="col-sm-6" id="visionText">
+        <br />
+        <h2 id="visionTitle">Our Vision:</h2>
+        <h4 id="visionParagraph">
+            For those of us who  can be overwhelmed by the day-to-day,
+            the  HelpAlong web app is an all encompassing coping tool that
+            provides a single point of access to various coping strategies. The website
+            will offer a variety of services that help users find a therapist in their area,
+            figure out which methods of self-care work best for them, keeps their daily lives
+            organized and on track, and provides a coping space filled with positive activities.
+            Unlike  other mental health management applications, our product  will provide
+            a cohesive experience for the user to explore what self care and mental well-being
+            means to them.
+        </h4>
+    </div>
+    <div class="col-sm-6" id="logInColumn">
+        <div id="socialLoginForm">
+            <br />
+            <br />
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            <img src="https://i.postimg.cc/GtCsPs39/help-Along-Logo.png" align="middle" style="width:460px;height:460px;">
+        </div>
+    </div>
 </div>
+
 

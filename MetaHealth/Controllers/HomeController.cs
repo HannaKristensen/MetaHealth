@@ -13,6 +13,16 @@ namespace MetaHealth.Controllers
             return View();
         }
 
+        public ActionResult gitHubResources()
+        {
+            return View(); 
+        }
+
+        public ActionResult Resources()
+        {
+            return View(); 
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
