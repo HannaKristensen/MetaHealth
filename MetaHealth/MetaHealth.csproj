@@ -239,6 +239,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Home\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Home\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Home\gitHubResources.cshtml" />
+    <Content Include="Views\Home\Resources.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
