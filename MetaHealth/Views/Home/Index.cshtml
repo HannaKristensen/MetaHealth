@@ -1,28 +1,35 @@
-﻿@{
+﻿<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+
+@using MetaHealth.Models
+@model LoginViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="container">
-            <div class="col-sm-6" id="visionText">
-                <br />
-                <br />
-                <h2>Our Vision:</h2>
-                <h4>For those of us who  can be overwhelmed by the day-to-day,
-                the  HelpAlong web app is an all encompassing coping tool that
-                provides a single point of access to various coping strategies. The website 
-                will offer a variety of services that help users find a therapist in their area, 
-                figure out which methods of self-care work best for them, keeps their daily lives 
-                organized and on track, and provides a coping space filled with positive activities. 
-                Unlike  other mental health management applications, our product  will provide 
-                a cohesive experience for the user to explore what self care and mental well-being 
-                means to them. </h4>
-            </div>
-            <div class="w-100" id="colDivider"></div>
-            <div class="col" id="logInColumn">
-                <div class="row" id="logoImage">
-                    <img src="https://i.postimg.cc/GtCsPs39/help-Along-Logo.png" style="width:350px;height:350px;">
-                </div>
-            </div>
+    <div class="col-sm-6" id="visionText">
+        <br />
+        <h2 id="visionTitle">Our Vision:</h2>
+        <h4 id="visionParagraph">
+            For those of us who  can be overwhelmed by the day-to-day,
+            the  HelpAlong web app is an all encompassing coping tool that
+            provides a single point of access to various coping strategies. The website
+            will offer a variety of services that help users find a therapist in their area,
+            figure out which methods of self-care work best for them, keeps their daily lives
+            organized and on track, and provides a coping space filled with positive activities.
+            Unlike  other mental health management applications, our product  will provide
+            a cohesive experience for the user to explore what self care and mental well-being
+            means to them.
+        </h4>
+    </div>
+    <div class="col-sm-6" id="logInColumn">
+        <div id="socialLoginForm">
+            <br />
+            <br />
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            <img src="https://i.postimg.cc/GtCsPs39/help-Along-Logo.png" align="middle" style="width:460px;height:460px;">
+        </div>
+    </div>
 </div>
 
 
