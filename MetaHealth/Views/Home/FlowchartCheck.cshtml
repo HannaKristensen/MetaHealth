@@ -1,0 +1,42 @@
+﻿<link href="@Url.Content("~/Content/Flowchart.css")" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Flowchart Checklist";
+}
+
+
+<h2>@ViewBag.Title</h2>
+    <h4>Physical</h4>
+    <ul class="physicalSC" id="physicalSC">
+        <li>Eat a balanced meal/snack @*<input type="checkbox" />*@</li>
+        <li>Exercise</li>
+        <li>Take a short nap/get to bed</li>
+        <li>Drink water</li>
+        <li>Put on something clean and comfortable</li>
+        <li>Take a warm shower/bath</li>
+    </ul>
+
+
+    <h4>Psychological</h4>
+    <ul class="psychSC" id="psychSC">
+        <li>Write in a journal</li>
+        <li>Read something unrelated to school/work</li>
+        <li>Spend 5 minutes researching something you've always wondered but can never remember to look up</li>
+        <li>List 3 things that you like about yourself</li>
+        <li>Organize/tidy an area of your home</li>
+    </ul>
+    <br />
+
+    <h4>Emotional</h4>
+    <ul class="emotionalSC" id="emotionalSC">
+        <li>Catch up with a friend/family member</li>
+        <li>Spend 5 minutes meditating on an issue you're struggling with</li>
+        <li>Donate your time/money to a cause that you believe in</li>
+        <li>Treat yourself to something you wouldn't normally get</li>
+        <li>Watch an uplifting movie/tv show</li>
+    </ul>
+
+
+@section scripts {
+ <script src="~/Scripts/FlowchartScript.js"></script>
+}

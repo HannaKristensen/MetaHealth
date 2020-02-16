@@ -36,5 +36,11 @@ namespace MetaHealth.Controllers
 
             return View();
         }
+
+        public ActionResult FlowchartCheck() 
+        {
+            return View();
+        }
+
     }
 }
