@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #E9E6D4 ; 
+    background-color: #E9E6D4;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -10,8 +10,8 @@
     padding-right: 15px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
 */
 .dl-horizontal dt {
     white-space: normal;
@@ -24,38 +24,36 @@ textarea {
     max-width: 280px;
 }
 
-
 #visionText {
     text-align: center;
     align-content: center;
-    font-family: 'Arial Rounded MT' ;
-    font-size: 50px ;
+    font-family: 'Arial Rounded';
+    font-size: 50px;
 }
 
 .resourcesFooter {
-    font-family: 'Arial Rounded MT';
+    font-family: 'Arial Rounded';
     font-size: 15px;
     list-style: none;
-    color:black
+    color: black
 }
-
 
 #githubLinks {
     text-align: center;
     align-content: center;
-    font-family: 'Arial Rounded MT';
+    font-family: 'Arial Rounded';
     font-size: 35px;
-    list-style:none ; 
+    list-style: none;
 }
 
 #visionTitle {
     text-align: center;
     align-content: center;
-    font-family: 'Arial Rounded MT';
+    font-family: 'Arial Rounded';
     font-size: 65px;
 }
 
-#visionParagraph{
+#visionParagraph {
     line-height: 1.85
 }
 
@@ -66,20 +64,19 @@ textarea {
     display: inline-block;
     cursor: pointer;
     color: #ffffff;
-    font-family: 'Arial Rounded MT';
+    font-family: 'Arial Rounded';
     font-size: 17px;
     padding: 25px 51px;
     text-decoration: none;
 }
 
-.btn-default:hover {
-    background-color: #f39c59;
-    color:white
-}
+    .btn-default:hover {
+        background-color: #f39c59;
+        color: white
+    }
 
-
-#socialLoginForm{
-    align-content:center;
+#socialLoginForm {
+    align-content: center;
 }
 
 #logInColumn {
@@ -91,17 +88,17 @@ textarea {
 .navbar {
     background-color: #E9E6D4;
     color: black;
-    font-family: 'Arial Rounded MT';
+    font-family: 'Arial Rounded';
 }
 
 .navbar-inverse {
     border: none;
     color: black;
-    font-family: 'Arial Rounded MT';
+    font-family: 'Arial Rounded';
 }
 
-#gitHubPage{
-    align-content:center
+#gitHubPage {
+    align-content: center
 }
 
 a:link {
@@ -123,7 +120,7 @@ a:visited {
 #emails {
     text-align: center;
     align-content: center;
-    font-family: 'Arial Rounded MT';
+    font-family: 'Arial Rounded';
     font-size: 35px;
     list-style: none;
 }
@@ -135,7 +132,7 @@ a:visited {
     display: inline-block;
     cursor: pointer;
     color: #ffffff;
-    font-family: 'Arial Rounded MT';
+    font-family: 'Arial Rounded';
     font-size: 17px;
     padding: 23px 64px;
     text-decoration: none;
@@ -145,20 +142,19 @@ a:visited {
         background-color: #9ce1e2;
     }
 
-.resourceButtons:active {
+    .resourceButtons:active {
         position: relative;
         top: 1px;
-}
+    }
 
-#resourceCols{
-    align-content:center ;
+#resourceCols {
+    align-content: center;
     text-align: center
 }
 
 #resourceText {
     text-align: center;
     align-content: center;
-    font-family: 'Arial Rounded MT';
+    font-family: 'Arial Rounded';
     font-size: 40px;
 }
-
