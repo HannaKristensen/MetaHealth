@@ -1,33 +1,33 @@
-﻿@model MetaHealth.Models.ExternalLoginConfirmationViewModel
-@{
-    ViewBag.Title = "Register";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>Associate your @ViewBag.LoginProvider account.</h3>
+﻿<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+
+@model MetaHealth.Models.ExternalLoginConfirmationViewModel
+
 
 @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
-    <h4>Association Form</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <p class="text-info">
-        You've successfully authenticated with <strong>@ViewBag.LoginProvider</strong>.
-        Please enter a user name for this site below and click the Register button to finish
+    <h2 id="confirmText">
+        <strong>You've successfully authenticated with @ViewBag.LoginProvider!</strong>
+    </h2>
+    <br />
+    <h3 id="confirmText">
+        Please enter an email for this site below and click the Register button to finish
         logging in.
-    </p>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    </h3>
+    <br />
+    <br />
+    <div class="form-group" id="confirmEmailBox">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" , @id = "confirmEmailBox" })
             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-        </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
+
+    <br />
+
+    <div class="form-group" id="confirmRegisterButton">
+            <input type="submit" class="btn btn-default" value="Register!" />
     </div>
 }
 
