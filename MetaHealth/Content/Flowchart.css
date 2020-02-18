@@ -1,0 +1,69 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+ul {
+    padding: 12px 8px 12px 40px;
+    font-size: 18px;
+    transition: 0.2s;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    color: #E9E6D4;
+
+    /*Makes the list item unselectable*/
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+li {
+    padding: 4px;
+}
+
+ul.physicalSC {
+    background: #ff7733;
+}
+
+ul.physicalSC > li:nth-of-type(even) {
+    background: #ffa366; 
+}
+
+ul.psychSC {
+    background: #009900;
+}
+
+ul.psychSC > li:nth-of-type(even) {
+    background: #47d147;
+}
+
+ul.emotionalSC {
+    background: #005ce6;
+}
+
+ul.emotionalSC > li:nth-of-type(even) {
+    background: #4da6ff;
+}
+
+ul li:hover {
+    color: black;
+}
+
+ul li.emotionalSC::after, li.physicalSC::after, li.psychSC::after {
+    content: '';
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+}
+
+li.selected {
+    text-decoration: line-through;
+    color: black;
+}

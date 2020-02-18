@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[MoodsInBetween]
 (
-    [PK]   NVARCHAR (128) NOT NULL,
+    [PK]   INT IDENTITY(1,1) NOT NULL,
     [FK_UserTable] NVARCHAR (128) NOT NULL,
     CONSTRAINT [PK_dbo.MoodsInBetween] PRIMARY KEY CLUSTERED ([PK] ASC),
     CONSTRAINT [FK_dbo.MoodsInBetween_dbo.AspNetUsers_UserId] FOREIGN KEY ([FK_UserTable]) REFERENCES [dbo].[AspNetUsers] ([Id])
@@ -9,8 +9,8 @@
 
 CREATE TABLE [dbo].[Moods]
 (
-    [PK]   NVARCHAR (128) NOT NULL,
-    [FK_MoodsInBetween] NVARCHAR (128) NOT NULL,
+    [PK]   INT IDENTITY(1,1) NOT NULL,
+    [FK_MoodsInBetween] INT NOT NULL,
     [MoodNum] INT NOT NULL,
     [Date] DATETIME NOT NULL,
     CONSTRAINT [PK_dbo.Moods] PRIMARY KEY CLUSTERED ([PK] ASC),
@@ -20,7 +20,7 @@ CREATE TABLE [dbo].[Moods]
 
 CREATE TABLE [dbo].[List]
 (
-    [PK]   NVARCHAR (128) NOT NULL,
+    [PK]   INT IDENTITY(1,1) NOT NULL,
     [FK_UserTable] NVARCHAR (128) NOT NULL,
     CONSTRAINT [PK_dbo.List] PRIMARY KEY CLUSTERED ([PK] ASC),
     CONSTRAINT [FK_dbo.List_dbo.AspNetUsers_UserId] FOREIGN KEY ([FK_UserTable]) REFERENCES [dbo].[AspNetUsers] ([Id])
@@ -29,8 +29,8 @@ CREATE TABLE [dbo].[List]
 
 CREATE TABLE [dbo].[CustomLevel]
 (
-    [PK]   NVARCHAR (128) NOT NULL,
-    [FK_List] NVARCHAR (128) NOT NULL,
+    [PK]   INT IDENTITY(1,1) NOT NULL,
+    [FK_List] INT NOT NULL,
     [Task] NVARCHAR (256) NOT NULL,
     CONSTRAINT [PK_dbo.CustomLevel] PRIMARY KEY CLUSTERED ([PK] ASC),
     CONSTRAINT [FK_dbo.CustomLevel_dbo.List] FOREIGN KEY ([FK_List]) REFERENCES [dbo].[List] ([PK])
@@ -39,8 +39,8 @@ CREATE TABLE [dbo].[CustomLevel]
 
 CREATE TABLE [dbo].[ToDoList]
 (
-    [PK]   NVARCHAR (128) NOT NULL,
-    [FK_List] NVARCHAR (128) NOT NULL,
+    [PK]   INT IDENTITY(1,1) NOT NULL,
+    [FK_List] INT NOT NULL,
     [Task] NVARCHAR (256) NOT NULL,
     [Checked] BIT NOT NULL,
     CONSTRAINT [PK_dbo.ToDoList] PRIMARY KEY CLUSTERED ([PK] ASC),
@@ -50,8 +50,8 @@ CREATE TABLE [dbo].[ToDoList]
 
 CREATE TABLE [dbo].[APIToDoList]
 (
-    [PK]   NVARCHAR (128) NOT NULL,
-    [FK_List] NVARCHAR (128) NOT NULL,
+    [PK]   INT IDENTITY(1,1) NOT NULL,
+    [FK_List] INT NOT NULL,
     [CalandarID] NVARCHAR (256) NOT NULL,
     [EventID] NVARCHAR (256) NOT NULL,
     [Checked] BIT NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE [dbo].[APIToDoList]
 
 CREATE TABLE [dbo].[PreLevelList]
 (
-     [PK] NVARCHAR (128) NOT NULL,
+     [PK]   INT IDENTITY(1,1) NOT NULL,
      [Level] INT NOT NULL,
      [Task] NVARCHAR (256) NOT NULL,
      CONSTRAINT [PK_dbo.PreLevelList] PRIMARY KEY CLUSTERED ([PK] ASC)
