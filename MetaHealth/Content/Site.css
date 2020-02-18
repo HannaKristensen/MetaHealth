@@ -27,7 +27,12 @@ textarea {
 #visionText {
     text-align: center;
     align-content: center;
-    font-family: 'Verdana';
+    font-family: Verdana ;
+    font-size: 50px ;
+}
+
+.resourcesFooter {
+    font-family: Verdana;
     font-size: 50px;
 }
 
@@ -41,7 +46,7 @@ textarea {
 #githubLinks {
     text-align: center;
     align-content: center;
-    font-family: 'Verdana';
+    font-family: Verdana;
     font-size: 35px;
     list-style: none;
 }
@@ -49,7 +54,7 @@ textarea {
 #visionTitle {
     text-align: center;
     align-content: center;
-    font-family: 'Verdana';
+    font-family: Verdana;
     font-weight: 700;
     font-size: 65px;
 }
@@ -65,7 +70,7 @@ textarea {
     display: inline-block;
     cursor: pointer;
     color: #ffffff;
-    font-family: 'Verdana';
+    font-family: Verdana;
     font-size: 17px;
     padding: 25px 51px;
     text-decoration: none;
@@ -89,13 +94,13 @@ textarea {
 .navbar {
     background-color: #E9E6D4;
     color: black;
-    font-family: 'Verdana';
+    font-family: Verdana;
 }
 
 .navbar-inverse {
     border: none;
     color: black;
-    font-family: 'Verdana';
+    font-family: Verdana;
 }
 
 #gitHubPage {
@@ -121,7 +126,7 @@ a:visited {
 #emails {
     text-align: center;
     align-content: center;
-    font-family: 'Verdana';
+    font-family: Verdana;
     font-size: 35px;
     list-style: none;
 }
@@ -133,7 +138,7 @@ a:visited {
     display: inline-block;
     cursor: pointer;
     color: #ffffff;
-    font-family: 'Verdana';
+    font-family: Verdana;
     font-size: 17px;
     padding: 23px 64px;
     text-decoration: none;
@@ -156,6 +161,31 @@ a:visited {
 #resourceText {
     text-align: center;
     align-content: center;
-    font-family: 'Verdana';
+    font-family: Verdana;
     font-size: 40px;
+}
+
+
+#confirmText {
+    text-align: center;
+    font-family: Verdana;
+    color:black;
+}
+
+#confirmEmailBox {
+    text-align: center;
+    font-family: Verdana;
+    margin: 0 auto;
+}
+
+#Email {
+    align-content: center;
+    text-align: center;
+    font-family: Verdana;
+}
+
+#confirmRegisterButton {
+    align-content: center;
+    text-align: center;
+    font-family: Verdana;
 }
