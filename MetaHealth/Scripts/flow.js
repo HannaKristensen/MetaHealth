@@ -3,25 +3,25 @@ var flowchartMap = {
     "start": {
         "text": "Where would you like to begin?",
         "outcomes": {
-            "Mind": "choiceMind", "Body": "choiceBody", "Spirit": "choiceSpirit"
+            "Mind": "Mind", "Body": "Body", "Spirit": "Spirit"
         }
     },
-    "choiceMind": {
+    "Mind": {
         "text": "Of these three activities which sounds the best for you?",
         "outcomes": {
-            "Write": "choiceWrite", "Something creative": "choiceCreative", "I need to do nothing": "choiceNone"
+            "Write": "Write", "Something creative": "Creative", "I need to do nothing": "None"
         }
     },
-    "choiceBody": {
+    "Body": {
         "text": "You walk into the cave.",
         "outcomes": {}
     },
-    "choiceSpirit": {
+    "Spirit": {
         "text": "You walk away from the cave, to search for food. You find berries. Do you eat them or not?",
         "outcomes": {}
     },
 
-    "choiceWrite": {
+    "Write": {
         "text": "Write 5 things you like about yourself."
     },
 
@@ -46,10 +46,15 @@ var flowchartMap = {
 }
 
 var situation = "start";
+
+function testClick() {
+    $('#testClass').text("this worked");
+}
+
 function runFlowchart() {
-    var situation = flowchartMap[situation];
-    var choices = flowchartMap.outcomes;
-    var text = flowchartMap.text;
+    var map = flowchartMap[situation];
+    var choices = map.outcomes;
+    var text = map.text;
     $("#chartText").text(text);
 
 
@@ -66,5 +71,3 @@ function runFlowchart() {
         }
     }
 }
-
-runFlowchart();
