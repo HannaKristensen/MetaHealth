@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MetaHealth.Models;
+using Calendar.ASP.NET.MVC5;
 
 namespace MetaHealth.Controllers
 {
@@ -32,9 +33,9 @@ namespace MetaHealth.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -333,7 +334,8 @@ namespace MetaHealth.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
+
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -384,6 +386,6 @@ namespace MetaHealth.Controllers
             Error
         }
 
-#endregion
+        #endregion Helpers
     }
 }
