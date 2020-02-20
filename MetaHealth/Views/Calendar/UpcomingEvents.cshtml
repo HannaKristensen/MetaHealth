@@ -1,0 +1,29 @@
+﻿@model MetaHealth.Models.CalendarEventGroup
+
+
+@{
+    ViewBag.Title = "Upcoming Events";
+}
+
+<h2>Upcoming Events</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>Event</th>
+        </tr>
+    </thead>
+
+@for(int i = 0; i < Model.Dates.Count; i++)
+{
+    <tbody>
+
+            <tr>
+                <td>@Model.Dates.ElementAt(i)</td>
+                <td>@Model.Events.ElementAt(i)</td>
+            </tr>
+    </tbody>
+}
+
+</table>
