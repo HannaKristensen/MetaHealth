@@ -3,68 +3,98 @@ var flowchartMap = {
     "start": {
         "text": "Where would you like to begin?",
         "outcomes": {
-            "Mind": "Mind", "Body": "Body", "Spirit": "Spirit"
+            "Mind": "Mind",
+            "Body": "Body",
+            "Soul": "Soul"
         }
     },
+ 
     "Mind": {
         "text": "Of these three activities which sounds the best for you?",
         "outcomes": {
-            "Write": "Write", "Something creative": "Creative", "I need to do nothing": "None"
+            "Maybe I could write?": "Write",
+            "I would like to make something": "Creative",
+            "I'm feeling overwhelmed and need a break": "None"
         }
     },
     "Body": {
-        "text": "You walk into the cave.",
-        "outcomes": {}
+        "text": "What is your immediate need?",
+        "outcomes": {
+            "I'm thirsty/hungry": "Feed",
+            "I've been feeling stagnant": "Exercise",
+            "I feel gross":"Bathe"
+        }
     },
-    "Spirit": {
-        "text": "You walk away from the cave, to search for food. You find berries. Do you eat them or not?",
-        "outcomes": {}
+    "Soul": {
+        "text": "How are you feeling",
+        "outcomes": {
+            "I'm feeling a bit overwhelmed": "None",
+            "I'm feeling disconnected and alone": "Connect",
+            "I'm feeling anxious/depressed": "Uplift"
+        }
     },
 
     "Write": {
         "text": "Write 5 things you like about yourself."
     },
 
-    "choiceCreative": {
+    "Creative": {
         "text": "Draw a picture of something you loved to eat as a child."
     },
 
-    "choiceNone": {
+    "None": {
         "text": "Do you want to sit in silence or play some music?",
         "outcomes": {
-            "Sit in silence": "choiceSilence", "play some music": "choiceMusic"
+            "Sit in silence": "Silence",
+            "play some music": "Music"
         }
     },
 
-    "choiceSilence": {
+    "Silence": {
         "text": "Meditate for 5 minutes on a problem you've solved in the past."
     },
 
-    "coiceMusic": {
-        "text": "Go here and close your eyes and think happy thoughts-->https://www.youtube.com/watch?v=wb_E3HnLwG4"
+    "Music": {
+        "text": "Go here and close your eyes and think happy thoughts www.youtube.com/watch?v=3FzJHsri8Zw"
+    },
+
+    "Connect": {
+        "text":"Call a loved one."
+    },
+
+    "Uplift": {
+        "text":"Watch a funny movie/tv show"
+    },
+
+    "Feed": {
+        "text":"Eat/drink something"
+    },
+    "Bathe": {
+        "text":"A nice hot bath sounds nice to me"
     }
+
 }
 
 var situation = "start";
 
-function testClick() {
-    $('#testClass').text("this worked");
-}
-
 function runFlowchart() {
+    var div = document.getElementById("startFlowchart");
+    if (div.style.display != "none") {
+        div.style.display = "none";
+    }
     var map = flowchartMap[situation];
     var choices = map.outcomes;
-    var text = map.text;
-    $("#chartText").text(text);
+    var prompt = map.text;
+    $("#chartText").text(prompt);
 
 
     $("#buttons").empty();
 
     for (var choice in choices) {
         if (choices.hasOwnProperty(choice)) {
-            var $button = $('<input type="button" value="' + choice + '"/>');
+            var $button = $('<input type="button" button class="btn btn-default" value="' + choice + '"/>');
             $button.click({ "nextsit": choices[choice] }, function (evt) {
-                situation = evt.nextsit;
+                situation = evt.data.nextsit;
                 runFlowchart();
             });
             $("#buttons").append($button);

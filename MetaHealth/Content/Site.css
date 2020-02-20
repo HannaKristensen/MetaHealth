@@ -74,6 +74,7 @@ textarea {
     font-size: 17px;
     padding: 25px 51px;
     text-decoration: none;
+    white-space: normal;
 }
 
     .btn-default:hover {
@@ -188,4 +189,9 @@ a:visited {
     align-content: center;
     text-align: center;
     font-family: Verdana;
+}
+
+textFlowchart {
+    font-family: Verdana;
+    font-size: 50px;
 }

@@ -7,9 +7,12 @@
 </head>
 <h2>Not sure how to take care of yourself?</h2>
 <h3>We can help.</h3>
-<button class="btn btn-default" onclick="runFlowchart()">Click here to begin</button>
-    <div id="chartText"></div>
-    <div id="buttons"></div>
+<button class="btn btn-default" id="startFlowchart" onclick="runFlowchart()">Click here to begin</button>
+    <div class="textFlowchart">
+        <div id="chartText"></div> <!--TODO: STYLE FONT-->
+    </div>
+    <div id="buttons"></div><br /><!--TODO: SEE IF YOU CAN GENERATE RANDOM COLOR BUTTONS-->
+
 
 @section scripts {
     <script src="~/Scripts/flow.js"></script>
