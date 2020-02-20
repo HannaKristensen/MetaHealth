@@ -205,10 +205,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-MetaHealth-20200206054044.mdf" />
-    <Content Include="App_Data\aspnet-MetaHealth-20200206054044_log.ldf">
-      <DependentUpon>aspnet-MetaHealth-20200206054044.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\seed.sql" />
     <Content Include="App_Data\up.sql" />
