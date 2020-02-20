@@ -277,9 +277,6 @@
     <Content Include="Views\Calendar\UpcomingEvents.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\bin\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
