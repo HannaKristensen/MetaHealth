@@ -307,7 +307,8 @@ namespace MetaHealth.Controllers
         public ActionResult LinkLogin(string provider)
         {
             // Request a redirect to the external login provider to link a login for the current user
-            return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
+            //return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
+            return RedirectToAction("UpcomingEvents", "Calandar");
         }
 
         //
@@ -317,10 +318,12 @@ namespace MetaHealth.Controllers
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
             if (loginInfo == null)
             {
-                return RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+                //return RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+                return RedirectToAction("UpcomingEvents", "Calandar");
             }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
-            return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+            //return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+            return RedirectToAction("UpcomingEvents", "Calandar");
         }
 
         protected override void Dispose(bool disposing)
