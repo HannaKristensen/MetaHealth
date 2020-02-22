@@ -3,34 +3,34 @@ var flowchartMap = {
     "start": {
         "text": "Where would you like to begin?",
         "outcomes": {
-            "Mind": "Mind",//
-            "Body": "Body",//
-            "Soul": "Soul"//
+            "Mind": "Mind",
+            "Body": "Body",
+            "Soul": "Soul"
         }
     },
  
     "Mind": {
         "text": "Of these three activities which sounds the best for you?",
         "outcomes": {
-            "Maybe I could write?": "Write",//
-            "I would like to make something": "Creative",//
-            "I'm feeling overwhelmed and need a break": "None"//
+            "Maybe I could write?": "Write",
+            "I would like to make something": "Creative",
+            "I'm feeling overwhelmed and need a break": "None"
         }
     },
     "Body": {
         "text": "What is your immediate need?",
         "outcomes": {
-            "I'm thirsty/hungry": "Feed",//
-            "I've been feeling stagnant": "Exercise",//
-            "I feel gross":"Bathe"//
+            "I'm thirsty/hungry": "Feed",
+            "I've been feeling stagnant": "Exercise",
+            "I feel gross":"Bathe"
         }
     },
     "Soul": {
         "text": "How are you feeling",
         "outcomes": {
-            "I'm feeling a bit overwhelmed": "None",//
-            "I'm feeling disconnected and alone": "Connect",//
-            "I'm feeling anxious/depressed": "Uplift"//
+            "I'm feeling a bit overwhelmed": "None",
+            "I'm feeling disconnected and alone": "Connect",
+            "I'm feeling anxious/depressed": "Uplift"
         }
     },
 
@@ -55,7 +55,7 @@ var flowchartMap = {
     },
 
     "Music": {
-        "text": "Go here and close your eyes and think happy thoughts www.youtube.com/watch?v=3FzJHsri8Zw"
+        "text": "Go <a href='https://www.youtube.com/watch?v=3FzJHsri8Zw'>here</a> and close your eyes and think happy thoughts"
     },
 
     "Connect": {
@@ -88,8 +88,8 @@ function runFlowchart() {
     }
     var map = flowchartMap[situation];
     var choices = map.outcomes;
-    var prompt = map.text;
-    $("#chartText").text(prompt);
+    var prompt = ('<div class="textFlowchart">' + map.text + '</div>');
+    $("#chartText").html(prompt);
 
 
     $("#buttons").empty();

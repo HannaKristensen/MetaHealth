@@ -191,7 +191,7 @@ a:visited {
     font-family: Verdana;
 }
 
-textFlowchart {
+.textFlowchart {
     font-family: Verdana;
-    font-size: 50px;
+    font-size: 20px;
 }
