@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-ul {
+ul.physicalSC, ul.emotionalSC, ul.psychSC {
     padding: 12px 8px 12px 40px;
     font-size: 18px;
     transition: 0.2s;
@@ -18,7 +18,7 @@ ul {
     user-select: none;
 }
 
-li {
+ul.physicalSC > li, ul.emotionalSC > li, ul.psychSC > li {
     padding: 4px;
 }
 
@@ -67,3 +67,4 @@ li.selected {
     text-decoration: line-through;
     color: black;
 }
+

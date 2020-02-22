@@ -6,37 +6,46 @@
 
 
 <h2>@ViewBag.Title</h2>
-    <h3>Physical</h3>
+<h3>Physical</h3>
     <ul class="physicalSC" id="physicalSC">
-        <li>Eat a balanced meal/snack</li>
-        <li>Exercise</li>
-        <li>Take a short nap/get to bed</li>
-        <li>Drink water</li>
-        <li>Put on something clean and comfortable</li>
-        <li>Take a warm shower/bath</li>
+        <li id="checked">Eat a balanced meal/snack</li>
+        <li id="checked">Exercise</li>
+        <li id="checked">Take a short nap/get to bed</li>
+        <li id="checked">Drink water</li>
+        <li id="checked">Put on something clean and comfortable</li>
+        <li id="checked">Take a warm shower/bath</li>
     </ul>
 
 
     <h3>Psychological</h3>
     <ul class="psychSC" id="psychSC">
-        <li>Write in a journal</li>
-        <li>Read something unrelated to school/work</li>
-        <li>Spend 5 minutes researching something you've always wondered but can never remember to look up</li>
-        <li>List 3 things that you like about yourself</li>
-        <li>Organize/tidy an area of your home</li>
+        <li id="checked">Write in a journal</li>
+        <li id="checked">Read something unrelated to school/work</li>
+        <li id="checked">Spend 5 minutes researching something you've always wondered but can never remember to look up</li>
+        <li id="checked">List 3 things that you like about yourself</li>
+        <li id="checked">Organize/tidy an area of your home</li>
     </ul>
     <br />
 
     <h3>Emotional</h3>
     <ul class="emotionalSC" id="emotionalSC">
-        <li>Catch up with a friend/family member</li>
-        <li>Spend 5 minutes meditating on an issue you're struggling with</li>
-        <li>Donate your time/money to a cause that you believe in</li>
-        <li>Treat yourself to something you wouldn't normally get</li>
-        <li>Watch an uplifting movie/tv show</li>
+        <li id="checked">Catch up with a friend/family member</li>
+        <li id="checked">Spend 5 minutes meditating on an issue you're struggling with</li>
+        <li id="checked">Donate your time/money to a cause that you believe in</li>
+        <li id="checked">Treat yourself to something you wouldn't normally get</li>
+        <li id="checked">Watch an uplifting movie/tv show</li>
+
     </ul>
 
-
 @section scripts {
- <script src="~/Scripts/FlowchartScript.js"></script>
+    <script>
+        $("li").filter("#checked").click(function () {
+            if ($(this).hasClass("selected")) {
+                $(this).removeClass("selected");
+            }
+            else {
+                $(this).addClass("selected");
+            }
+        });
+    </script>
 }

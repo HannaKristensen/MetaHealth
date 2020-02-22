@@ -1,4 +1,5 @@
-﻿var flowchartMap = {
+﻿
+var flowchartMap = {
     "start": {
         "text": "Where would you like to begin?",
         "outcomes": {
@@ -7,7 +8,7 @@
             "Soul": "Soul"
         }
     },
-
+ 
     "Mind": {
         "text": "Of these three activities which sounds the best for you?",
         "outcomes": {
@@ -21,7 +22,7 @@
         "outcomes": {
             "I'm thirsty/hungry": "Feed",
             "I've been feeling stagnant": "Exercise",
-            "I feel gross": "Bathe"
+            "I feel gross":"Bathe"
         }
     },
     "Soul": {
@@ -58,22 +59,22 @@
     },
 
     "Connect": {
-        "text": "Call a loved one."
+        "text":"Call a loved one."
     },
 
     "Uplift": {
-        "text": "Watch a funny movie/tv show"
+        "text":"Watch a funny movie/tv show"
     },
 
     "Feed": {
-        "text": "Eat/drink something"
+        "text":"Eat/drink something"
     },
     "Bathe": {
-        "text": "A nice hot bath sounds nice to me"
+        "text":"A nice hot bath sounds nice to me"
     },
 
     "Exercise": {
-        "text": "Hit the gym."
+        "text":"Hit the gym."
     }
 
 }

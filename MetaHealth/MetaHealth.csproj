@@ -222,6 +222,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="client_secret.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\flow.js" />
     <Content Include="Scripts\FlowchartScript.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -273,6 +274,7 @@
     <Content Include="Views\Home\gitHubResources.cshtml" />
     <Content Include="Views\Home\Resources.cshtml" />
     <Content Include="Views\Home\FlowchartCheck.cshtml" />
+    <Content Include="Views\Home\Flowchart.cshtml" />
     <Content Include="Views\Calendar\UpcomingEvents.cshtml" />
   </ItemGroup>
   <ItemGroup>
