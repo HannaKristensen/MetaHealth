@@ -6,7 +6,6 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -25,6 +24,7 @@
                     <li>@Html.ActionLink("Resources", "Resources", "Home")</li>
                     <li>@Html.ActionLink("Self Care Guide", "FlowchartCheck", "Home")</li>
                     <li>@Html.ActionLink("Flowchart","Flowchart","Home")</li>
+                    <li>@Html.ActionLink("Events", "UpcomingEvents", "Calendar")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -46,7 +46,6 @@
                     <li>@Html.ActionLink("Contact Us", "Contact", "Home", new { Style = "color:black" })</li>
                 </ul>
             </div>
-
         </footer>
     </div>
 

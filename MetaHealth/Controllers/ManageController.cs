@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MetaHealth.Models;
+using Calendar.ASP.NET.MVC5;
 
 namespace MetaHealth.Controllers
 {
@@ -32,9 +33,9 @@ namespace MetaHealth.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -306,7 +307,8 @@ namespace MetaHealth.Controllers
         public ActionResult LinkLogin(string provider)
         {
             // Request a redirect to the external login provider to link a login for the current user
-            return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
+            //return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
+            return RedirectToAction("UpcomingEvents", "Calandar");
         }
 
         //
@@ -316,10 +318,12 @@ namespace MetaHealth.Controllers
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
             if (loginInfo == null)
             {
-                return RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+                //return RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+                return RedirectToAction("UpcomingEvents", "Calandar");
             }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
-            return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+            //return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+            return RedirectToAction("UpcomingEvents", "Calandar");
         }
 
         protected override void Dispose(bool disposing)
@@ -333,7 +337,8 @@ namespace MetaHealth.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
+
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -384,6 +389,6 @@ namespace MetaHealth.Controllers
             Error
         }
 
-#endregion
+        #endregion Helpers
     }
 }
