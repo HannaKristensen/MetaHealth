@@ -42,5 +42,7 @@ namespace Calendar.ASP.NET.MVC5.Models
         public IEnumerable<CalendarEventGroup> EventGroups { get; set; }
 
         public string[] MultiTask { get; set; }
+        public string[] MultiList { get; set; }
+        public string[] MultiTaskID { get; set; }
     }
 }

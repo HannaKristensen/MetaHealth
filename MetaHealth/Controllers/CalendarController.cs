@@ -149,6 +149,8 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             listRequest.MaxResults = 10;
 
             string[] listOtasks = new string[10];
+            string[] taskArr = new string[20];
+            string[] taskIDArr = new string[20];
             // List task lists.
             IList<TaskList> taskLists = listRequest.Execute().Items;
             if (taskLists != null && taskLists.Count > 0)
@@ -161,7 +163,19 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 }
             }
 
-            model.MultiTask = listOtasks;
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service2.Tasks.List("@default").Execute();
+            if (tasks != null)
+            {
+                for (int i = 0; i < tasks.Items.Count; i++)
+                {
+                    taskArr[i] = tasks.Items[i].Title;
+                    taskIDArr[i] = tasks.Items[i].Id;
+                }
+            }
+
+            model.MultiTask = taskArr;
+            model.MultiTaskID = taskIDArr;
+            model.MultiList = listOtasks;
 
             return View(model);
         }
