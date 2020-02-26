@@ -28,6 +28,27 @@ using Google.Apis.Auth.OAuth2.Responses;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
+using System.Net;
+using System.IO;
+
+using Google.Apis.Auth.OAuth2;
+
+using Google.Apis.Tasks.v1;
+using Google.Apis.Tasks.v1.Data;
+
+using Google.Apis.Services;
+using Google.Apis.Util.Store;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+using System.Text;
+
+using System.Threading;
+using System.Threading.Tasks;
+
+using Task = System.Threading.Tasks.Task;
 
 namespace Calendar.ASP.NET.MVC5.Controllers
 {
@@ -115,6 +136,33 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             }
 
             model.EventGroups = eventGroups;
+
+            var initializer2 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "ASP.NET MVC5 Calendar Sample",
+            };
+            var service2 = new TasksService(initializer2);
+
+            // Define parameters of request.
+            TasklistsResource.ListRequest listRequest = service2.Tasklists.List();
+            listRequest.MaxResults = 10;
+
+            string[] listOtasks = new string[10];
+            // List task lists.
+            IList<TaskList> taskLists = listRequest.Execute().Items;
+            if (taskLists != null && taskLists.Count > 0)
+            {
+                int i = 0;
+                foreach (var taskList in taskLists)
+                {
+                    listOtasks[i] = taskList.Title;
+                    i++;
+                }
+            }
+
+            model.MultiTask = listOtasks;
+
             return View(model);
         }
     }
