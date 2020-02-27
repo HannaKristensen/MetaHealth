@@ -1,12 +1,31 @@
-﻿var CLIENT_ID = '180774585516-7nm3okoofj8am2efsvvdom563vdu056i.apps.googleusercontent.com';
-var API_KEY = 'oujTGlZd2YcSU3wEAc_xReUV';
+﻿function MarkDown() {
+    //Reference the Table.
+    var grid = document.getElementById("TaskTable");
 
-function () {
-    $.ajax({
-        type: 'GET',
-        dataType: 'json',
-        url: '/Calendar/UpcomingEvents',
-        success: displayTable,
-        error: errorOnAjax
-    });
+    //Reference the CheckBoxes in Table.
+    var checkBoxes = grid.getElementsByTagName("INPUT");
+
+    //Loop through the CheckBoxes.
+    for (var i = 0; i < checkBoxes.length; i++) {
+        if (checkBoxes[i].checked) {
+            var row = checkBoxes[i].parentNode.parentNode;
+            var task = row.cells[1].innerHTML;
+            var taskID = row.id;
+
+            $.ajax({
+                type: 'GET',
+                url: '/calendar/markdowntask?task=' + task + '&taskID=' + taskID,
+                success: messageOut,
+                error: errorOnAjax
+            });
+        }
+    }
 };
+
+function errorOnAjax() {
+    console.log('Error on AJAX Return');
+}
+
+function messageOut(data) {
+    console.log('Message Sent');
+}

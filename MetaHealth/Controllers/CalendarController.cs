@@ -179,5 +179,24 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public async void MarkDownTask()
+        {
+            string task = Request.QueryString["task"];
+            string taskID = Request.QueryString["taskID"];
+
+            var credential = await GetCredentialForApiAsync();
+
+            var initializer = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "ASP.NET MVC5 Calendar Sample",
+            };
+            var service = new TasksService(initializer);
+
+            var taskObj = service.Tasks.Get("@default", taskID).Execute();
+            taskObj.Status = "completed";
+        }
     }
 }

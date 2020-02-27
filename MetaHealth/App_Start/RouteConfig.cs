@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace MetaHealth
@@ -12,6 +8,12 @@ namespace MetaHealth
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                name: "MarkDownTask",
+                url: "Calendar/MarkDownTask",
+                defaults: new { controller = "Calendar", action = "MarkDownTask", id = UrlParameter.Optional }
+            );
 
             routes.MapRoute(
                 name: "Default",
