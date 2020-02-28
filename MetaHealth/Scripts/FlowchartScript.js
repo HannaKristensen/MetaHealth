@@ -81,6 +81,7 @@
 var situation = "start";
 
 function runFlowchart() {
+
     var div = document.getElementById("startFlowchart");
     if (div.style.display != "none") {
         div.style.display = "none";
@@ -89,18 +90,27 @@ function runFlowchart() {
     var choices = map.outcomes;
     var prompt = ('<div class="textFlowchart">' + map.text + '</div>');
     $("#chartText").html(prompt);
-
-
     $("#buttons").empty();
-
     for (var choice in choices) {
         if (choices.hasOwnProperty(choice)) {
             var $button = $('<input type="button" button class="btn btn-default" value="' + choice + '"/>');
+            var randomColor = generateColors();
+            $button.css("background-color", randomColor);
+            $button.css("border", "1px solid "+randomColor);
             $button.click({ "nextsit": choices[choice] }, function (evt) {
                 situation = evt.data.nextsit;
                 runFlowchart();
             });
-            $("#buttons").append($button);
+            $("#buttons").append($button);   
+            //if a certain color button is already present then don't let it go through
         }
     }
+}
+
+function generateColors() {
+    //              orange   dark orange  yellow    blue     dark blue    green
+    var colors = ['#EE8535', '#ED5441', '#F0C032', '#49C7CA', '#248D83', '#6C984B']
+    var random_color = colors[Math.floor(Math.random() * colors.length)];
+    return random_color;
+
 }

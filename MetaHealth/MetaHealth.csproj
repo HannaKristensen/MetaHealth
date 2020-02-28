@@ -222,7 +222,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="client_secret.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\flow.js" />
     <Content Include="Scripts\FlowchartScript.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
