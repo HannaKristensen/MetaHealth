@@ -17,6 +17,7 @@ using System.Linq;
 using System.Web;
 
 using Google.Apis.Calendar.v3;
+using Google.Apis.Tasks.v1;
 
 namespace Calendar.ASP.NET.MVC5
 {
@@ -29,6 +30,7 @@ namespace Calendar.ASP.NET.MVC5
                 return new[] {
                     "openid",
                     "email",
+                    TasksService.Scope.Tasks,
                     CalendarService.Scope.CalendarReadonly,
                 };
             }
