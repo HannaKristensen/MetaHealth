@@ -34,18 +34,24 @@ function messageOut(data) {
     var obj = JSON.parse(data);
     var TaskTable = document.getElementById("TaskTable");
 
-    for (var i = TaskTable.rows.length - 1; i > 0; i--) {
-        TaskTable.deleteRow(i);
+    for (var j = 0; j < TaskTable.rows.length; j++) {
+        TaskTable.deleteRow(0);
     }
 
-    for (var i = 0; i < obj.length; i++) {
+    $("#TaskTable").find("tr").remove();
+
+    for (var i = 0; i < obj[0].length; i++) {
         var message = "";
         message += "<tr id=\"";
         message += obj[0][i];
-        message += "\"><td><input type=\"checkbox\" /></td><td>";
+        message += "\"><td><input type=\"checkbox\"></td><td>";
         message += obj[1][i];
         message += "</td></tr>";
 
-        TaskTable.appendChild(message);
+        var tableRef = document.getElementById('TaskTable').getElementsByTagName('tbody')[0];
+
+        var newRow = tableRef.insertRow(tableRef.rows.length);
+        newRow.innerHTML = message;
+        newRow.id = obj[0][i];
     }
 }
