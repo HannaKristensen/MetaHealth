@@ -14,13 +14,11 @@ limitations under the License.
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
-
 using Calendar.ASP.NET.MVC5.Models;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Auth.OAuth2.Flows;
@@ -28,27 +26,11 @@ using Google.Apis.Auth.OAuth2.Responses;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
-using System.Net;
-using System.IO;
-
-using Google.Apis.Auth.OAuth2;
-
 using Google.Apis.Tasks.v1;
 using Google.Apis.Tasks.v1.Data;
-
-using Google.Apis.Services;
-using Google.Apis.Util.Store;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-using System.Text;
-
-using System.Threading;
-using System.Threading.Tasks;
-
 using Task = System.Threading.Tasks.Task;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace Calendar.ASP.NET.MVC5.Controllers
 {
@@ -149,8 +131,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             listRequest.MaxResults = 10;
 
             string[] listOtasks = new string[10];
-            string[] taskArr = new string[20];
-            string[] taskIDArr = new string[20];
             // List task lists.
             IList<TaskList> taskLists = listRequest.Execute().Items;
             if (taskLists != null && taskLists.Count > 0)
@@ -164,12 +144,31 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             }
 
             Google.Apis.Tasks.v1.Data.Tasks tasks = service2.Tasks.List("@default").Execute();
+            int amountTask = 0;
+            if (tasks != null)
+            {
+                foreach (var item in tasks.Items)
+                {
+                    if (item.Status == "needsAction")
+                    {
+                        amountTask++;
+                    }
+                }
+            }
+
+            string[] taskArr = new string[amountTask];
+            string[] taskIDArr = new string[amountTask];
+            int indexTask = 0;
             if (tasks != null)
             {
                 for (int i = 0; i < tasks.Items.Count; i++)
                 {
-                    taskArr[i] = tasks.Items[i].Title;
-                    taskIDArr[i] = tasks.Items[i].Id;
+                    if (tasks.Items[i].Status == "needsAction" && tasks.Items[i].Title != " ")
+                    {
+                        taskArr[indexTask] = tasks.Items[i].Title;
+                        taskIDArr[indexTask] = tasks.Items[i].Id;
+                        indexTask++;
+                    }
                 }
             }
 
@@ -181,7 +180,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         }
 
         [HttpGet]
-        public async void MarkDownTask()
+        public async Task<ActionResult> MarkDownTask()
         {
             string task = Request.QueryString["task"];
             string taskID = Request.QueryString["taskID"];
@@ -195,8 +194,60 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             };
             var service = new TasksService(initializer);
 
-            var taskObj = service.Tasks.Get("@default", taskID).Execute();
+            // Define parameters of request.
+            TasklistsResource.ListRequest listRequest = service.Tasklists.List();
+            listRequest.MaxResults = 10;
+
+            string[] listOtasks = new string[10];
+            // List task lists.
+            IList<TaskList> taskLists = listRequest.Execute().Items;
+            if (taskLists != null && taskLists.Count > 0)
+            {
+                int i = 0;
+                foreach (var taskList in taskLists)
+                {
+                    listOtasks[i] = taskList.Title;
+                    i++;
+                }
+            }
+
+            Google.Apis.Tasks.v1.Data.Task taskObj = service.Tasks.Get("@default", taskID).Execute();
             taskObj.Status = "completed";
+
+            Google.Apis.Tasks.v1.Data.Task result = service.Tasks.Update(taskObj, "@default", taskID).Execute();
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service.Tasks.List("@default").Execute();
+            int amountTask = 0;
+            if (tasks != null)
+            {
+                foreach (var item in tasks.Items)
+                {
+                    if (item.Status == "needsAction")
+                    {
+                        amountTask++;
+                    }
+                }
+            }
+
+            string[,] taskArr = new string[2, amountTask];
+            int indexTask = 0;
+
+            if (tasks != null)
+            {
+                for (int i = 0; i < tasks.Items.Count; i++)
+                {
+                    if (tasks.Items[i].Status == "needsAction" && tasks.Items[i].Title != " ")
+                    {
+                        taskArr[1, indexTask] = tasks.Items[i].Title;
+                        taskArr[0, indexTask] = tasks.Items[i].Id;
+                        indexTask++;
+                    }
+                }
+            }
+
+            var json = JsonConvert.SerializeObject(taskArr);
+
+            return Content(json);
         }
     }
 }

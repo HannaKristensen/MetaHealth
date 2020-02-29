@@ -30,9 +30,7 @@ namespace Calendar.ASP.NET.MVC5
                 return new[] {
                     "openid",
                     "email",
-                    //"user",
                     TasksService.Scope.Tasks,
-                    TasksService.Scope.TasksReadonly,
                     CalendarService.Scope.CalendarReadonly,
                 };
             }

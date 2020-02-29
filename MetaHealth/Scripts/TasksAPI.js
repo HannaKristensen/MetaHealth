@@ -14,6 +14,9 @@
 
             $.ajax({
                 type: 'GET',
+                contentType: "application/json",
+                async: true,
+                processData: false,
                 url: '/calendar/markdowntask?task=' + task + '&taskID=' + taskID,
                 success: messageOut,
                 error: errorOnAjax
@@ -28,4 +31,21 @@ function errorOnAjax() {
 
 function messageOut(data) {
     console.log('Message Sent');
+    var obj = JSON.parse(data);
+    var TaskTable = document.getElementById("TaskTable");
+
+    for (var i = TaskTable.rows.length - 1; i > 0; i--) {
+        TaskTable.deleteRow(i);
+    }
+
+    for (var i = 0; i < obj.length; i++) {
+        var message = "";
+        message += "<tr id=\"";
+        message += obj[0][i];
+        message += "\"><td><input type=\"checkbox\" /></td><td>";
+        message += obj[1][i];
+        message += "</td></tr>";
+
+        TaskTable.appendChild(message);
+    }
 }
