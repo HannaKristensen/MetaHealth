@@ -78,50 +78,46 @@
 
 }
 
-var situation = "start";
-var colorArr = [];
-function runFlowchart() {
-
-    var div = document.getElementById("startFlowchart");
-    if (div.style.display != "none") {
-        div.style.display = "none";
-    }
-    var map = flowchartMap[situation];
-    var choices = map.outcomes;
-    var prompt = ('<div class="textFlowchart">' + map.text + '</div>');
-    $("#chartText").html(prompt);
-    $("#buttons").empty();//empty #buttons
-
-    for (var choice in choices) {
-        if (choices.hasOwnProperty(choice)) {
-            var $button = $('<input type="button" button class="btn btn-default" value="' + choice + '"/>');
-            //              orange   dark orange  yellow    blue     dark blue    green
-            var colors = ['#EE8535', '#ED5441', '#F0C032', '#49C7CA', '#248D83', '#6C984B']
-            var randomColor = colors[Math.floor(Math.random() * colors.length)];
-            if (!colorArr.includes(randomColor)) {
-                colorArr.push(randomColor);
-                $button.css("background-color", randomColor);
-                $button.css("border", "1px solid " + randomColor);
-            }
-            else {
-                randomColor = colors[Math.floor(Math.random() * colors.length)];
-                $button.css("background-color", randomColor);
-                $button.css("border", "1px solid " + randomColor);
-            }
-            $button.click({ "nextsit": choices[choice] }, function (evt) {
-                situation = evt.data.nextsit;
-                colorArr.length = 0;//emtpy out array after buttons are added
-                runFlowchart();
-            });
-            $("#buttons").append($button);   
-    
-        }
-    }
+function startScript() {
+    var situation = "start";
+    runFlowchart(situation);
 }
 
-//function generateColors() {
-//    //              orange   dark orange  yellow    blue     dark blue    green
-//    var colors = ['#EE8535', '#ED5441', '#F0C032', '#49C7CA', '#248D83', '#6C984B']
-//    var random_color = colors[Math.floor(Math.random() * colors.length)];
-//    return random_color;
-//}
+    //var situation = "start";//starting state for the function
+    function runFlowchart(arg) {
+        var div = document.getElementById("startFlowchart");//entry point for function
+        if (div.style.display != "none") {//checks if start button is clicked, if not then hide it
+            div.style.display = "none";
+        }
+        //initializing necessary variables
+        var colorArr = [];
+        var map = flowchartMap[arg];
+        var choices = map.outcomes;
+        var prompt = ('<div class="textFlowchart">' + map.text + '</div>');
+        $("#chartText").html(prompt);
+        $("#buttons").empty();
+        for (var choice in choices) {
+            if (choices.hasOwnProperty(choice)) {
+                var $button = $('<input type="button" button class="btn btn-default" value="' + choice + '"/>');
+                //              orange   dark orange  yellow    blue     dark blue    green
+                var colors = ['#EE8535', '#ED5441', '#F0C032', '#49C7CA', '#248D83', '#6C984B']
+                var randomColor = colors[Math.floor(Math.random() * colors.length)];
+                if (!colorArr.includes(randomColor)) {//checks if temp color array already has this color
+                    colorArr.push(randomColor);//if it doesn't, the randomColor gets added to the array
+                    $button.css("background-color", randomColor);//the button is set to have that color
+                    $button.css("border", "1px solid " + randomColor);
+                }
+                else {//if the color is already present then a new random color is generated and used
+                    randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    $button.css("background-color", randomColor);
+                    $button.css("border", "1px solid " + randomColor);
+                }
+                $button.click({ "nextsit": choices[choice] }, function (evt) {
+                    situation = evt.data.nextsit;
+                    colorArr.length = 0;//empty out array after buttons are added
+                    runFlowchart(situation);
+                });
+                $("#buttons").append($button);
+            }
+        }
+    }
