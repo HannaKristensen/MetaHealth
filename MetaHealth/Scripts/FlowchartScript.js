@@ -79,7 +79,7 @@
 }
 
 var situation = "start";
-
+var colorArr = [];
 function runFlowchart() {
 
     var div = document.getElementById("startFlowchart");
@@ -90,27 +90,38 @@ function runFlowchart() {
     var choices = map.outcomes;
     var prompt = ('<div class="textFlowchart">' + map.text + '</div>');
     $("#chartText").html(prompt);
-    $("#buttons").empty();
+    $("#buttons").empty();//empty #buttons
+
     for (var choice in choices) {
         if (choices.hasOwnProperty(choice)) {
             var $button = $('<input type="button" button class="btn btn-default" value="' + choice + '"/>');
-            var randomColor = generateColors();
-            $button.css("background-color", randomColor);
-            $button.css("border", "1px solid "+randomColor);
+            //              orange   dark orange  yellow    blue     dark blue    green
+            var colors = ['#EE8535', '#ED5441', '#F0C032', '#49C7CA', '#248D83', '#6C984B']
+            var randomColor = colors[Math.floor(Math.random() * colors.length)];
+            if (!colorArr.includes(randomColor)) {
+                colorArr.push(randomColor);
+                $button.css("background-color", randomColor);
+                $button.css("border", "1px solid " + randomColor);
+            }
+            else {
+                randomColor = colors[Math.floor(Math.random() * colors.length)];
+                $button.css("background-color", randomColor);
+                $button.css("border", "1px solid " + randomColor);
+            }
             $button.click({ "nextsit": choices[choice] }, function (evt) {
                 situation = evt.data.nextsit;
+                colorArr.length = 0;//emtpy out array after buttons are added
                 runFlowchart();
             });
             $("#buttons").append($button);   
-            //if a certain color button is already present then don't let it go through
+    
         }
     }
 }
 
-function generateColors() {
-    //              orange   dark orange  yellow    blue     dark blue    green
-    var colors = ['#EE8535', '#ED5441', '#F0C032', '#49C7CA', '#248D83', '#6C984B']
-    var random_color = colors[Math.floor(Math.random() * colors.length)];
-    return random_color;
-
-}
+//function generateColors() {
+//    //              orange   dark orange  yellow    blue     dark blue    green
+//    var colors = ['#EE8535', '#ED5441', '#F0C032', '#49C7CA', '#248D83', '#6C984B']
+//    var random_color = colors[Math.floor(Math.random() * colors.length)];
+//    return random_color;
+//}
