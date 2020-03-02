@@ -77,14 +77,21 @@
     }
 
 }
+
+//uses the length of the array and a random value between 0 and 1 to choose a color
 function generateColor(array)
 {
     return (array[Math.floor(Math.random() * array.length)]);
 }
-function startScript() {
+
+//Function to restart flowchart when needed
+function startScript()
+{
     var situation = "start";
     runFlowchart(situation);
 }
+
+//Takes in string "arg" that indicates the starting point in the map
 function runFlowchart(arg) {
     var div = document.getElementById("startFlowchart");//entry point for function
     if (div.style.display != "none") //checks if start button is clicked, if not then hide it
@@ -103,7 +110,7 @@ function runFlowchart(arg) {
         if (choices.hasOwnProperty(choice))
         {
             var $button = $('<input type="button" button class="btn btn-default" value="' + choice + '"/>');
-            //              orange   dark orange  yellow    blue     dark blue    green
+            //              orange   dk orange   yellow      blue     dark blue    green
             var colors = ['#EE8535', '#ED5441', '#F0C032', '#49C7CA', '#248D83', '#6C984B']
             var randomColor = generateColor(colors);
             while (colorArr.includes(randomColor))
