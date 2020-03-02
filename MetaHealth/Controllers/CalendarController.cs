@@ -185,77 +185,72 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             string task = Request.QueryString["task"];
             string taskID = Request.QueryString["taskID"];
 
+            var credential = await GetCredentialForApiAsync();
+
+            var initializer = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "ASP.NET MVC5 Calendar Sample",
+            };
+            var service = new TasksService(initializer);
+
+            // Define parameters of request.
+            TasklistsResource.ListRequest listRequest = service.Tasklists.List();
+            listRequest.MaxResults = 10;
+
+            string[] listOtasks = new string[10];
+            // List task lists.
+            IList<TaskList> taskLists = listRequest.Execute().Items;
+            if (taskLists != null && taskLists.Count > 0)
+            {
+                int i = 0;
+                foreach (var taskList in taskLists)
+                {
+                    listOtasks[i] = taskList.Title;
+                    i++;
+                }
+            }
+
             if (taskID != "" || taskID != null)
             {
-                var credential = await GetCredentialForApiAsync();
-
-                var initializer = new BaseClientService.Initializer()
-                {
-                    HttpClientInitializer = credential,
-                    ApplicationName = "ASP.NET MVC5 Calendar Sample",
-                };
-                var service = new TasksService(initializer);
-
-                // Define parameters of request.
-                TasklistsResource.ListRequest listRequest = service.Tasklists.List();
-                listRequest.MaxResults = 10;
-
-                string[] listOtasks = new string[10];
-                // List task lists.
-                IList<TaskList> taskLists = listRequest.Execute().Items;
-                if (taskLists != null && taskLists.Count > 0)
-                {
-                    int i = 0;
-                    foreach (var taskList in taskLists)
-                    {
-                        listOtasks[i] = taskList.Title;
-                        i++;
-                    }
-                }
-
                 Google.Apis.Tasks.v1.Data.Task taskObj = service.Tasks.Get("@default", taskID).Execute();
                 taskObj.Status = "completed";
 
                 Google.Apis.Tasks.v1.Data.Task result = service.Tasks.Update(taskObj, "@default", taskID).Execute();
-
-                Google.Apis.Tasks.v1.Data.Tasks tasks = service.Tasks.List("@default").Execute();
-                int amountTask = 0;
-                if (tasks != null)
-                {
-                    foreach (var item in tasks.Items)
-                    {
-                        if (item.Status == "needsAction")
-                        {
-                            amountTask++;
-                        }
-                    }
-                }
-
-                string[,] taskArr = new string[2, amountTask];
-                int indexTask = 0;
-
-                if (tasks != null)
-                {
-                    for (int i = 0; i < tasks.Items.Count; i++)
-                    {
-                        if (tasks.Items[i].Status == "needsAction" && tasks.Items[i].Title != " ")
-                        {
-                            taskArr[1, indexTask] = tasks.Items[i].Title;
-                            taskArr[0, indexTask] = tasks.Items[i].Id;
-                            indexTask++;
-                        }
-                    }
-                }
-
-                var json = JsonConvert.SerializeObject(taskArr);
-
-                return Content(json);
             }
-            else
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service.Tasks.List("@default").Execute();
+            int amountTask = 0;
+            if (tasks != null)
             {
-                string empty = "";
-                return Content(empty);
+                foreach (var item in tasks.Items)
+                {
+                    if (item.Status == "needsAction")
+                    {
+                        amountTask++;
+                    }
+                }
             }
+
+            string[,] taskArr = new string[2, amountTask];
+            int indexTask = 0;
+
+            if (tasks != null)
+            {
+                for (int i = 0; i < tasks.Items.Count; i++)
+                {
+                    if (tasks.Items[i].Status == "needsAction" && tasks.Items[i].Title != " ")
+                    {
+                        taskArr[1, indexTask] = tasks.Items[i].Title;
+                        taskArr[0, indexTask] = tasks.Items[i].Id;
+                        indexTask++;
+                    }
+                }
+            }
+
+            var json = JsonConvert.SerializeObject(taskArr);
+
+            return Content(json);
         }
     }
 }
