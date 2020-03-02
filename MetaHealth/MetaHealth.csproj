@@ -281,6 +281,7 @@
     <Content Include="Views\Home\FlowchartCheck.cshtml" />
     <Content Include="Views\Home\Flowchart.cshtml" />
     <Content Include="Views\Calendar\UpcomingEvents.cshtml" />
+    <Content Include="Views\Home\Venting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
