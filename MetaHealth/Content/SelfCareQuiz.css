@@ -1,0 +1,8 @@
+﻿body {
+    font-family:Verdana;
+    font-size:large
+}
+
+#result{
+    visibility:hidden
+}
