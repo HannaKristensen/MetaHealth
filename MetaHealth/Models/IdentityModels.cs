@@ -21,7 +21,7 @@ namespace MetaHealth.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("AzureDB", throwIfV1Schema: false)
+            : base("DefaultContext", throwIfV1Schema: false)
         {
         }
 

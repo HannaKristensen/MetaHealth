@@ -211,7 +211,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 }
             }
 
-            if (taskID != "" || taskID != null)
+            if (taskID != null)
             {
                 Google.Apis.Tasks.v1.Data.Task taskObj = service.Tasks.Get("@default", taskID).Execute();
                 taskObj.Status = "completed";
