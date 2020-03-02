@@ -38,8 +38,15 @@ namespace MetaHealth.Controllers
 
         // GET: Moods/Create
         public ActionResult Create()
-        {
+        {//here is where we would need to access the table
+            //obtain current user ???
+            //search for FK is present in MoodsInBetween
+            //if not, insert the row, if it does exist just add a mood to Moods
+            //use THAT number to append a mood to their table
+            //could the foreign key from the asp.net table be inserted as a primary key into the moods table?
+            
             ViewBag.FK_MoodsInBetween = new SelectList(db.MoodsInBetweens, "PK", "FK_UserTable");
+           
             return View();
         }
 
