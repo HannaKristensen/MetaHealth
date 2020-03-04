@@ -145,7 +145,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             Google.Apis.Tasks.v1.Data.Tasks tasks = service2.Tasks.List("@default").Execute();
             int amountTask = 0;
-            if (tasks.Items.Count != null)
+            if (tasks.Items != null)
             {
                 foreach (var item in tasks.Items)
                 {
@@ -159,7 +159,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             string[] taskArr = new string[amountTask];
             string[] taskIDArr = new string[amountTask];
             int indexTask = 0;
-            if (tasks.Items.Count != null)
+            if (tasks.Items != null)
             {
                 for (int i = 0; i < tasks.Items.Count; i++)
                 {
@@ -201,7 +201,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             string[] listOtasks = new string[10];
             // List task lists.
             IList<TaskList> taskLists = listRequest.Execute().Items;
-            if (taskLists != null && taskLists.Count > 0)
+            if (taskLists != null)
             {
                 int i = 0;
                 foreach (var taskList in taskLists)
@@ -221,7 +221,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             Google.Apis.Tasks.v1.Data.Tasks tasks = service.Tasks.List("@default").Execute();
             int amountTask = 0;
-            if (tasks.Items.Count != null)
+            if (tasks.Items != null)
             {
                 foreach (var item in tasks.Items)
                 {
@@ -235,7 +235,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             string[,] taskArr = new string[2, amountTask];
             int indexTask = 0;
 
-            if (tasks.Items.Count != null)
+            if (tasks.Items != null)
             {
                 for (int i = 0; i < tasks.Items.Count; i++)
                 {
