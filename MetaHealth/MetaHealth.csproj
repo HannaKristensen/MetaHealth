@@ -211,7 +211,6 @@
   <ItemGroup>
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\seed.sql" />
-    <Content Include="App_Data\test.sql" />
     <Content Include="App_Data\up.sql" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
