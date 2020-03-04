@@ -221,7 +221,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             Google.Apis.Tasks.v1.Data.Tasks tasks = service.Tasks.List("@default").Execute();
             int amountTask = 0;
-            if (tasks != null)
+            if (tasks.Items.Count != 0)
             {
                 foreach (var item in tasks.Items)
                 {
@@ -235,7 +235,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             string[,] taskArr = new string[2, amountTask];
             int indexTask = 0;
 
-            if (tasks != null)
+            if (tasks.Items.Count != 0)
             {
                 for (int i = 0; i < tasks.Items.Count; i++)
                 {
