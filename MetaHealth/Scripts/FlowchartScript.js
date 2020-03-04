@@ -7,6 +7,9 @@
             "Soul": "Soul"
         }
     },
+//#####################################################################################
+//MIND
+//######################################################################################
     "Mind": {
         "text": "Of these three feelings, which sounds the closest to how you feel?",
         "outcomes": {
@@ -116,8 +119,10 @@
                         "and allowing yourself to sit in your discomfort without taking action sounds counterintuitive but may be the best course of action "+
                         "at this time. Perhaps think of a time you've faced similar feelings of a lack of control and consider how that situation turned out. "+
                         "Chances are if you're sitting here and going through this flowchart, you're doing okay."
-        },
+    },
+//#####################################################################################
 //BODY
+//#####################################################################################
     "Body": {
         "text":"First thing's first... When's the last time you ate something substantial?",
         "outcomes": {
@@ -132,13 +137,18 @@
                 "No... I just haven't had time today":"Physiological"
             }
         },
+        "Physiological": {
+            "text": "As counterintuive as it is, sometimes we deny ourselves what we truly need in order to help us solve problems. "+
+                "Back in caveman days temporary neglect of basic needs meant that we were ready to flee from danger. Chances are a sabertooth tiger is "+
+                "not about to attack so you need to address your immediate physiological needs before being able to move foward."
+        },
         "YesFood": {
             "text": "Good! Ideally it was a healthy snack but the fact that you took the time to fuel up is great! BUT... what's the last thing you drank?",
             "outcomes": {
                 "Water":"YesWater",
                 "...Not water...":"NoWater"
             }
-        },
+    },
             "NoWater": {
                 "text": "I think you know what I'm going to say next.",
                 "outcomes": {
@@ -152,9 +162,10 @@
                     "I feel stiff and/or sedentary":"Sedentary"
                 }
             },
+
                 "Uncomfortable": {
                     "text": "What do you think is causing this?",
-                    "outcome": {
+                    "outcomes": {
                         "I'm not feeling great about my physical apperance": "Appearance",
                         "I'm feeling constantly worn down and tired":"Exhausted"
                     }
@@ -186,7 +197,7 @@
                     "No":"Physiological"
                 }
             },
-        "Stagnant": {
+        "Sedentary": {
             "text": "How are your energy levels at the moment?",
             "outcomes": {
                 "I'm feeling alright": "NotStagnant",
@@ -202,15 +213,87 @@
                 "text": "Take a nice hot bath or shower and appreciate the feeling of the water on your skin. It doesn't have to be anything more than "+
                         "sitting still and appreciating yourself for allowing you that moment of peace."
             },
+//#####################################################################################
  //SOUL  
+//#####################################################################################
     "Soul": {
-        "text":""
-    }
-
-
-    
-
-}           
+        "text": "Which area would you like to focus on?",
+        "outcomes": {
+            "I'm feeling disconnected": "Disconnected",
+            "I'm feeling unfullfilled/empty": "Empty"
+        }
+    },
+        "Disconnected": {
+            "text": "Have you spoken to a loved one recenetly?",
+            "outcomes": {
+                "I have, yes": "Misunderstood",
+                "I have not":"SeekSupport"
+            }
+        },
+            "Misunderstood": {
+                "text": "It's good that you've been reaching out. But it seems like something else is going on. Do you feel like "+ 
+                    "people aren't really understanding what you're going through?",
+                "outcomes": {
+                    "Yes": "SeekProfSupport",
+                    "No":"ConnectToSelf"
+                }
+            },
+                "SeekProfSupport": {
+                    "text": "Sometimes even our loved ones don't have the tools necessary to help us cope. While it's good that you feel connected, "+
+                        "it's not unusal to also need a professional. Seek out local counselor in your area. You can log in or create an account to find "+
+                        "a local counselor in your price range."
+                },
+                "ConnectToSelf": {
+                    "text": "Sometimes when we feel disconnected even when we're with people it's because we're trying to rehydrate from a dried up lake "+
+                        "(metaphorically speaking). Now might be a good time to take yourself out on a date and really appreciate being alone doing "+
+                        "something you really love."
+                },
+        "SeekSupport": {
+            "text": "Is there someone you feel safe talking to?",
+            "outcomes": {
+                "I think so": "MaybeSupport",
+                "I'm not sure":"NoSupport"
+            }
+        },
+            "MaybeSupport": {
+                "text": "It's good that you have someone you feel you can talk to. Often times we might feel like we're burdening someone with our problems "+
+                    "but asking someone if they have a moment to let you vent can take the pressure off asking someone to listen."
+            },
+            "NoSupport": {
+                "text": "It's easy to feel like we have no one to talk to you. This may or may not be true.",
+                "outcomes": {
+                    "I can think of maybe one person...": "YesConnectToPerson",
+                    "No I think I'm honestly alone":"Alone"
+                }
+            },
+                "YesConnectToPerson": {
+                    "text": "Wonderful! You the makings of a support system. It's healthy to vent and humans are not meant to be alone. Give your loved ones "+
+                        "a call and make a connection, however superficial it may feel."
+                },
+                "Alone": {
+                    "text": " If you've really thought about the people you know and came up with no one to talk to, then it may be time "+
+                        "to seek out resource groups in your area. Log in or make an account to find a professional counselor. "+
+                        "In the meantime,giving someone else a positive interaction can do wonders for mood. "+
+                        "Self care can be something as simple as being sure that you leave people in a better mood than when you found them."
+                },
+    "Empty": {
+        "text": "How do you feel about your progress regarding your personal goals?",
+        "outcomes": {
+            "I feel generally pretty good": "GoalsAreGood",
+            "I feel off track from where I would like to be":"GoalsAreBad"
+        }
+    },
+            "GoalsAreGood": {
+                "text": "That's great that you're feeling good about your goals! Perhaps the answer lies externally. Perhaps now would be the "+
+                    "time to donate your time and/or money to a local charity. Non profits are always needing help in some way or another. Check out "+
+                    "local businesses that could benefit from you. It's good for the community and good for the soul."
+            },
+            "GoalsAreBad": {
+                "text": "Often we can feel bad about ourselves because we feel like we're not keeping up with others. This often has more to do with "+
+                    "internalized pressure than anything else. In times like these it's good to reflect on goals you've achieved in your life, starting "+
+                    "ones you're most proud of. You might be surprised at how much it really is once you have it all written down."
+            }
+}//End of flowChartMap(...)          
 
 //uses the length of the array and a random value between 0 and 1 to choose a color
 function generateColor(array)
