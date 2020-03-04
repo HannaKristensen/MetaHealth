@@ -1,0 +1,28 @@
+﻿<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+
+<!DOCTYPE html>
+<html>
+<body>
+
+    <h2>Venting Space</h2>
+
+    <p>Here you can vent and hit submit:</p>
+
+    <form id="myForm">
+        <textarea name="message" style="width:600px; height:200px;"></textarea>
+        <br>
+    </form>
+
+    <input class="button" type="button" onclick="reset()" value="Submit">
+
+</body>
+</html>
+
+<script>
+
+    function reset() {
+        document.getElementById("myForm").reset();
+    }
+
+
+</script>

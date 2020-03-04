@@ -211,10 +211,13 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 }
             }
 
-            Google.Apis.Tasks.v1.Data.Task taskObj = service.Tasks.Get("@default", taskID).Execute();
-            taskObj.Status = "completed";
+            if (taskID != null)
+            {
+                Google.Apis.Tasks.v1.Data.Task taskObj = service.Tasks.Get("@default", taskID).Execute();
+                taskObj.Status = "completed";
 
-            Google.Apis.Tasks.v1.Data.Task result = service.Tasks.Update(taskObj, "@default", taskID).Execute();
+                Google.Apis.Tasks.v1.Data.Task result = service.Tasks.Update(taskObj, "@default", taskID).Execute();
+            }
 
             Google.Apis.Tasks.v1.Data.Tasks tasks = service.Tasks.List("@default").Execute();
             int amountTask = 0;
