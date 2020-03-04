@@ -7,7 +7,6 @@
             "Soul": "Soul"
         }
     },
-    // region Mind
     "Mind": {
         "text": "Of these three feelings, which sounds the closest to how you feel?",
         "outcomes": {
@@ -16,108 +15,199 @@
             "I have been experiencing some anxiety lately": "Anxious"
         }
     },
-    "Bored": {
-        "text": "What would you say the biggest cause of your boredom is?",
-        "outcomes": {
-            "I'm feeling restless": "Restless",
-            "I'm feeling unmotivated": "Unmotivated"
-        }
-    },
-    "Restless": {
-        "text": "Are you trying to burn off energy or remain still and calm?",
-        "outcomes": {
-            "I need to settle myself": "Settle",
-            "I need to burn off some energy": "Excess Energy"
-        }
-    },
-    "Settle": {
-        "text": "Looks like the best thing here would be some relaxation techniques."+" "+
-            "A good place to start would be some yoga poses."+" "+
-            "Click <a href='https://www.youtube.com/watch?v=BiWDsfZ3zbo'><em style='color:blue'>here</a></em>"+" "+
-            "to be taken to a routine"
-    },
-    "Excess Energy": {
-        "text": "Sometimes when we're feeling bored in the brain it helps do something physical. Take a walk and make it a point to "+
-            "to take pictures of 5 things that catch your eye while you're out. Combining creativity with a physical activity engages "+
-            "multiple parts of your brain and helps you stay engaged with the world around you."
-    },
-    "Unmotivated": {
-        "text": "Are you feeling like you unmotivated intellectually or in a more external way?",
-        "outcomes": {
-            "I feel stagnant on an intellectual level": "Intellectual",
-            "I just feel unmotived in my life in general": "Generally Unmotivated"
-        }
-    },
-    "Intellectual": {
-        "text": "It might be time to learn something new. Is there something you've always wondered but haven't looked up? "+
-            "Start on a wikipedia page of something that interests you and start following links."
-    },
-    "Generally Unmotivated": {
-        "text": "How energetic are you feeling?",
-        "outcomes": {
-            "Not energetic at all": "No Energy",
-            "I have a little bit of getup and go in me": "Some Energy",
-        }
-    },
-    "No Energy": {
-        "text": "That's okay! Sometimes it helps to make a plan knowing that we have no obligation to put in place just yet. "+
-            "Make a todo list of things you want to do and put it in an order of priority. Break bigger tasks into smaller ones. "+
-            "Whenever you get some energy you'll know exactly where to start."
-    },
-    "Some Energy": {
-        "text": "Pick an area of your home that's in need of some tidying/reorganization and get started. It can be something small "+
-                "like a cluttered tupperware drawer, or something bigger like a messy closet."
-        },
-    "Overwhelmed": {
-        "text": "Feeling overwhelmed/anxious is totally normal and recognizing when you need a break is a great skill to have! "+
-            "Are you looking for a distraction or some introspection?",
-        "outcomes": {
-            "I would like a distraction": "Distraction",
-            "I think I need to look inward": "Introspection",
-        }
-    },
-    "Distraction": {
-        "text": "Shutting off your brain for a moment is always nice. Set a timer for 5 minutes and click "+
-            "<a href='http://interactive.usc.edu/projects/cloud/flowing/'target='_blank'><em style='color:blue'>here</em></a> to play a relaxing game. "+
-            "Be sure you have your flash player enabled."
-    },
-    "Introspection": {
-        "text": "Being able to look inside for why you may be feeling overwhelmed/anxious is very brave! In any order you feel like, "+
-            "write down the 'who, what, where, when, and why' of your feelings of being overwhelemd and try to be as kind and "+
-            "objective as possible."
-    },
-    "Anxious": {
-        "text": "Anxiety is not a fun feeling. If you had to choose, would you say you're anxiety is coming from external forces or internal forces?",
-        "outcomes": {
-            "Internal": "Internal",
-            "External":"External"
-        }
-    },
-        "Internal": {
-            "text": "General anxiety about your abilities is common. See if you can list three times that you've done something "+
-                "that proves this fear wrong. If you're having a hard time coming up with something like that, list three things you "+
-                "know you're really good at. Focusing on our positive qualities helps us face negative feelings in a more productiv way."
-        },
-        "External": {
-            "text": "Can anything be currently done about what is making you anxious?",
+        "Bored": {
+            "text": "What would you say the biggest cause of your boredom is?",
             "outcomes": {
-                "Yes":"AnxiousYes",
-                "No":"AnxiousNo"
+                "I'm feeling restless": "Restless",
+                "I'm feeling unmotivated": "Unmotivated"
             }
         },
-            "AnxiousYes": {
-                "text": "It sounds like you have this taken care of and are feeling concerned.",
+            "Restless": {
+                "text": "Are you trying to burn off energy or remain still and calm?",
                 "outcomes": {
-                    "I do but I'm still anxious":"Overwhelmed"
+                    "I need to settle myself": "SettleSelf",
+                    "I need to burn off some energy": "ExcessEnergy"
                 }
             },
-            "AnxiousNo": {
-                "text": "Oftentimes when we're experiencing stress from a situation that we have no control over, it's the lack of control itself "+
-                    "that can make it seem so overwhelming. All you have agency over is your own thoughts and feelings. Meditating on how you feel "+
-                    "and allowing yourself to sit in your discomfort without taking action sounds counterintuitive but may be the best course of action "+
-                    "at this time. Perhaps think of a time you've faced similar feelings of a lack of control and consider how that situation turned out. "+
-                    "Chances are if you're sitting here and going through this flowchart, you're doing okay."
+            "SettleSelf": {
+                "text": "Looks like the best thing here would be some relaxation techniques."+" "+
+                    "A good place to start would be some yoga poses."+" "+
+                    "Click <a href='https://www.youtube.com/watch?v=BiWDsfZ3zbo'><em style='color:blue'>here</a></em>"+" "+
+                    "to be taken to a routine"
             },
+            "ExcessEnergy": {
+                "text": "Sometimes when we're feeling stagnant it helps to do something physical. Take a walk and make it a point to "+
+                    "to take pictures of 5 things that catch your eye while you're out. Combining creativity with a physical activity engages "+
+                    "multiple parts of your brain and helps you stay engaged with the world around you."
+            },
+        "Unmotivated": {
+            "text": "Are you feeling like you unmotivated intellectually or in a more external way?",
+            "outcomes": {
+                "I feel stagnant on an intellectual level": "Intellectual",
+                "I just feel unmotived in my life in general": "GenerallyUnmotivated"
+            }
+        },
+            "Intellectual": {
+                "text": "It might be time to learn something new. Is there something you've always wondered but haven't looked up? "+
+                    "Start on a wikipedia page of something that interests you and start following links."
+            },
+            "GenerallyUnmotivated": {
+                "text": "How energetic are you feeling?",
+                "outcomes": {
+                    "Not energetic at all": "NoEnergy",
+                    "I have a little bit of getup and go in me": "SomeEnergy",
+                }
+            },
+            "NoEnergy": {
+                "text": "That's okay! Sometimes it helps to make a plan knowing that we have no obligation to put in place just yet. "+
+                    "Make a todo list of things you want to do and put it in an order of priority. Break bigger tasks into smaller ones. "+
+                    "Whenever you get some energy you'll know exactly where to start."
+            },
+            "SomeEnergy": {
+                "text": "Pick an area of your home that's in need of some tidying/reorganization and get started. It can be something small "+
+                        "like a cluttered tupperware drawer, or something bigger like a messy closet."
+                },
+        "Overwhelmed": {
+            "text": "Feeling overwhelmed/anxious is totally normal and recognizing when you need a break is a great skill to have! "+
+                "Are you looking for a distraction or some introspection?",
+            "outcomes": {
+                "I would like a distraction": "Distraction",
+                "I think I need to look inward": "Introspection",
+            }
+        },
+            "Distraction": {
+                "text": "Shutting off your brain for a moment is always nice. Set a timer for 5 minutes and click "+
+                    "<a href='http://interactive.usc.edu/projects/cloud/flowing/'target='_blank'><em style='color:blue'>here</em></a> to play a relaxing game. "+
+                    "Be sure you have your flash player enabled."
+            },
+            "Introspection": {
+                "text": "Being able to look inside for why you may be feeling overwhelmed/anxious is very brave! In any order you feel like, "+
+                    "write down the 'who, what, where, when, and why' of your feelings of being overwhelemd and try to be as kind and "+
+                    "objective as possible."
+            },
+        "Anxious": {
+            "text": "Anxiety is not a fun feeling. If you had to choose, would you say you're anxiety is coming from external forces or internal forces?",
+            "outcomes": {
+                "Internal": "Internal",
+                "External":"External"
+            }
+        },
+            "Internal": {
+                "text": "General anxiety about your abilities is common. See if you can list three times that you've done something "+
+                    "that proves this fear wrong. If you're having a hard time coming up with something like that, list three things you "+
+                    "know you're really good at. Focusing on our positive qualities helps us face negative feelings in a more productiv way."
+            },
+            "External": {
+                "text": "Can anything be currently done about what is making you anxious?",
+                "outcomes": {
+                    "Yes":"YesAnxious",
+                    "No":"NoAnxious"
+                }
+            },
+                "YesAnxious": {
+                    "text": "It sounds like you have this taken care of and are feeling concerned.",
+                    "outcomes": {
+                        "I do but I'm still anxious":"Overwhelmed"
+                    }
+                },
+                "NoAnxious": {
+                    "text": "Oftentimes when we're experiencing stress from a situation that we have no control over, it's the lack of control itself "+
+                        "that can make it seem so overwhelming. All you have agency over is your own thoughts and feelings. Meditating on how you feel "+
+                        "and allowing yourself to sit in your discomfort without taking action sounds counterintuitive but may be the best course of action "+
+                        "at this time. Perhaps think of a time you've faced similar feelings of a lack of control and consider how that situation turned out. "+
+                        "Chances are if you're sitting here and going through this flowchart, you're doing okay."
+        },
+//BODY
+    "Body": {
+        "text":"First thing's first... When's the last time you ate something substantial?",
+        "outcomes": {
+            "No... I haven't eaten recently":"NoFood",
+            "Yes I've eaten":"YesFood"
+        }
+    },
+        "NoFood": {
+            "text": "Is this because you're feeling anxious?",
+            "outcomes": {
+                "Yes. It's hard to eat when I'm stressed.": "Anxious",
+                "No... I just haven't had time today":"Physiological"
+            }
+        },
+        "YesFood": {
+            "text": "Good! Ideally it was a healthy snack but the fact that you took the time to fuel up is great! BUT... what's the last thing you drank?",
+            "outcomes": {
+                "Water":"YesWater",
+                "...Not water...":"NoWater"
+            }
+        },
+            "NoWater": {
+                "text": "I think you know what I'm going to say next.",
+                "outcomes": {
+                    "okay...":"YesWater"
+                }
+            },
+            "YesWater": {
+                "text": "Great! Now that our basic needs are met, which of these feels most relevant to you?",
+                "outcomes": {
+                    "I feel uncomfortable in my own skin":"Uncomfortable",
+                    "I feel stiff and/or sedentary":"Sedentary"
+                }
+            },
+                "Uncomfortable": {
+                    "text": "What do you think is causing this?",
+                    "outcome": {
+                        "I'm not feeling great about my physical apperance": "Appearance",
+                        "I'm feeling constantly worn down and tired":"Exhausted"
+                    }
+                },
+                    "Appearance": {
+                        "text": "As easy as it would be to tell you that you are beautiful inside and out and should embrace your body and looks "+
+                            "this can be a bit condescending to some. While it may be true that you are physically a work of art, if you don't feel "+
+                            "that way then that should be what should be addressed. Pick a handful of 'safe' outfits that are clean and comforable. "+
+                            "These should be things that are easy to put on that make you feel safe in your own body. Brushing your teeth is an easy way "+
+                            "to be proactive towards looking and feeling your best."
+                    },
+    "Exhausted": {
+        "text": "Have you slept recently?",
+        "outcomes": {
+            "Yeah I slept.":"YesSleep",
+            "Not really...":"NoSleep"
+        }
+    },
+            "YesSleep": {
+                "text": "Sometimes we don't realize how exhausting being a human can be. If you've been eating well and drinking water as well as "+
+                    "getting regular sleep of at least 7 hours a night and still are feeling tired, the answer might lie in a number of areas. "+
+                    "You might want to consider introducing multivitamins into your morning routine. Sometimes chronic fatigue can come from stress "+
+                    "that we might not even know we're experiencing. It's our body's way of telling us to slow down."
+            },
+            "NoSleep": {
+                "text": "Is it because you're feeling anxious?",
+                "outcomes": {
+                    "Yes": "Anxious",
+                    "No":"Physiological"
+                }
+            },
+        "Stagnant": {
+            "text": "How are your energy levels at the moment?",
+            "outcomes": {
+                "I'm feeling alright": "NotStagnant",
+                "I'm not feeling super energetic right now":"YesStagnant"
+            }
+        },
+            "NotStagnant": {
+                "text": "Depending on your level of mobility it might be a good idea to go for a walk or perhaps you could do some boxing, which "+
+                    "can be done from a seated position as well. Physical health is incredibly important to your overall well-being. Get your "+
+                    "blood pumping doing some cardio for at least 20 minutes and reap the benefits of less stress and better sleep."
+            },
+            "YesStagnant": {
+                "text": "Take a nice hot bath or shower and appreciate the feeling of the water on your skin. It doesn't have to be anything more than "+
+                        "sitting still and appreciating yourself for allowing you that moment of peace."
+            },
+ //SOUL  
+    "Soul": {
+        "text":""
+    }
+
+
     
 
 }           
