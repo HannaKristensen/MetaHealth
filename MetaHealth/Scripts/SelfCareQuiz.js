@@ -264,18 +264,27 @@
                 document.getElementById("result1").style.display = 'block';
                 document.getElementById("resultTitleText").style.display = 'block';
                 document.getElementById("errorText").style.display = 'none';
+                document.getElementById("result4").style.display = 'none';
+                document.getElementById("result2").style.display = 'none';
+                document.getElementById("result3").style.display = 'none';
             }
 
             else if (numOf1 == numOf3) {
                 document.getElementById("result3").style.display = 'block';
                 document.getElementById("resultTitleText").style.display = 'block';
                 document.getElementById("errorText").style.display = 'none';
+                document.getElementById("result1").style.display = 'none';
+                document.getElementById("result2").style.display = 'none';
+                document.getElementById("result4").style.display = 'none';
             }
 
             else if (numOf1 == numOf4) {
                 document.getElementById("result4").style.display = 'block';
                 document.getElementById("resultTitleText").style.display = 'block';
                 document.getElementById("errorText").style.display = 'none';
+                document.getElementById("result1").style.display = 'none';
+                document.getElementById("result2").style.display = 'none';
+                document.getElementById("result3").style.display = 'none';
             }
 
             //this is our best case scenario where over 50% of the answers are consistentley one answer 
@@ -284,6 +293,9 @@
                 document.getElementById("result1").style.display = 'block';
                 document.getElementById("resultTitleText").style.display = 'block';
                 document.getElementById("errorText").style.display = 'none';
+                document.getElementById("result4").style.display = 'none';
+                document.getElementById("result2").style.display = 'none';
+                document.getElementById("result3").style.display = 'none';
 
             }
         }
@@ -296,18 +308,27 @@
                 document.getElementById("result1").style.display = 'block';
                 document.getElementById("resultTitleText").style.display = 'block';
                 document.getElementById("errorText").style.display = 'none';
+                document.getElementById("result4").style.display = 'none';
+                document.getElementById("result2").style.display = 'none';
+                document.getElementById("result3").style.display = 'none';
             }
 
             else if (numOf2 == numOf3) {
                 document.getElementById("result3").style.display = 'block';
                 document.getElementById("resultTitleText").style.display = 'block';
                 document.getElementById("errorText").style.display = 'none';
+                document.getElementById("result1").style.display = 'none';
+                document.getElementById("result2").style.display = 'none';
+                document.getElementById("result4").style.display = 'none';
             }
 
             else if (numOf2 == numOf4) {
                 document.getElementById("result4").style.display = 'block';
                 document.getElementById("resultTitleText").style.display = 'block';
                 document.getElementById("errorText").style.display = 'none';
+                document.getElementById("result1").style.display = 'none';
+                document.getElementById("result2").style.display = 'none';
+                document.getElementById("result3").style.display = 'none';
             }
 
             else {
@@ -315,6 +336,9 @@
                 document.getElementById("result2").style.display = 'block';
                 document.getElementById("resultTitleText").style.display = 'block';
                 document.getElementById("errorText").style.display = 'none';
+                document.getElementById("result1").style.display = 'none';
+                document.getElementById("result4").style.display = 'none';
+                document.getElementById("result3").style.display = 'none';
 
             }
         }
@@ -326,18 +350,27 @@
                 document.getElementById("result2").style.display = 'block';
                 document.getElementById("resultTitleText").style.display = 'block';
                 document.getElementById("errorText").style.display = 'none';
+                document.getElementById("result1").style.display = 'none';
+                document.getElementById("result4").style.display = 'none';
+                document.getElementById("result3").style.display = 'none';
             }
 
             else if (numOf3 == numOf1) {
                 document.getElementById("result1").style.display = 'block';
                 document.getElementById("resultTitleText").style.display = 'block';
                 document.getElementById("errorText").style.display = 'none';
+                document.getElementById("result4").style.display = 'none';
+                document.getElementById("result2").style.display = 'none';
+                document.getElementById("result3").style.display = 'none';
             }
 
             else if (numOf3 == numOf4) {
                 document.getElementById("result4").style.display = 'block';
                 document.getElementById("resultTitleText").style.display = 'block';
                 document.getElementById("errorText").style.display = 'none';
+                document.getElementById("result1").style.display = 'none';
+                document.getElementById("result2").style.display = 'none';
+                document.getElementById("result3").style.display = 'none';
             }
 
             else {
@@ -345,6 +378,9 @@
                 document.getElementById("result3").style.display = 'block';
                 document.getElementById("resultTitleText").style.display = 'block';
                 document.getElementById("errorText").style.display = 'none';
+                document.getElementById("result1").style.display = 'none';
+                document.getElementById("result2").style.display = 'none';
+                document.getElementById("result4").style.display = 'none';
 
             }
         }
@@ -356,18 +392,27 @@
                 document.getElementById("result2").style.display = 'block';
                 document.getElementById("resultTitleText").style.display = 'block';
                 document.getElementById("errorText").style.display = 'none';
+                document.getElementById("result1").style.display = 'none';
+                document.getElementById("result4").style.display = 'none';
+                document.getElementById("result3").style.display = 'none';
             }
 
             else if (numOf4 == numOf3) {
                 document.getElementById("result3").style.display = 'block';
                 document.getElementById("resultTitleText").style.display = 'block';
                 document.getElementById("errorText").style.display = 'none';
+                document.getElementById("result1").style.display = 'none';
+                document.getElementById("result2").style.display = 'none';
+                document.getElementById("result4").style.display = 'none';
             }
 
             else if (numOf4 == numOf1) {
                 document.getElementById("result4").style.display = 'block';
                 document.getElementById("resultTitleText").style.display = 'block';
                 document.getElementById("errorText").style.display = 'none';
+                document.getElementById("result1").style.display = 'none';
+                document.getElementById("result2").style.display = 'none';
+                document.getElementById("result3").style.display = 'none';
             }
 
             else {
@@ -375,6 +420,9 @@
                 document.getElementById("result4").style.display = 'block';
                 document.getElementById("resultTitleText").style.display = 'block';
                 document.getElementById("errorText").style.display = 'none';
+                document.getElementById("result1").style.display = 'none';
+                document.getElementById("result2").style.display = 'none';
+                document.getElementById("result3").style.display = 'none';
 
             }
         }
