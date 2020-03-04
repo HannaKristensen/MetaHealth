@@ -53,7 +53,7 @@ function messageOut(data) {
         var message = "";
         message += "<tr id=\"";
         message += obj[0][i];
-        message += "\"><td><input class=\"checkMate\" type=\"radio\"></td><td>";
+        message += "\"><td><input type=\"checkbox\"></td><td>";
         message += obj[1][i];
         message += "</td></tr>";
 
