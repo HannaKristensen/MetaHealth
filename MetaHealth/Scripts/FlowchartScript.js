@@ -44,7 +44,7 @@
                     "multiple parts of your brain and helps you stay engaged with the world around you."
             },
         "Unmotivated": {
-            "text": "Are you feeling like you unmotivated intellectually or in a more external way?",
+            "text": "Are you feeling like you're unmotivated intellectually or in a more external way?",
             "outcomes": {
                 "I feel stagnant on an intellectual level": "Intellectual",
                 "I just feel unmotived in my life in general": "GenerallyUnmotivated"
@@ -67,8 +67,8 @@
                     "Whenever you get some energy you'll know exactly where to start."
             },
             "SomeEnergy": {
-                "text": "Pick an area of your home that's in need of some tidying/reorganization and get started. It can be something small "+
-                        "like a cluttered tupperware drawer, or something bigger like a messy closet."
+                "text": "Pick an area of your home that's in need of some tidying/reorganization and get started. It can be something small, "+
+                        "like a cluttered tupperware drawer, or something bigger, like a messy closet."
                 },
         "Overwhelmed": {
             "text": "Feeling overwhelmed/anxious is totally normal and recognizing when you need a break is a great skill to have! "+
@@ -84,7 +84,7 @@
                     "Be sure you have your flash player enabled."
             },
             "Introspection": {
-                "text": "Being able to look inside for why you may be feeling overwhelmed/anxious is very brave! In any order you feel like, "+
+                "text": "Being able to look inside for why you may be feeling overwhelmed is very brave! In any order you feel like, "+
                     "write down the 'who, what, where, when, and why' of your feelings of being overwhelemd and try to be as kind and "+
                     "objective as possible."
             },
@@ -108,9 +108,9 @@
                 }
             },
                 "YesAnxious": {
-                    "text": "It sounds like you have this taken care of and are feeling concerned.",
+                    "text": "It sounds like you have this taken care of but you are still feeling concerned.",
                     "outcomes": {
-                        "I do but I'm still anxious":"Overwhelmed"
+                        "It's making me really anxious":"Anxious"
                     }
                 },
                 "NoAnxious": {
@@ -124,9 +124,9 @@
 //BODY
 //#####################################################################################
     "Body": {
-        "text":"First thing's first... When's the last time you ate something substantial?",
+        "text":"First thing's first... Have you eaten recently?",
         "outcomes": {
-            "No... I haven't eaten recently":"NoFood",
+            "No... I haven't":"NoFood",
             "Yes I've eaten":"YesFood"
         }
     },
