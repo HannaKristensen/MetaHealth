@@ -23,6 +23,15 @@
             });
         }
     }
+    $.ajax({
+        type: 'GET',
+        contentType: "application/json",
+        async: true,
+        processData: false,
+        url: '/calendar/markdowntask',
+        success: messageOut,
+        error: errorOnAjax
+    });
 };
 
 function errorOnAjax() {
@@ -44,7 +53,7 @@ function messageOut(data) {
         var message = "";
         message += "<tr id=\"";
         message += obj[0][i];
-        message += "\"><td><input type=\"checkbox\"></td><td>";
+        message += "\"><td><input class=\"checkMate\" type=\"radio\"></td><td>";
         message += obj[1][i];
         message += "</td></tr>";
 

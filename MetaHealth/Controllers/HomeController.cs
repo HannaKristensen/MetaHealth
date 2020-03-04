@@ -46,6 +46,10 @@ namespace MetaHealth.Controllers
         {
             return View();
         }
+        public ActionResult Venting()
+        {
+            return View();
+        }
 
     }
 }
