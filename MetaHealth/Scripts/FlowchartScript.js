@@ -1,4 +1,4 @@
-﻿var flowchartMap = {
+﻿var flowchartMap={
     "start": {
         "text": "Where would you like to begin?",
         "outcomes": {
@@ -7,76 +7,120 @@
             "Soul": "Soul"
         }
     },
-
+    // region Mind
     "Mind": {
-        "text": "Of these three activities which sounds the best for you?",
+        "text": "Of these three feelings, which sounds the closest to how you feel?",
         "outcomes": {
-            "Maybe I could write?": "Write",
-            "I would like to make something": "Creative",
-            "I'm feeling overwhelmed and need a break": "None"
+            "I'm pretty bored": "Bored",
+            "I've been feeling overwhelmed": "Overwhelmed",
+            "I have been experiencing some anxiety lately": "Anxious"
         }
     },
-    "Body": {
-        "text": "What is your immediate need?",
+    "Bored": {
+        "text": "What would you say the biggest cause of your boredom is?",
         "outcomes": {
-            "I'm thirsty/hungry": "Feed",
-            "I've been feeling stagnant": "Exercise",
-            "I feel gross": "Bathe"
+            "I'm feeling restless": "Restless",
+            "I'm feeling unmotivated": "Unmotivated"
         }
     },
-    "Soul": {
-        "text": "How are you feeling",
+    "Restless": {
+        "text": "Are you trying to burn off energy or remain still and calm?",
         "outcomes": {
-            "I'm feeling a bit overwhelmed": "None",
-            "I'm feeling disconnected and alone": "Connect",
-            "I'm feeling anxious/depressed": "Uplift"
+            "I need to settle myself": "Settle",
+            "I need to burn off some energy": "Excess Energy"
         }
     },
-
-    "Write": {
-        "text": "Write 5 things you like about yourself."
+    "Settle": {
+        "text": "Looks like the best thing here would be some relaxation techniques."+" "+
+            "A good place to start would be some yoga poses."+" "+
+            "Click <a href='https://www.youtube.com/watch?v=BiWDsfZ3zbo'><em style='color:blue'>here</a></em>"+" "+
+            "to be taken to a routine"
     },
-
-    "Creative": {
-        "text": "Draw a picture of something you loved to eat as a child."
+    "Excess Energy": {
+        "text": "Sometimes when we're feeling bored in the brain it helps do something physical. Take a walk and make it a point to "+
+            "to take pictures of 5 things that catch your eye while you're out. Combining creativity with a physical activity engages "+
+            "multiple parts of your brain and helps you stay engaged with the world around you."
     },
-
-    "None": {
-        "text": "Do you want to sit in silence or play some music?",
+    "Unmotivated": {
+        "text": "Are you feeling like you unmotivated intellectually or in a more external way?",
         "outcomes": {
-            "Sit in silence": "Silence",
-            "play some music": "Music"
+            "I feel stagnant on an intellectual level": "Intellectual",
+            "I just feel unmotived in my life in general": "Generally Unmotivated"
         }
     },
-
-    "Silence": {
-        "text": "Meditate for 5 minutes on a problem you've solved in the past."
+    "Intellectual": {
+        "text": "It might be time to learn something new. Is there something you've always wondered but haven't looked up? "+
+            "Start on a wikipedia page of something that interests you and start following links."
     },
-
-    "Music": {
-        "text": "Go <a href='https://www.youtube.com/watch?v=3FzJHsri8Zw'>here</a> and close your eyes and think happy thoughts"
+    "Generally Unmotivated": {
+        "text": "How energetic are you feeling?",
+        "outcomes": {
+            "Not energetic at all": "No Energy",
+            "I have a little bit of getup and go in me": "Some Energy",
+        }
     },
-
-    "Connect": {
-        "text": "Call a loved one."
+    "No Energy": {
+        "text": "That's okay! Sometimes it helps to make a plan knowing that we have no obligation to put in place just yet. "+
+            "Make a todo list of things you want to do and put it in an order of priority. Break bigger tasks into smaller ones. "+
+            "Whenever you get some energy you'll know exactly where to start."
     },
-
-    "Uplift": {
-        "text": "Watch a funny movie/tv show"
+    "Some Energy": {
+        "text": "Pick an area of your home that's in need of some tidying/reorganization and get started. It can be something small "+
+                "like a cluttered tupperware drawer, or something bigger like a messy closet."
+        },
+    "Overwhelmed": {
+        "text": "Feeling overwhelmed/anxious is totally normal and recognizing when you need a break is a great skill to have! "+
+            "Are you looking for a distraction or some introspection?",
+        "outcomes": {
+            "I would like a distraction": "Distraction",
+            "I think I need to look inward": "Introspection",
+        }
     },
-
-    "Feed": {
-        "text": "Eat/drink something"
+    "Distraction": {
+        "text": "Shutting off your brain for a moment is always nice. Set a timer for 5 minutes and click "+
+            "<a href='http://interactive.usc.edu/projects/cloud/flowing/'target='_blank'><em style='color:blue'>here</em></a> to play a relaxing game. "+
+            "Be sure you have your flash player enabled."
     },
-    "Bathe": {
-        "text": "A nice hot bath sounds nice to me"
+    "Introspection": {
+        "text": "Being able to look inside for why you may be feeling overwhelmed/anxious is very brave! In any order you feel like, "+
+            "write down the 'who, what, where, when, and why' of your feelings of being overwhelemd and try to be as kind and "+
+            "objective as possible."
     },
+    "Anxious": {
+        "text": "Anxiety is not a fun feeling. If you had to choose, would you say you're anxiety is coming from external forces or internal forces?",
+        "outcomes": {
+            "Internal": "Internal",
+            "External":"External"
+        }
+    },
+        "Internal": {
+            "text": "General anxiety about your abilities is common. See if you can list three times that you've done something "+
+                "that proves this fear wrong. If you're having a hard time coming up with something like that, list three things you "+
+                "know you're really good at. Focusing on our positive qualities helps us face negative feelings in a more productiv way."
+        },
+        "External": {
+            "text": "Can anything be currently done about what is making you anxious?",
+            "outcomes": {
+                "Yes":"AnxiousYes",
+                "No":"AnxiousNo"
+            }
+        },
+            "AnxiousYes": {
+                "text": "It sounds like you have this taken care of and are feeling concerned.",
+                "outcomes": {
+                    "I do but I'm still anxious":"Overwhelmed"
+                }
+            },
+            "AnxiousNo": {
+                "text": "Oftentimes when we're experiencing stress from a situation that we have no control over, it's the lack of control itself "+
+                    "that can make it seem so overwhelming. All you have agency over is your own thoughts and feelings. Meditating on how you feel "+
+                    "and allowing yourself to sit in your discomfort without taking action sounds counterintuitive but may be the best course of action "+
+                    "at this time. Perhaps think of a time you've faced similar feelings of a lack of control and consider how that situation turned out. "+
+                    "Chances are if you're sitting here and going through this flowchart, you're doing okay."
+            },
+    
 
-    "Exercise": {
-        "text": "Hit the gym."
-    }
-
-}
+}           
 
 //uses the length of the array and a random value between 0 and 1 to choose a color
 function generateColor(array)
