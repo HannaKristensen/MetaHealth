@@ -5,13 +5,15 @@
 <head>
     <meta name="viewport" content="width=device-width" />
 </head>
-<h2>Not sure how to take care of yourself?</h2>
-<h3>We can help.</h3>
-<button class="btn btn-default" id="startFlowchart" onclick="runFlowchart()">Click here to begin</button>
-<div class="textFlowchart"></div>
-<div id="chartText"></div>
-<div id="buttons"></div>
-
+<div style="text-align:center">
+    <h2>Not sure how to take care of yourself?</h2>
+    <button class="btn btn-default" id="startFlowchart" onclick="startScript()">Click here to begin</button>
+    <div class="textFlowchart"></div>
+    <div id="chartText"></div>
+    <div id="buttons"></div>
+    <p> </p>
+    <button class="btn" onclick="startScript()">Restart</button>
+</div>
 
 @section scripts {
     <script src="~/Scripts/FlowchartScript.js"></script>

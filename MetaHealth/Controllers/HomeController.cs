@@ -13,6 +13,11 @@ namespace MetaHealth.Controllers
             return View();
         }
 
+        public ActionResult SelfCareQuiz()
+        {
+            return View();
+        }
+
         public ActionResult gitHubResources()
         {
             return View(); 
@@ -43,6 +48,10 @@ namespace MetaHealth.Controllers
         }
 
         public ActionResult Flowchart() 
+        {
+            return View();
+        }
+        public ActionResult Venting()
         {
             return View();
         }

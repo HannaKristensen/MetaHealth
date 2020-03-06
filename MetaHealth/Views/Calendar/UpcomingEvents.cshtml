@@ -17,78 +17,87 @@
 @{
     ViewBag.Title = "Upcoming Events";
 }
-
-@helper FormatEventTime(CalendarData.EventDateTime when)
-{
-    // Either Date or DateTime is set, depending on whether or not the event is
-    // an all-day event.
-    if (when.DateTime == null)
-    {
-        <text>All day</text>
-    }
-    else
-    {
-        @:@when.DateTime.Value.ToShortTimeString()
-    }
-}
-@helper FormatEventLength(CalendarData.EventDateTime start, CalendarData.EventDateTime end)
-{
-    var duration = end.DateTime - start.DateTime;
-    if (duration == null)
-    {
-        <text>All day</text>
-    }
-    else
-    {
-        @:@string.Format(
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            @helper FormatEventTime(CalendarData.EventDateTime when)
+            {
+                // Either Date or DateTime is set, depending on whether or not the event is
+                // an all-day event.
+                if (when.DateTime == null)
+                {
+                    <text>All day</text>
+                }
+                else
+                {
+                    @:@when.DateTime.Value.ToShortTimeString()
+                }
+            }
+            @helper FormatEventLength(CalendarData.EventDateTime start, CalendarData.EventDateTime end)
+            {
+                var duration = end.DateTime - start.DateTime;
+                if (duration == null)
+                {
+                    <text>All day</text>
+                }
+                else
+                {
+                    @:@string.Format(
 "{0} hour{1} {2} minute{3}",
 (int)duration.Value.TotalHours,
 duration.Value.TotalHours >= 2 ? "s" : "",
 (int)duration.Value.Minutes,
 duration.Value.Minutes >= 2 ? "s" : "")
-    }
-}
-
-<h2>Upcoming Events</h2>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Time</th>
-            <th>Length</th>
-            <th>Summary</th>
-        </tr>
-    </thead>
-
-    @foreach (var group in Model.EventGroups)
-    {
-        <tbody>
-            <tr><th colspan="4">@group.GroupTitle</th></tr>
-            @foreach (var item in group.Events)
-            {
-                <tr>
-                    <td>@FormatEventTime(item.Start)</td>
-                    <td>@FormatEventLength(item.Start, item.End)</td>
-                    <td>@item.Summary</td>
-                </tr>
+                }
             }
-        </tbody>
-    }
-</table>
-<h4>@Model.MultiList[0]</h4>
-<table id="TaskTable">
-    <tbody>
-        @for (int i = 0; i < Model.MultiTask.Length; i++)
-        {
-            <tr id="@Model.MultiTaskID[i]">
-                <td><input type="checkbox" /></td>
-                <td>@Model.MultiTask[i]</td>
-            </tr>
-        }
-    </tbody>
-</table>
-<button onclick="MarkDown()">Mark As Down</button>
 
+            <h2>Upcoming Events</h2>
+            <hr>
+            <table id="TaskEvent" class="table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Length</th>
+                        <th>Summary</th>
+                    </tr>
+                </thead>
+
+                @foreach (var group in Model.EventGroups)
+                {
+                    <tbody>
+                        <tr><th colspan="4">@group.GroupTitle</th></tr>
+                        @foreach (var item in group.Events)
+                        {
+                            <tr>
+                                <td>@FormatEventTime(item.Start)</td>
+                                <td>@FormatEventLength(item.Start, item.End)</td>
+                                <td>@item.Summary</td>
+                            </tr>
+                        }
+                    </tbody>
+                }
+            </table>
+        </div>
+        <div class="col-md-5">
+            <h2>@Model.MultiList[0]</h2>
+            <hr>
+            <div class="checkMate">
+                <table id="TaskTable" class="table">
+                    <tbody>
+                        @for (int i = 0; i < Model.MultiTask.Length; i++)
+                        {
+                            <tr id="@Model.MultiTaskID[i]">
+                                <td><input type="checkbox"></td>
+                                <td>@Model.MultiTask[i]</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <button class="MarkDownButtons" onclick="MarkDown()">Refresh / Mark Done</button>
+            </div>
+        </div>
+    </div>
+</div>
 @section Scripts {
     @Scripts.Render("~/Scripts/TasksAPI.js");
 }

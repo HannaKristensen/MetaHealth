@@ -23,6 +23,15 @@
             });
         }
     }
+    $.ajax({
+        type: 'GET',
+        contentType: "application/json",
+        async: true,
+        processData: false,
+        url: '/calendar/markdowntask',
+        success: messageOut,
+        error: errorOnAjax
+    });
 };
 
 function errorOnAjax() {

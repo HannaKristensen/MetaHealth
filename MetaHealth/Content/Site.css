@@ -27,8 +27,8 @@ textarea {
 #visionText {
     text-align: center;
     align-content: center;
-    font-family: Verdana ;
-    font-size: 50px ;
+    font-family: Verdana;
+    font-size: 50px;
 }
 
 .resourcesFooter {
@@ -166,11 +166,10 @@ a:visited {
     font-size: 40px;
 }
 
-
 #confirmText {
     text-align: center;
     font-family: Verdana;
-    color:black;
+    color: black;
 }
 
 #confirmEmailBox {
@@ -194,4 +193,16 @@ a:visited {
 .textFlowchart {
     font-family: Verdana;
     font-size: 20px;
+}
+
+.MarkDownButtons {
+    background-color: #49C7CA;
+    border: 4px solid #248D83;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Verdana;
+    font-size: 17px;
+    text-decoration: none;
+    border-radius: 24px;
 }
