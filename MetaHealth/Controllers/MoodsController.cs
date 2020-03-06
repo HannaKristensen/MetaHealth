@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MetaHealth;
+using Microsoft.AspNet.Identity;
 
 namespace MetaHealth.Controllers
 {
@@ -17,6 +18,9 @@ namespace MetaHealth.Controllers
         // GET: Moods
         public ActionResult Index()
         {
+            
+            
+            
             var moods = db.Moods.Include(m => m.MoodsInBetween);
             return View(moods.ToList());
         }
@@ -39,16 +43,28 @@ namespace MetaHealth.Controllers
         // GET: Moods/Create
         public ActionResult Create()
         {//here is where we would need to access the table
-            //obtain current user ???
             //search for FK is present in MoodsInBetween
             //if not, insert the row, if it does exist just add a mood to Moods
             //use THAT number to append a mood to their table
             //could the foreign key from the asp.net table be inserted as a primary key into the moods table?
-            
+            var currentUser = User.Identity.GetUserName();
+            var getFK = db.AspNetUsers.Where(x => x.Email == currentUser).Select(y=>y.Id);
+            //TODO: Need to figure out why this isn't working!!!
+ 
+            if (!db.MoodsInBetweens.Any(x=>x.FK_UserTable==getFK.ToString())) {
+                MoodsInBetween newLine = new MoodsInBetween();
+                newLine.FK_UserTable = getFK.ToString();
+                db.MoodsInBetweens.Add(newLine);
+            }
             ViewBag.FK_MoodsInBetween = new SelectList(db.MoodsInBetweens, "PK", "FK_UserTable");
-           
+
+
             return View();
         }
+
+        //public string GetUserName(DbSet<Mood> db, int userKey) {
+        //    var user = this.User.Identity;
+        //}
 
         // POST: Moods/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

@@ -26,7 +26,8 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.MoodsInBetween.FK_UserTable)
+           @* @Html.DisplayFor(modelItem => item.MoodsInBetween.FK_UserTable)*@
+            @Html.DisplayFor(modelItem => item.MoodsInBetween.AspNetUser.UserName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MoodNum)
