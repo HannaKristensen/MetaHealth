@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MetaHealth;
+using MetaHealth.Models;
 using Microsoft.AspNet.Identity;
 
 namespace MetaHealth.Controllers
@@ -47,14 +47,19 @@ namespace MetaHealth.Controllers
             //if not, insert the row, if it does exist just add a mood to Moods
             //use THAT number to append a mood to their table
             //could the foreign key from the asp.net table be inserted as a primary key into the moods table?
-            var currentUser = User.Identity.GetUserName();
-            var getFK = db.AspNetUsers.Where(x => x.Email == currentUser).Select(y=>y.Id);
+        string currentUser = User.Identity.GetUserName();
+            var aspUser = db.AspNetUsers.Select(n => n.UserName == currentUser).ToString();
+            //var userFK = db.AspNetUsers.Where(x => x.Email == currentUser).Select(y=>y.Id);
             //TODO: Need to figure out why this isn't working!!!
+            var userFK = db.AspNetUsers.Where(x => x.UserName == currentUser).FirstOrDefault().ToString();
  
-            if (!db.MoodsInBetweens.Any(x=>x.FK_UserTable==getFK.ToString())) {
-                MoodsInBetween newLine = new MoodsInBetween();
-                newLine.FK_UserTable = getFK.ToString();
-                db.MoodsInBetweens.Add(newLine);
+            if (!db.MoodsInBetweens.Any(x=>x.FK_UserTable==userFK)) { 
+                MoodsInBetween newLine = new MoodsInBetween {
+                    FK_UserTable = userFK
+                };
+                MoodsInBetweensController temp = new MoodsInBetweensController();
+                temp.Create(newLine);
+                //db.MoodsInBetweens.Add(newLine);
             }
             ViewBag.FK_MoodsInBetween = new SelectList(db.MoodsInBetweens, "PK", "FK_UserTable");
 
