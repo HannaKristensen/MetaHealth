@@ -48,19 +48,10 @@ namespace MetaHealth.Controllers
             //use THAT number to append a mood to their table
             //could the foreign key from the asp.net table be inserted as a primary key into the moods table?
         string currentUser = User.Identity.GetUserName();
-            var aspUser = db.AspNetUsers.Select(n => n.UserName == currentUser).ToString();
             //var userFK = db.AspNetUsers.Where(x => x.Email == currentUser).Select(y=>y.Id);
             //TODO: Need to figure out why this isn't working!!!
-            var userFK = db.AspNetUsers.Where(x => x.UserName == currentUser).FirstOrDefault().ToString();
- 
-            if (!db.MoodsInBetweens.Any(x=>x.FK_UserTable==userFK)) { 
-                MoodsInBetween newLine = new MoodsInBetween {
-                    FK_UserTable = userFK
-                };
-                MoodsInBetweensController temp = new MoodsInBetweensController();
-                temp.Create(newLine);
                 //db.MoodsInBetweens.Add(newLine);
-            }
+            
             ViewBag.FK_MoodsInBetween = new SelectList(db.MoodsInBetweens, "PK", "FK_UserTable");
 
 
