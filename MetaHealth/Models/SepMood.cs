@@ -15,6 +15,7 @@ namespace MetaHealth.Models
         [StringLength(128)]
         public string UserID { get; set; }
 
+        [Range(1,5)]
         public int MoodNum { get; set; }
 
         public DateTime Date { get; set; }

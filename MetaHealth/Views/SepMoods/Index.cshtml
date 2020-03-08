@@ -1,21 +1,16 @@
 ﻿@model IEnumerable<MetaHealth.Models.SepMood>
 
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Your Moods</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MoodNum)
+            Mood
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Date)
@@ -26,20 +21,15 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.UserID)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.MoodNum)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PK }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PK }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PK })
-        </td>
     </tr>
 }
 
 </table>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>

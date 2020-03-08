@@ -52,8 +52,13 @@ namespace MetaHealth.Controllers
         public ActionResult Create([Bind(Include = "PK,UserID,MoodNum,Date")] SepMood sepMood)
         {
             sepMood.UserID = User.Identity.GetUserId();
-            if (ModelState.IsValid)
-            {
+            sepMood.Date = DateTime.Now;
+            if (sepMood.UserID is null) {
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (ModelState.IsValid) 
+            {  
                 db.SepMoods.Add(sepMood);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -61,6 +66,7 @@ namespace MetaHealth.Controllers
 
             return View(sepMood);
         }
+            
 
         // GET: SepMoods/Edit/5
         public ActionResult Edit(int? id)
