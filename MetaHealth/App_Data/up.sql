@@ -1,4 +1,14 @@
-﻿CREATE TABLE [dbo].[MoodsInBetween]
+﻿CREATE TABLE [dbo].[SepMoods]
+(
+    [PK]   INT IDENTITY(1,1) NOT NULL,
+    [UserID]  NVARCHAR (128) NOT NULL,
+    [MoodNum] INT NOT NULL,
+    [Date] DATETIME NOT NULL,
+    CONSTRAINT [PK_dbo.SepMoods] PRIMARY KEY CLUSTERED ([PK] ASC),
+);
+
+
+CREATE TABLE [dbo].[MoodsInBetween]
 (
     [PK]   INT IDENTITY(1,1) NOT NULL,
     [FK_UserTable] NVARCHAR (128) NOT NULL,
