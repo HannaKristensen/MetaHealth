@@ -119,12 +119,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-<<<<<<< HEAD
-=======
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
->>>>>>> 6a80dcd2875799d1255b139947cebae2ad9d52b1
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -209,23 +206,17 @@
     <Compile Include="App_Start\MyRequestedScopes.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-<<<<<<< HEAD
     <Compile Include="Models\AspNetRole.cs" />
     <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Models\AspNetUserClaim.cs" />
     <Compile Include="Models\AspNetUserLogin.cs" />
-=======
     <Compile Include="App_Start\WebApiConfig.cs" />
->>>>>>> 6a80dcd2875799d1255b139947cebae2ad9d52b1
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-<<<<<<< HEAD
     <Compile Include="Models\CustomLevel.cs" />
-=======
     <Compile Include="Controllers\SepMoodsController.cs" />
->>>>>>> 6a80dcd2875799d1255b139947cebae2ad9d52b1
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
