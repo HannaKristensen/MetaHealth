@@ -8,7 +8,7 @@ namespace MetaHealth.Models
     public partial class Model : DbContext
     {
         public Model()
-            : base("name=HelpAlong")
+            : base("AzureDB", throwIfV1Schema: false)
         {
         }
 
