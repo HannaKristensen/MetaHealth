@@ -119,6 +119,12 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+<<<<<<< HEAD
+=======
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+>>>>>>> 6a80dcd2875799d1255b139947cebae2ad9d52b1
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -127,6 +133,12 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -197,15 +209,23 @@
     <Compile Include="App_Start\MyRequestedScopes.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\AspNetRole.cs" />
     <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Models\AspNetUserClaim.cs" />
     <Compile Include="Models\AspNetUserLogin.cs" />
+=======
+    <Compile Include="App_Start\WebApiConfig.cs" />
+>>>>>>> 6a80dcd2875799d1255b139947cebae2ad9d52b1
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\CustomLevel.cs" />
+=======
+    <Compile Include="Controllers\SepMoodsController.cs" />
+>>>>>>> 6a80dcd2875799d1255b139947cebae2ad9d52b1
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,6 +236,8 @@
     <Compile Include="Models\CalendarViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Model.cs" />
+    <Compile Include="Models\SepMood.cs" />
     <Compile Include="Models\TaskViewModel.cs" />
     <Compile Include="Models\Mood.cs" />
     <Compile Include="Models\MoodsInBetween.cs" />
@@ -305,6 +327,11 @@
     <Content Include="Views\Moods\Index.cshtml" />
     <Content Include="Views\Home\Venting.cshtml" />
     <Content Include="Views\Home\SelfCareQuiz.cshtml" />
+    <Content Include="Views\SepMoods\Create.cshtml" />
+    <Content Include="Views\SepMoods\Delete.cshtml" />
+    <Content Include="Views\SepMoods\Details.cshtml" />
+    <Content Include="Views\SepMoods\Edit.cshtml" />
+    <Content Include="Views\SepMoods\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
