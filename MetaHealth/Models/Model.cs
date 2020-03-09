@@ -15,7 +15,8 @@ namespace MetaHealth.Models
     public partial class Model : DbContext
     {
         public Model()
-            : base("AzureDB")
+        //   : base("AzureDB")
+        : base("DefaultConnection")
         {
         }
 
