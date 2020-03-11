@@ -95,7 +95,7 @@ namespace Calendar.ASP.NET.MVC5
                             AccessToken = context.AccessToken,
                             RefreshToken = context.RefreshToken,
                             ExpiresInSeconds = (long)context.ExpiresIn.Value.TotalSeconds,
-                            Issued = DateTime.Now,
+                            IssuedUtc = DateTime.Now,
                         };
 
                         await dataStore.StoreAsync(userId, tokenResponse);

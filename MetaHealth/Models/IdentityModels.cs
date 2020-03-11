@@ -22,6 +22,7 @@ namespace MetaHealth.Models
     {
         public ApplicationDbContext()
             : base("AzureDB", throwIfV1Schema: false)
+        //: base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 

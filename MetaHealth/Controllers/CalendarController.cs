@@ -56,7 +56,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 DefaultAuthenticationTypes.ApplicationCookie);
             var userId = identity.FindFirstValue(MyClaimTypes.GoogleUserId);
 
-            var token = await dataStore.GetAsync<TokenResponse>(userId);
+            var token = await dataStore.GetAsync<TokenResponse>(userId);;
             return new UserCredential(flow, userId, token);
         }
 
