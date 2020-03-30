@@ -73,7 +73,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             var initializer = new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
-                ApplicationName = "ASP.NET MVC5 Calendar Sample",
+                ApplicationName = "MetaHealth",
             };
             var service = new CalendarService(initializer);
 
@@ -122,7 +122,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             var initializer2 = new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
-                ApplicationName = "ASP.NET MVC5 Calendar Sample",
+                ApplicationName = "MetaHealth",
             };
             var service2 = new TasksService(initializer2);
 
@@ -190,7 +190,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             var initializer = new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
-                ApplicationName = "ASP.NET MVC5 Calendar Sample",
+                ApplicationName = "MetaHealth",
             };
             var service = new TasksService(initializer);
 
@@ -266,7 +266,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             var initializer = new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
-                ApplicationName = "ASP.NET MVC5 Calendar Sample",
+                ApplicationName = "MetaHealth",
             };
             var service = new CalendarService(initializer);
 
@@ -312,20 +312,27 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             model.EventGroups = eventGroups;
 
-            var initializer2 = new BaseClientService.Initializer()
+            //Add a new task
+            var initializer3 = new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
-                ApplicationName = "ASP.NET MVC5 Calendar Sample",
+                ApplicationName = "MetaHealth",
             };
-            var service2 = new TasksService(initializer2);
+            var service3 = new TasksService(initializer3);
 
-            Google.Apis.Tasks.v1.Data.Tasks tasks = service2.Tasks.List("@default").Execute();
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service3.Tasks.List("@default").Execute();
 
             Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = taskTitle };
 
-            service2.Tasks.Insert(task, "@default").Execute();
+            Google.Apis.Tasks.v1.Data.Task newTask = service3.Tasks.Insert(task, "@default").Execute();
 
-            // service2.Tasks.Update(task, "@default", task.Id).Execute();
+            //Getting all the task to show on the page
+            var initializer2 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "MetaHealth",
+            };
+            var service2 = new TasksService(initializer2);
 
             int amountTask = 0;
             if (tasks.Items != null)
@@ -339,9 +346,9 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 }
             }
 
-            string[] taskArr = new string[amountTask];
-            string[] taskIDArr = new string[amountTask];
-            int indexTask = 0;
+            string[] taskArr = new string[amountTask + 1];
+            string[] taskIDArr = new string[amountTask + 1];
+            int indexTask = 1;
             if (tasks.Items != null)
             {
                 for (int i = 0; i < tasks.Items.Count; i++)
@@ -354,10 +361,32 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                     }
                 }
             }
+            taskArr[0] = newTask.Title;
+            taskIDArr[0] = newTask.Id;
 
             model.MultiTask = taskArr;
             model.MultiTaskID = taskIDArr;
 
+            // Define parameters of request.
+            TasklistsResource.ListRequest listRequest = service2.Tasklists.List();
+            listRequest.MaxResults = 10;
+
+            string[] listOtasks = new string[10];
+            // List task lists.
+            IList<TaskList> taskLists = listRequest.Execute().Items;
+            if (taskLists != null && taskLists.Count > 0)
+            {
+                int i = 0;
+                foreach (var taskList in taskLists)
+                {
+                    listOtasks[i] = taskList.Title;
+                    i++;
+                }
+            }
+
+            model.MultiList = listOtasks;
+
+            ModelState.Clear();
             return View(model);
         }
     }
