@@ -20,7 +20,7 @@ namespace MetaHealth.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            return View(db.SepMoods.Where(x => x.UserID == userId));
+            return View(db.SepMoods.Where(x => x.UserID == userId).OrderByDescending(y=>y.Date));
         }
 
         // GET: SepMoods/Details/5
@@ -49,7 +49,7 @@ namespace MetaHealth.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PK,UserID,MoodNum,Date")] SepMood sepMood)
+        public ActionResult Create([Bind(Include = "PK,UserID,MoodNum,Date,Reason")] SepMood sepMood)
         {
             sepMood.UserID = User.Identity.GetUserId();
             sepMood.Date = DateTime.Now;
@@ -88,8 +88,9 @@ namespace MetaHealth.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PK,UserID,MoodNum,Date")] SepMood sepMood)
+        public ActionResult Edit([Bind(Include = "PK,UserID,MoodNum,Date,Reason")] SepMood sepMood)
         {
+            sepMood.UserID = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
                 db.Entry(sepMood).State = EntityState.Modified;
