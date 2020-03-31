@@ -18,8 +18,8 @@
         <div class="form-group">
             @Html.Label("Enter reason for this mood",htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserID, "Field cannot be left blank", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Reason, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Reason, "Field cannot be left blank", new { @class = "text-danger" })
             </div>
         </div>
 
