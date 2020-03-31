@@ -16,7 +16,6 @@ namespace MetaHealth.Models {
         public DateTime Date { get; set; }
 
         //reason for why the mood is being added
-
         [StringLength(130)]
         public string Reason { get; set; }
     }
