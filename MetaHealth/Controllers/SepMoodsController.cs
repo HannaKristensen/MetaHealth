@@ -49,7 +49,7 @@ namespace MetaHealth.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PK,UserID,MoodNum,Date")] SepMood sepMood)
+        public ActionResult Create([Bind(Include = "PK,UserID,MoodNum,Date,Reason")] SepMood sepMood)
         {
             sepMood.UserID = User.Identity.GetUserId();
             sepMood.Date = DateTime.Now;
@@ -88,7 +88,7 @@ namespace MetaHealth.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PK,UserID,MoodNum,Date")] SepMood sepMood)
+        public ActionResult Edit([Bind(Include = "PK,UserID,MoodNum,Date,Reason")] SepMood sepMood)
         {
             if (ModelState.IsValid)
             {
