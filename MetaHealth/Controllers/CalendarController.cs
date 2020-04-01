@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -76,7 +75,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 request.MaxResults = MaxEventsPerCalendar;
                 request.SingleEvents = true;
                 request.TimeMin = DateTime.Now;
-                request.TimeMax = DateTime.Now.AddDays(7.0); //maximum events shown is for 7 days 
+                request.TimeMax = DateTime.Now.AddDays(7.0); //maximum events shown is for 7 days
                 fetchTasks.Add(request.ExecuteAsync());
             }
             var fetchResults = await Task.WhenAll(fetchTasks);
@@ -270,6 +269,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 request.MaxResults = MaxEventsPerCalendar;
                 request.SingleEvents = true;
                 request.TimeMin = DateTime.Now;
+                request.TimeMax = DateTime.Now.AddDays(7.0);
                 fetchTasks.Add(request.ExecuteAsync());
             }
             var fetchResults = await Task.WhenAll(fetchTasks);
