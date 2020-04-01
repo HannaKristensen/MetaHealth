@@ -4,6 +4,7 @@
     [UserID]  NVARCHAR (128) NOT NULL,
     [MoodNum] INT NOT NULL,
     [Date] DATETIME NOT NULL,
+    [Reason] NVARCHAR (1000),
     CONSTRAINT [PK_dbo.SepMoods] PRIMARY KEY CLUSTERED ([PK] ASC),
 );
 

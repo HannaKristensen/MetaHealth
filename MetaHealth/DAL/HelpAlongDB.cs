@@ -1,12 +1,16 @@
-namespace MetaHealth {
+namespace MetaHealth
+{
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class HelpAlongDB : DbContext {
+    public partial class HelpAlongDB : DbContext
+    {
         public HelpAlongDB()
-            : base("name=HelpAlong") {
+        : base("name=HelpAlong")
+        //: base("AzureDB")
+        {
         }
 
         public virtual DbSet<APIToDoList> APIToDoLists { get; set; }
@@ -21,7 +25,8 @@ namespace MetaHealth {
         public virtual DbSet<PreLevelList> PreLevelLists { get; set; }
         public virtual DbSet<ToDoList> ToDoLists { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder) {
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<AspNetRole>()
                 .HasMany(e => e.AspNetUsers)
                 .WithMany(e => e.AspNetRoles)

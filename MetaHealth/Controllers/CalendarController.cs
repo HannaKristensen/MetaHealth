@@ -56,7 +56,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 DefaultAuthenticationTypes.ApplicationCookie);
             var userId = identity.FindFirstValue(MyClaimTypes.GoogleUserId);
 
-            var token = await dataStore.GetAsync<TokenResponse>(userId);;
+            var token = await dataStore.GetAsync<TokenResponse>(userId); ;
             return new UserCredential(flow, userId, token);
         }
 
@@ -73,7 +73,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             var initializer = new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
-                ApplicationName = "ASP.NET MVC5 Calendar Sample",
+                ApplicationName = "MetaHealth",
             };
             var service = new CalendarService(initializer);
 
@@ -122,7 +122,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             var initializer2 = new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
-                ApplicationName = "ASP.NET MVC5 Calendar Sample",
+                ApplicationName = "MetaHealth",
             };
             var service2 = new TasksService(initializer2);
 
@@ -190,7 +190,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             var initializer = new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
-                ApplicationName = "ASP.NET MVC5 Calendar Sample",
+                ApplicationName = "MetaHealth",
             };
             var service = new TasksService(initializer);
 
@@ -251,6 +251,143 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             var json = JsonConvert.SerializeObject(taskArr);
 
             return Content(json);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> UpcomingEvents(string taskTitle)
+        {
+            const int MaxEventsPerCalendar = 20;
+            const int MaxEventsOverall = 50;
+
+            var model = new UpcomingEventsViewModel();
+
+            var credential = await GetCredentialForApiAsync();
+
+            var initializer = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "MetaHealth",
+            };
+            var service = new CalendarService(initializer);
+
+            // Fetch the list of calendars.
+            var calendars = await service.CalendarList.List().ExecuteAsync();
+
+            // Fetch some events from each calendar.
+            var fetchTasks = new List<Task<Google.Apis.Calendar.v3.Data.Events>>(calendars.Items.Count);
+            foreach (var calendar in calendars.Items)
+            {
+                var request = service.Events.List(calendar.Id);
+                request.MaxResults = MaxEventsPerCalendar;
+                request.SingleEvents = true;
+                request.TimeMin = DateTime.Now;
+                fetchTasks.Add(request.ExecuteAsync());
+            }
+            var fetchResults = await Task.WhenAll(fetchTasks);
+
+            // Sort the events and put them in the model.
+            var upcomingEvents = from result in fetchResults
+                                 from evt in result.Items
+                                 where evt.Start != null
+                                 let date = evt.Start.DateTime.HasValue ?
+                                     evt.Start.DateTime.Value.Date :
+                                     DateTime.ParseExact(evt.Start.Date, "yyyy-MM-dd", null)
+                                 let sortKey = evt.Start.DateTimeRaw ?? evt.Start.Date
+                                 orderby sortKey
+                                 select new { evt, date };
+            var eventsByDate = from result in upcomingEvents.Take(MaxEventsOverall)
+                               group result.evt by result.date into g
+                               orderby g.Key
+                               select g;
+
+            var eventGroups = new List<CalendarEventGroup>();
+            foreach (var grouping in eventsByDate)
+            {
+                eventGroups.Add(new CalendarEventGroup
+                {
+                    GroupTitle = grouping.Key.ToLongDateString(),
+                    Events = grouping,
+                });
+            }
+
+            model.EventGroups = eventGroups;
+
+            //Add a new task
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "MetaHealth",
+            };
+            var service3 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service3.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = taskTitle };
+
+            Google.Apis.Tasks.v1.Data.Task newTask = service3.Tasks.Insert(task, "@default").Execute();
+
+            //Getting all the task to show on the page
+            var initializer2 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "MetaHealth",
+            };
+            var service2 = new TasksService(initializer2);
+
+            int amountTask = 0;
+            if (tasks.Items != null)
+            {
+                foreach (var item in tasks.Items)
+                {
+                    if (item.Status == "needsAction")
+                    {
+                        amountTask++;
+                    }
+                }
+            }
+
+            string[] taskArr = new string[amountTask + 1];
+            string[] taskIDArr = new string[amountTask + 1];
+            int indexTask = 1;
+            if (tasks.Items != null)
+            {
+                for (int i = 0; i < tasks.Items.Count; i++)
+                {
+                    if (tasks.Items[i].Status == "needsAction" && tasks.Items[i].Title != " ")
+                    {
+                        taskArr[indexTask] = tasks.Items[i].Title;
+                        taskIDArr[indexTask] = tasks.Items[i].Id;
+                        indexTask++;
+                    }
+                }
+            }
+            taskArr[0] = newTask.Title;
+            taskIDArr[0] = newTask.Id;
+
+            model.MultiTask = taskArr;
+            model.MultiTaskID = taskIDArr;
+
+            // Define parameters of request.
+            TasklistsResource.ListRequest listRequest = service2.Tasklists.List();
+            listRequest.MaxResults = 10;
+
+            string[] listOtasks = new string[10];
+            // List task lists.
+            IList<TaskList> taskLists = listRequest.Execute().Items;
+            if (taskLists != null && taskLists.Count > 0)
+            {
+                int i = 0;
+                foreach (var taskList in taskLists)
+                {
+                    listOtasks[i] = taskList.Title;
+                    i++;
+                }
+            }
+
+            model.MultiList = listOtasks;
+
+            ModelState.Clear();
+            return View(model);
         }
     }
 }
