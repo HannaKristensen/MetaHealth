@@ -215,6 +215,7 @@
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Models\CreateEvent.cs" />
     <Compile Include="Models\CustomLevel.cs" />
     <Compile Include="Controllers\SepMoodsController.cs" />
     <Compile Include="Global.asax.cs">
