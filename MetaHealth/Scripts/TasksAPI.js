@@ -11,6 +11,9 @@
             var row = checkBoxes[i].parentNode.parentNode;
             var task = row.cells[1].innerHTML;
             var taskID = row.id;
+            if (task == '#') {
+                task = 'sharp';
+            }
 
             $.ajax({
                 type: 'GET',

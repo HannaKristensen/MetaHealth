@@ -1,4 +1,5 @@
-﻿DROP TABLE [dbo].[PreLevelList]
+﻿DROP TABLE [dbo].[SepMoods]
+DROP TABLE [dbo].[PreLevelList]
 DROP TABLE [dbo].[CustomLevel]
 DROP TABLE [dbo].[APIToDoList]
 DROP TABLE [dbo].[ToDoList]
