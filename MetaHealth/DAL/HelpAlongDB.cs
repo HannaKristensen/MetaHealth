@@ -8,8 +8,8 @@ namespace MetaHealth
     public partial class HelpAlongDB : DbContext
     {
         public HelpAlongDB()
-            : base("name=HelpAlong")
-        //: base("AzureDB")
+        //: base("name=HelpAlong")
+        : base("AzureDB")
         {
         }
 
