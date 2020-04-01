@@ -197,6 +197,15 @@
   <ItemGroup>
     <Compile Include="Controllers\MoodsController.cs" />
     <Compile Include="Controllers\MoodsInBetweensController.cs" />
+    <Compile Include="Migrations\202003312101026_InitialCreate.cs" />
+    <Compile Include="Migrations\202003312101026_InitialCreate.Designer.cs">
+      <DependentUpon>202003312101026_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003312104226_add_sepmood_reason.cs" />
+    <Compile Include="Migrations\202003312104226_add_sepmood_reason.Designer.cs">
+      <DependentUpon>202003312104226_add_sepmood_reason.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\APIToDoList.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -339,6 +348,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\AspNetUsers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202003312101026_InitialCreate.resx">
+      <DependentUpon>202003312101026_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003312104226_add_sepmood_reason.resx">
+      <DependentUpon>202003312104226_add_sepmood_reason.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
