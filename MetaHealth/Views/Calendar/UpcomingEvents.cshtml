@@ -1,6 +1,4 @@
-﻿
-
-@model Calendar.ASP.NET.MVC5.Models.UpcomingEventsViewModel
+﻿@model Calendar.ASP.NET.MVC5.Models.UpcomingEventsViewModel
 @using CalendarData = Google.Apis.Calendar.v3.Data;
 
 @{
@@ -93,19 +91,70 @@ duration.Value.Minutes >= 2 ? "s" : "")
                         <div class="form-group">
                             @Html.Label("task", "Task To add: ")
                             @Html.TextBox("taskTitle", null, new { @class = "form-control", type = "text", required = "required" })
-                            <button type="submit" class="MarkDownButtons">Submit</button>
+                            <button type="submit" class="MarkDownButtons">Add Task</button>
                         </div>
                     }
                 </div>
+                <ul>
+                    <div>
+                        <h4>
+                            These are pre-made list that will add the following tasks to your task list
+                            each number represents a level of effort
+                        </h4>
+                        <li>
+                            @using (Html.BeginForm("AddPreMadeOne", "Calendar", FormMethod.Post))
+                            {
+                                <div class="form-group">
+                                    <h3>Level One</h3>
+                                    <ul>
+                                        <li>Get out of bed</li>
+                                        <li>Drink a glass of water</li>
+                                        <li>Eat a meal</li>
+                                    </ul>
+                                    <button type="submit" class="MarkDownButtons">Add Tasks</button>
+                                </div>
+                            }
+                    </div>
+                    </li>
+                    <li>
+                        <div>
+                            @using (Html.BeginForm("AddPreMadeTwo", "Calendar", FormMethod.Post))
+                            {
+                                <div class="form-group">
+                                    <h3>Level Two</h3>
+                                    <ul>
+                                        <li>Take a shower</li>
+                                        <li>Talk to someone</li>
+                                        <li>Brush Teeth</li>
+                                        <li>Put on Deodorant</li>
+                                    </ul>
+                                    <button type="submit" class="MarkDownButtons">Add Tasks</button>
+                                </div>
+                            }
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            @using (Html.BeginForm("AddPreMadeThree", "Calendar", FormMethod.Post))
+                            {
+                                <div class="form-group">
+                                    <h3>Level Three</h3>
+                                    <ul>
+                                        <li>Make your bed</li>
+                                        <li>Talk to someone face to face</li>
+                                        <li>Go on a walk</li>
+                                        <li>Pick up room</li>
+                                    </ul>
+                                    <button type="submit" class="MarkDownButtons">Add Tasks</button>
+                                </div>
+                            }
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 
-
-
-
-
     @section Scripts {
         @Scripts.Render("~/Scripts/TasksAPI.js");
     }
-

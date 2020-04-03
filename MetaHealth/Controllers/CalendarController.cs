@@ -18,6 +18,7 @@ using Google.Apis.Tasks.v1.Data;
 using Task = System.Threading.Tasks.Task;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Threading;
 
 namespace Calendar.ASP.NET.MVC5.Controllers
 {
@@ -244,6 +245,118 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         [HttpPost]
         public async Task<ActionResult> UpcomingEvents(string taskTitle)
         {
+            var credential = await GetCredentialForApiAsync();
+
+            //Add a new task
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "MetaHealth",
+            };
+            var service3 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service3.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = taskTitle };
+
+            Google.Apis.Tasks.v1.Data.Task newTask = service3.Tasks.Insert(task, "@default").Execute();
+
+            UpcomingEventsViewModel model = await GetCurrentEventsTask();
+
+            ModelState.Clear();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddPreMadeOne()
+        {
+            var credential = await GetCredentialForApiAsync();
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "MetaHealth",
+            };
+            var service3 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service3.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = "Get out of bed" };
+            service3.Tasks.Insert(task, "@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task1 = new Google.Apis.Tasks.v1.Data.Task { Title = "Drink a glass of water" };
+            service3.Tasks.Insert(task1, "@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task2 = new Google.Apis.Tasks.v1.Data.Task { Title = "Eat a meal" };
+            service3.Tasks.Insert(task2, "@default").Execute();
+
+            UpcomingEventsViewModel model = await GetCurrentEventsTask();
+
+            return View("UpcomingEvents", model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddPreMadeTwo()
+        {
+            var credential = await GetCredentialForApiAsync();
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "MetaHealth",
+            };
+            var service3 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service3.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = "Take a shower" };
+            service3.Tasks.Insert(task, "@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task1 = new Google.Apis.Tasks.v1.Data.Task { Title = "Talk to someone" };
+            service3.Tasks.Insert(task1, "@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task2 = new Google.Apis.Tasks.v1.Data.Task { Title = "Brush Teeth" };
+            service3.Tasks.Insert(task2, "@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task3 = new Google.Apis.Tasks.v1.Data.Task { Title = "Put on Deodorant" };
+            service3.Tasks.Insert(task3, "@default").Execute();
+
+            UpcomingEventsViewModel model = await GetCurrentEventsTask();
+
+            return View("UpcomingEvents", model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddPreMadeThree()
+        {
+            var credential = await GetCredentialForApiAsync();
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "MetaHealth",
+            };
+            var service3 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service3.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = "Make your bed" };
+            service3.Tasks.Insert(task, "@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task1 = new Google.Apis.Tasks.v1.Data.Task { Title = "Talk to someone face to face" };
+            service3.Tasks.Insert(task1, "@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task2 = new Google.Apis.Tasks.v1.Data.Task { Title = "Go on a walk" };
+            service3.Tasks.Insert(task2, "@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task3 = new Google.Apis.Tasks.v1.Data.Task { Title = "Pick up room" };
+            service3.Tasks.Insert(task3, "@default").Execute();
+
+            UpcomingEventsViewModel model = await GetCurrentEventsTask();
+
+            return View("UpcomingEvents", model);
+        }
+
+        public async Task<UpcomingEventsViewModel> GetCurrentEventsTask()
+        {
             const int MaxEventsPerCalendar = 20;
             const int MaxEventsOverall = 50;
 
@@ -301,7 +414,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             model.EventGroups = eventGroups;
 
-            //Add a new task
+            //Tasks
             var initializer3 = new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
@@ -311,18 +424,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             Google.Apis.Tasks.v1.Data.Tasks tasks = service3.Tasks.List("@default").Execute();
 
-            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = taskTitle };
-
-            Google.Apis.Tasks.v1.Data.Task newTask = service3.Tasks.Insert(task, "@default").Execute();
-
-            //Getting all the task to show on the page
-            var initializer2 = new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = "MetaHealth",
-            };
-            var service2 = new TasksService(initializer2);
-
             int amountTask = 0;
             if (tasks.Items != null)
             {
@@ -330,19 +431,22 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 {
                     if (item.Status == "needsAction")
                     {
-                        amountTask++;
+                        if (item.Id != null)
+                        {
+                            amountTask++;
+                        }
                     }
                 }
             }
 
-            string[] taskArr = new string[amountTask + 1];
-            string[] taskIDArr = new string[amountTask + 1];
-            int indexTask = 1;
+            string[] taskArr = new string[amountTask];
+            string[] taskIDArr = new string[amountTask];
+            int indexTask = 0;
             if (tasks.Items != null)
             {
                 for (int i = 0; i < tasks.Items.Count; i++)
                 {
-                    if (tasks.Items[i].Status == "needsAction" && tasks.Items[i].Title != " ")
+                    if (tasks.Items[i].Status == "needsAction" && tasks.Items[i].Id != null)
                     {
                         taskArr[indexTask] = tasks.Items[i].Title;
                         taskIDArr[indexTask] = tasks.Items[i].Id;
@@ -350,13 +454,12 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                     }
                 }
             }
-            taskArr[0] = newTask.Title;
-            taskIDArr[0] = newTask.Id;
 
             model.MultiTask = taskArr;
             model.MultiTaskID = taskIDArr;
 
             // Define parameters of request.
+            var service2 = new TasksService(initializer3);
             TasklistsResource.ListRequest listRequest = service2.Tasklists.List();
             listRequest.MaxResults = 10;
 
@@ -375,8 +478,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             model.MultiList = listOtasks;
 
-            ModelState.Clear();
-            return View(model);
+            return model;
         }
     }
 }
