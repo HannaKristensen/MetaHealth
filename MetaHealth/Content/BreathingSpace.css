@@ -107,7 +107,13 @@
 
 
 #meditationRow {
-    display: none
+    display:none;
+}
+
+#breatheText {
+    visibility:hidden;
+    font-weight: bold
+
 }
 
 #text{
