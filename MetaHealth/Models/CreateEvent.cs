@@ -21,6 +21,6 @@ namespace MetaHealth.Models
         public DateTime Start { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true)]
-        public TimeSpan End { get; set; }
+        public DateTime End { get; set; }
     }
 }
