@@ -246,6 +246,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\BreathingSpace.css" />
     <Content Include="Content\Flowchart.css" />
     <Content Include="Content\SelfCareQuiz.css" />
     <Content Include="credentials.json" />
@@ -257,6 +258,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="client_secret.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\BreathingSpace.js" />
     <Content Include="Scripts\FlowchartScript.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -324,6 +326,7 @@
     <Content Include="Views\SepMoods\Details.cshtml" />
     <Content Include="Views\SepMoods\Edit.cshtml" />
     <Content Include="Views\SepMoods\Index.cshtml" />
+    <Content Include="Views\Home\BreathingSpace.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
