@@ -140,12 +140,14 @@ duration.Value.Minutes >= 2 ? "s" : "")
                 </ul>
             </div>
         </div>
-    <!--
-        
-    THIS IS FAKE CODE AND IS JUST PROVING THAT THIS WORKS
-    @Html.DisplayFor(model => model.MoodNum)
-    YOU DO NOT WANT TO KEEP THIS CODE
-    -->
+        <!--This is just to prove that the stuff below this comment works
+            Delete before submitting pull request-->
+        @foreach (var item in Model.MoodsByDate) {
+            @Html.DisplayFor(model => item.Key)
+            @Html.DisplayFor(model => item.Value)
+        }
+        <!--This is just to prove that the stuff above this comment works. 
+            Delete before submitting pull request-->
     </div>
 
     @section Scripts {

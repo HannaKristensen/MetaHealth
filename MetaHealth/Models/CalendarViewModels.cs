@@ -20,5 +20,6 @@ namespace Calendar.ASP.NET.MVC5.Models {
         public string[] MultiTaskID { get; set; }
         public DateTime[] MoodDate { get; set; }
         public int[] MoodNum { get; set; }
+        public Dictionary<DateTime, int> MoodsByDate { get; set; }
     }
 }

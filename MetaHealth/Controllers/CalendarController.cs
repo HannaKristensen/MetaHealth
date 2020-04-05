@@ -160,19 +160,19 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                     }
                 }
             }
-
-            var moodDates = db.SepMoods.Select(x => x.Date);
-            var moodNums = db.SepMoods.Select(x => x.MoodNum);
             model.MultiTask = taskArr;
             model.MultiTaskID = taskIDArr;
             model.MultiList = listOtasks;
-            model.MoodDate = moodDates.ToArray();
-            model.MoodNum = moodNums.ToArray();
-
+            //grabbing data from database and storing it in a dictionary for easy graphing
+            model.MoodDate = db.SepMoods.Select(x => x.Date).ToArray();
+            model.MoodNum = db.SepMoods.Select(x => x.MoodNum).ToArray();
+            Dictionary<DateTime, int> tempDictofValues = new Dictionary<DateTime, int>();
+            for(int i=1; i < model.MoodDate.Length; i++) {
+                model.MoodsByDate.Add(model.MoodDate[i], model.MoodNum[i]);
+            }
+            model.MoodsByDate = tempDictofValues;
             return View(model);
         }
-
-        //action here
 
         [HttpGet]
         public async Task<ActionResult> MarkDownTask()
