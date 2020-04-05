@@ -1,21 +1,9 @@
 ﻿
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Google.Apis.Tasks.v1;
-using Google.Apis.Tasks.v1.Data;
-using Google.Apis.Services;
-using Google.Apis.Util.Store;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Google.Apis.Auth.OAuth2;
+using System.ComponentModel.DataAnnotations;
 
-namespace Calendar.ASP.NET.MVC5.Models
-{
+namespace Calendar.ASP.NET.MVC5.Models {
     /// <summary>
     /// A view model for the UpcomingEvents view.
     /// </summary>
@@ -30,5 +18,7 @@ namespace Calendar.ASP.NET.MVC5.Models
         public string[] MultiTask { get; set; }
         public string[] MultiList { get; set; }
         public string[] MultiTaskID { get; set; }
+        public DateTime[] MoodDate { get; set; }
+        public int[] MoodNum { get; set; }
     }
 }

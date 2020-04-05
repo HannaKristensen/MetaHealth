@@ -16,9 +16,8 @@ using Google.Apis.Util.Store;
 using Google.Apis.Tasks.v1;
 using Google.Apis.Tasks.v1.Data;
 using Task = System.Threading.Tasks.Task;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using System.Threading;
+using MetaHealth.Models;
 
 namespace Calendar.ASP.NET.MVC5.Controllers
 {
@@ -26,6 +25,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
     public class CalendarController : Controller
     {
         private readonly IDataStore dataStore = new FileDataStore(GoogleWebAuthorizationBroker.Folder);
+        private Model db = new Model();
 
         private async Task<UserCredential> GetCredentialForApiAsync()
         {
@@ -132,7 +132,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 }
             }
 
-            Google.Apis.Tasks.v1.Data.Tasks tasks = service2.Tasks.List("@default").Execute();
+            Tasks tasks = service2.Tasks.List("@default").Execute();
             int amountTask = 0;
             if (tasks.Items != null)
             {
@@ -161,12 +161,18 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 }
             }
 
+            var moodDates = db.SepMoods.Select(x => x.Date);
+            var moodNums = db.SepMoods.Select(x => x.MoodNum);
             model.MultiTask = taskArr;
             model.MultiTaskID = taskIDArr;
             model.MultiList = listOtasks;
+            model.MoodDate = moodDates.ToArray();
+            model.MoodNum = moodNums.ToArray();
 
             return View(model);
         }
+
+        //action here
 
         [HttpGet]
         public async Task<ActionResult> MarkDownTask()
@@ -475,6 +481,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                     i++;
                 }
             }
+            //add graph to model
 
             model.MultiList = listOtasks;
 

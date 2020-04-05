@@ -195,8 +195,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\MoodsController.cs" />
-    <Compile Include="Controllers\MoodsInBetweensController.cs" />
     <Compile Include="Models\APIToDoList.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
