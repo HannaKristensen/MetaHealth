@@ -27,11 +27,12 @@
                     }
                     else {
                         @:@string.Format(
-"{0} hour{1} {2} minute{3}",
-(int)duration.Value.TotalHours,
-duration.Value.TotalHours >= 2 ? "s" : "",
-(int)duration.Value.Minutes,
-duration.Value.Minutes >= 2 ? "s" : "")
+                          "{0} hour{1} {2} minute{3}",
+                          (int)duration.Value.TotalHours,
+                          duration.Value.TotalHours >= 2 ? "s" : "",
+                          (int)duration.Value.Minutes,
+                          duration.Value.Minutes >= 2 ? "s" : ""
+                      )
                     }
                 }
 
@@ -59,6 +60,7 @@ duration.Value.Minutes >= 2 ? "s" : "")
                         </tbody>
                     }
                 </table>
+            <div id="moodgraph"></div>
             </div>
             <div class="col-md-5">
                 <h2>@Model.MultiList[0]</h2>
@@ -140,16 +142,10 @@ duration.Value.Minutes >= 2 ? "s" : "")
                 </ul>
             </div>
         </div>
-        <!--This is just to prove that the stuff below this comment works
-            Delete before submitting pull request-->
-        @foreach (var item in Model.MoodsByDate) {
-            @Html.DisplayFor(model => item.Key)
-            @Html.DisplayFor(model => item.Value)
-        }
-        <!--This is just to prove that the stuff above this comment works. 
-            Delete before submitting pull request-->
     </div>
 
     @section Scripts {
         @Scripts.Render("~/Scripts/TasksAPI.js");
+        @Scripts.Render("~/Scripts/MoodGraphScript.js")
+        @Scripts.Render("https://canvasjs.com/assets/script/canvasjs.min.js");
     }

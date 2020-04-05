@@ -168,7 +168,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             model.MoodNum = db.SepMoods.Select(x => x.MoodNum).ToArray();
             Dictionary<DateTime, int> tempDictofValues = new Dictionary<DateTime, int>();
             for(int i=1; i < model.MoodDate.Length; i++) {
-                model.MoodsByDate.Add(model.MoodDate[i], model.MoodNum[i]);
+                tempDictofValues.Add(model.MoodDate[i], model.MoodNum[i]);
             }
             model.MoodsByDate = tempDictofValues;
             return View(model);
