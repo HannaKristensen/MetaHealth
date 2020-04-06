@@ -1,30 +1,43 @@
 ﻿function heart() {
 
-    $("#shapeRow").fadeOut("slow")
     $("#heartGif").fadeIn("slow")
-    $("#meditationRow").fadeIn("slow")
+    document.getElementById("meditationRow").style.display = 'block';
+    document.getElementById("breatheText").style.visibility = 'visible';
+    document.getElementById("starGif").style.display = 'none';
+    document.getElementById("triGif").style.display = 'none';
+    document.getElementById("circleGif").style.display = 'none';
 
 }
 
 function star() {
 
-    $("#shapeRow").fadeOut("slow")
-    $("#starGif").fadeIn("slow") 
-    $("#meditationRow").fadeIn("slow")
+    $("#starGif").fadeIn("slow")
+    document.getElementById("meditationRow").style.display = 'block';
+    document.getElementById("breatheText").style.visibility = 'visible';
+    document.getElementById("heartGif").style.display = 'none';
+    document.getElementById("triGif").style.display = 'none';
+    document.getElementById("circleGif").style.display = 'none';
 
 }
 
 function circle() {
 
-    $("#shapeRow").fadeOut("slow")
     $("#circleGif").fadeIn("slow")
-    $("#meditationRow").fadeIn("slow")
+    document.getElementById("meditationRow").style.display = 'block';
+    document.getElementById("breatheText").style.visibility = 'visible';
+    document.getElementById("starGif").style.display = 'none';
+    document.getElementById("triGif").style.display = 'none';
+    document.getElementById("heartGif").style.display = 'none';
 
 }
 
 function triangle() {
-    $("#shapeRow").fadeOut("slow")
+
     $("#triGif").fadeIn("slow")
-    $("#meditationRow").fadeIn("slow")
+    document.getElementById("meditationRow").style.display = 'block';
+    document.getElementById("breatheText").style.visibility = 'visible';
+    document.getElementById("starGif").style.display = 'none';
+    document.getElementById("heartGif").style.display = 'none';
+    document.getElementById("circleGif").style.display = 'none';
 }
 
