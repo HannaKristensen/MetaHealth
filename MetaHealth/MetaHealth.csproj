@@ -327,6 +327,7 @@
     <Content Include="Views\SepMoods\Edit.cshtml" />
     <Content Include="Views\SepMoods\Index.cshtml" />
     <Content Include="Views\Home\BreathingSpace.cshtml" />
+    <Content Include="Views\Home\HowToOpen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
