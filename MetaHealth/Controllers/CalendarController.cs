@@ -165,6 +165,15 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             model.MultiTaskID = taskIDArr;
             model.MultiList = listOtasks;
 
+            bool eventsOrNo = false;
+
+            if (model.EventGroups.Count() == 0)
+            {
+                eventsOrNo = true;
+                ViewBag.NoEvents = eventsOrNo;
+            }
+            else ViewBag.NoEvents = eventsOrNo;
+
             return View(model);
         }
 
