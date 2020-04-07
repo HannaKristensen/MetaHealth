@@ -67,3 +67,11 @@ function messageOut(data) {
         newRow.id = obj[0][i];
     }
 }
+
+function showRedirect() {
+    document.getElementById("redirectInst").style.display = 'block';
+}
+
+function hideContent() {
+    document.getElementById("eventsPage").style.display = 'none';
+}

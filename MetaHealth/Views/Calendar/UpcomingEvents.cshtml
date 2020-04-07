@@ -7,9 +7,35 @@
 
 <@Page Async="true">
 
-    <div class="container-fluid">
+    <div id="redirectInst">
+        <div class="col">
+            <h1 id="redirectText">Hi there! It looks like you don't have your Google Calendar/Google tasks set up yet. Let's get you set up:</h1>
+            <br />
+            <h1 id="redirectText">1. Open the Gmail account you are using with our site </h1>
+            <br />
+            <h1 id="redirectText">2. On the very far right side, there is a side bar with a calendar logo and a tasks logo, you should see this:</h1>
+            <img src="https://i.ibb.co/hd3pZvw/sidebar.png" height="377" width="145">
+            <br />
+            <h1 id="redirectText">3. Go ahead and click the calendar, and then click on the tasks. All you need to do is open them to activate them!</h1>
+            <br />
+            <h1 id="redirectText">4. Once they are both opened, refresh this page and you are good to go!</h1>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="~/Scripts/TasksAPI.js"></script>
+
+    @*Check if user has activated Google Calendar*@
+    @if (Model.EventGroups.ToList().Count == 0)
+    {
+        <script>hideContent()</script>
+        <script>showRedirect()</script>
+    }
+
+    @*Google Calendar*@
+    <div class="container-fluid" id="eventsPage">
+
         <div class="row">
-            <div class="col-md-5">
+            <div class="col">
                 @helper FormatEventTime(CalendarData.EventDateTime when)
                 {
                     // Either Date or DateTime is set, depending on whether or not the event is
@@ -43,6 +69,7 @@ duration.Value.Minutes >= 2 ? "s" : "")
 
                 <h2>Upcoming Events</h2>
                 <hr>
+
                 <table id="TaskEvent" class="table">
                     <thead>
                         <tr>
@@ -51,18 +78,20 @@ duration.Value.Minutes >= 2 ? "s" : "")
                             <th>Summary</th>
                         </tr>
                     </thead>
-
                     @foreach (var group in Model.EventGroups)
                     {
                     <tbody>
                         <tr><th colspan="4">@group.GroupTitle</th></tr>
                         @foreach (var item in group.Events)
                             {
-                        <tr>
-                            <td>@FormatEventTime(item.Start)</td>
-                            <td>@FormatEventLength(item.Start, item.End)</td>
-                            <td>@item.Summary</td>
-                        </tr>
+
+
+                                <tr>
+                                    <td>@FormatEventTime(item.Start)</td>
+                                    <td>@FormatEventLength(item.Start, item.End)</td>
+                                    <td>@item.Summary</td>
+                                </tr>
+
                             }
                     </tbody>
                     }
@@ -89,6 +118,8 @@ duration.Value.Minutes >= 2 ? "s" : "")
             </div>
                     }
             </div>
+
+            @*Google Tasks*@
             <div class="col-md-5">
                 <h2>@Model.MultiList[0]</h2>
                 <hr>
@@ -175,7 +206,3 @@ duration.Value.Minutes >= 2 ? "s" : "")
             </div>
         </div>
     </div>
-
-    @section Scripts {
-        @Scripts.Render("~/Scripts/TasksAPI.js");
-    }
