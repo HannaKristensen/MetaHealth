@@ -51,6 +51,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         // GET: /Calendar/UpcomingEvents
         public async Task<ActionResult> UpcomingEvents()
         {
+            string curUser = User.Identity.GetUserId();
             const int MaxEventsPerCalendar = 20;
             const int MaxEventsOverall = 50;
 
@@ -164,8 +165,9 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             model.MultiTaskID = taskIDArr;
             model.MultiList = listOtasks;
             //grabbing data from database and storing it in a dictionary for easy graphing
-            model.MoodDate = db.SepMoods.Select(x => x.Date).ToArray();
-            model.MoodNum = db.SepMoods.Select(x => x.MoodNum).ToArray();
+            //model.MoodDate = db.SepMoods.Select(x => x.Date).ToArray();
+            model.MoodDate = db.SepMoods.Where(n=>n.UserID==curUser).Select(n=>n.Date).ToArray();
+            model.MoodNum = db.SepMoods.Where(n => n.UserID==curUser).Select(n => n.MoodNum).ToArray();
             Dictionary<DateTime, int> tempDictofValues = new Dictionary<DateTime, int>();
             for(int i=1; i < model.MoodDate.Length; i++) {
                 tempDictofValues.Add(model.MoodDate[i], model.MoodNum[i]);
