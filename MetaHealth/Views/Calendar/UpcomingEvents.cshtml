@@ -5,50 +5,43 @@
     ViewBag.Title = "Upcoming Events";
 }
 
-<@Page Async="true">
+    <@Page Async="true">
 
-    <div id="redirectInst">
-        <div class="col">
-            <h1 id="redirectText">Hi there! It looks like you don't have your Google Calendar/Google tasks set up yet. Let's get you set up:</h1>
-            <br />
-            <h1 id="redirectText">1. Open the Gmail account you are using with our site </h1>
-            <br />
-            <h1 id="redirectText">2. On the very far right side, there is a side bar with a calendar logo and a tasks logo, you should see this:</h1>
-            <img src="https://i.ibb.co/hd3pZvw/sidebar.png" height="377" width="145">
-            <br />
-            <h1 id="redirectText">3. Go ahead and click the calendar, and then click on the tasks. All you need to do is open them to activate them!</h1>
-            <br />
-            <h1 id="redirectText">4. Once they are both opened, refresh this page and you are good to go!</h1>
+        <div id="redirectInst">
+            <div class="col">
+                <h1 id="redirectText">Hi there! It looks like you don't have your Google Calendar/Google tasks set up yet. Let's get you set up:</h1>
+                <br />
+                <h1 id="redirectText">1. Open the Gmail account you are using with our site </h1>
+                <br />
+                <h1 id="redirectText">2. On the very far right side, there is a side bar with a calendar logo and a tasks logo, you should see this:</h1>
+                <img src="https://i.ibb.co/hd3pZvw/sidebar.png" height="377" width="145">
+                <br />
+                <h1 id="redirectText">3. Go ahead and click the calendar, and then click on the tasks. All you need to do is open them to activate them!</h1>
+                <br />
+                <h1 id="redirectText">4. Once they are both opened, refresh this page and you are good to go!</h1>
+            </div>
         </div>
-    </div>
 
-    <script type="text/javascript" src="~/Scripts/TasksAPI.js"></script>
 
-    @*Check if user has activated Google Calendar*@
-    @if (Model.EventGroups.ToList().Count == 0)
-    {
-        <script>hideContent()</script>
-        <script>showRedirect()</script>
-    }
+        <div class="container" id="eventsPage">
+        @*First row of content. This includes (from left to right) mood graph and space for daily self care suggestion*@
+        <div class="row" id="homePageRow1">
 
-            @*First row of content. This includes (from left to right) mood graph and space for daily self care suggestion*@
-            <div class="row" id="homePageRow1">
+            @*Spot for mood graph*@
+            <div class="col-lg-5" style=" background-color: #eeebdd">
 
-                @*Spot for mood graph*@
-                <div class="col-lg-5" style=" background-color: #eeebdd">
-
-                </div>
-
-                @*Empty col to make space between these two modules*@
-                <div class="col-sm-1"></div>
-
-                @*Spot for daily self care suggestion*@
-                <div class="col-lg-5" style="background-color: #eeebdd">
-
-                </div>
             </div>
 
-          @*Second row of content. This includes (from left to right) Google Calendar, Google Tasks*@
+            @*Empty col to make space between these two modules*@
+            <div class="col-sm-1"></div>
+
+            @*Spot for daily self care suggestion*@
+            <div class="col-lg-5" style="background-color: #eeebdd">
+
+            </div>
+        </div>
+
+        @*Second row of content. This includes (from left to right) Google Calendar, Google Tasks*@
         <div id="homePageRow2" class="row">
 
             @*Spot for Google Calendar*@
@@ -78,11 +71,11 @@
                     else
                     {
                         @:@string.Format(
-                                    "{0} hour{1} {2} minute{3}",
-                                    (int)duration.Value.TotalHours,
-                                    duration.Value.TotalHours >= 2 ? "s" : "",
-                                    (int)duration.Value.Minutes,
-                                    duration.Value.Minutes >= 2 ? "s" : "")
+                                  "{0} hour{1} {2} minute{3}",
+                                  (int)duration.Value.TotalHours,
+                                  duration.Value.TotalHours >= 2 ? "s" : "",
+                                  (int)duration.Value.Minutes,
+                                  duration.Value.Minutes >= 2 ? "s" : "")
                     }
                 }
 
@@ -115,9 +108,9 @@
                         </tbody>
                     }
                 </table>
-                
+
                 <div class="row" style="text-align:center ; align-content: center">
-                <button class="MarkDownButtons" onclick="showAddEvent()">Add an Event</button>
+                    <button class="MarkDownButtons" onclick="showAddEvent()">Add an Event</button>
                 </div>
                 <br />
 
@@ -141,11 +134,11 @@
                         @Html.Label("EventEndTime", "Event End Time: ")
                         @Html.TextBox("EventEndTime", null, new { @class = "form-control", type = "time", required = "required" })
 
-                        <br /> 
+                        <br />
                         <div class="row" style="align-content:center ; text-align:center">
                             <button type="submit" class="MarkDownButtons">Add This Event</button>
                         </div>
-                        
+
                     </div>
                 }
             </div>
@@ -173,7 +166,7 @@
                 </div>
 
                 @*Row containing buttons: Add task, refresh/mark done*@
-                <div class="row" id="taskButtons" style="text-align:center ; align-content:center" >
+                <div class="row" id="taskButtons" style="text-align:center ; align-content:center">
                     <button class="MarkDownButtons" onclick="MarkDown()">Refresh / Mark Done</button>
                     &nbsp;
                     <button class="MarkDownButtons" onclick="showAddTask()">Add a task</button>
@@ -188,6 +181,7 @@
                         <div class="form-group">
                             @Html.Label("task", "Add a task: ")
                             @Html.TextBox("taskTitle", null, new { @class = "form-control", type = "text", required = "required" })
+                            <br />
                             <button type="submit" class="MarkDownButtons">Add!</button>
                         </div>
                     }
@@ -255,12 +249,20 @@
                 </div>
             </div>
         </div>
+     </div>
+
+
+        <script type="text/javascript" src="~/Scripts/TasksAPI.js"></script>
+
+        @*Check if user has activated Google Calendar*@
+        @if (Model.EventGroups.ToList().Count == 0)
+        {
+            <script>hideContent()</script>
+            <script>showRedirect()</script>
+        }
 
 
 
-
-
-               
 
         @section Scripts {
             @Scripts.Render("~/Scripts/TasksAPI.js");
