@@ -78,11 +78,11 @@
                     else
                     {
                         @:@string.Format(
-                                      "{0} hour{1} {2} minute{3}",
-                                      (int)duration.Value.TotalHours,
-                                      duration.Value.TotalHours >= 2 ? "s" : "",
-                                      (int)duration.Value.Minutes,
-                                      duration.Value.Minutes >= 2 ? "s" : "")
+                                    "{0} hour{1} {2} minute{3}",
+                                    (int)duration.Value.TotalHours,
+                                    duration.Value.TotalHours >= 2 ? "s" : "",
+                                    (int)duration.Value.Minutes,
+                                    duration.Value.Minutes >= 2 ? "s" : "")
                     }
                 }
 
@@ -115,9 +115,17 @@
                         </tbody>
                     }
                 </table>
+                
+                <div class="row" style="text-align:center ; align-content: center">
+                <button class="MarkDownButtons" onclick="showAddEvent()">Add an Event</button>
+                </div>
+                <br />
+
+                &nbsp;
+
                 @using (Html.BeginForm("AddEvent", "Calendar", FormMethod.Post))
                 {
-                    <div class="form-group">
+                    <div class="form-group" id="eventAddForm">
                         @Html.Label("EventSummary", "Event Summary: ")
                         @Html.TextBox("EventSummary", null, new { @class = "form-control", type = "text", required = "required" })
                         @Html.Label("EventLocation", "Event Location: ")
@@ -133,7 +141,11 @@
                         @Html.Label("EventEndTime", "Event End Time: ")
                         @Html.TextBox("EventEndTime", null, new { @class = "form-control", type = "time", required = "required" })
 
-                        <button type="submit" class="MarkDownButtons">Add Event</button>
+                        <br /> 
+                        <div class="row" style="align-content:center ; text-align:center">
+                            <button type="submit" class="MarkDownButtons">Add This Event</button>
+                        </div>
+                        
                     </div>
                 }
             </div>
@@ -161,7 +173,7 @@
                 </div>
 
                 @*Row containing buttons: Add task, refresh/mark done*@
-                <div class="row" id="taskButtons">
+                <div class="row" id="taskButtons" style="text-align:center ; align-content:center" >
                     <button class="MarkDownButtons" onclick="MarkDown()">Refresh / Mark Done</button>
                     &nbsp;
                     <button class="MarkDownButtons" onclick="showAddTask()">Add a task</button>

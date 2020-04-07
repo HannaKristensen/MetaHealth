@@ -290,3 +290,7 @@ a:visited {
 #googleCalColumn{
     margin-left:35px;
 }
+
+#eventAddForm{
+    display:none;
+}

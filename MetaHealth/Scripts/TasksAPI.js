@@ -109,3 +109,20 @@ function showPreMadeTasks() {
         multiTask.style.display = 'block';
     }
 }
+
+function showAddEvent() {
+
+    var event = document.getElementById("eventAddForm")
+    var displaySetting = event.style.display;
+
+    if (displaySetting == 'block') {
+
+        event.style.display = 'none';
+
+    }
+
+    else {
+
+        event.style.display = 'block';
+    }
+}
