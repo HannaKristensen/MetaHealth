@@ -8,6 +8,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    font-family:Verdana;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists
@@ -24,31 +25,13 @@ textarea {
     max-width: 280px;
 }
 
+/*MAIN LOG IN PAGE*/
+
 #visionText {
     text-align: center;
     align-content: center;
     font-family: Verdana;
     font-size: 50px;
-}
-
-.resourcesFooter {
-    font-family: Verdana;
-    font-size: 50px;
-}
-
-.resourcesFooter {
-    font-family: 'Verdana';
-    font-size: 15px;
-    list-style: none;
-    color: black
-}
-
-#githubLinks {
-    text-align: center;
-    align-content: center;
-    font-family: Verdana;
-    font-size: 35px;
-    list-style: none;
 }
 
 #visionTitle {
@@ -104,6 +87,28 @@ textarea {
     font-family: Verdana;
 }
 
+
+/*FOOTER AND FOOTER LINKS*/
+.resourcesFooter {
+    font-family: Verdana;
+    font-size: 50px;
+}
+
+.resourcesFooter {
+    font-family: 'Verdana';
+    font-size: 15px;
+    list-style: none;
+    color: black
+}
+
+#githubLinks {
+    text-align: center;
+    align-content: center;
+    font-family: Verdana;
+    font-size: 35px;
+    list-style: none;
+}
+
 #gitHubPage {
     align-content: center
 }
@@ -132,6 +137,8 @@ a:visited {
     list-style: none;
 }
 
+
+/*RESOURCES PAGE*/
 .resourceButtons {
     background-color: #49C7CA;
     border-radius: 42px;
@@ -166,6 +173,8 @@ a:visited {
     font-size: 40px;
 }
 
+
+/*CONFIRM LOG IN PAGE*/
 #confirmText {
     text-align: center;
     font-family: Verdana;
@@ -190,11 +199,15 @@ a:visited {
     font-family: Verdana;
 }
 
+
+/*FLOW CHART TEXT*/
 .textFlowchart {
     font-family: Verdana;
     font-size: 20px;
 }
 
+
+/*TASK BUTTONS*/
 .MarkDownButtons {
     background-color: #49C7CA;
     border: 4px solid #248D83;
@@ -207,6 +220,8 @@ a:visited {
     border-radius: 24px;
 }
 
+
+/*NON ACTIVATED CALENDAR RE DIRECT*/
 #redirectInst {
     align-content: center;
     display: none;
@@ -215,8 +230,6 @@ a:visited {
     margin-right: 50px;
     margin-top: 50px;
 }
-
-
 
 #redirectText{
     text-align:center;
@@ -246,6 +259,34 @@ a:visited {
         top: 1px;
     }
 
+/*USER HOME PAGE*/
 #eventsPage{
-    display:block  
+    display:block;
+    font-family:Verdana
+}
+
+#homePageRow2{
+    align-content:center
+}
+
+/*GOOGLE TASKS*/
+#addTaskRow{
+    display:none 
+}
+
+#TaskTable{
+    font-size:medium
+}
+
+#preMadeTasks {
+    display: none
+}
+
+#taskButtons{
+    align-content:center
+}
+
+/*GOOGLE CALENDAR*/
+#googleCalColumn{
+    margin-left:35px;
 }
