@@ -31,7 +31,7 @@ namespace Calendar.ASP.NET.MVC5
                     "openid",
                     "email",
                     TasksService.Scope.Tasks,
-                    CalendarService.Scope.CalendarReadonly,
+                    CalendarService.Scope.Calendar,
                 };
             }
         }
