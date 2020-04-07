@@ -480,5 +480,56 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return model;
         }
+        [HttpPost]
+        public async Task<ActionResult> AddEvent(string EventSummary, string EventLocation, string EventDescription, string EventStartDate, string EventStartTime, string EventEndDate, string EventEndTime )
+        {
+            DateTime EventStartDateTime = Convert.ToDateTime(EventStartDate).Add(TimeSpan.Parse(EventStartTime));
+            DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
+            var credential = await GetCredentialForApiAsync();
+
+            var initializer = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "MetaHealth",
+            };
+            var calendarService = new CalendarService(initializer);
+
+
+            if (calendarService != null)
+            {
+                var list = calendarService.CalendarList.List().Execute();
+                var listcnt = list.Items;
+                //var calendar = list.Items.SingleOrDefault(c => c.Summary == CustomCalenderName.Trim());
+                var calendarId = "primary";
+
+                Google.Apis.Calendar.v3.Data.Event calendarEvent = new Google.Apis.Calendar.v3.Data.Event();
+
+                    calendarEvent.Summary = EventSummary;
+                    calendarEvent.Location = EventLocation;
+                    calendarEvent.Description = EventDescription;
+
+                    calendarEvent.Start = new Google.Apis.Calendar.v3.Data.EventDateTime
+                    {
+                        DateTime = EventStartDateTime /*new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, StartDate.Hour, StartDate.Minute, StartDate.Second)*/,
+                        TimeZone = "America/Los_Angeles"
+                    };
+                    calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime
+                    {
+                        DateTime = EventEndDateTime /*new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, EndDate.Hour, EndDate.Minute, EndDate.Second)*/,
+                        TimeZone = "America/Los_Angeles"
+                    };
+                    calendarEvent.Recurrence = new List<string>();
+
+
+                    var newEventRequest = calendarService.Events.Insert(calendarEvent, calendarId);
+                    var eventResult = newEventRequest.Execute();
+
+                   
+                
+            }
+            UpcomingEventsViewModel model = await GetCurrentEventsTask();
+            return View("UpcomingEvents", model);
+        }
+
     }
 }
