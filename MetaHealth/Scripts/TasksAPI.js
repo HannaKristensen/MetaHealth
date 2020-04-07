@@ -24,6 +24,8 @@
                 success: messageOut,
                 error: errorOnAjax
             });
+
+            confetti();
         }
     }
     $.ajax({
@@ -77,52 +79,40 @@ function hideContent() {
 }
 
 function showAddTask() {
-
     var addTask = document.getElementById("addTaskRow")
     var displaySetting = addTask.style.display;
 
-        if (displaySetting == 'block') {
+    if (displaySetting == 'block') {
+        addTask.style.display = 'none';
+    }
 
-            addTask.style.display = 'none';
-
-        }
-
-        else {
-
-            addTask.style.display = 'block';
-        }
+    else {
+        addTask.style.display = 'block';
+    }
 }
 
 function showPreMadeTasks() {
-
     var multiTask = document.getElementById("preMadeTasks")
     var displaySetting = multiTask.style.display;
 
     if (displaySetting == 'block') {
-
         multiTask.style.display = 'none';
-
     }
 
     else {
-
         multiTask.style.display = 'block';
     }
 }
 
 function showAddEvent() {
-
     var event = document.getElementById("eventAddForm")
     var displaySetting = event.style.display;
 
     if (displaySetting == 'block') {
-
         event.style.display = 'none';
-
     }
 
     else {
-
         event.style.display = 'block';
     }
 }

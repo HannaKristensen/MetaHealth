@@ -8,7 +8,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    font-family:Verdana;
+    font-family: Verdana;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists
@@ -87,7 +87,6 @@ textarea {
     font-family: Verdana;
 }
 
-
 /*FOOTER AND FOOTER LINKS*/
 .resourcesFooter {
     font-family: Verdana;
@@ -137,7 +136,6 @@ a:visited {
     list-style: none;
 }
 
-
 /*RESOURCES PAGE*/
 .resourceButtons {
     background-color: #49C7CA;
@@ -173,7 +171,6 @@ a:visited {
     font-size: 40px;
 }
 
-
 /*CONFIRM LOG IN PAGE*/
 #confirmText {
     text-align: center;
@@ -199,13 +196,11 @@ a:visited {
     font-family: Verdana;
 }
 
-
 /*FLOW CHART TEXT*/
 .textFlowchart {
     font-family: Verdana;
     font-size: 20px;
 }
-
 
 /*TASK BUTTONS*/
 .MarkDownButtons {
@@ -220,7 +215,6 @@ a:visited {
     border-radius: 24px;
 }
 
-
 /*NON ACTIVATED CALENDAR RE DIRECT*/
 #redirectInst {
     align-content: center;
@@ -231,12 +225,11 @@ a:visited {
     margin-top: 50px;
 }
 
-#redirectText{
-    text-align:center;
-    font-family:Verdana;
-    font-weight:bold 
+#redirectText {
+    text-align: center;
+    font-family: Verdana;
+    font-weight: bold
 }
-
 
 .activateButton {
     background-color: #49C7CA;
@@ -250,9 +243,9 @@ a:visited {
     text-decoration: none;
 }
 
-.activateButton:hover {
-    background-color: #9ce1e2;
-}
+    .activateButton:hover {
+        background-color: #9ce1e2;
+    }
 
     .activateButton:active {
         position: relative;
@@ -260,37 +253,63 @@ a:visited {
     }
 
 /*USER HOME PAGE*/
-#eventsPage{
-    display:block;
-    font-family:Verdana
+#eventsPage {
+    display: block;
+    font-family: Verdana
 }
 
-#homePageRow2{
-    align-content:center
+#homePageRow2 {
+    align-content: center
 }
 
 /*GOOGLE TASKS*/
-#addTaskRow{
-    display:none 
+#addTaskRow {
+    display: none
 }
 
-#TaskTable{
-    font-size:medium
+#TaskTable {
+    font-size: medium
 }
 
 #preMadeTasks {
     display: none
 }
 
-#taskButtons{
-    align-content:center
+#taskButtons {
+    align-content: center
 }
 
 /*GOOGLE CALENDAR*/
-#googleCalColumn{
-    margin-left:35px;
+#googleCalColumn {
+    margin-left: 35px;
 }
 
-#eventAddForm{
-    display:none;
+#eventAddForm {
+    display: none;
+}
+
+/*Animation For Completing Task*/
+#emitter {
+    visibility: hidden;
+    background-color: #222;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: 40%;
+    left: 0%;
+}
+
+.dot-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: visible;
+    z-index: 5000;
+    pointer-events: none;
+}
+
+.dot {
+    position: absolute;
+    pointer-events: none; /*performance optimization*/
 }
