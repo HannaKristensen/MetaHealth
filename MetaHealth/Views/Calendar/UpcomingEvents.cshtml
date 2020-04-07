@@ -58,12 +58,13 @@
                     }
                     else
                     {
+
                         @:@string.Format(
-                      "{0} hour{1} {2} minute{3}",
-                      (int)duration.Value.TotalHours,
-                      duration.Value.TotalHours >= 2 ? "s" : "",
-                      (int)duration.Value.Minutes,
-                      duration.Value.Minutes >= 2 ? "s" : "")
+                    "{0} hour{1} {2} minute{3}",
+                    (int)duration.Value.TotalHours,
+                    duration.Value.TotalHours >= 2 ? "s" : "",
+                    (int)duration.Value.Minutes,
+                    duration.Value.Minutes >= 2 ? "s" : "")
                     }
                 }
 
@@ -90,10 +91,32 @@
                                     <td>@FormatEventLength(item.Start, item.End)</td>
                                     <td>@item.Summary</td>
                                 </tr>
+
                             }
                         </tbody>
                     }
                 </table>
+                @using (Html.BeginForm("AddEvent", "Calendar", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        @Html.Label("EventSummary", "Event Summary: ")
+                        @Html.TextBox("EventSummary", null, new { @class = "form-control", type = "text", required = "required" })
+                        @Html.Label("EventLocation", "Event Location: ")
+                        @Html.TextBox("EventLocation", null, new { @class = "form-control", type = "text", required = "required" })
+                        @Html.Label("EventDescription", "Event Description: ")
+                        @Html.TextBox("EventDescription", null, new { @class = "form-control", type = "text", required = "required" })
+                        @Html.Label("EventStartDate", "Event Start Date: ")
+                        @Html.TextBox("EventStartDate", null, new { @class = "form-control", type = "date", required = "required" })
+                        @Html.Label("EventStartTime", "Event Start Time: ")
+                        @Html.TextBox("EventStartTime", null, new { @class = "form-control", type = "time", required = "required" })
+                        @Html.Label("EventEndDate", "Event End Date: ")
+                        @Html.TextBox("EventEndDate", null, new { @class = "form-control", type = "date", required = "required" })
+                        @Html.Label("EventEndTime", "Event End Time: ")
+                        @Html.TextBox("EventEndTime", null, new { @class = "form-control", type = "time", required = "required" })
+
+                        <button type="submit" class="MarkDownButtons">Add Event</button>
+                    </div>
+                }
             </div>
 
             @*Google Tasks*@

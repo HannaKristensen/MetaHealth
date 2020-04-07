@@ -1,13 +1,8 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaHealth", "MetaHealth.csproj", "{5ECB4118-CD3F-40DD-A267-6C138D550EC0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EssentialTools.Tests", "..\EssentialTools.Tests\EssentialTools.Tests.csproj", "{220ACBED-27F9-45FA-A62E-AB2602E4EA92}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "..\UnitTestProject\UnitTestProject.csproj", "{7C99B948-FEED-4950-95FD-EEEB0D45A7CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +14,6 @@ Global
 		{5ECB4118-CD3F-40DD-A267-6C138D550EC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ECB4118-CD3F-40DD-A267-6C138D550EC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ECB4118-CD3F-40DD-A267-6C138D550EC0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{220ACBED-27F9-45FA-A62E-AB2602E4EA92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{220ACBED-27F9-45FA-A62E-AB2602E4EA92}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{220ACBED-27F9-45FA-A62E-AB2602E4EA92}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{220ACBED-27F9-45FA-A62E-AB2602E4EA92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C99B948-FEED-4950-95FD-EEEB0D45A7CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C99B948-FEED-4950-95FD-EEEB0D45A7CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C99B948-FEED-4950-95FD-EEEB0D45A7CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C99B948-FEED-4950-95FD-EEEB0D45A7CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,3 +22,4 @@ Global
 		SolutionGuid = {56EC5AC2-AA6E-4A7D-AFE7-1F21E5A10C8B}
 	EndGlobalSection
 EndGlobal
+
