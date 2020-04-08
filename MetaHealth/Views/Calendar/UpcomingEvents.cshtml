@@ -67,11 +67,11 @@
                     else
                     {
                         @:@string.Format(
-                        "{0} hour{1} {2} minute{3}",
-                        (int)duration.Value.TotalHours,
-                        duration.Value.TotalHours >= 2 ? "s" : "",
-                        (int)duration.Value.Minutes,
-                        duration.Value.Minutes >= 2 ? "s" : "")
+                      "{0} hour{1} {2} minute{3}",
+                      (int)duration.Value.TotalHours,
+                      duration.Value.TotalHours >= 2 ? "s" : "",
+                      (int)duration.Value.Minutes,
+                      duration.Value.Minutes >= 2 ? "s" : "")
                     }
                 }
 
@@ -113,7 +113,6 @@
                 &nbsp;
 
                 @using (Html.BeginForm("AddEvent", "Calendar", FormMethod.Post))
-
                 {
                     <div class="form-group" id="eventAddForm">
                         @Html.Label("EventSummary", "Event Summary: ")
@@ -137,7 +136,6 @@
                         </div>
                     </div>
                 }
-
             </div>
 
             @*Small empty col to create a space between the tasks and calendar*@
