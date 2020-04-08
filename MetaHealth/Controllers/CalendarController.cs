@@ -489,8 +489,9 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return model;
         }
+
         [HttpPost]
-        public async Task<ActionResult> AddEvent(string EventSummary, string EventLocation, string EventDescription, string EventStartDate, string EventStartTime, string EventEndDate, string EventEndTime )
+        public async Task<ActionResult> AddEvent(string EventSummary, string EventLocation, string EventDescription, string EventStartDate, string EventStartTime, string EventEndDate, string EventEndTime)
         {
             DateTime EventStartDateTime = Convert.ToDateTime(EventStartDate).Add(TimeSpan.Parse(EventStartTime));
             DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
@@ -503,7 +504,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             };
             var calendarService = new CalendarService(initializer);
 
-
             if (calendarService != null)
             {
                 var list = calendarService.CalendarList.List().Execute();
@@ -513,32 +513,59 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
                 Google.Apis.Calendar.v3.Data.Event calendarEvent = new Google.Apis.Calendar.v3.Data.Event();
 
-                    calendarEvent.Summary = EventSummary;
-                    calendarEvent.Location = EventLocation;
-                    calendarEvent.Description = EventDescription;
+                calendarEvent.Summary = EventSummary;
+                calendarEvent.Location = EventLocation;
+                calendarEvent.Description = EventDescription;
 
-                    calendarEvent.Start = new Google.Apis.Calendar.v3.Data.EventDateTime
-                    {
-                        DateTime = EventStartDateTime /*new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, StartDate.Hour, StartDate.Minute, StartDate.Second)*/,
-                        TimeZone = "America/Los_Angeles"
-                    };
-                    calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime
-                    {
-                        DateTime = EventEndDateTime /*new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, EndDate.Hour, EndDate.Minute, EndDate.Second)*/,
-                        TimeZone = "America/Los_Angeles"
-                    };
-                    calendarEvent.Recurrence = new List<string>();
+                calendarEvent.Start = new Google.Apis.Calendar.v3.Data.EventDateTime
+                {
+                    DateTime = EventStartDateTime /*new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, StartDate.Hour, StartDate.Minute, StartDate.Second)*/,
+                    TimeZone = "America/Los_Angeles"
+                };
+                calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime
+                {
+                    DateTime = EventEndDateTime /*new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, EndDate.Hour, EndDate.Minute, EndDate.Second)*/,
+                    TimeZone = "America/Los_Angeles"
+                };
+                calendarEvent.Recurrence = new List<string>();
 
-
-                    var newEventRequest = calendarService.Events.Insert(calendarEvent, calendarId);
-                    var eventResult = newEventRequest.Execute();
-
-                   
-                
+                var newEventRequest = calendarService.Events.Insert(calendarEvent, calendarId);
+                var eventResult = newEventRequest.Execute();
             }
             UpcomingEventsViewModel model = await GetCurrentEventsTask();
             return View("UpcomingEvents", model);
         }
 
+        public string[] CountingTasks(string[] tasks)
+        {
+            int amountTask = 0;
+            if (tasks != null)
+            {
+                foreach (var item in tasks)
+                {
+                    if (item == "needsAction")
+                    {
+                        amountTask++;
+                    }
+                }
+            }
+
+            string[] taskArr = new string[amountTask];
+            int indexTask = 0;
+            if (tasks != null)
+            {
+                for (int i = 0; i < tasks.Length; i++)
+                {
+                    if (tasks[i] == "needsAction")
+                    {
+                        taskArr[indexTask] = tasks[i];
+                        indexTask++;
+                    }
+                }
+            }
+
+            return (taskArr);
+        }
     }
+
 }
