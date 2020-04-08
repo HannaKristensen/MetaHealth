@@ -285,7 +285,7 @@ namespace MetaHealth.Controllers
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider
-            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = "/Calendar/UpcomingEvents" }));
         }
 
         //
@@ -339,7 +339,7 @@ namespace MetaHealth.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToLocal("/Calendar/UpcomingEvents");
 
                 case SignInStatus.LockedOut:
                     return View("Lockout");
