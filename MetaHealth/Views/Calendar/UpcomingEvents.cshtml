@@ -1,4 +1,4 @@
-﻿@model Calendar.ASP.NET.MVC5.Models.UpcomingEventsViewModel
+@model Calendar.ASP.NET.MVC5.Models.UpcomingEventsViewModel
 @using CalendarData = Google.Apis.Calendar.v3.Data;
 
 @{
@@ -67,11 +67,13 @@
                     else
                     {
                         @:@string.Format(
-                      "{0} hour{1} {2} minute{3}",
-                      (int)duration.Value.TotalHours,
-                      duration.Value.TotalHours >= 2 ? "s" : "",
-                      (int)duration.Value.Minutes,
-                      duration.Value.Minutes >= 2 ? "s" : "")
+
+                        "{0} hour{1} {2} minute{3}",
+                        (int)duration.Value.TotalHours,
+                        duration.Value.TotalHours >= 2 ? "s" : "",
+                        (int)duration.Value.Minutes,
+                        duration.Value.Minutes >= 2 ? "s" : "")
+
                     }
                 }
 
@@ -258,3 +260,4 @@
     @section Scripts {
         @Scripts.Render("~/Scripts/TasksAPI.js");
     }
+
