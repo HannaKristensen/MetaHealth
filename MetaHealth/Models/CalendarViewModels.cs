@@ -7,8 +7,7 @@ namespace Calendar.ASP.NET.MVC5.Models {
     /// <summary>
     /// A view model for the UpcomingEvents view.
     /// </summary>
-    public class UpcomingEventsViewModel
-    {
+    public class UpcomingEventsViewModel {
         /// <summary>
         /// Gets or sets a sequence of event groups to display.
         /// </summary>
@@ -20,6 +19,6 @@ namespace Calendar.ASP.NET.MVC5.Models {
         public string[] MultiTaskID { get; set; }
         public DateTime[] MoodDate { get; set; }
         public int[] MoodNum { get; set; }
-        public Dictionary<DateTime, int> MoodsByDate { get; set; }
+        public Dictionary<DateTime, int> MoodDictionary {get;set;}
     }
 }

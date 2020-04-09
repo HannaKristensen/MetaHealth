@@ -1,5 +1,5 @@
 ﻿jQuery(document).ready(function() {
-    var model='@Model.MoodsByDate';
+   // var model=@Model.MoodsByDate;
     var chart=new CanvasJS.Chart("moodgraph",{
         animationEnabled: false,
         theme: "light2",

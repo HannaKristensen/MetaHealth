@@ -18,6 +18,7 @@ using Google.Apis.Tasks.v1.Data;
 using Task = System.Threading.Tasks.Task;
 using Newtonsoft.Json;
 using MetaHealth.Models;
+using System.Data.Entity;
 
 namespace Calendar.ASP.NET.MVC5.Controllers
 {
@@ -65,7 +66,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 ApplicationName = "MetaHealth",
             };
             var service = new CalendarService(initializer);
-
             // Fetch the list of calendars.
             var calendars = await service.CalendarList.List().ExecuteAsync();
 
@@ -164,15 +164,16 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             model.MultiTask = taskArr;
             model.MultiTaskID = taskIDArr;
             model.MultiList = listOtasks;
+            var justDates = db.SepMoods.Where(n => n.UserID == curUser).Select(m => m.Date).ToArray();
             //grabbing data from database and storing it in a dictionary for easy graphing
-            //model.MoodDate = db.SepMoods.Select(x => x.Date).ToArray();
-            model.MoodDate = db.SepMoods.Where(n=>n.UserID==curUser).Select(n=>n.Date).ToArray();
+            model.MoodDate = db.SepMoods.Where(n=>n.UserID==curUser).Select(n=>DbFunctions.TruncateTime(n.Date)??DateTime.Now).ToArray();
             model.MoodNum = db.SepMoods.Where(n => n.UserID==curUser).Select(n => n.MoodNum).ToArray();
             Dictionary<DateTime, int> tempDictofValues = new Dictionary<DateTime, int>();
             for(int i=1; i < model.MoodDate.Length; i++) {
                 tempDictofValues.Add(model.MoodDate[i], model.MoodNum[i]);
             }
-            model.MoodsByDate = tempDictofValues;
+            model.MoodDictionary = tempDictofValues;
+            ViewBag.MoodDictionary = JsonConvert.SerializeObject(tempDictofValues);
             return View(model);
         }
 

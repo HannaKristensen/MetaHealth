@@ -5,147 +5,169 @@
     ViewBag.Title = "Upcoming Events";
 }
 
-<@Page Async="true">
+    <@Page Async="true">
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-5">
-                @helper FormatEventTime(CalendarData.EventDateTime when) {
-                    // Either Date or DateTime is set, depending on whether or not the event is
-                    // an all-day event.
-                    if (when.DateTime == null) {
-                        <text>All day</text>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-5">
+                    @helper FormatEventTime(CalendarData.EventDateTime when) {
+                        // Either Date or DateTime is set, depending on whether or not the event is
+                        // an all-day event.
+                        if (when.DateTime == null) {
+                            <text>All day</text>
+                        }
+                        else {
+                            @:@when.DateTime.Value.ToShortTimeString()
+                        }
                     }
-                    else {
-                        @:@when.DateTime.Value.ToShortTimeString()
+                    @helper FormatEventLength(CalendarData.EventDateTime start, CalendarData.EventDateTime end) {
+                        var duration = end.DateTime - start.DateTime;
+                        if (duration == null) {
+                            <text>All day</text>
+                        }
+                        else {
+                            @:@string.Format(
+                      "{0} hour{1} {2} minute{3}",
+                      (int)duration.Value.TotalHours,
+                      duration.Value.TotalHours >= 2 ? "s" : "",
+                      (int)duration.Value.Minutes,
+                      duration.Value.Minutes >= 2 ? "s" : ""
+                  )
+                        }
                     }
-                }
-                @helper FormatEventLength(CalendarData.EventDateTime start, CalendarData.EventDateTime end) {
-                    var duration = end.DateTime - start.DateTime;
-                    if (duration == null) {
-                        <text>All day</text>
-                    }
-                    else {
-                        @:@string.Format(
-                          "{0} hour{1} {2} minute{3}",
-                          (int)duration.Value.TotalHours,
-                          duration.Value.TotalHours >= 2 ? "s" : "",
-                          (int)duration.Value.Minutes,
-                          duration.Value.Minutes >= 2 ? "s" : ""
-                      )
-                    }
-                }
 
-                <h2>Upcoming Events</h2>
-                <hr>
-                <table id="TaskEvent" class="table">
-                    <thead>
-                        <tr>
-                            <th>Time</th>
-                            <th>Length</th>
-                            <th>Summary</th>
-                        </tr>
-                    </thead>
+                    <h2>Upcoming Events</h2>
+                    <hr>
+                    <table id="TaskEvent" class="table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Length</th>
+                                <th>Summary</th>
+                            </tr>
+                        </thead>
 
-                    @foreach (var group in Model.EventGroups) {
-                        <tbody>
-                            <tr><th colspan="4">@group.GroupTitle</th></tr>
-                            @foreach (var item in group.Events) {
-                                <tr>
-                                    <td>@FormatEventTime(item.Start)</td>
-                                    <td>@FormatEventLength(item.Start, item.End)</td>
-                                    <td>@item.Summary</td>
-                                </tr>
-                            }
-                        </tbody>
-                    }
-                </table>
-            <div id="moodgraph"></div>
-            </div>
-            <div class="col-md-5">
-                <h2>@Model.MultiList[0]</h2>
-                <hr>
-                <div class="checkMate">
-                    <table id="TaskTable" class="table">
-                        <tbody>
-                            @for (int i = 0; i < Model.MultiTask.Length; i++) {
-                                <tr id="@Model.MultiTaskID[i]">
-                                    <td><input type="checkbox"></td>
-                                    <td>@Model.MultiTask[i]</td>
-                                </tr>
-                            }
-                        </tbody>
+                        @foreach (var group in Model.EventGroups) {
+                            <tbody>
+                                <tr><th colspan="4">@group.GroupTitle</th></tr>
+                                @foreach (var item in group.Events) {
+                                    <tr>
+                                        <td>@FormatEventTime(item.Start)</td>
+                                        <td>@FormatEventLength(item.Start, item.End)</td>
+                                        <td>@item.Summary</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        }
                     </table>
-                    <button class="MarkDownButtons" onclick="MarkDown()">Refresh / Mark Done</button>
+                    <div id="moodgraph"></div>
                 </div>
-                <div>
-                    @using (Html.BeginForm("UpcomingEvents", "Calendar", FormMethod.Post)) {
-                        <div class="form-group">
-                            @Html.Label("task", "Task To add: ")
-                            @Html.TextBox("taskTitle", null, new { @class = "form-control", type = "text", required = "required" })
-                            <button type="submit" class="MarkDownButtons">Add Task</button>
-                        </div>
-                    }
-                </div>
-                <ul>
-                    <div>
-                        <h4>
-                            These are pre-made list that will add the following tasks to your task list
-                            each number represents a level of effort
-                        </h4>
-                        <li>
-                            @using (Html.BeginForm("AddPreMadeOne", "Calendar", FormMethod.Post)) {
-                                <div class="form-group">
-                                    <h3>Level One</h3>
-                                    <ul>
-                                        <li>Get out of bed</li>
-                                        <li>Drink a glass of water</li>
-                                        <li>Eat a meal</li>
-                                    </ul>
-                                    <button type="submit" class="MarkDownButtons">Add Tasks</button>
-                                </div>
-                            }
+                <div class="col-md-5">
+                    <h2>@Model.MultiList[0]</h2>
+                    <hr>
+                    <div class="checkMate">
+                        <table id="TaskTable" class="table">
+                            <tbody>
+                                @for (int i = 0; i < Model.MultiTask.Length; i++) {
+                                    <tr id="@Model.MultiTaskID[i]">
+                                        <td><input type="checkbox"></td>
+                                        <td>@Model.MultiTask[i]</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <button class="MarkDownButtons" onclick="MarkDown()">Refresh / Mark Done</button>
                     </div>
-                    </li>
-                    <li>
+                    <div>
+                        @using (Html.BeginForm("UpcomingEvents", "Calendar", FormMethod.Post)) {
+                            <div class="form-group">
+                                @Html.Label("task", "Task To add: ")
+                                @Html.TextBox("taskTitle", null, new { @class = "form-control", type = "text", required = "required" })
+                                <button type="submit" class="MarkDownButtons">Add Task</button>
+                            </div>
+                        }
+                    </div>
+                    <ul>
                         <div>
-                            @using (Html.BeginForm("AddPreMadeTwo", "Calendar", FormMethod.Post)) {
-                                <div class="form-group">
-                                    <h3>Level Two</h3>
-                                    <ul>
-                                        <li>Take a shower</li>
-                                        <li>Talk to someone</li>
-                                        <li>Brush Teeth</li>
-                                        <li>Put on Deodorant</li>
-                                    </ul>
-                                    <button type="submit" class="MarkDownButtons">Add Tasks</button>
-                                </div>
-                            }
+                            <h4>
+                                These are pre-made list that will add the following tasks to your task list
+                                each number represents a level of effort
+                            </h4>
+                            <li>
+                                @using (Html.BeginForm("AddPreMadeOne", "Calendar", FormMethod.Post)) {
+                                    <div class="form-group">
+                                        <h3>Level One</h3>
+                                        <ul>
+                                            <li>Get out of bed</li>
+                                            <li>Drink a glass of water</li>
+                                            <li>Eat a meal</li>
+                                        </ul>
+                                        <button type="submit" class="MarkDownButtons">Add Tasks</button>
+                                    </div>
+                                }
                         </div>
-                    </li>
-                    <li>
-                        <div>
-                            @using (Html.BeginForm("AddPreMadeThree", "Calendar", FormMethod.Post)) {
-                                <div class="form-group">
-                                    <h3>Level Three</h3>
-                                    <ul>
-                                        <li>Make your bed</li>
-                                        <li>Talk to someone face to face</li>
-                                        <li>Go on a walk</li>
-                                        <li>Pick up room</li>
-                                    </ul>
-                                    <button type="submit" class="MarkDownButtons">Add Tasks</button>
-                                </div>
-                            }
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                        <li>
+                            <div>
+                                @using (Html.BeginForm("AddPreMadeTwo", "Calendar", FormMethod.Post)) {
+                                    <div class="form-group">
+                                        <h3>Level Two</h3>
+                                        <ul>
+                                            <li>Take a shower</li>
+                                            <li>Talk to someone</li>
+                                            <li>Brush Teeth</li>
+                                            <li>Put on Deodorant</li>
+                                        </ul>
+                                        <button type="submit" class="MarkDownButtons">Add Tasks</button>
+                                    </div>
+                                }
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                @using (Html.BeginForm("AddPreMadeThree", "Calendar", FormMethod.Post)) {
+                                    <div class="form-group">
+                                        <h3>Level Three</h3>
+                                        <ul>
+                                            <li>Make your bed</li>
+                                            <li>Talk to someone face to face</li>
+                                            <li>Go on a walk</li>
+                                            <li>Pick up room</li>
+                                        </ul>
+                                        <button type="submit" class="MarkDownButtons">Add Tasks</button>
+                                    </div>
+                                }
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
 
-    @section Scripts {
-        @Scripts.Render("~/Scripts/TasksAPI.js");
-        @Scripts.Render("~/Scripts/MoodGraphScript.js")
-        @Scripts.Render("https://canvasjs.com/assets/script/canvasjs.min.js");
-    }
+        @section Scripts {
+            @Scripts.Render("~/Scripts/TasksAPI.js");
+            @Scripts.Render("https://canvasjs.com/assets/script/canvasjs.min.js");
+    <script type="text/javascript">
+                window.onload=function() {
+                    var chart=new CanvasJS.Chart("moodgraph",{
+                        animationEnabled: false,
+                        title: {
+                            text: "Your Weekly Mood Trends"
+                        },
+                        axisY: {
+                            includeZero: false
+                        },
+                        toolTip: {
+                            shared: true
+                        },
+                        data: [{
+                            type: "line",
+                            dataPoints: [@Html.Raw(String.Join(",",Model.MoodDictionary.Select(x => "{x:" + x.Key + ",y:" + x.Value +"}")))];
+                            //dataPoints:[{'3/20/2020 11:35:33 AM', '1'},{'4/3/2020 2:30:51 PM', '5'},{'4/3/2020 2:36:05 PM', '2'},{'4/1/2020 12:15:00 PM', '4'},{'4/2/2020 4:17:50 PM', '5'}];
+                        }
+                        ]
+                    });
+                chart.render();
+            }
+    </script>
+        }
