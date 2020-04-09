@@ -20,15 +20,12 @@ var selfCareSuggestions=[
     "Say 'No' when you don't feel like doing something.",
     "Take an impromptu day trip to a place you love going."
 ]
-function randomSelfCare() {
-    var result=selfCareSuggestions[Math.random()*selfCareSuggestions.length];
-    console.log(result);
-    return result;
-}
 
-$(document).on('load','suggestion',function() {
-    document.writeln(randomSelfCare());
-});
+//so this does log to the console but we're still not properly adding this string to the home page... sooo close
+$("moodgraph").ready(function() {
+    console.log(selfCareSuggestions);
+    $("suggestion").append("<p>"+(selfCareSuggestions[Math.random()*selfCareSuggestions.length])+"</p>");
+})
 
 
 
