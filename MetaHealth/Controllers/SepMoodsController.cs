@@ -21,7 +21,7 @@ namespace MetaHealth.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            return View(db.SepMoods.Where(x => x.UserID == userId).OrderByDescending(y=>y.Date));
+            return View(db.SepMoods.Where(x => x.UserID == userId).OrderByDescending(y => y.Date));
         }
 
         // GET: SepMoods/Details/5
@@ -63,8 +63,8 @@ namespace MetaHealth.Controllers
             {
                 db.SepMoods.Add(sepMood);
                 db.SaveChanges();
-                MessageBox.Show("Your mood was added successfully", "Complete!" );
-                return RedirectToAction("UpcomingEvents" , "Calendar" );
+                //MessageBox.Show("Your mood was added successfully", "Complete!" );
+                return RedirectToAction("UpcomingEvents", "Calendar");
             }
 
             return View(sepMood);
