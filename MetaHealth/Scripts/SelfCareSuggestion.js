@@ -22,10 +22,11 @@ var selfCareSuggestions=[
 ]
 
 //so this does log to the console but we're still not properly adding this string to the home page... sooo close
-$("moodgraph").ready(function() {
-    console.log(selfCareSuggestions);
-    $("suggestion").append("<p>"+(selfCareSuggestions[Math.random()*selfCareSuggestions.length])+"</p>");
-})
+$("selfcare").ready(function() {
+    var randNum=Math.floor(Math.random()*selfCareSuggestions.length);
+    var string="<p>"+selfCareSuggestions[randNum]+"</p>";
+    document.getElementById("suggestion").innerHTML=string;
+});
 
 
 
