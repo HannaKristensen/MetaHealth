@@ -313,3 +313,24 @@ a:visited {
     position: absolute;
     pointer-events: none; /*performance optimization*/
 }
+
+/*Self care suggestion styling*/
+.randSuggestion {
+    background-color: #EE8535;
+    border-radius: 28px;
+    text-align:center;
+    border: 1px solid #DE5C40;
+    display: inline-block;
+    color: #ffffff;
+    font-family: Verdana;
+    font-size: 15px;
+    padding: 25px 25px;
+    text-decoration: none;
+    white-space: normal;
+}
+.selfCareTitle {
+    font-family: Verdana;
+    padding-bottom: 5px;
+    font-size: 17px;
+    text-align: center;
+}
