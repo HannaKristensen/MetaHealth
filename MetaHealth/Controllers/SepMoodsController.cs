@@ -64,7 +64,7 @@ namespace MetaHealth.Controllers
                 db.SepMoods.Add(sepMood);
                 db.SaveChanges();
                 MessageBox.Show("Your mood was added successfully", "Complete!" );
-                return RedirectToAction("UpcomingEvents" , "Calendar" );
+                return RedirectToAction("Create");
             }
 
             return View(sepMood);
