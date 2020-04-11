@@ -536,6 +536,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             return View("UpcomingEvents", model);
         }
 
+
         public string[] CountingTasks(string[] tasks)
         {
             int amountTask = 0;
@@ -569,21 +570,19 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         //function to make sure there are no null events in the list
         public bool CheckEvents(List<string> events)
         {
-            foreach(string item in events)
+            foreach (string item in events)
             {
-                if(item == null)
+                if (item == null)
                 {
                     return false;
                 }
                 else
                 {
                     return true;
-                } 
+                }
             }
             return false;
+
         }
-
-
     }
-
 }
