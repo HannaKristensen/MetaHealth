@@ -60,12 +60,15 @@ namespace MetaHealth.Controllers
         public ActionResult Flowchart()
         {
             return View();
+
         }
 
         public ActionResult Venting()
+
         {
             return View();
         }
+
 
         public String QuizAlgorithmTest(int numOf1, int numOf2, int numOf3, int numOf4)
         {
@@ -209,6 +212,7 @@ namespace MetaHealth.Controllers
             }
 
             return (taskArr);
+
         }
     }
 }
