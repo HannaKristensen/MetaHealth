@@ -136,5 +136,21 @@ namespace MetaHealth.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //This function assumes that you've already grabbed the mood data for the currently logged in user
+        public double AverageDailyMood(List<SepMood> userMoods,DateTime dateWanted) {
+            double avgMood = 0;
+            double sumMood = 0;
+            int entryCounter = 0;
+            foreach(SepMood entry in userMoods) {
+                if (entry.Date == dateWanted) {
+                    sumMood += entry.MoodNum;
+                    entryCounter++;
+                }
+            }
+            avgMood = sumMood / entryCounter;
+            return avgMood;
+        }
+            
     }
 }
