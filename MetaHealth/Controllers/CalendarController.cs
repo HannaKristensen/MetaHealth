@@ -535,37 +535,5 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             UpcomingEventsViewModel model = await GetCurrentEventsTask();
             return View("UpcomingEvents", model);
         }
-
-        public string[] CountingTasks(string[] tasks)
-        {
-            int amountTask = 0;
-            if (tasks != null)
-            {
-                foreach (var item in tasks)
-                {
-                    if (item == "needsAction")
-                    {
-                        amountTask++;
-                    }
-                }
-            }
-
-            string[] taskArr = new string[amountTask];
-            int indexTask = 0;
-            if (tasks != null)
-            {
-                for (int i = 0; i < tasks.Length; i++)
-                {
-                    if (tasks[i] == "needsAction")
-                    {
-                        taskArr[indexTask] = tasks[i];
-                        indexTask++;
-                    }
-                }
-            }
-
-            return (taskArr);
-        }
     }
-
 }
