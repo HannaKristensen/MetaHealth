@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Windows;
 using MetaHealth.Models;
 using Microsoft.AspNet.Identity;
 
@@ -18,7 +19,7 @@ namespace MetaHealth.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            return View(db.SepMoods.Where(x => x.UserID == userId).OrderByDescending(y=>y.Date));
+            return View(db.SepMoods.Where(x => x.UserID == userId).OrderByDescending(y => y.Date));
         }
 
         // GET: SepMoods/Details/5
@@ -60,7 +61,8 @@ namespace MetaHealth.Controllers
             {
                 db.SepMoods.Add(sepMood);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //MessageBox.Show("Your mood was added successfully", "Complete!" );
+                return RedirectToAction("UpcomingEvents", "Calendar");
             }
 
             return View(sepMood);
@@ -132,5 +134,21 @@ namespace MetaHealth.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //This function assumes that you've already grabbed the mood data for the currently logged in user
+        public double AverageDailyMood(List<SepMood> userMoods,DateTime dateWanted) {
+            double avgMood = 0;
+            double sumMood = 0;
+            int entryCounter = 0;
+            foreach(SepMood entry in userMoods) {
+                if (entry.Date == dateWanted) {
+                    sumMood += entry.MoodNum;
+                    entryCounter++;
+                }
+            }
+            avgMood = sumMood / entryCounter;
+            return avgMood;
+        }
+            
     }
 }

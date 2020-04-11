@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,9 +16,9 @@ using Google.Apis.Util.Store;
 using Google.Apis.Tasks.v1;
 using Google.Apis.Tasks.v1.Data;
 using Task = System.Threading.Tasks.Task;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using MetaHealth.Models;
-using System.Data.Entity;
+using System.Threading;
 
 namespace Calendar.ASP.NET.MVC5.Controllers
 {
@@ -26,7 +26,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
     public class CalendarController : Controller
     {
         private readonly IDataStore dataStore = new FileDataStore(GoogleWebAuthorizationBroker.Folder);
-        private Model db = new Model();
 
         private async Task<UserCredential> GetCredentialForApiAsync()
         {
@@ -52,7 +51,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         // GET: /Calendar/UpcomingEvents
         public async Task<ActionResult> UpcomingEvents()
         {
-            string curUser = User.Identity.GetUserId();
             const int MaxEventsPerCalendar = 20;
             const int MaxEventsOverall = 50;
 
@@ -66,6 +64,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 ApplicationName = "MetaHealth",
             };
             var service = new CalendarService(initializer);
+
             // Fetch the list of calendars.
             var calendars = await service.CalendarList.List().ExecuteAsync();
 
@@ -133,7 +132,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 }
             }
 
-            Tasks tasks = service2.Tasks.List("@default").Execute();
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service2.Tasks.List("@default").Execute();
             int amountTask = 0;
             if (tasks.Items != null)
             {
@@ -161,19 +160,20 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                     }
                 }
             }
+
             model.MultiTask = taskArr;
             model.MultiTaskID = taskIDArr;
             model.MultiList = listOtasks;
-            var justDates = db.SepMoods.Where(n => n.UserID == curUser).Select(m => m.Date).ToArray();
-            //grabbing data from database and storing it in a dictionary for easy graphing
-            model.MoodDate = db.SepMoods.Where(n=>n.UserID==curUser).Select(n=>DbFunctions.TruncateTime(n.Date)??DateTime.Now).ToArray();
-            model.MoodNum = db.SepMoods.Where(n => n.UserID==curUser).Select(n => n.MoodNum).ToArray();
-            Dictionary<DateTime, int> tempDictofValues = new Dictionary<DateTime, int>();
-            for(int i=1; i < model.MoodDate.Length; i++) {
-                tempDictofValues.Add(model.MoodDate[i], model.MoodNum[i]);
+
+            bool eventsOrNo = false;
+
+            if (model.EventGroups.Count() == 0)
+            {
+                eventsOrNo = true;
+                ViewBag.NoEvents = eventsOrNo;
             }
-            model.MoodDictionary = tempDictofValues;
-            ViewBag.MoodDictionary = JsonConvert.SerializeObject(tempDictofValues);
+            else ViewBag.NoEvents = eventsOrNo;
+
             return View(model);
         }
 
@@ -484,11 +484,88 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                     i++;
                 }
             }
-            //add graph to model
 
             model.MultiList = listOtasks;
 
             return model;
         }
+
+        [HttpPost]
+        public async Task<ActionResult> AddEvent(string EventSummary, string EventLocation, string EventDescription, string EventStartDate, string EventStartTime, string EventEndDate, string EventEndTime)
+        {
+            DateTime EventStartDateTime = Convert.ToDateTime(EventStartDate).Add(TimeSpan.Parse(EventStartTime));
+            DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
+            var credential = await GetCredentialForApiAsync();
+
+            var initializer = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "MetaHealth",
+            };
+            var calendarService = new CalendarService(initializer);
+
+            if (calendarService != null)
+            {
+                var list = calendarService.CalendarList.List().Execute();
+                var listcnt = list.Items;
+                //var calendar = list.Items.SingleOrDefault(c => c.Summary == CustomCalenderName.Trim());
+                var calendarId = "primary";
+
+                Google.Apis.Calendar.v3.Data.Event calendarEvent = new Google.Apis.Calendar.v3.Data.Event();
+
+                calendarEvent.Summary = EventSummary;
+                calendarEvent.Location = EventLocation;
+                calendarEvent.Description = EventDescription;
+
+                calendarEvent.Start = new Google.Apis.Calendar.v3.Data.EventDateTime
+                {
+                    DateTime = EventStartDateTime /*new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, StartDate.Hour, StartDate.Minute, StartDate.Second)*/,
+                    TimeZone = "America/Los_Angeles"
+                };
+                calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime
+                {
+                    DateTime = EventEndDateTime /*new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, EndDate.Hour, EndDate.Minute, EndDate.Second)*/,
+                    TimeZone = "America/Los_Angeles"
+                };
+                calendarEvent.Recurrence = new List<string>();
+
+                var newEventRequest = calendarService.Events.Insert(calendarEvent, calendarId);
+                var eventResult = newEventRequest.Execute();
+            }
+            UpcomingEventsViewModel model = await GetCurrentEventsTask();
+            return View("UpcomingEvents", model);
+        }
+
+        public string[] CountingTasks(string[] tasks)
+        {
+            int amountTask = 0;
+            if (tasks != null)
+            {
+                foreach (var item in tasks)
+                {
+                    if (item == "needsAction")
+                    {
+                        amountTask++;
+                    }
+                }
+            }
+
+            string[] taskArr = new string[amountTask];
+            int indexTask = 0;
+            if (tasks != null)
+            {
+                for (int i = 0; i < tasks.Length; i++)
+                {
+                    if (tasks[i] == "needsAction")
+                    {
+                        taskArr[indexTask] = tasks[i];
+                        indexTask++;
+                    }
+                }
+            }
+
+            return (taskArr);
+        }
     }
+
 }

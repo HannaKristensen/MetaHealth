@@ -18,5 +18,14 @@ namespace MetaHealth.Models
 
         //reason for why the mood is being added
         public string Reason { get; set; }
+
+        //Constructor made for testing
+        public SepMood(int moodVal) {
+            UserID = "";
+            MoodNum = moodVal;
+            Date = DateTime.MinValue;
+            Reason = "";
+     
+        }
     }
 }

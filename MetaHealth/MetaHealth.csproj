@@ -116,6 +116,7 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -213,7 +214,6 @@
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Models\CreateEvent.cs" />
     <Compile Include="Models\CustomLevel.cs" />
     <Compile Include="Controllers\SepMoodsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -240,6 +240,7 @@
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\seed.sql" />
     <Content Include="App_Data\up.sql" />
+    <Content Include="Content\AddMood.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -269,6 +270,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\MoodGraphScript.js" />
+    <Content Include="Scripts\SelfCareSuggestion.js" />
     <Content Include="Scripts\TasksAPI.js" />
     <Content Include="Scripts\SelfCareQuiz.js" />
     <Content Include="Web.config" />
@@ -326,6 +328,7 @@
     <Content Include="Views\SepMoods\Edit.cshtml" />
     <Content Include="Views\SepMoods\Index.cshtml" />
     <Content Include="Views\Home\BreathingSpace.cshtml" />
+    <Content Include="Views\Home\HowToOpen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
