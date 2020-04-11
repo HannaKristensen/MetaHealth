@@ -84,5 +84,31 @@ namespace UnitTestHelpALong
             Assert.AreEqual(actualResult, expectedResult);
 
         }
+
+        [TestMethod]
+
+        public void GetAverageOfDailyMoods() {
+            SepMoodsController controller = new SepMoodsController();
+            #region really boring list set up
+            SepMood sepMood1 = new SepMood(1);
+            SepMood sepMood2 = new SepMood(2);
+            SepMood sepMood3 = new SepMood(3);
+            SepMood sepMood4 = new SepMood(4);
+            SepMood sepMood5 = new SepMood(5);
+            List<SepMood> listMoods = new List<SepMood>();
+            listMoods.Add(sepMood1);
+            listMoods.Add(sepMood2);
+            listMoods.Add(sepMood3);
+            listMoods.Add(sepMood4);
+            listMoods.Add(sepMood5);
+            #endregion
+            var testValPos=controller.AverageDailyMood(listMoods, DateTime.MinValue);
+            Assert.AreEqual(3, testValPos);
+
+            //change the date on one of the sepMoods in the list
+            listMoods[4].Date = DateTime.Now;
+            var testValNeg = controller.AverageDailyMood(listMoods, DateTime.MinValue);
+            Assert.AreNotEqual(testValNeg, 3);
+        }
     }
 }
