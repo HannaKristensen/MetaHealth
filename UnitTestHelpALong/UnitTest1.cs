@@ -110,5 +110,27 @@ namespace UnitTestHelpALong
             var testValNeg = controller.AverageDailyMood(listMoods, DateTime.MinValue);
             Assert.AreNotEqual(testValNeg, 3);
         }
+        [TestMethod]
+        public void MakeSureEventsNotNull()
+        {
+            //Creating list of events to test
+            CalendarController controller = new CalendarController();
+
+            List<string> listEvents = new List<string>
+            {
+                "Doctor",
+                "Quarantine",
+                "Court Date",
+                "Go to gym"
+            };
+
+            var notNull = controller.CheckEvents(listEvents);
+            Assert.AreEqual(notNull, true);
+
+            //change one of the events to null to test
+            listEvents[3]  = null;
+            var isNull = controller.CheckEvents(listEvents);
+            Assert.AreNotEqual(isNull, false);
+        }
     }
 }

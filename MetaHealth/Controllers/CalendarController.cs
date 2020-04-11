@@ -566,6 +566,24 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return (taskArr);
         }
+        //function to make sure there are no null events in the list
+        public bool CheckEvents(List<string> events)
+        {
+            foreach(string item in events)
+            {
+                if(item == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                } 
+            }
+            return false;
+        }
+
+
     }
 
 }
