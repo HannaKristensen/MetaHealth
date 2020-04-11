@@ -27,5 +27,12 @@ namespace MetaHealth.Models
             Reason = "";
      
         }
+        //empty constructor for viewmodel
+        public SepMood() {
+            UserID = "";
+            MoodNum = 0;
+            Date = DateTime.MinValue;
+            Reason = "";
+        }
     }
 }

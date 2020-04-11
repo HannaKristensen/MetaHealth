@@ -19,6 +19,10 @@ using Task = System.Threading.Tasks.Task;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Threading;
+using MetaHealth;
+using MetaHealth.Models;
+using System.Data.Entity;
+using MetaHealth.Controllers;
 
 namespace Calendar.ASP.NET.MVC5.Controllers
 {
@@ -26,6 +30,8 @@ namespace Calendar.ASP.NET.MVC5.Controllers
     public class CalendarController : Controller
     {
         private readonly IDataStore dataStore = new FileDataStore(GoogleWebAuthorizationBroker.Folder);
+        private Model db = new Model();
+        
 
         private async Task<UserCredential> GetCredentialForApiAsync()
         {
@@ -51,9 +57,10 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         // GET: /Calendar/UpcomingEvents
         public async Task<ActionResult> UpcomingEvents()
         {
+            string curUser = User.Identity.GetUserId();
             const int MaxEventsPerCalendar = 20;
             const int MaxEventsOverall = 50;
-
+            var controller = new SepMoodsController();
             var model = new UpcomingEventsViewModel();
 
             var credential = await GetCredentialForApiAsync();
@@ -164,9 +171,30 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             model.MultiTask = taskArr;
             model.MultiTaskID = taskIDArr;
             model.MultiList = listOtasks;
-
+            model.MultiTask = taskArr;
+            //grabbing data from database and storing it in a dictionary for easy graphing
+            //these next two lines work kind of
+            model.SepMood = db.SepMoods.Where(n => n.UserID == curUser).OrderBy(d=>d.Date).ToList();
+            model.MoodDate = db.SepMoods
+                .Where(n => n.UserID == curUser)
+                .Select(n => DbFunctions.TruncateTime(n.Date) ?? DateTime.Now)
+                .Distinct()
+                .ToList();
+            model.MoodNum = db.SepMoods.Where(n => n.UserID == curUser).Select(n => n.MoodNum).ToList();
+            Dictionary<DateTime, List<int>> tempDictofValues = new Dictionary<DateTime, List<int>>();
+            List<double> tempList = new List<double>();
+            foreach (DateTime date in model.MoodDate) {
+                tempDictofValues.Add(date, controller.GetMoodsByDate(model.SepMood, date));
+            }
+            foreach(var list in tempDictofValues) {
+                tempList.Add(controller.AverageDailyMood(list.Value));
+            }
+            Dictionary<DateTime, double> dictOfMoodAverages = new Dictionary<DateTime, double>();
+            for(int i=0;i<tempList.Count;i++) {
+                dictOfMoodAverages.Add(model.MoodDate[i],tempList[i]);
+            }
+            model.MoodDictionary = dictOfMoodAverages;
             bool eventsOrNo = false;
-
             if (model.EventGroups.Count() == 0)
             {
                 eventsOrNo = true;

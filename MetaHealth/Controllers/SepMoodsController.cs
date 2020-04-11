@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -137,7 +138,6 @@ namespace MetaHealth.Controllers
 
         //This function assumes that you've already grabbed the mood data for the currently logged in user
         public double AverageDailyMood(List<SepMood> userMoods,DateTime dateWanted) {
-            double avgMood = 0;
             double sumMood = 0;
             int entryCounter = 0;
             foreach(SepMood entry in userMoods) {
@@ -146,9 +146,42 @@ namespace MetaHealth.Controllers
                     entryCounter++;
                 }
             }
-            avgMood = sumMood / entryCounter;
-            return avgMood;
+            return sumMood/entryCounter;
         }
-            
+
+        //overload that assumes list has already been filtered for correct date
+        public double AverageDailyMood(List<SepMood> userMoods) {
+            double sumMood = 0;
+            int entryCounter = 0;
+            foreach (SepMood entry in userMoods) {
+                sumMood += entry.MoodNum;
+                entryCounter++;
+            }
+            return sumMood / entryCounter;
+        }
+        public double AverageDailyMood(List<int> userMoods) {
+            double sumMood = 0;
+            int entryCounter = 0;
+            foreach (int entry in userMoods) {
+                sumMood += entry;
+                entryCounter++;
+            }
+            return sumMood / entryCounter;
+        }
+
+        public List<int> GetMoodsByDate(DateTime dateWanted) {
+            var retVal= db.SepMoods.Where(d => d.Date == dateWanted).Select(m => m.MoodNum).ToList();
+            return retVal;
+        }
+
+        public List<int> GetMoodsByDate(List<SepMood> sepMoods, DateTime dateWanted) {
+            var retVal = new List<int>();
+            foreach(var item in sepMoods) {
+                if (item.Date.Date == dateWanted) {
+                    retVal.Add(item.MoodNum);
+                }
+            }
+            return retVal;
+        }
     }
 }

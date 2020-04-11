@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Google.Apis.Auth.OAuth2;
+using MetaHealth.Models;
 
 namespace Calendar.ASP.NET.MVC5.Models {
     /// <summary>
@@ -22,8 +23,10 @@ namespace Calendar.ASP.NET.MVC5.Models {
         public string[] MultiTask { get; set; }
         public string[] MultiList { get; set; }
         public string[] MultiTaskID { get; set; }
-        public DateTime[] MoodDate { get; set; }
-        public int[] MoodNum { get; set; }
-        public Dictionary<DateTime, int> MoodDictionary {get;set;}
+        public List<SepMood> SepMood { get; set; }
+        public List<DateTime> MoodDate { get; set; }
+        public List<int> MoodNum { get; set; }
+        public Dictionary<DateTime,double> MoodDictionary {get;set;}
+
     }
 }
