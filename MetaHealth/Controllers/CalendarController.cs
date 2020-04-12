@@ -184,7 +184,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             foreach(var key in dictOfMoodAverages) {
                 model.MoodDictionary.Add(key.Key.ToShortDateString(), key.Value);
             }
-            ViewBag.DictionaryMoods = JsonConvert.SerializeObject(model.MoodDictionary);
             #endregion
 
             bool eventsOrNo = false;
