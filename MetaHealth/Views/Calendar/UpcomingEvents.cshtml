@@ -25,24 +25,34 @@
         <div class="container" id="eventsPage">
             @*First row of content. This includes (from left to right) mood graph and space for daily self care suggestion*@
             <div class="row" id="homePageRow1">
-
-                @*Spot for mood graph*@
-                <div class="col-lg-5" style=" background-color: #eeebdd">
-                </div>
-                @*Spot for daily self care suggestion*@
-                <div class="col-lg-5" style="background-color: #eeebdd" id="selfcare">
-                    <div class="selfCareTitle">Welcome! Today's self care suggestion: <br /></div>
-                    <div class="randSuggestion" id="suggestion"></div>
-                </div>
+                @if (Model.MoodDictionary.Count != 0)
+                {
+                    @*Spot for mood graph*@
+                    <div class="col-lg-5" style="height:370px; margin-left: 35px ;  background-color: #eeebdd ; border:5px solid #F0C032 ; border-radius: 25px" id="moodgraph">
+                    </div>
+                }
                 @*Empty col to make space between these two modules*@
                 <div class="col-sm-1"></div>
+                @*Spot for daily self care suggestion*@
+                <div class="col-lg-5" style="background-color: #eeebdd ; height:270px; border:5px solid #49C7CA ; border-radius: 25px; text-align:center" id="selfcare" >
+                    <div class="row"></div>
+                    <div class="selfCareTitle"><h3>Welcome! Today's self care suggestion:</h3></div>
+                    <div></div>
+                    <div class="randSuggestion" id="suggestion"></div>
+                </div>
+
             </div>
+
+            <div class="row">
+                <p></p>
+            </div>
+
 
             @*Second row of content. This includes (from left to right) Google Calendar, Google Tasks*@
             <div id="homePageRow2" class="row">
 
                 @*Spot for Google Calendar*@
-                <div class="col-lg-5" style="background-color: #eeebdd ; display: block" id="googleCalColumn">
+                <div class="col-lg-5" style="background-color: #eeebdd ; display: block; border:5px solid #248D83 ; border-radius: 25px" id="googleCalColumn">
                     @helper FormatEventTime(CalendarData.EventDateTime when) {
                         // Either Date or DateTime is set, depending on whether or not the event is
                         // an all-day event.
@@ -138,7 +148,7 @@
                 <div class="col-sm-1"></div>
 
                 @*Google Tasks Spot*@
-                <div class="col-lg-5" style="background-color: #eeebdd ">
+                <div class="col-lg-5" style="background-color: #eeebdd ; border:5px solid #6C984B ; border-radius: 25px">
                     <h2 style="text-align:center">@Model.MultiList[0]</h2>
                     <hr>
                     <div class="checkMate">
@@ -161,6 +171,10 @@
                         <button class="MarkDownButtons" onclick="showAddTask()">Add a task</button>
                         <p></p>
                         <button class="MarkDownButtons" onclick="showPreMadeTasks()">Add Pre-Made Tasks</button>
+                    </div>
+
+                    <div class="row">
+                        <p></p>
                     </div>
 
                     @*Row for adding tasks, appears and dissapears with JS*@
@@ -248,6 +262,37 @@
         @section Scripts {
             @Scripts.Render("~/Scripts/TasksAPI.js");
             @Scripts.Render("https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js");
+            @Scripts.Render("https://canvasjs.com/assets/script/canvasjs.min.js");
             @Scripts.Render("~/Scripts/SelfCareSuggestion.js")
+            <script>
+                window.onload=function() {
+                    var chart=new CanvasJS.Chart("moodgraph",{
+                        backgroundColor: null,
+                        axisX: {
+                            lineThickness: 0,
+                            tickThickness: 0
+                        },
+                        axisY: {
+                            lineThickness: 0,
+                            tickThickness: 0,
+                            gridThickness: 0
+                        },
+                        animationEnabled: false,
+                        title: {
+                            text: "Your Mood Trends"
+                        },
+                        toolTip: {
+                            shared: true,
+                            content:"Avg mood for {label}"
+                        },
+                        data: [{
+                            type: "line",
+                            lineColor: "#EE8535",
+                            dataPoints: [@Html.Raw(String.Join(",",Model.MoodDictionary.Select(x=> "{y:"+x.Value+",label:\""+x.Key+"\", color: \"#EE8535\"}")))]
+                        }],
+                            
+                    });
+                    chart.render();
+                }
+            </script>
         }
-

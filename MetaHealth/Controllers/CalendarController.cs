@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,6 +19,10 @@ using Task = System.Threading.Tasks.Task;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Threading;
+using MetaHealth;
+using MetaHealth.Models;
+using System.Data.Entity;
+using MetaHealth.Controllers;
 
 namespace Calendar.ASP.NET.MVC5.Controllers
 {
@@ -26,6 +30,8 @@ namespace Calendar.ASP.NET.MVC5.Controllers
     public class CalendarController : Controller
     {
         private readonly IDataStore dataStore = new FileDataStore(GoogleWebAuthorizationBroker.Folder);
+        private Model db = new Model();
+        
 
         private async Task<UserCredential> GetCredentialForApiAsync()
         {
@@ -49,17 +55,17 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         }
 
         // GET: /Calendar/UpcomingEvents
-        public async Task<ActionResult> UpcomingEvents()
-        {
+        public async Task<ActionResult> UpcomingEvents() {
+            Dictionary<string, double> dummyDict = new Dictionary<string, double>();
+            string curUser = User.Identity.GetUserId();
             const int MaxEventsPerCalendar = 20;
             const int MaxEventsOverall = 50;
-
+            var controller = new SepMoodsController();
             var model = new UpcomingEventsViewModel();
 
             var credential = await GetCredentialForApiAsync();
 
-            var initializer = new BaseClientService.Initializer()
-            {
+            var initializer = new BaseClientService.Initializer() {
                 HttpClientInitializer = credential,
                 ApplicationName = "MetaHealth",
             };
@@ -70,8 +76,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             // Fetch some events from each calendar.
             var fetchTasks = new List<Task<Google.Apis.Calendar.v3.Data.Events>>(calendars.Items.Count);
-            foreach (var calendar in calendars.Items)
-            {
+            foreach (var calendar in calendars.Items) {
                 var request = service.Events.List(calendar.Id);
                 request.MaxResults = MaxEventsPerCalendar;
                 request.SingleEvents = true;
@@ -97,10 +102,8 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                                select g;
 
             var eventGroups = new List<CalendarEventGroup>();
-            foreach (var grouping in eventsByDate)
-            {
-                eventGroups.Add(new CalendarEventGroup
-                {
+            foreach (var grouping in eventsByDate) {
+                eventGroups.Add(new CalendarEventGroup {
                     GroupTitle = grouping.Key.ToLongDateString(),
                     Events = grouping,
                 });
@@ -108,8 +111,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             model.EventGroups = eventGroups;
 
-            var initializer2 = new BaseClientService.Initializer()
-            {
+            var initializer2 = new BaseClientService.Initializer() {
                 HttpClientInitializer = credential,
                 ApplicationName = "MetaHealth",
             };
@@ -122,11 +124,9 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             string[] listOtasks = new string[10];
             // List task lists.
             IList<TaskList> taskLists = listRequest.Execute().Items;
-            if (taskLists != null && taskLists.Count > 0)
-            {
+            if (taskLists != null && taskLists.Count > 0) {
                 int i = 0;
-                foreach (var taskList in taskLists)
-                {
+                foreach (var taskList in taskLists) {
                     listOtasks[i] = taskList.Title;
                     i++;
                 }
@@ -134,12 +134,9 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             Google.Apis.Tasks.v1.Data.Tasks tasks = service2.Tasks.List("@default").Execute();
             int amountTask = 0;
-            if (tasks.Items != null)
-            {
-                foreach (var item in tasks.Items)
-                {
-                    if (item.Status == "needsAction")
-                    {
+            if (tasks.Items != null) {
+                foreach (var item in tasks.Items) {
+                    if (item.Status == "needsAction") {
                         amountTask++;
                     }
                 }
@@ -148,12 +145,9 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             string[] taskArr = new string[amountTask];
             string[] taskIDArr = new string[amountTask];
             int indexTask = 0;
-            if (tasks.Items != null)
-            {
-                for (int i = 0; i < tasks.Items.Count; i++)
-                {
-                    if (tasks.Items[i].Status == "needsAction" && tasks.Items[i].Title != " ")
-                    {
+            if (tasks.Items != null) {
+                for (int i = 0; i < tasks.Items.Count; i++) {
+                    if (tasks.Items[i].Status == "needsAction" && tasks.Items[i].Title != " ") {
                         taskArr[indexTask] = tasks.Items[i].Title;
                         taskIDArr[indexTask] = tasks.Items[i].Id;
                         indexTask++;
@@ -164,11 +158,36 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             model.MultiTask = taskArr;
             model.MultiTaskID = taskIDArr;
             model.MultiList = listOtasks;
+            model.MultiTask = taskArr;
+
+            #region Populate data for graph
+            model.SepMood = db.SepMoods.Where(n => n.UserID == curUser).OrderBy(d => d.Date).ToList();
+            model.MoodDate = db.SepMoods
+                .Where(n => n.UserID == curUser)
+                .Select(n => DbFunctions.TruncateTime(n.Date) ?? DateTime.Now)
+                .Distinct()
+                .ToList();
+            model.MoodNum = db.SepMoods.Where(n => n.UserID == curUser).Select(n => n.MoodNum).ToList();
+            model.MoodDictionary = dummyDict;
+            Dictionary<DateTime, List<int>> tempDictofValues = new Dictionary<DateTime, List<int>>();
+            List<double> tempList = new List<double>();
+            foreach (DateTime date in model.MoodDate) {
+                tempDictofValues.Add(date, controller.GetMoodsByDate(model.SepMood, date));
+            }
+            foreach (var list in tempDictofValues) {
+                tempList.Add(controller.AverageDailyMood(list.Value));
+            }
+            Dictionary<DateTime, double> dictOfMoodAverages = new Dictionary<DateTime, double>();
+            for (int i = 0; i < tempList.Count; i++) {
+                dictOfMoodAverages.Add(model.MoodDate[i], tempList[i]);
+            }
+            foreach(var key in dictOfMoodAverages) {
+                model.MoodDictionary.Add(key.Key.ToShortDateString(), key.Value);
+            }
+            #endregion
 
             bool eventsOrNo = false;
-
-            if (model.EventGroups.Count() == 0)
-            {
+            if (model.EventGroups.Count() == 0) {
                 eventsOrNo = true;
                 ViewBag.NoEvents = eventsOrNo;
             }
