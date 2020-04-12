@@ -19,8 +19,9 @@ namespace MetaHealth.Controllers
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
+            List<SepMood> sepMoods=db.SepMoods.Where(x => x.UserID == userId).OrderByDescending(y => y.Date).ToList();
 
-            return View(db.SepMoods.Where(x => x.UserID == userId).OrderByDescending(y => y.Date));
+            return View(sepMoods);
         }
 
         // GET: SepMoods/Details/5
@@ -41,6 +42,7 @@ namespace MetaHealth.Controllers
         // GET: SepMoods/Create
         public ActionResult Create()
         {
+
             return View();
         }
 

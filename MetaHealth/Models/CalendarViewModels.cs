@@ -26,7 +26,7 @@ namespace Calendar.ASP.NET.MVC5.Models {
         public List<SepMood> SepMood { get; set; }
         public List<DateTime> MoodDate { get; set; }
         public List<int> MoodNum { get; set; }
-        public Dictionary<DateTime,double> MoodDictionary {get;set;}
+        public Dictionary<string,double> MoodDictionary {get;set;}
 
     }
 }
