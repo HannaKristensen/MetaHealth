@@ -25,10 +25,11 @@
         <div class="container" id="eventsPage">
             @*First row of content. This includes (from left to right) mood graph and space for daily self care suggestion*@
             <div class="row" id="homePageRow1">
-
+            @if (Model.MoodDictionary.Count != 0) {
                 @*Spot for mood graph*@
-                <div class="col-lg-5" style=" background-color: #eeebdd">
+                <div class="col-lg-5" style="height:370px; width=100%; background-color: #eeebdd" id="moodgraph">
                 </div>
+            }
                 @*Spot for daily self care suggestion*@
                 <div class="col-lg-5" style="background-color: #eeebdd" id="selfcare">
                     <div class="selfCareTitle">Welcome! Today's self care suggestion: <br /></div>
@@ -248,6 +249,37 @@
         @section Scripts {
             @Scripts.Render("~/Scripts/TasksAPI.js");
             @Scripts.Render("https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js");
+            @Scripts.Render("https://canvasjs.com/assets/script/canvasjs.min.js");
             @Scripts.Render("~/Scripts/SelfCareSuggestion.js")
+            <script>
+                window.onload=function() {
+                    var chart=new CanvasJS.Chart("moodgraph",{
+                        backgroundColor: null,
+                        axisX: {
+                            lineThickness: 0,
+                            tickThickness: 0
+                        },
+                        axisY: {
+                            lineThickness: 0,
+                            tickThickness: 0,
+                            gridThickness: 0
+                        },
+                        animationEnabled: false,
+                        title: {
+                            text: "Your Mood Trends"
+                        },
+                        toolTip: {
+                            shared: true,
+                            content:"Avg mood for {label}"
+                        },
+                        data: [{
+                            type: "line",
+                            lineColor: "#EE8535",
+                            dataPoints: [@Html.Raw(String.Join(",",Model.MoodDictionary.Select(x=> "{y:"+x.Value+",label:\""+x.Key+"\", color: \"#EE8535\"}")))]
+                        }],
+                            
+                    });
+                    chart.render();
+                }
+            </script>
         }
-

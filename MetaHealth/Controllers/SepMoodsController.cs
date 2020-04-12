@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using System.Windows;
 using MetaHealth.Models;
@@ -20,8 +19,9 @@ namespace MetaHealth.Controllers
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
+            List<SepMood> sepMoods=db.SepMoods.Where(x => x.UserID == userId).OrderByDescending(y => y.Date).ToList();
 
-            return View(db.SepMoods.Where(x => x.UserID == userId).OrderByDescending(y => y.Date));
+            return View(sepMoods);
         }
 
         // GET: SepMoods/Details/5
@@ -42,6 +42,7 @@ namespace MetaHealth.Controllers
         // GET: SepMoods/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
@@ -151,8 +152,42 @@ namespace MetaHealth.Controllers
                     entryCounter++;
                 }
             }
-            avgMood = sumMood / entryCounter;
-            return avgMood;
+            return sumMood/entryCounter;
+        }
+
+        //overload that assumes list has already been filtered for correct date
+        public double AverageDailyMood(List<SepMood> userMoods) {
+            double sumMood = 0;
+            int entryCounter = 0;
+            foreach (SepMood entry in userMoods) {
+                sumMood += entry.MoodNum;
+                entryCounter++;
+            }
+            return sumMood / entryCounter;
+        }
+        public double AverageDailyMood(List<int> userMoods) {
+            double sumMood = 0;
+            int entryCounter = 0;
+            foreach (int entry in userMoods) {
+                sumMood += entry;
+                entryCounter++;
+            }
+            return sumMood / entryCounter;
+        }
+
+        public List<int> GetMoodsByDate(DateTime dateWanted) {
+            var retVal= db.SepMoods.Where(d => d.Date == dateWanted).Select(m => m.MoodNum).ToList();
+            return retVal;
+        }
+
+        public List<int> GetMoodsByDate(List<SepMood> sepMoods, DateTime dateWanted) {
+            var retVal = new List<int>();
+            foreach(var item in sepMoods) {
+                if (item.Date.Date == dateWanted) {
+                    retVal.Add(item.MoodNum);
+                }
+            }
+            return retVal;
         }
     }
 }
