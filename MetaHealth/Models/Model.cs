@@ -1,4 +1,5 @@
-namespace MetaHealth.Models {
+namespace MetaHealth.Models
+{
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
