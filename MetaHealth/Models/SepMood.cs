@@ -20,12 +20,12 @@ namespace MetaHealth.Models
         public string Reason { get; set; }
 
         //Constructor made for testing
-        //public SepMood(int moodVal) {
+        //public SepMood(int moodVal)
+        //{
         //    UserID = "";
         //    MoodNum = moodVal;
         //    Date = DateTime.MinValue;
         //    Reason = "";
-
         //}
     }
 }
