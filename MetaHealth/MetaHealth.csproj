@@ -314,11 +314,6 @@
     <Content Include="Views\Home\FlowchartCheck.cshtml" />
     <Content Include="Views\Home\Flowchart.cshtml" />
     <Content Include="Views\Calendar\UpcomingEvents.cshtml" />
-    <Content Include="Views\Moods\Create.cshtml" />
-    <Content Include="Views\Moods\Delete.cshtml" />
-    <Content Include="Views\Moods\Details.cshtml" />
-    <Content Include="Views\Moods\Edit.cshtml" />
-    <Content Include="Views\Moods\Index.cshtml" />
     <Content Include="Views\Home\Venting.cshtml" />
     <Content Include="Views\Home\SelfCareQuiz.cshtml" />
     <Content Include="Views\SepMoods\Create.cshtml" />
