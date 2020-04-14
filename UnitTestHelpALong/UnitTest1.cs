@@ -16,7 +16,7 @@ namespace UnitTestHelpALong
         public void IsNotCompleteTaskSorted_TwoNeedsActionInList_Returns2AndPass()
         {
             //Arrange objects, creating and setting them up as necessary.
-            HomeController controller = new HomeController();
+            TestingController controller = new TestingController();
             string[] tasks = { "needsAction", "completed", "needsAction", "completed" };
 
             //Act on an object.
@@ -43,7 +43,7 @@ namespace UnitTestHelpALong
         [TestMethod]
         public void SelfCareQuiz_Result1_ReturnsResult1AndPass()
         {
-            HomeController controller = new HomeController();
+            TestingController controller = new TestingController();
 
             //variables to plug in
             //number of 1's is clearly greater than all the others
@@ -62,7 +62,7 @@ namespace UnitTestHelpALong
         [TestMethod]
         public void SelfCareQuiz_TieBreaker_ReturnsResult1AndPass()
         {
-            HomeController controller = new HomeController();
+            TestingController controller = new TestingController();
 
             //variables to plug in
             //number of 1's & 2's is clearly greater than all the others
@@ -108,6 +108,7 @@ namespace UnitTestHelpALong
             var testValNeg = controller.AverageDailyMood(listMoods, DateTime.MinValue);
             Assert.AreNotEqual(testValNeg, 3);
         }
+
         [TestMethod]
         public void MakeSureEventsNotNull()
         {
@@ -126,7 +127,7 @@ namespace UnitTestHelpALong
             Assert.AreEqual(notNull, true);
 
             //change one of the events to null to test
-            listEvents[3]  = null;
+            listEvents[3] = null;
             var isNull = controller.CheckEvents(listEvents);
             Assert.AreNotEqual(isNull, false);
         }
