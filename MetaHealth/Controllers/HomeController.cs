@@ -4,6 +4,7 @@ namespace MetaHealth.Controllers
 {
     public class HomeController : Controller
     {
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
@@ -24,16 +25,19 @@ namespace MetaHealth.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult gitHubResources()
         {
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Resources()
         {
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Contact()
         {
             ViewBag.Message = "Contact page.";
@@ -41,11 +45,13 @@ namespace MetaHealth.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult FlowchartCheck()
         {
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Flowchart()
         {
             return View();

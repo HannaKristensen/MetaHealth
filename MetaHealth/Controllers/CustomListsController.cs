@@ -51,6 +51,11 @@ namespace MetaHealth.Controllers
             var userId = User.Identity.GetUserId();
             customList.UserID = userId;
 
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             if (ModelState.IsValid)
             {
                 db.CustomLists.Add(customList);

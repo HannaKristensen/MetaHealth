@@ -116,3 +116,16 @@ function showAddEvent() {
         event.style.display = 'block';
     }
 }
+
+function showCustomList() {
+    var list = document.getElementById("addCustom")
+    var displaySetting = list.style.display;
+
+    if (displaySetting == 'block') {
+        list.style.display = 'none';
+    }
+
+    else {
+        list.style.display = 'block';
+    }
+}

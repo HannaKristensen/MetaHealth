@@ -210,6 +210,11 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             }
             else ViewBag.NoEvents = eventsOrNo;
 
+            var userId = User.Identity.GetUserId();
+            model.CustomTask = db.CustomLists.Where(x => x.UserID == userId).Select(x => x.TaskTitle).ToArray();
+            model.id = db.CustomLists.Where(x => x.UserID == userId).Select(x => x.UserID).ToArray();
+            model.PK = db.CustomLists.Where(x => x.UserID == userId).Select(x => x.PK).ToArray();
+
             return View(model);
         }
 

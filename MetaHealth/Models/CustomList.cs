@@ -9,7 +9,6 @@ namespace MetaHealth.Models
         [Key]
         public int PK { get; set; }
 
-        [Required]
         [StringLength(128)]
         public string UserID { get; set; }
 
