@@ -16,13 +16,10 @@ using Google.Apis.Util.Store;
 using Google.Apis.Tasks.v1;
 using Google.Apis.Tasks.v1.Data;
 using Task = System.Threading.Tasks.Task;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using System.Threading;
-using MetaHealth;
-using MetaHealth.Models;
 using System.Data.Entity;
 using MetaHealth.Controllers;
+using MetaHealth.DAL;
 
 namespace Calendar.ASP.NET.MVC5.Controllers
 {
