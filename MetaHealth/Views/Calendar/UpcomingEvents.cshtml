@@ -198,12 +198,12 @@ duration.Value.Minutes >= 2 ? "s" : "")
 
                 <div class="row" id="addCustom">
                     <p>
-                        @Html.ActionLink("Create New", "Create", "CustomLists")
+                        <button class="MarkDownButtons">@Html.ActionLink("Create New", "Create", "CustomLists")</button>
                     </p>
                     <table class="table">
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.CustomTask)
+                                <h4>Custom List</h4>
                             </th>
                             <th></th>
                         </tr>
@@ -215,9 +215,8 @@ duration.Value.Minutes >= 2 ? "s" : "")
                                     @Model.CustomTask[i]
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", "CustomLists", new { id = Model.PK[i] }) |
-                                    @Html.ActionLink("Details", "Details", "CustomLists", new { id = Model.PK[i] }) |
-                                    @Html.ActionLink("Delete", "Delete", "CustomLists", new { id = Model.PK[i] })
+                                    @Html.ActionLink("Edit", "Edit", "CustomLists", new { id = Model.PK[i] }, null) |
+                                    @Html.ActionLink("Delete", "Delete", "CustomLists", new { id = Model.PK[i] }, null)
                                 </td>
                             </tr>
                         }

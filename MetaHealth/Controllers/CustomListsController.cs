@@ -60,7 +60,7 @@ namespace MetaHealth.Controllers
             {
                 db.CustomLists.Add(customList);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("UpcomingEvents", "Calendar");
             }
 
             return View(customList);
@@ -95,7 +95,7 @@ namespace MetaHealth.Controllers
             {
                 db.Entry(customList).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("UpcomingEvents", "Calendar");
             }
             return View(customList);
         }
@@ -123,7 +123,7 @@ namespace MetaHealth.Controllers
             CustomList customList = db.CustomLists.Find(id);
             db.CustomLists.Remove(customList);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("UpcomingEvents", "Calendar");
         }
 
         protected override void Dispose(bool disposing)
