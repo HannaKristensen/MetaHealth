@@ -76,11 +76,11 @@
                     {
                         @:@string.Format(
 
-                "{0} hour{1} {2} minute{3}",
-                (int)duration.Value.TotalHours,
-                duration.Value.TotalHours >= 2 ? "s" : "",
-                (int)duration.Value.Minutes,
-                duration.Value.Minutes >= 2 ? "s" : "")
+            "{0} hour{1} {2} minute{3}",
+            (int)duration.Value.TotalHours,
+            duration.Value.TotalHours >= 2 ? "s" : "",
+            (int)duration.Value.Minutes,
+            duration.Value.Minutes >= 2 ? "s" : "")
 
                     }
                 }
@@ -184,18 +184,6 @@
                 </div>
 
                 @*Row for adding tasks, appears and dissapears with JS*@
-                <div class="row" id="addTaskRow">
-                    @using (Html.BeginForm("UpcomingEvents", "Calendar", FormMethod.Post))
-                    {
-                        <div class="form-group">
-                            @Html.Label("task", "Add a task: ")
-                            @Html.TextBox("taskTitle", null, new { @class = "form-control", type = "text", required = "required" })
-                            <br />
-                            <button type="submit" class="MarkDownButtons">Add!</button>
-                        </div>
-                    }
-                </div>
-
                 <div class="row" id="addCustom">
                     <p>
                         <button class="MarkDownButtons">@Html.ActionLink("Create New", "Create", "CustomLists")</button>
@@ -223,6 +211,17 @@
                     </table>
                 </div>
 
+                <div class="row" id="addTaskRow">
+                    @using (Html.BeginForm("UpcomingEvents", "Calendar", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            @Html.Label("task", "Add a task: ")
+                            @Html.TextBox("taskTitle", null, new { @class = "form-control", type = "text", required = "required" })
+                            <br />
+                            <button type="submit" class="MarkDownButtons">Add!</button>
+                        </div>
+                    }
+                </div>
                 <div class="row">
                     <ul id="preMadeTasks">
                         <div>
