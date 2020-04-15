@@ -1,13 +1,8 @@
-namespace MetaHealth.Models
-{
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-    using System.Security.Claims;
-    using System.Threading.Tasks;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
+using MetaHealth.Models;
+using System.Data.Entity;
 
+namespace MetaHealth.DAL
+{
     public partial class Model : DbContext
     {
         public Model()
@@ -18,6 +13,7 @@ namespace MetaHealth.Models
         }
 
         public virtual DbSet<SepMood> SepMoods { get; set; }
+        public virtual DbSet<CustomList> CustomLists { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

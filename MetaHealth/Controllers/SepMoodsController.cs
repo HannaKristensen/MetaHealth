@@ -5,9 +5,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using System.Windows;
 using MetaHealth.Models;
 using Microsoft.AspNet.Identity;
+using MetaHealth.DAL;
 
 namespace MetaHealth.Controllers
 {
