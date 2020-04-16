@@ -76,11 +76,11 @@
                     {
                         @:@string.Format(
 
-            "{0} hour{1} {2} minute{3}",
-            (int)duration.Value.TotalHours,
-            duration.Value.TotalHours >= 2 ? "s" : "",
-            (int)duration.Value.Minutes,
-            duration.Value.Minutes >= 2 ? "s" : "")
+          "{0} hour{1} {2} minute{3}",
+          (int)duration.Value.TotalHours,
+          duration.Value.TotalHours >= 2 ? "s" : "",
+          (int)duration.Value.Minutes,
+          duration.Value.Minutes >= 2 ? "s" : "")
 
                     }
                 }
@@ -176,7 +176,7 @@
                     <button class="MarkDownButtons" onclick="showAddTask()">Add a task</button>
                     <p></p>
                     <button class="MarkDownButtons" onclick="showPreMadeTasks()">Add Pre-Made Tasks</button>
-                    <button class="MarkDownButtons" onclick="addCustomList()">Custom List</button>
+                    <button class="MarkDownButtons" onclick="showCustomList()">Custom List</button>
                 </div>
 
                 <div class="row">
