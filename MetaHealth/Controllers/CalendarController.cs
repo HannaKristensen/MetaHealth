@@ -641,5 +641,60 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             }
             return false;
         }
+
+        //Adding Custom Tasks
+        [HttpGet]
+        public async Task<ActionResult> AddCustomTasks()
+        {
+            var userId = User.Identity.GetUserId();
+            string[] tasksCustom = db.CustomLists.Where(x => x.UserID == userId).Select(x => x.TaskTitle).ToArray();
+
+            var credential = await GetCredentialForApiAsync();
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "MetaHealth",
+            };
+            var service3 = new TasksService(initializer3);
+
+            for (int i = 0; i < tasksCustom.Length; i++)
+            {
+                Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = tasksCustom[i] };
+                service3.Tasks.Insert(task, "@default").Execute();
+            }
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service3.Tasks.List("@default").Execute();
+            int amountTask = 0;
+            if (tasks.Items != null)
+            {
+                foreach (var item in tasks.Items)
+                {
+                    if (item.Status == "needsAction")
+                    {
+                        amountTask++;
+                    }
+                }
+            }
+
+            string[,] taskArr = new string[2, amountTask];
+            int indexTask = 0;
+
+            if (tasks.Items != null)
+            {
+                for (int i = 0; i < tasks.Items.Count; i++)
+                {
+                    if (tasks.Items[i].Status == "needsAction" && tasks.Items[i].Title != " ")
+                    {
+                        taskArr[1, indexTask] = tasks.Items[i].Title;
+                        taskArr[0, indexTask] = tasks.Items[i].Id;
+                        indexTask++;
+                    }
+                }
+            }
+
+            var json = JsonConvert.SerializeObject(taskArr);
+
+            return Content(json);
+        }
     }
 }
