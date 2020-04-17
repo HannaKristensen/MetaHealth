@@ -76,11 +76,11 @@
                     {
                         @:@string.Format(
 
-          "{0} hour{1} {2} minute{3}",
-          (int)duration.Value.TotalHours,
-          duration.Value.TotalHours >= 2 ? "s" : "",
-          (int)duration.Value.Minutes,
-          duration.Value.Minutes >= 2 ? "s" : "")
+    "{0} hour{1} {2} minute{3}",
+    (int)duration.Value.TotalHours,
+    duration.Value.TotalHours >= 2 ? "s" : "",
+    (int)duration.Value.Minutes,
+    duration.Value.Minutes >= 2 ? "s" : "")
 
                     }
                 }
@@ -185,8 +185,10 @@
 
                 @*Row for adding tasks, appears and dissapears with JS*@
                 <div class="row" id="addCustom">
+                    &nbsp;
                     <p>
                         <button class="MarkDownButtons">@Html.ActionLink("Create New", "Create", "CustomLists")</button>
+                        <button class="MarkDownButtons" onclick="addCustomTasks()">Add Tasks</button>
                     </p>
                     <table class="table">
                         <tr>
