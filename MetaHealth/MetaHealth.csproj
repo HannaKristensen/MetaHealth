@@ -254,6 +254,7 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\BreathingSpace.js" />
     <Content Include="Scripts\FlowchartScript.js" />
+    <Content Include="Scripts\homepage.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
