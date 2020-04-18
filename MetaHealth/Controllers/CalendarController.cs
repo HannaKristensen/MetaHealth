@@ -16,13 +16,10 @@ using Google.Apis.Util.Store;
 using Google.Apis.Tasks.v1;
 using Google.Apis.Tasks.v1.Data;
 using Task = System.Threading.Tasks.Task;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using System.Threading;
-using MetaHealth;
-using MetaHealth.Models;
 using System.Data.Entity;
 using MetaHealth.Controllers;
+using MetaHealth.DAL;
 
 namespace Calendar.ASP.NET.MVC5.Controllers
 {
@@ -53,7 +50,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             return new UserCredential(flow, userId, token);
         }
 
-        // GET: /Calendar/UpcomingEvents
+        // GET: For the Home Page
         public async Task<ActionResult> UpcomingEvents()
         {
             Dictionary<string, double> dummyDict = new Dictionary<string, double>();
@@ -213,9 +210,15 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             }
             else ViewBag.NoEvents = eventsOrNo;
 
+            var userId = User.Identity.GetUserId();
+            model.CustomTask = db.CustomLists.Where(x => x.UserID == userId).Select(x => x.TaskTitle).ToArray();
+            model.id = db.CustomLists.Where(x => x.UserID == userId).Select(x => x.UserID).ToArray();
+            model.PK = db.CustomLists.Where(x => x.UserID == userId).Select(x => x.PK).ToArray();
+
             return View(model);
         }
 
+        //Marks OFf Tasks Through Ajax
         [HttpGet]
         public async Task<ActionResult> MarkDownTask()
         {
@@ -290,6 +293,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             return Content(json);
         }
 
+        //Adding a new Task
         [HttpPost]
         public async Task<ActionResult> UpcomingEvents(string taskTitle)
         {
@@ -316,6 +320,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             return View(model);
         }
 
+        //Adding premade task Level One
         [HttpPost]
         public async Task<ActionResult> AddPreMadeOne()
         {
@@ -343,6 +348,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             return View("UpcomingEvents", model);
         }
 
+        //Adding premade task Level Two
         [HttpPost]
         public async Task<ActionResult> AddPreMadeTwo()
         {
@@ -373,6 +379,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             return View("UpcomingEvents", model);
         }
 
+        //Adding premade task Level Three
         [HttpPost]
         public async Task<ActionResult> AddPreMadeThree()
         {
@@ -403,6 +410,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             return View("UpcomingEvents", model);
         }
 
+        // Model for the page
         public async Task<UpcomingEventsViewModel> GetCurrentEventsTask()
         {
             Dictionary<string, double> dummyDict = new Dictionary<string, double>();
@@ -562,9 +570,15 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             #endregion Populate data for graph
 
+            var userId = User.Identity.GetUserId();
+            model.CustomTask = db.CustomLists.Where(x => x.UserID == userId).Select(x => x.TaskTitle).ToArray();
+            model.id = db.CustomLists.Where(x => x.UserID == userId).Select(x => x.UserID).ToArray();
+            model.PK = db.CustomLists.Where(x => x.UserID == userId).Select(x => x.PK).ToArray();
+
             return model;
         }
 
+        //Add an event
         [HttpPost]
         public async Task<ActionResult> AddEvent(string EventSummary, string EventLocation, string EventDescription, string EventStartDate, string EventStartTime, string EventEndDate, string EventEndTime, int Remind)
         {
@@ -623,37 +637,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             return View("UpcomingEvents", model);
         }
 
-        public string[] CountingTasks(string[] tasks)
-        {
-            int amountTask = 0;
-            if (tasks != null)
-            {
-                foreach (var item in tasks)
-                {
-                    if (item == "needsAction")
-                    {
-                        amountTask++;
-                    }
-                }
-            }
-
-            string[] taskArr = new string[amountTask];
-            int indexTask = 0;
-            if (tasks != null)
-            {
-                for (int i = 0; i < tasks.Length; i++)
-                {
-                    if (tasks[i] == "needsAction")
-                    {
-                        taskArr[indexTask] = tasks[i];
-                        indexTask++;
-                    }
-                }
-            }
-
-            return (taskArr);
-        }
-
         //function to make sure there are no null events in the list
         public bool CheckEvents(List<string> events)
         {
@@ -669,6 +652,61 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 }
             }
             return false;
+        }
+
+        //Adding Custom Tasks
+        [HttpGet]
+        public async Task<ActionResult> AddCustomTasks()
+        {
+            var userId = User.Identity.GetUserId();
+            string[] tasksCustom = db.CustomLists.Where(x => x.UserID == userId).Select(x => x.TaskTitle).ToArray();
+
+            var credential = await GetCredentialForApiAsync();
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "MetaHealth",
+            };
+            var service3 = new TasksService(initializer3);
+
+            for (int i = 0; i < tasksCustom.Length; i++)
+            {
+                Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = tasksCustom[i] };
+                service3.Tasks.Insert(task, "@default").Execute();
+            }
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service3.Tasks.List("@default").Execute();
+            int amountTask = 0;
+            if (tasks.Items != null)
+            {
+                foreach (var item in tasks.Items)
+                {
+                    if (item.Status == "needsAction")
+                    {
+                        amountTask++;
+                    }
+                }
+            }
+
+            string[,] taskArr = new string[2, amountTask];
+            int indexTask = 0;
+
+            if (tasks.Items != null)
+            {
+                for (int i = 0; i < tasks.Items.Count; i++)
+                {
+                    if (tasks.Items[i].Status == "needsAction" && tasks.Items[i].Title != " ")
+                    {
+                        taskArr[1, indexTask] = tasks.Items[i].Title;
+                        taskArr[0, indexTask] = tasks.Items[i].Id;
+                        indexTask++;
+                    }
+                }
+            }
+
+            var json = JsonConvert.SerializeObject(taskArr);
+
+            return Content(json);
         }
     }
 }

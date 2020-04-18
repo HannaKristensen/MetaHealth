@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>@ViewBag.Title - HelpAlong </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -16,33 +17,52 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("HelpAlong", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Events", "UpcomingEvents", "Calendar")</li>
-                        <li>@Html.ActionLink("Venting", "Venting", "Home")</li>
-                        <li>@Html.ActionLink("Self Care Quiz", "SelfCareQuiz", "Home")</li>
-                        <li>@Html.ActionLink("Mood Tracker", "Create", "SepMoods")</li>
-                        <li>@Html.ActionLink("Resources", "Resources", "Home")</li>
-                        <li>@Html.ActionLink("Breathing Space", "BreathingSpace", "Home")</li>
-                    }
-
-                    else
-                    {
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Flowchart", "Flowchart", "Home")</li>
-                    }
 
 
+            <div class="my-navbar">
+                @if (User.Identity.IsAuthenticated)
+                {
 
-                </ul>
+                    @Html.ActionLink("Dashboard", "UpcomingEvents", "Calendar")
+
+                    <div class="my-dropdown">
+                        <button class="my-dropbtn">
+                            Self Care
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="my-dropdown-content">
+                            @Html.ActionLink("Vent", "Venting", "Home")
+                            @Html.ActionLink("Self Care Quiz", "SelfCareQuiz", "Home")
+                            @Html.ActionLink("Breathe", "BreathingSpace", "Home")
+                            @Html.ActionLink("Flowchart", "Flowchart", "Home")
+                        </div>
+                    </div>
+
+                    @Html.ActionLink("Mood Tracker", "Create", "SepMoods")
+
+                    <div class="my-dropdown">
+                        <button class="my-dropbtn">
+                            Resources
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="my-dropdown-content">
+                            @Html.ActionLink("Resource Links", "Resources", "Home")
+                        </div>
+                    </div>
+                }
+
+                else
+                {
+                    @Html.ActionLink("Home", "Index", "Home")
+                    @Html.ActionLink("Flowchart", "Flowchart", "Home")
+                }
+
                 @Html.Partial("_LoginPartial")
             </div>
-        </div>
+
+
+            </div>
     </div>
     <div class="container body-content">
         @RenderBody()

@@ -75,20 +75,9 @@ textarea {
     margin-right: auto;
 }
 
-.navbar {
-    background-color: #E9E6D4;
-    color: black;
-    font-family: Verdana;
-}
 
-.navbar-inverse {
-    border: none;
-    color: black;
-    font-family: Verdana;
-}
-
-/*FOOTER AND FOOTER LINKS*/
-.resourcesFooter {
+    /*FOOTER AND FOOTER LINKS*/
+    .resourcesFooter {
     font-family: Verdana;
     font-size: 50px;
 }
@@ -279,6 +268,10 @@ a:visited {
     align-content: center
 }
 
+#addCustom {
+    display: none
+}
+
 /*GOOGLE CALENDAR*/
 #googleCalColumn {
     margin-left: 35px;
@@ -318,7 +311,7 @@ a:visited {
 .randSuggestion {
     background-color: #EE8535;
     border-radius: 28px;
-    text-align:center;
+    text-align: center;
     border: 1px solid #DE5C40;
     display: inline-block;
     color: #ffffff;
@@ -328,9 +321,108 @@ a:visited {
     text-decoration: none;
     white-space: normal;
 }
+
 .selfCareTitle {
     font-family: Verdana;
     padding-bottom: 5px;
     font-size: 17px;
     text-align: center;
 }
+
+/*NAV BAR*/
+.my-navbar {
+    overflow: hidden;
+    background-color: #E9E6D4;
+    font-family: Verdana;
+    letter-spacing: 2px;
+}
+
+    .my-navbar a {
+        font-size: 16px;
+        font-weight:bold;
+        color: #1f1f1f;
+        float:left;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+.my-dropdown {
+    float: left;
+    overflow: hidden;
+    border-radius: 5px;
+    font-family: Verdana;
+    letter-spacing: 2px;
+}
+
+    .my-dropdown .my-dropbtn {
+        font-size: 16px;
+        border: none;
+        font-family: Verdana;
+        outline: none;
+        color: #1f1f1f;
+        letter-spacing:2px ; 
+        font-weight: bold;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+    }
+
+    .my-navbar a:hover, .my-dropdown:hover .my-dropbtn {
+        border-radius: 5px;
+        color: white;
+        opacity: 1;
+        transition: 0.3s;
+    }
+
+.my-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    letter-spacing: 2px;
+}
+
+    .my-dropdown-content a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        letter-spacing: 2px;
+    }
+
+        .my-dropdown-content a:hover {
+            background-color: #c4edee;
+            border-radius: 5px;
+            color: white;
+            opacity: 1;
+            transition: 0.3s;
+        }
+
+.my-dropdown:hover .my-dropdown-content {
+    opacity: 1;
+    animation: fade 0.5s linear;
+    display: block;
+}
+
+@keyframes fade {
+    0%{
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+.navbar-inverse {
+    background-color: #E9E6D4;
+    border-color: white;
+}
+

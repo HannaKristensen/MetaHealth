@@ -70,6 +70,20 @@ function messageOut(data) {
     }
 }
 
+function addCustomTasks() {
+    $.ajax({
+        type: 'GET',
+        contentType: "application/json",
+        async: true,
+        processData: false,
+        url: '/calendar/addcustomtasks',
+        success: messageOut,
+        error: errorOnAjax
+    });
+
+    showCustomList();
+}
+
 function showRedirect() {
     document.getElementById("redirectInst").style.display = 'block';
 }
@@ -114,5 +128,18 @@ function showAddEvent() {
 
     else {
         event.style.display = 'block';
+    }
+}
+
+function showCustomList() {
+    var list = document.getElementById("addCustom")
+    var displaySetting = list.style.display;
+
+    if (displaySetting == 'block') {
+        list.style.display = 'none';
+    }
+
+    else {
+        list.style.display = 'block';
     }
 }

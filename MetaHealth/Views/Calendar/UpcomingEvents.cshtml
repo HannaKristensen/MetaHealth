@@ -7,6 +7,8 @@
 
     <@Page Async="true">
 
+
+
         <div id="redirectInst">
             <div class="col">
                 <h1 id="redirectText">Hi there! It looks like you don't have your Google Calendar/Google tasks set up yet. Let's get you set up:</h1>
@@ -34,51 +36,53 @@
                 @*Empty col to make space between these two modules*@
                 <div class="col-sm-1"></div>
                 @*Spot for daily self care suggestion*@
-                <div class="col-lg-5" style="background-color: #eeebdd ; height:270px; border:5px solid #49C7CA ; border-radius: 25px; text-align:center" id="selfcare" >
+                <div class="col-lg-5" style="background-color: #eeebdd ; height:270px; border:5px solid #49C7CA ; border-radius: 25px; text-align:center" id="selfcare">
                     <div class="row"></div>
                     <div class="selfCareTitle"><h3>Welcome! Today's self care suggestion:</h3></div>
                     <div></div>
                     <div class="randSuggestion" id="suggestion"></div>
                 </div>
-
             </div>
 
             <div class="row">
                 <p></p>
             </div>
 
-
             @*Second row of content. This includes (from left to right) Google Calendar, Google Tasks*@
             <div id="homePageRow2" class="row">
 
                 @*Spot for Google Calendar*@
                 <div class="col-lg-5" style="background-color: #eeebdd ; display: block; border:5px solid #248D83 ; border-radius: 25px" id="googleCalColumn">
-                    @helper FormatEventTime(CalendarData.EventDateTime when) {
+                    @helper FormatEventTime(CalendarData.EventDateTime when)
+                    {
                         // Either Date or DateTime is set, depending on whether or not the event is
                         // an all-day event.
-                        if (when.DateTime == null) {
+                        if (when.DateTime == null)
+                        {
                             <text>All day</text>
                         }
-                        else {
+                        else
+                        {
                             @:@when.DateTime.Value.ToShortTimeString()
                         }
                     }
 
-                    @helper FormatEventLength(CalendarData.EventDateTime start, CalendarData.EventDateTime end) {
+                    @helper FormatEventLength(CalendarData.EventDateTime start, CalendarData.EventDateTime end)
+                    {
                         var duration = end.DateTime - start.DateTime;
-                        if (duration == null) {
+                        if (duration == null)
+                        {
                             <text>All day</text>
                         }
-                        else {
+                        else
+                        {
                             @:@string.Format(
 
-                        "{0} hour{1} {2} minute{3}",
-                        (int)duration.Value.TotalHours,
-                        duration.Value.TotalHours >= 2 ? "s" : "",
-                        (int)duration.Value.Minutes,
-                        duration.Value.Minutes >= 2 ? "s" : "")
-
-
+    "{0} hour{1} {2} minute{3}",
+    (int)duration.Value.TotalHours,
+    duration.Value.TotalHours >= 2 ? "s" : "",
+    (int)duration.Value.Minutes,
+    duration.Value.Minutes >= 2 ? "s" : "")
 
 
                         }
@@ -96,10 +100,12 @@
                             </tr>
                         </thead>
 
-                        @foreach (var group in Model.EventGroups) {
+                        @foreach (var group in Model.EventGroups)
+                        {
                             <tbody>
                                 <tr><th colspan="4">@group.GroupTitle</th></tr>
-                                @foreach (var item in group.Events) {
+                                @foreach (var item in group.Events)
+                                {
 
                                     <tr>
                                         <td>@FormatEventTime(item.Start)</td>
@@ -118,6 +124,7 @@
                     <br />
 
                     &nbsp;
+
 
                     @using (Html.BeginForm("AddEvent", "Calendar", FormMethod.Post)) {
                 <div class="form-group" id="eventAddForm">
@@ -143,6 +150,7 @@
                         <button type="submit" class="MarkDownButtons">Add This Event</button>
                     </div>
                 </div>
+
                     }
                 </div>
 
@@ -156,7 +164,8 @@
                     <div class="checkMate">
                         <table id="TaskTable" class="table">
                             <tbody>
-                                @for (int i = 0; i < Model.MultiTask.Length; i++) {
+                                @for (int i = 0; i < Model.MultiTask.Length; i++)
+                                {
                                     <tr id="@Model.MultiTaskID[i]">
                                         <td><input type="checkbox"></td>
                                         <td>@Model.MultiTask[i]</td>
@@ -168,20 +177,51 @@
 
                     @*Row containing buttons: Add task, refresh/mark done*@
                     <div class="row" id="taskButtons" style="text-align:center ; align-content:center">
-                        <button class="MarkDownButtons" onclick="MarkDown()">Refresh / Mark Done</button>
+                        <button class="MarkDownButtons" onclick="MarkDown()">Mark Done</button>
                         &nbsp;
                         <button class="MarkDownButtons" onclick="showAddTask()">Add a task</button>
                         <p></p>
                         <button class="MarkDownButtons" onclick="showPreMadeTasks()">Add Pre-Made Tasks</button>
+                        <button class="MarkDownButtons" onclick="showCustomList()">Custom List</button>
                     </div>
 
                     <div class="row">
                         <p></p>
                     </div>
 
-                    @*Row for adding tasks, appears and dissapears with JS*@
+                @*Row for adding tasks, appears and dissapears with JS*@
+                <div class="row" id="addCustom">
+                    &nbsp;
+                    <p>
+                        <button class="MarkDownButtons">@Html.ActionLink("Create New", "Create", "CustomLists")</button>
+                        <button class="MarkDownButtons" onclick="addCustomTasks()">Add Tasks</button>
+                    </p>
+                    <table class="table">
+                        <tr>
+                            <th>
+                                <h4>Custom List</h4>
+                            </th>
+                            <th></th>
+                        </tr>
+
+                            @for (int i = 0; i < Model.CustomTask.Length; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        @Model.CustomTask[i]
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", "CustomLists", new { id = Model.PK[i] }, null) |
+                                        @Html.ActionLink("Delete", "Delete", "CustomLists", new { id = Model.PK[i] }, null)
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+
                     <div class="row" id="addTaskRow">
-                        @using (Html.BeginForm("UpcomingEvents", "Calendar", FormMethod.Post)) {
+                        @using (Html.BeginForm("UpcomingEvents", "Calendar", FormMethod.Post))
+                        {
                             <div class="form-group">
                                 @Html.Label("task", "Add a task: ")
                                 @Html.TextBox("taskTitle", null, new { @class = "form-control", type = "text", required = "required" })
@@ -198,7 +238,8 @@
                                     Each number represents a level of effort:
                                 </h4>
                                 <li>
-                                    @using (Html.BeginForm("AddPreMadeOne", "Calendar", FormMethod.Post)) {
+                                    @using (Html.BeginForm("AddPreMadeOne", "Calendar", FormMethod.Post))
+                                    {
                                         <div class="form-group">
                                             <h5 style="font-weight:bold">Level One:</h5>
                                             <ul>
@@ -214,7 +255,8 @@
                             </li>
                             <li>
                                 <div>
-                                    @using (Html.BeginForm("AddPreMadeTwo", "Calendar", FormMethod.Post)) {
+                                    @using (Html.BeginForm("AddPreMadeTwo", "Calendar", FormMethod.Post))
+                                    {
                                         <div class="form-group">
                                             <h5 style="font-weight:bold">Level Two:</h5>
                                             <ul>
@@ -231,7 +273,8 @@
                             </li>
                             <li>
                                 <div>
-                                    @using (Html.BeginForm("AddPreMadeThree", "Calendar", FormMethod.Post)) {
+                                    @using (Html.BeginForm("AddPreMadeThree", "Calendar", FormMethod.Post))
+                                    {
                                         <div class="form-group">
                                             <h5 style="font-weight:bold">Level Three:</h5>
                                             <ul>
@@ -255,11 +298,7 @@
         <script type="text/javascript" src="~/Scripts/TasksAPI.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.2.0/dist/confetti.browser.min.js"></script>
 
-        @*Check if user has activated Google Calendar*@
-        @if (Model.EventGroups.ToList().Count == 0) {
-            <script>hideContent()</script>
-            <script>showRedirect()</script>
-        }
+
 
         @section Scripts {
             @Scripts.Render("~/Scripts/TasksAPI.js");
@@ -292,7 +331,7 @@
                             lineColor: "#EE8535",
                             dataPoints: [@Html.Raw(String.Join(",",Model.MoodDictionary.Select(x=> "{y:"+x.Value+",label:\""+x.Key+"\", color: \"#EE8535\"}")))]
                         }],
-                            
+
                     });
                     chart.render();
                 }

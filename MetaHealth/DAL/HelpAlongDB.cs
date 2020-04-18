@@ -1,10 +1,7 @@
+using System.Data.Entity;
+
 namespace MetaHealth
 {
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-
     public partial class HelpAlongDB : DbContext
     {
         public HelpAlongDB()
