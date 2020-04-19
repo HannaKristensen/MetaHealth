@@ -48,6 +48,7 @@
                         </button>
                         <div class="my-dropdown-content">
                             @Html.ActionLink("Resource Links", "Resources", "Home")
+                            @Html.ActionLink("Find Help", "SearchPage", "Search")
                         </div>
                     </div>
                 }
@@ -56,6 +57,7 @@
                 {
                     @Html.ActionLink("Home", "Index", "Home")
                     @Html.ActionLink("Flowchart", "Flowchart", "Home")
+                    @Html.ActionLink("Find Help", "SearchPage", "Search")
                 }
 
                 @Html.Partial("_LoginPartial")
