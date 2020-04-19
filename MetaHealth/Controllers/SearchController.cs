@@ -18,24 +18,6 @@ namespace MetaHealth.Controllers {
             return View();
         }
 
-        //[AllowAnonymous]
-        //public ActionResult FindTherapist() {
-        //    return RedirectToAction("Index", "Home");
-        //}
-        //[AllowAnonymous]
-        //public ActionResult FindTherapist(FormCollection formObj) {
-        //    SearchViewModel retObj = new SearchViewModel();
-        //    retObj.mainURL = "https://www.psychologytoday.com/us/";
-        //    retObj.therapyCat = Request.Form["therapyCat"].ToString();
-        //    retObj.therapySpec = formObj["therapySpec"].ToString();
-        //    retObj.therapyZipcode = formObj["therapyZipcode"].ToString();
-        //    //searchItem.therapyCat = formObj.therapyCat;
-        //    //searchItem.therapySpec = formObj.therapySpec;
-        //    //searchItem.therapyZipcode = formObj.therapyZipcode;
-        //    string url = TherapistURL(retObj);//this should be handling it's own null issues
-        //    return new RedirectResult(url);
-        //}
-
         [AllowAnonymous]
         public ActionResult FindTherapist([Bind(Include = "therapyCat,therapyZipcode,therapySpec")] SearchViewModel formObj) {
             formObj.mainURL = "https://www.psychologytoday.com/us/";
