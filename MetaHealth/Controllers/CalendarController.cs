@@ -580,7 +580,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
         //Add an event
         [HttpPost]
-        public async Task<ActionResult> AddEvent(string EventSummary, string EventLocation, string EventDescription, string EventStartDate, string EventStartTime, string EventEndDate, string EventEndTime)
+        public async Task<ActionResult> AddEvent(string EventSummary, string EventLocation, string EventDescription, string EventStartDate, string EventStartTime, string EventEndDate, string EventEndTime, int Remind)
         {
             DateTime EventStartDateTime = Convert.ToDateTime(EventStartDate).Add(TimeSpan.Parse(EventStartTime));
             DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
@@ -617,6 +617,18 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                     TimeZone = "America/Los_Angeles"
                 };
                 calendarEvent.Recurrence = new List<string>();
+
+
+                calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
+                {
+                    UseDefault = false,
+                    Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
+                    {
+                        new Google.Apis.Calendar.v3.Data.EventReminder() {Method = "email", Minutes = Remind}
+                    }
+               
+                };
+
 
                 var newEventRequest = calendarService.Events.Insert(calendarEvent, calendarId);
                 var eventResult = newEventRequest.Execute();
