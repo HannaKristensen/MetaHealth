@@ -70,6 +70,20 @@ function messageOut(data) {
     }
 }
 
+function addCustomTasks() {
+    $.ajax({
+        type: 'GET',
+        contentType: "application/json",
+        async: true,
+        processData: false,
+        url: '/calendar/addcustomtasks',
+        success: messageOut,
+        error: errorOnAjax
+    });
+
+    showCustomList();
+}
+
 function showRedirect() {
     document.getElementById("redirectInst").style.display = 'block';
 }
