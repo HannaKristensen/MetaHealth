@@ -25,6 +25,7 @@
         </div>
 
         <div class="container" id="eventsPage">
+            <a href="~/DAL/Model.cs"></a>
             @*First row of content. This includes (from left to right) mood graph and space for daily self care suggestion*@
             <div class="row" id="homePageRow1">
                 @if (Model.MoodDictionary.Count != 0)
@@ -78,11 +79,13 @@
                         {
                             @:@string.Format(
 
-    "{0} hour{1} {2} minute{3}",
-    (int)duration.Value.TotalHours,
-    duration.Value.TotalHours >= 2 ? "s" : "",
-    (int)duration.Value.Minutes,
-    duration.Value.Minutes >= 2 ? "s" : "")
+  "{0} hour{1} {2} minute{3}",
+  (int)duration.Value.TotalHours,
+  duration.Value.TotalHours >= 2 ? "s" : "",
+  (int)duration.Value.Minutes,
+  duration.Value.Minutes >= 2 ? "s" : "")
+
+
 
 
                         }
@@ -126,30 +129,31 @@
                     &nbsp;
 
 
-                    @using (Html.BeginForm("AddEvent", "Calendar", FormMethod.Post)) {
-                <div class="form-group" id="eventAddForm">
-                    @Html.Label("EventSummary", "Event Summary: ")
-                    @Html.TextBox("EventSummary", null, new { @class = "form-control", type = "text", required = "required" })
-                    @Html.Label("EventLocation", "Event Location: ")
-                    @Html.TextBox("EventLocation", null, new { @class = "form-control", type = "text", required = "required" })
-                    @Html.Label("EventDescription", "Event Description: ")
-                    @Html.TextBox("EventDescription", null, new { @class = "form-control", type = "text", required = "required" })
-                    @Html.Label("EventStartDate", "Event Start Date: ")
-                    @Html.TextBox("EventStartDate", null, new { @class = "form-control", type = "date", required = "required" })
-                    @Html.Label("EventStartTime", "Event Start Time: ")
-                    @Html.TextBox("EventStartTime", null, new { @class = "form-control", type = "time", required = "required" })
-                    @Html.Label("EventEndDate", "Event End Date: ")
-                    @Html.TextBox("EventEndDate", null, new { @class = "form-control", type = "date", required = "required" })
-                    @Html.Label("EventEndTime", "Event End Time: ")
-                    @Html.TextBox("EventEndTime", null, new { @class = "form-control", type = "time", required = "required" })
-                    @Html.Label("Remind", "Event Reminder via email (0 to 40320 minutes before): ")
-                    @Html.TextBox("Remind", null, new { @class = "form-control", type = "text", required = "required" })
+                    @using (Html.BeginForm("AddEvent", "Calendar", FormMethod.Post))
+                    {
+                        <div class="form-group" id="eventAddForm">
+                            @Html.Label("EventSummary", "Event Summary: ")
+                            @Html.TextBox("EventSummary", null, new { @class = "form-control", type = "text", required = "required" })
+                            @Html.Label("EventLocation", "Event Location: ")
+                            @Html.TextBox("EventLocation", null, new { @class = "form-control", type = "text", required = "required" })
+                            @Html.Label("EventDescription", "Event Description: ")
+                            @Html.TextBox("EventDescription", null, new { @class = "form-control", type = "text", required = "required" })
+                            @Html.Label("EventStartDate", "Event Start Date: ")
+                            @Html.TextBox("EventStartDate", null, new { @class = "form-control", type = "date", required = "required" })
+                            @Html.Label("EventStartTime", "Event Start Time: ")
+                            @Html.TextBox("EventStartTime", null, new { @class = "form-control", type = "time", required = "required" })
+                            @Html.Label("EventEndDate", "Event End Date: ")
+                            @Html.TextBox("EventEndDate", null, new { @class = "form-control", type = "date", required = "required" })
+                            @Html.Label("EventEndTime", "Event End Time: ")
+                            @Html.TextBox("EventEndTime", null, new { @class = "form-control", type = "time", required = "required" })
+                            @Html.Label("Remind", "Event Reminder via email (0 to 40320 minutes before): ")
+                            @Html.TextBox("Remind", null, new { @class = "form-control", type = "text", required = "required" })
 
-                    <br />
-                    <div class="row" style="align-content:center ; text-align:center">
-                        <button type="submit" class="MarkDownButtons">Add This Event</button>
-                    </div>
-                </div>
+                            <br />
+                            <div class="row" style="align-content:center ; text-align:center">
+                                <button type="submit" class="MarkDownButtons">Add This Event</button>
+                            </div>
+                        </div>
 
                     }
                 </div>
@@ -189,20 +193,20 @@
                         <p></p>
                     </div>
 
-                @*Row for adding tasks, appears and dissapears with JS*@
-                <div class="row" id="addCustom">
-                    &nbsp;
-                    <p>
-                        <button class="MarkDownButtons">@Html.ActionLink("Create New", "Create", "CustomLists")</button>
-                        <button class="MarkDownButtons" onclick="addCustomTasks()">Add Tasks</button>
-                    </p>
-                    <table class="table">
-                        <tr>
-                            <th>
-                                <h4>Custom List</h4>
-                            </th>
-                            <th></th>
-                        </tr>
+                    @*Row for adding tasks, appears and dissapears with JS*@
+                    <div class="row" id="addCustom">
+                        &nbsp;
+                        <p>
+                            <button class="MarkDownButtons">@Html.ActionLink("Create New", "Create", "CustomLists")</button>
+                            <button class="MarkDownButtons" onclick="addCustomTasks()">Add Tasks</button>
+                        </p>
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    <h4>Custom List</h4>
+                                </th>
+                                <th></th>
+                            </tr>
 
                             @for (int i = 0; i < Model.CustomTask.Length; i++)
                             {
