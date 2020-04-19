@@ -1,5 +1,4 @@
-﻿
-@model MetaHealth.Models.SearchViewModel
+﻿@model MetaHealth.Models.SearchViewModel
 
 @{
     ViewBag.Title = "Search";
@@ -9,33 +8,73 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title></title>
+    <style>
+        body {
+            font-family: Verdana;
+        }
+        .search {
+            text-align: center;
+        }
+        h1 {
+            font-weight:700;
+            font-size: 50px;
+        }
+        .par {
+            font-size: 20px;
+        }
+        .findHelpButton { 
+             background-color: #49C7CA;
+             border-radius: 28px;
+             border: 1px solid #6C984B;
+             display: inline-block;
+             cursor: pointer;
+             color: #ffffff;
+             font-family: Arial;
+             font-size: 17px;
+             padding: 18px 31px;
+             text-decoration: none;
+             text-shadow: 0px 1px 0px #2f6627;
+        }
+
+        .form-control {
+            border-radius: 36px;
+            height: 50px;
+        }
+    </style>
 </head>
 <body>
-<h1>Find Help</h1>
-
-@using (Html.BeginForm("FindTherapist","Search",FormMethod.Get)) {
-    @Html.AntiForgeryToken()
+<div class="search">
+    <h1>Find Help</h1>
+    <div class="par">
+        Seeking help is an incredibly proactive approach to making sure you feel your best.
+        HelpAlong would like to help you make the first step. Make your selections from below and we
+        will redirect you to the proper channels as best as we can.
+    </div>
+</div>
+    @using (Html.BeginForm("FindTherapist", "Search", FormMethod.Get)) {
+        @Html.AntiForgeryToken()
         <form class="form-horizontal">
             <div class="form-group row" id="therapyCat" name="therapyCat">
-                <div class="control-label col-sm-4">
+                <label class="control-label col-sm-4">
                     What source of support are you seeking?
-                </div>
-                    @Html.DropDownListFor(model => model.therapyCat, new List<SelectListItem> {
-                        new SelectListItem{Text="Therapist", Value="therapists"},
-                        new SelectListItem{Text="Psychiatrist", Value="psychiatrists"},
-                        new SelectListItem{Text="Support group", Value="groups"},
-                        new SelectListItem{Text="Treatment Centers", Value="treatment-rehab"}
-                    },
-                        new { @class = "form-control col-sm-8" }
-                    )
+                </label>
+                @Html.DropDownListFor(model => model.therapyCat, new List<SelectListItem> {
+                    new SelectListItem{Text="Make a selection...", Value=""},
+                    new SelectListItem{Text="Therapist", Value="therapists"},
+                    new SelectListItem{Text="Psychiatrist", Value="psychiatrists"},
+                    new SelectListItem{Text="Support group", Value="groups"},
+                    new SelectListItem{Text="Treatment Centers", Value="treatment-rehab"}
+                },
+                    new { @class = "form-control col-sm-8" }
+                )
             </div>
-            
+
             <div class="form-group row" id="therapySpec" name="therapySpec">
-                <div class="control-label col-sm-4">
+                <label class="control-label col-sm-4">
                     What issue would you like to focus on?
-                </div>
+                </label>
                 @Html.DropDownListFor(model => model.therapySpec, new List<SelectListItem> {
+                    new SelectListItem{Text="Make a selection...", Value=""},
                     new SelectListItem{Text="Anxiety", Value="anxiety"},
                     new SelectListItem{Text="Depression", Value="depression" },
                     new SelectListItem{Text="OCD", Value="obsessive-compulsive-ocd" },
@@ -49,17 +88,17 @@
                     new { @class = "form-control col-sm-8" }
                 )
             </div>
-            
-            
+
+
             <div class="form-group row" id="therapyZipcode" name="therapyZipcode">
-                <div class="control-label col-sm-4">
+                <label class="control-label col-sm-4">
                     What is your zipcode?
-                </div>
+                </label>
                 @Html.EditorFor(model => model.therapyZipcode, new { htmlAttributes = new { @class = "form-control col-sm-10" } })
             </div>
-            
-            <input type="submit" value="Find Help" />
-    </form>
- }
+
+            <input type="submit" value="Find Help" class="findHelpButton" />
+        </form>
+    }
 </body>
 </html>
