@@ -39,10 +39,7 @@ namespace MetaHealth.Controllers {
         [AllowAnonymous]
         public ActionResult FindTherapist([Bind(Include = "therapyCat,therapyZipcode,therapySpec")] SearchViewModel formObj) {
             formObj.mainURL = "https://www.psychologytoday.com/us/";
-            //searchItem.therapyCat = formObj.therapyCat;
-            //searchItem.therapySpec = formObj.therapySpec;
-            //searchItem.therapyZipcode = formObj.therapyZipcode;
-            string url = TherapistURL(formObj);//this should be handling it's own null issues
+            string url = TherapistURL(formObj);
             return new RedirectResult(url);
         }
 

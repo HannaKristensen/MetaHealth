@@ -1,4 +1,5 @@
-﻿@model MetaHealth.Models.SearchViewModel
+﻿
+@model MetaHealth.Models.SearchViewModel
 
 @{
     ViewBag.Title = "Search";
@@ -11,46 +12,54 @@
     <title></title>
 </head>
 <body>
-    <div class="center">
-        <h2>Temporary Title so that I can move on from this nightmare</h2>
-        <p>Some text that let's people know what to do</p>
-    </div>
-        @using (Html.BeginForm("FindTherapist","Search",FormMethod.Get)) {
-            @Html.AntiForgeryToken()
-            <div class="form-group" id="therapyCat" name="therapyCat">
-                <h2>What source of support are you seeking?</h2>
-                @Html.DropDownListFor(model => model.therapyCat, new List<SelectListItem> {
-                    new SelectListItem{Text="Therapist", Value="therapists"},
-                    new SelectListItem{Text="Psychiatrist", Value="psychiatrists"},
-                    new SelectListItem{Text="Support group", Value="groups"},
-                    new SelectListItem{Text="Treatment Centers", Value="treatment-rehab"}
-                    },
-                    new { @class = "form-control" }
-                )
-            
-            <div class="form-group" id="therapySpec" name="therapySpec">
-                <h2>What issue would you like to focus on?</h2>
-                @Html.DropDownListFor(model=>model.therapyCat, new List<SelectListItem> {
-                    new SelectListItem{Text="Anxiety", Value="a"},
-                    new SelectListItem{Text="Depression", Value="d" },
-                    new SelectListItem{Text="OCD", Value="o" },
-                    new SelectListItem{Text="Bipolar Disorder", Value="b" }
-                    },
-                    new { @class = "form-control" }
-                )
-            </div>
-            <div class="form-group" id="therapyZipcode" name="therapyZipcode">
-                <h2>What is your zipcode?</h2>
-                @Html.EditorFor(model=> model.therapyZipcode, new { htmlAttributes = new { @class="form-control"} })
-            </div>
+<h1>Find Help</h1>
 
-            <input type="submit" value="Find Help"/>
-         </div>
-        }
+@using (Html.BeginForm("FindTherapist","Search",FormMethod.Get)) {
+    @Html.AntiForgeryToken()
+        <form class="form-horizontal">
+            <div class="form-group row" id="therapyCat" name="therapyCat">
+                <div class="control-label col-sm-4">
+                    What source of support are you seeking?
+                </div>
+                    @Html.DropDownListFor(model => model.therapyCat, new List<SelectListItem> {
+                        new SelectListItem{Text="Therapist", Value="therapists"},
+                        new SelectListItem{Text="Psychiatrist", Value="psychiatrists"},
+                        new SelectListItem{Text="Support group", Value="groups"},
+                        new SelectListItem{Text="Treatment Centers", Value="treatment-rehab"}
+                    },
+                        new { @class = "form-control col-sm-8" }
+                    )
+            </div>
+            
+            <div class="form-group row" id="therapySpec" name="therapySpec">
+                <div class="control-label col-sm-4">
+                    What issue would you like to focus on?
+                </div>
+                @Html.DropDownListFor(model => model.therapySpec, new List<SelectListItem> {
+                    new SelectListItem{Text="Anxiety", Value="anxiety"},
+                    new SelectListItem{Text="Depression", Value="depression" },
+                    new SelectListItem{Text="OCD", Value="obsessive-compulsive-ocd" },
+                    new SelectListItem{Text="Bipolar Disorder", Value="bipolar-disorder" },
+                    new SelectListItem{Text="Grief", Value="grief"},
+                    new SelectListItem{Text="Borderline Personality", Value="borderline-personality"},
+                    new SelectListItem{Text="General Coping Skills", Value="coping-skills"},
+                    new SelectListItem{Text="Relationship Issues", Value="relationship-issues"}
+
+                    },
+                    new { @class = "form-control col-sm-8" }
+                )
+            </div>
+            
+            
+            <div class="form-group row" id="therapyZipcode" name="therapyZipcode">
+                <div class="control-label col-sm-4">
+                    What is your zipcode?
+                </div>
+                @Html.EditorFor(model => model.therapyZipcode, new { htmlAttributes = new { @class = "form-control col-sm-10" } })
+            </div>
+            
+            <input type="submit" value="Find Help" />
+    </form>
+ }
 </body>
 </html>
-@section Scripts{
-    <script>
-
-    </script>
-}
