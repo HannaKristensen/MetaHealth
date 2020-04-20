@@ -1,0 +1,119 @@
+﻿body {
+
+    font-family:Verdana;
+
+}
+
+#row1Icon {
+    height: 200px;
+    width: 200px;
+    background-image: url("https://i.postimg.cc/D0WGsK1n/Untitled-Artwork-2-1.png");
+    text-align: right;
+    font-family: Verdana;
+    margin-top: 10px;
+    color: white;
+    font-weight: bold;
+    background-size: 200px 200px;
+    font-size: 30px;
+    margin-right: 5px;
+}
+
+#row2Icon {
+    height: 200px;
+    width: 200px;
+    background-image: url("https://i.postimg.cc/C5Wqs64D/Untitled-Artwork-1-1.png");
+    text-align: right;
+    font-family: Verdana;
+    margin-top: 10px;
+    color: white;
+    font-weight: bold;
+    background-size: 200px 200px;
+    font-size: 23px;
+    margin-right: 5px;
+}
+
+#row3Icon {
+    height: 200px;
+    width: 200px;
+    background-image: url("https://i.postimg.cc/44MVGmTd/Untitled-Artwork-1.png");
+    text-align: right;
+    font-family: Verdana;
+    margin-top: 10px;
+    color: white;
+    font-weight: bold;
+    background-size: 200px 200px;
+    font-size: 23px;
+    margin-right: 5px;
+}
+
+#squareRow1Title {
+    height: 200px;
+    width: 200px;
+    border: 7px solid #F0C032;
+    margin-top: 10px;
+    text-align: right;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Verdana;
+}
+
+    #squareRow1Title:hover a{
+        color: white;
+        opacity: 1;
+        transition: 0.3s;
+    }
+
+
+#squareRow2 {
+    height: 200px;
+    width: 200px;
+    border: 7px solid #EE8535;
+    margin-top: 10px;
+    text-align: right;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Verdana;
+}
+
+#squareRow2:hover a {
+    color: white;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+#squareRow3 {
+    height: 200px;
+    width: 200px;
+    border: 7px solid #49C7CA;
+    margin-top: 10px;
+    text-align: right;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Verdana;
+
+}
+#squareRow3:hover a {
+    color: white;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+#more {
+    color: darkgrey;
+    font-size: 12px;
+    text-align: right;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+
+
+
