@@ -24,5 +24,7 @@ namespace Calendar.ASP.NET.MVC5.Models
         public string[] CustomTask { get; set; }
         public string[] id { get; set; }
         public int[] PK { get; set; }
+
+        public bool EventsOrNah { get; set; }
     }
 }
