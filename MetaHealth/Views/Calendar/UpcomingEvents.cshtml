@@ -5,311 +5,310 @@
     ViewBag.Title = "Upcoming Events";
 }
 
-    <@Page Async="true">
+<@Page Async="true">
 
+    <div id="redirectInst">
+        <div class="col">
+            <h1 id="redirectText">Hi there! It looks like you don't have your Google Calendar/Google tasks set up yet. Let's get you set up:</h1>
+            <br />
+            <h1 id="redirectText">1. Open the Gmail account you are using with our site </h1>
+            <br />
+            <h1 id="redirectText">2. On the very far right side, there is a side bar with a calendar logo and a tasks logo, you should see this:</h1>
+            <img src="https://i.ibb.co/hd3pZvw/sidebar.png" height="377" width="145">
+            <br />
+            <h1 id="redirectText">3. Go ahead and click the calendar, and then click on the tasks. All you need to do is open them to activate them!</h1>
+            <br />
+            <h1 id="redirectText">4. Once they are both opened, refresh this page and you are good to go!</h1>
+        </div>
+    </div>
 
-
-        <div id="redirectInst">
-            <div class="col">
-                <h1 id="redirectText">Hi there! It looks like you don't have your Google Calendar/Google tasks set up yet. Let's get you set up:</h1>
-                <br />
-                <h1 id="redirectText">1. Open the Gmail account you are using with our site </h1>
-                <br />
-                <h1 id="redirectText">2. On the very far right side, there is a side bar with a calendar logo and a tasks logo, you should see this:</h1>
-                <img src="https://i.ibb.co/hd3pZvw/sidebar.png" height="377" width="145">
-                <br />
-                <h1 id="redirectText">3. Go ahead and click the calendar, and then click on the tasks. All you need to do is open them to activate them!</h1>
-                <br />
-                <h1 id="redirectText">4. Once they are both opened, refresh this page and you are good to go!</h1>
+    <div class="container" id="eventsPage">
+        <a href="~/DAL/Model.cs"></a>
+        @*First row of content. This includes (from left to right) mood graph and space for daily self care suggestion*@
+        <div class="row" id="homePageRow1">
+            @if (Model.MoodDictionary.Count != 0)
+            {
+                @*Spot for mood graph*@
+                <div class="col-lg-5" style="height:370px; margin-left: 35px ;  background-color: #eeebdd ; border:5px solid #F0C032 ; border-radius: 25px" id="moodgraph">
+                </div>
+            }
+            @*Empty col to make space between these two modules*@
+            <div class="col-sm-1"></div>
+            @*Spot for daily self care suggestion*@
+            <div class="col-lg-5" style="background-color: #eeebdd ; height:270px; border:5px solid #49C7CA ; border-radius: 25px; text-align:center" id="selfcare">
+                <div class="row"></div>
+                <div class="selfCareTitle"><h3>Welcome! Today's self care suggestion:</h3></div>
+                <div></div>
+                <div class="randSuggestion" id="suggestion"></div>
             </div>
         </div>
 
-        <div class="container" id="eventsPage">
-            <a href="~/DAL/Model.cs"></a>
-            @*First row of content. This includes (from left to right) mood graph and space for daily self care suggestion*@
-            <div class="row" id="homePageRow1">
-                @if (Model.MoodDictionary.Count != 0)
+        <div class="row">
+            <p></p>
+        </div>
+
+        @*Second row of content. This includes (from left to right) Google Calendar, Google Tasks*@
+        <div id="homePageRow2" class="row">
+
+            @*Spot for Google Calendar*@
+            <div class="col-lg-5" style="background-color: #eeebdd ; display: block; border:5px solid #248D83 ; border-radius: 25px" id="googleCalColumn">
+                @helper FormatEventTime(CalendarData.EventDateTime when)
                 {
-                    @*Spot for mood graph*@
-                    <div class="col-lg-5" style="height:370px; margin-left: 35px ;  background-color: #eeebdd ; border:5px solid #F0C032 ; border-radius: 25px" id="moodgraph">
-                    </div>
+                    // Either Date or DateTime is set, depending on whether or not the event is
+                    // an all-day event.
+                    if (when.DateTime == null)
+                    {
+                        <text>All day</text>
+                    }
+                    else
+                    {
+                        @:@when.DateTime.Value.ToShortTimeString()
+                    }
                 }
-                @*Empty col to make space between these two modules*@
-                <div class="col-sm-1"></div>
-                @*Spot for daily self care suggestion*@
-                <div class="col-lg-5" style="background-color: #eeebdd ; height:270px; border:5px solid #49C7CA ; border-radius: 25px; text-align:center" id="selfcare">
-                    <div class="row"></div>
-                    <div class="selfCareTitle"><h3>Welcome! Today's self care suggestion:</h3></div>
-                    <div></div>
-                    <div class="randSuggestion" id="suggestion"></div>
-                </div>
-            </div>
 
-            <div class="row">
-                <p></p>
-            </div>
-
-            @*Second row of content. This includes (from left to right) Google Calendar, Google Tasks*@
-            <div id="homePageRow2" class="row">
-
-                @*Spot for Google Calendar*@
-                <div class="col-lg-5" style="background-color: #eeebdd ; display: block; border:5px solid #248D83 ; border-radius: 25px" id="googleCalColumn">
-                    @helper FormatEventTime(CalendarData.EventDateTime when)
+                @helper FormatEventLength(CalendarData.EventDateTime start, CalendarData.EventDateTime end)
+                {
+                    var duration = end.DateTime - start.DateTime;
+                    if (duration == null)
                     {
-                        // Either Date or DateTime is set, depending on whether or not the event is
-                        // an all-day event.
-                        if (when.DateTime == null)
-                        {
-                            <text>All day</text>
-                        }
-                        else
-                        {
-                            @:@when.DateTime.Value.ToShortTimeString()
-                        }
+                        <text>All day</text>
                     }
-
-                    @helper FormatEventLength(CalendarData.EventDateTime start, CalendarData.EventDateTime end)
+                    else
                     {
-                        var duration = end.DateTime - start.DateTime;
-                        if (duration == null)
-                        {
-                            <text>All day</text>
-                        }
-                        else
-                        {
-                            @:@string.Format(
+                        @:@string.Format(
 
-  "{0} hour{1} {2} minute{3}",
-  (int)duration.Value.TotalHours,
-  duration.Value.TotalHours >= 2 ? "s" : "",
-  (int)duration.Value.Minutes,
-  duration.Value.Minutes >= 2 ? "s" : "")
-
-
-
-
-                        }
-                    }
-
-                    <h2 style="text-align:center">Upcoming Events</h2>
-                    <hr>
-
-                    <table id="TaskEvent" class="table">
-                        <thead>
-                            <tr>
-                                <th>Time</th>
-                                <th>Length</th>
-                                <th>Summary</th>
-                            </tr>
-                        </thead>
-
-                        @foreach (var group in Model.EventGroups)
-                        {
-                            <tbody>
-                                <tr><th colspan="4">@group.GroupTitle</th></tr>
-                                @foreach (var item in group.Events)
-                                {
-
-                                    <tr>
-                                        <td>@FormatEventTime(item.Start)</td>
-                                        <td>@FormatEventLength(item.Start, item.End)</td>
-                                        <td>@item.Summary</td>
-                                    </tr>
-
-                                }
-                            </tbody>
-                        }
-                    </table>
-
-                    <div class="row" style="text-align:center ; align-content: center">
-                        <button class="MarkDownButtons" onclick="showAddEvent()">Add an Event</button>
-                    </div>
-                    <br />
-
-                    &nbsp;
-
-
-                    @using (Html.BeginForm("AddEvent", "Calendar", FormMethod.Post))
-                    {
-                        <div class="form-group" id="eventAddForm">
-                            @Html.Label("EventSummary", "Event Summary: ")
-                            @Html.TextBox("EventSummary", null, new { @class = "form-control", type = "text", required = "required" })
-                            @Html.Label("EventLocation", "Event Location: ")
-                            @Html.TextBox("EventLocation", null, new { @class = "form-control", type = "text", required = "required" })
-                            @Html.Label("EventDescription", "Event Description: ")
-                            @Html.TextBox("EventDescription", null, new { @class = "form-control", type = "text", required = "required" })
-                            @Html.Label("EventStartDate", "Event Start Date: ")
-                            @Html.TextBox("EventStartDate", null, new { @class = "form-control", type = "date", required = "required" })
-                            @Html.Label("EventStartTime", "Event Start Time: ")
-                            @Html.TextBox("EventStartTime", null, new { @class = "form-control", type = "time", required = "required" })
-                            @Html.Label("EventEndDate", "Event End Date: ")
-                            @Html.TextBox("EventEndDate", null, new { @class = "form-control", type = "date", required = "required" })
-                            @Html.Label("EventEndTime", "Event End Time: ")
-                            @Html.TextBox("EventEndTime", null, new { @class = "form-control", type = "time", required = "required" })
-                            @Html.Label("Remind", "Event Reminder via email (0 to 40320 minutes before): ")
-                            @Html.TextBox("Remind", null, new { @class = "form-control", type = "text", required = "required" })
-
-                            <br />
-                            <div class="row" style="align-content:center ; text-align:center">
-                                <button type="submit" class="MarkDownButtons">Add This Event</button>
-                            </div>
-                        </div>
+"{0} hour{1} {2} minute{3}",
+(int)duration.Value.TotalHours,
+duration.Value.TotalHours >= 2 ? "s" : "",
+(int)duration.Value.Minutes,
+duration.Value.Minutes >= 2 ? "s" : "")
 
                     }
-                </div>
+                }
 
-                @*Small empty col to create a space between the tasks and calendar*@
-                <div class="col-sm-1"></div>
+                <h2 style="text-align:center">Upcoming Events</h2>
+                <hr>
 
-                @*Google Tasks Spot*@
-                <div class="col-lg-5" style="background-color: #eeebdd ; border:5px solid #6C984B ; border-radius: 25px">
-                    <h2 style="text-align:center">@Model.MultiList[0]</h2>
-                    <hr>
-                    <div class="checkMate">
-                        <table id="TaskTable" class="table">
-                            <tbody>
-                                @for (int i = 0; i < Model.MultiTask.Length; i++)
-                                {
-                                    <tr id="@Model.MultiTaskID[i]">
-                                        <td><input type="checkbox"></td>
-                                        <td>@Model.MultiTask[i]</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                <table id="TaskEvent" class="table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Length</th>
+                            <th>Summary</th>
+                        </tr>
+                    </thead>
 
-                    @*Row containing buttons: Add task, refresh/mark done*@
-                    <div class="row" id="taskButtons" style="text-align:center ; align-content:center">
-                        <button class="MarkDownButtons" onclick="MarkDown()">Mark Done</button>
-                        &nbsp;
-                        <button class="MarkDownButtons" onclick="showAddTask()">Add a task</button>
-                        <p></p>
-                        <button class="MarkDownButtons" onclick="showPreMadeTasks()">Add Pre-Made Tasks</button>
-                        <button class="MarkDownButtons" onclick="showCustomList()">Custom List</button>
-                    </div>
-
-                    <div class="row">
-                        <p></p>
-                    </div>
-
-                    @*Row for adding tasks, appears and dissapears with JS*@
-                    <div class="row" id="addCustom">
-                        &nbsp;
-                        <p>
-                            <button class="MarkDownButtons">@Html.ActionLink("Create New", "Create", "CustomLists")</button>
-                            <button class="MarkDownButtons" onclick="addCustomTasks()">Add Tasks</button>
-                        </p>
-                        <table class="table">
-                            <tr>
-                                <th>
-                                    <h4>Custom List</h4>
-                                </th>
-                                <th></th>
-                            </tr>
-
-                            @for (int i = 0; i < Model.CustomTask.Length; i++)
+                    @foreach (var group in Model.EventGroups)
+                    {
+                        <tbody>
+                            <tr><th colspan="4">@group.GroupTitle</th></tr>
+                            @foreach (var item in group.Events)
                             {
+
                                 <tr>
-                                    <td>
-                                        @Model.CustomTask[i]
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Edit", "Edit", "CustomLists", new { id = Model.PK[i] }, null) |
-                                        @Html.ActionLink("Delete", "Delete", "CustomLists", new { id = Model.PK[i] }, null)
-                                    </td>
+                                    <td>@FormatEventTime(item.Start)</td>
+                                    <td>@FormatEventLength(item.Start, item.End)</td>
+                                    <td>@item.Summary</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    }
+                </table>
+
+                <div class="row" style="text-align:center ; align-content: center">
+                    <button class="MarkDownButtons" onclick="showAddEvent()">Add an Event</button>
+                </div>
+                <br />
+
+                &nbsp;
+
+                @using (Html.BeginForm("AddEvent", "Calendar", FormMethod.Post))
+                {
+                    <div class="form-group" id="eventAddForm">
+                        @Html.Label("EventSummary", "Event Summary: ")
+                        @Html.TextBox("EventSummary", null, new { @class = "form-control", type = "text", required = "required" })
+                        @Html.Label("EventLocation", "Event Location: ")
+                        @Html.TextBox("EventLocation", null, new { @class = "form-control", type = "text", required = "required" })
+                        @Html.Label("EventDescription", "Event Description: ")
+                        @Html.TextBox("EventDescription", null, new { @class = "form-control", type = "text", required = "required" })
+                        @Html.Label("EventStartDate", "Event Start Date: ")
+                        @Html.TextBox("EventStartDate", null, new { @class = "form-control", type = "date", required = "required" })
+                        @Html.Label("EventStartTime", "Event Start Time: ")
+                        @Html.TextBox("EventStartTime", null, new { @class = "form-control", type = "time", required = "required" })
+                        @Html.Label("EventEndDate", "Event End Date: ")
+                        @Html.TextBox("EventEndDate", null, new { @class = "form-control", type = "date", required = "required" })
+                        @Html.Label("EventEndTime", "Event End Time: ")
+                        @Html.TextBox("EventEndTime", null, new { @class = "form-control", type = "time", required = "required" })
+                        @Html.Label("Remind", "Event Reminder via email (0 to 40320 minutes before): ")
+                        @Html.TextBox("Remind", null, new { @class = "form-control", type = "text", required = "required" })
+
+                        <br />
+                        <div class="row" style="align-content:center ; text-align:center">
+                            <button type="submit" class="MarkDownButtons">Add This Event</button>
+                        </div>
+                    </div>
+
+                }
+            </div>
+
+            @*Small empty col to create a space between the tasks and calendar*@
+            <div class="col-sm-1"></div>
+
+            @*Google Tasks Spot*@
+            <div class="col-lg-5" style="background-color: #eeebdd ; border:5px solid #6C984B ; border-radius: 25px">
+                <h2 style="text-align:center">@Model.MultiList[0]</h2>
+                <hr>
+                <div class="checkMate">
+                    <table id="TaskTable" class="table">
+                        <tbody>
+                            @for (int i = 0; i < Model.MultiTask.Length; i++)
+                            {
+                                <tr id="@Model.MultiTaskID[i]">
+                                    <td><input type="checkbox"></td>
+                                    <td>@Model.MultiTask[i]</td>
                                 </tr>
                             }
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
+                </div>
 
-                    <div class="row" id="addTaskRow">
-                        @using (Html.BeginForm("UpcomingEvents", "Calendar", FormMethod.Post))
+                @*Row containing buttons: Add task, refresh/mark done*@
+                <div class="row" id="taskButtons" style="text-align:center ; align-content:center">
+                    <button class="MarkDownButtons" onclick="MarkDown()">Mark Done</button>
+                    &nbsp;
+                    <button class="MarkDownButtons" onclick="showAddTask()">Add a task</button>
+                    <p></p>
+                    <button class="MarkDownButtons" onclick="showPreMadeTasks()">Add Pre-Made Tasks</button>
+                    <button class="MarkDownButtons" onclick="showCustomList()">Custom List</button>
+                </div>
+
+                <div class="row">
+                    <p></p>
+                </div>
+
+                @*Row for adding tasks, appears and dissapears with JS*@
+                <div class="row" id="addCustom">
+                    &nbsp;
+                    <p>
+                        <button class="MarkDownButtons">@Html.ActionLink("Create New", "Create", "CustomLists")</button>
+                        <button class="MarkDownButtons" onclick="addCustomTasks()">Add Tasks</button>
+                    </p>
+                    <table class="table">
+                        <tr>
+                            <th>
+                                <h4>Custom List</h4>
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @for (int i = 0; i < Model.CustomTask.Length; i++)
                         {
-                            <div class="form-group">
-                                @Html.Label("task", "Add a task: ")
-                                @Html.TextBox("taskTitle", null, new { @class = "form-control", type = "text", required = "required" })
-                                <br />
-                                <button type="submit" class="MarkDownButtons">Add!</button>
-                            </div>
+                            <tr>
+                                <td>
+                                    @Model.CustomTask[i]
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", "CustomLists", new { id = Model.PK[i] }, null) |
+                                    @Html.ActionLink("Delete", "Delete", "CustomLists", new { id = Model.PK[i] }, null)
+                                </td>
+                            </tr>
                         }
-                    </div>
-                    <div class="row">
-                        <ul id="preMadeTasks">
+                    </table>
+                </div>
+
+                <div class="row" id="addTaskRow">
+                    @using (Html.BeginForm("UpcomingEvents", "Calendar", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            @Html.Label("task", "Add a task: ")
+                            @Html.TextBox("taskTitle", null, new { @class = "form-control", type = "text", required = "required" })
+                            <br />
+                            <button type="submit" class="MarkDownButtons">Add!</button>
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    <ul id="preMadeTasks">
+                        <div>
+                            <h4 style="font-weight:bold ; text-align:center">
+                                These are pre-made lists that will add the following tasks to your task list!
+                                Each number represents a level of effort:
+                            </h4>
+                            <li>
+                                @using (Html.BeginForm("AddPreMadeOne", "Calendar", FormMethod.Post))
+                                {
+                                    <div class="form-group">
+                                        <h5 style="font-weight:bold">Level One:</h5>
+                                        <ul>
+                                            <li>Get out of bed</li>
+                                            <li>Drink a glass of water</li>
+                                            <li>Eat a meal</li>
+                                        </ul>
+                                        <br />
+                                        <button type="submit" class="MarkDownButtons">Add Tasks</button>
+                                    </div>
+                                }
+                        </div>
+                        </li>
+                        <li>
                             <div>
-                                <h4 style="font-weight:bold ; text-align:center">
-                                    These are pre-made lists that will add the following tasks to your task list!
-                                    Each number represents a level of effort:
-                                </h4>
-                                <li>
-                                    @using (Html.BeginForm("AddPreMadeOne", "Calendar", FormMethod.Post))
-                                    {
-                                        <div class="form-group">
-                                            <h5 style="font-weight:bold">Level One:</h5>
-                                            <ul>
-                                                <li>Get out of bed</li>
-                                                <li>Drink a glass of water</li>
-                                                <li>Eat a meal</li>
-                                            </ul>
-                                            <br />
-                                            <button type="submit" class="MarkDownButtons">Add Tasks</button>
-                                        </div>
-                                    }
+                                @using (Html.BeginForm("AddPreMadeTwo", "Calendar", FormMethod.Post))
+                                {
+                                    <div class="form-group">
+                                        <h5 style="font-weight:bold">Level Two:</h5>
+                                        <ul>
+                                            <li>Take a shower</li>
+                                            <li>Talk to someone</li>
+                                            <li>Brush Teeth</li>
+                                            <li>Put on Deodorant</li>
+                                        </ul>
+                                        <br />
+                                        <button type="submit" class="MarkDownButtons">Add Tasks</button>
+                                    </div>
+                                }
                             </div>
-                            </li>
-                            <li>
-                                <div>
-                                    @using (Html.BeginForm("AddPreMadeTwo", "Calendar", FormMethod.Post))
-                                    {
-                                        <div class="form-group">
-                                            <h5 style="font-weight:bold">Level Two:</h5>
-                                            <ul>
-                                                <li>Take a shower</li>
-                                                <li>Talk to someone</li>
-                                                <li>Brush Teeth</li>
-                                                <li>Put on Deodorant</li>
-                                            </ul>
-                                            <br />
-                                            <button type="submit" class="MarkDownButtons">Add Tasks</button>
-                                        </div>
-                                    }
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    @using (Html.BeginForm("AddPreMadeThree", "Calendar", FormMethod.Post))
-                                    {
-                                        <div class="form-group">
-                                            <h5 style="font-weight:bold">Level Three:</h5>
-                                            <ul>
-                                                <li>Make your bed</li>
-                                                <li>Talk to someone face to face</li>
-                                                <li>Go on a walk</li>
-                                                <li>Pick up room</li>
-                                            </ul>
-                                            <br />
-                                            <button type="submit" class="MarkDownButtons">Add Tasks</button>
-                                        </div>
-                                    }
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                        </li>
+                        <li>
+                            <div>
+                                @using (Html.BeginForm("AddPreMadeThree", "Calendar", FormMethod.Post))
+                                {
+                                    <div class="form-group">
+                                        <h5 style="font-weight:bold">Level Three:</h5>
+                                        <ul>
+                                            <li>Make your bed</li>
+                                            <li>Talk to someone face to face</li>
+                                            <li>Go on a walk</li>
+                                            <li>Pick up room</li>
+                                        </ul>
+                                        <br />
+                                        <button type="submit" class="MarkDownButtons">Add Tasks</button>
+                                    </div>
+                                }
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script type="text/javascript" src="~/Scripts/TasksAPI.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.2.0/dist/confetti.browser.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/TasksAPI.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.2.0/dist/confetti.browser.min.js"></script>
 
+    @*Check if user has activated Google Calendar*@
+    @if (Model.EventsOrNah == false)
+    {
+        <script>hideContent()</script>
+        <script>showRedirect()</script>
+    }
 
-
-        @section Scripts {
-            @Scripts.Render("~/Scripts/TasksAPI.js");
-            @Scripts.Render("https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js");
-            @Scripts.Render("https://canvasjs.com/assets/script/canvasjs.min.js");
-            @Scripts.Render("~/Scripts/SelfCareSuggestion.js")
-            <script>
+    @section Scripts {
+        @Scripts.Render("~/Scripts/TasksAPI.js");
+        @Scripts.Render("https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js");
+        @Scripts.Render("https://canvasjs.com/assets/script/canvasjs.min.js");
+        @Scripts.Render("~/Scripts/SelfCareSuggestion.js")
+        <script>
                 window.onload=function() {
                     var chart=new CanvasJS.Chart("moodgraph",{
                         backgroundColor: null,
@@ -339,5 +338,5 @@
                     });
                     chart.render();
                 }
-            </script>
-        }
+        </script>
+    }

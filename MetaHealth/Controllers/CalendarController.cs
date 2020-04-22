@@ -210,10 +210,14 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             }
             else ViewBag.NoEvents = eventsOrNo;
 
+            //Custom List
             var userId = User.Identity.GetUserId();
             model.CustomTask = db.CustomLists.Where(x => x.UserID == userId).Select(x => x.TaskTitle).ToArray();
             model.id = db.CustomLists.Where(x => x.UserID == userId).Select(x => x.UserID).ToArray();
             model.PK = db.CustomLists.Where(x => x.UserID == userId).Select(x => x.PK).ToArray();
+
+            //JS for opening calendar
+            model.EventsOrNah = await AmountOfEvents();
 
             return View(model);
         }
@@ -618,7 +622,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 };
                 calendarEvent.Recurrence = new List<string>();
 
-
                 calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
                 {
                     UseDefault = false,
@@ -626,9 +629,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                     {
                         new Google.Apis.Calendar.v3.Data.EventReminder() {Method = "email", Minutes = Remind}
                     }
-               
                 };
-
 
                 var newEventRequest = calendarService.Events.Insert(calendarEvent, calendarId);
                 var eventResult = newEventRequest.Execute();
@@ -707,6 +708,39 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             var json = JsonConvert.SerializeObject(taskArr);
 
             return Content(json);
+        }
+
+        public async Task<bool> AmountOfEvents()
+        {
+            var credential = await GetCredentialForApiAsync();
+
+            var initializer = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "MetaHealth",
+            };
+            var service = new CalendarService(initializer);
+
+            // Fetch the list of calendars.
+            var calendars = await service.CalendarList.List().ExecuteAsync();
+
+            // Fetch some events from each calendar.
+            var fetchTasks = new List<Task<Google.Apis.Calendar.v3.Data.Events>>(calendars.Items.Count);
+            foreach (var calendar in calendars.Items)
+            {
+                var request = service.Events.List(calendar.Id);
+                request.MaxResults = 2;
+                request.SingleEvents = true;
+                request.TimeMin = DateTime.Now;
+                fetchTasks.Add(request.ExecuteAsync());
+            }
+            var fetchResults = await Task.WhenAll(fetchTasks);
+
+            if (fetchResults.Length > 1)
+            {
+                return true;
+            }
+            else return false;
         }
     }
 }
