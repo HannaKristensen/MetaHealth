@@ -6,7 +6,7 @@
         <div id="headerV">
             <p>Here you can vent and hit submit:</p>
         </div>
-        <br />
+        <br>
         <form style="text-align:center">
             <textarea id="tV" style="width:500px; height:100px;"></textarea>
             <br>
@@ -27,3 +27,39 @@
         </div>
     </div>
 </body>
+
+@section scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(function () {
+            // run the currently selected effect
+            function runEffect() {
+                // get effect type from
+                var selectedEffect = $("#effectTypes").val();
+
+                // Most effect types need no options passed by default
+                var options = {};
+
+                // Run the effect
+                $(t).val("");
+                $("#tV").effect(selectedEffect, options, 800, callback);
+            };
+
+            // Callback function to bring a hidden box back
+            function callback() {
+                setTimeout(function () {
+                    $("#tV").removeAttr("style").hide().fadeIn();
+                }, 500);
+            };
+
+            // Set effect from select menu value
+            $("#button").on("click", function () {
+                runEffect();
+                return false;
+            });
+        });
+    </script>
+}
