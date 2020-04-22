@@ -309,7 +309,7 @@
     <Content Include="Views\Home\FlowchartCheck.cshtml" />
     <Content Include="Views\Home\Flowchart.cshtml" />
     <Content Include="Views\Calendar\UpcomingEvents.cshtml" />
-    <Content Include="Views\Home\Venting.cshtml" />
+    <None Include="Views\Home\Venting.cshtml" />
     <Content Include="Views\Home\SelfCareQuiz.cshtml" />
     <Content Include="Views\SepMoods\Create.cshtml" />
     <Content Include="Views\SepMoods\Delete.cshtml" />

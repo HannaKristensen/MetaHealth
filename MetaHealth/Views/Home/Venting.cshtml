@@ -1,8 +1,5 @@
-﻿<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
-
-<style>
-
-    .button {
+﻿<style>
+    #button {
         background-color: #EE8535;
         border: none;
         color: white;
@@ -11,8 +8,9 @@
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        border-radius:24px;
+        border-radius: 24px;
     }
+
     #title {
         text-align: center;
         align-content: center;
@@ -22,50 +20,101 @@
         color: #EE8535;
         margin: 10px
     }
-    #t {
-        border-radius:0.5em ;
 
+    #t {
+        border-radius: 0.5em;
+        resize: none;
+        width: 500px;
+        height: 100px;
+    }
+
+    #header {
+        text-align: center;
+        font-family: Verdana;
+    }
+
+    #submitSelect {
+        text-align: center;
+        position: relative;
+        font-family: Verdana;
     }
 </style>
 <!DOCTYPE html>
 
 <html>
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
 
-         function reset() {
-        document.getElementById(t).reset();
-    }
-    
-        $(document).ready(function () {
-            $(".button").click(function () {
-                $(t).fadeOut();
-                $(t).fadeIn();
-                $(t).val(""); 
-            });
-        });
-    </script>
+<head>
+
+
 </head>
+
 <body>
 
-    <div class="container">
+    <div id="container">
         <p id="title">Venting Space</p>
+
+        <div id="header">
+            <p>Here you can vent and hit submit:</p>
+        </div>
+        <br />
+        <form style="text-align:center">
+            <textarea id="t" style="width:500px; height:100px;"></textarea>
+            <br>
+        </form>
+        <div id="submitSelect">
+            <button id="button" class="ui-state-default ui-corner-all">Submit</button>
+
+            <br>
+            <br>
+            <select name="effects" id="effectTypes">
+
+                <option value="puff">Animation 1</option>
+                <option value="blind">Animation 2</option>
+                <option value="drop">Animation 3</option>
+                <option value="explode">Animation 4</option>
+                <option value="shake">Animation 5</option>
+
+            </select>
         </div>
 
-            <p style="text-align:center">Here you can vent and hit submit:</p>
-            <br />
-            <form style="text-align:center">
-                <textarea id="t" style="width:500px; height:100px;"></textarea>
-                <br>
-            </form>
-            <br />
-            <div style="text-align:center ">
-                <row>
-                    <button class="button">Submit</button>
-                </row>
-            </div>
+    </div>
 
 
 </body>
+
 </html>
+
+@section scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            // run the currently selected effect
+            function runEffect() {
+                // get effect type from
+                var selectedEffect = $("#effectTypes").val();
+
+                // Most effect types need no options passed by default
+                var options = {};
+
+                // Run the effect
+                $(t).val("");
+                $("#t").effect(selectedEffect, options, 500, callback);
+            };
+
+            // Callback function to bring a hidden box back
+            function callback() {
+                setTimeout(function () {
+                    $("#t").removeAttr("style").hide().fadeIn();
+                }, 100);
+            };
+
+            // Set effect from select menu value
+            $("#button").on("click", function () {
+                runEffect();
+                return false;
+            });
+        });
+    </script>
+}
