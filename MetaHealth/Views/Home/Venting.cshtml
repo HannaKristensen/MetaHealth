@@ -1,59 +1,17 @@
-﻿<style>
-    #button {
-        background-color: #EE8535;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        border-radius: 24px;
-    }
-
-    #title {
-        text-align: center;
-        align-content: center;
-        font-family: Verdana;
-        font-weight: 700;
-        font-size: 50px;
-        color: #EE8535;
-        margin: 10px
-    }
-
-    #t {
-        border-radius: 0.5em;
-        resize: none;
-        width: 500px;
-        height: 100px;
-    }
-
-    #header {
-        text-align: center;
-        font-family: Verdana;
-    }
-
-    #submitSelect {
-        text-align: center;
-        position: relative;
-        font-family: Verdana;
-    }
-</style>
-
-<body>
+﻿<body>
 
     <div id="container">
-        <p id="title">Venting Space</p>
+        <p id="titleV">Venting Space</p>
 
-        <div id="header">
+        <div id="headerV">
             <p>Here you can vent and hit submit:</p>
         </div>
         <br />
         <form style="text-align:center">
-            <textarea id="t" style="width:500px; height:100px;"></textarea>
+            <textarea id="tV" style="width:500px; height:100px;"></textarea>
             <br>
         </form>
-        <div id="submitSelect">
+        <div id="submitSelectV">
             <button id="button" class="ui-state-default ui-corner-all">Submit</button>
 
             <br>
@@ -86,13 +44,13 @@
 
                 // Run the effect
                 $(t).val("");
-                $("#t").effect(selectedEffect, options, 800, callback);
+                $("#tV").effect(selectedEffect, options, 800, callback);
             };
 
             // Callback function to bring a hidden box back
             function callback() {
                 setTimeout(function () {
-                    $("#t").removeAttr("style").hide().fadeIn();
+                    $("#tV").removeAttr("style").hide().fadeIn();
                 }, 500);
             };
 
