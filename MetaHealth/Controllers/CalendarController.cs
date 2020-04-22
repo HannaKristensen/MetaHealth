@@ -579,6 +579,9 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             model.id = db.CustomLists.Where(x => x.UserID == userId).Select(x => x.UserID).ToArray();
             model.PK = db.CustomLists.Where(x => x.UserID == userId).Select(x => x.PK).ToArray();
 
+            //JS for opening calendar
+            model.EventsOrNah = await AmountOfEvents();
+
             return model;
         }
 
