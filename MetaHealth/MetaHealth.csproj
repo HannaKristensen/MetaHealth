@@ -205,6 +205,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\CustomListsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TestingController.cs" />
     <Compile Include="Models\AspNetRole.cs" />
     <Compile Include="Models\AspNetUser.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="DAL\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="DAL\Model.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\SepMood.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Startup.cs" />
@@ -242,6 +244,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\BreathingSpace.css" />
     <Content Include="Content\Flowchart.css" />
+    <Content Include="Content\resources.css" />
     <Content Include="Content\SelfCareQuiz.css" />
     <Content Include="credentials.json" />
     <Content Include="favicon.ico" />
@@ -323,6 +326,7 @@
     <Content Include="Views\CustomLists\Details.cshtml" />
     <Content Include="Views\CustomLists\Edit.cshtml" />
     <Content Include="Views\CustomLists\Index.cshtml" />
+    <Content Include="Views\Search\SearchPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
