@@ -426,3 +426,29 @@ a:visited {
     border-color: white;
 }
 
+.logButton {
+    background-color: #EE8535;
+    border: 1.5px solid #DE5C40;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Verdana;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-decoration: none;
+    white-space: normal;
+    border-radius: 38px;
+    padding: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+    .logButton:hover {
+        background-color: #f5b88a;
+        border: 1.5px solid #DE5C40;
+        color: white;
+        opacity: 1;
+        transition: 0.5s;
+    }
+
