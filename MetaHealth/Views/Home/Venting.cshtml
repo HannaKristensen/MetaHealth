@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <style>
@@ -43,24 +43,23 @@
         }
     </style>
 </head>
-
+<div class="container">
     <body>
         <div id="container">
-            <p id="title">Venting Space</p>
+            <p id="titleV">Venting Space</p>
 
-            <div id="header">
+            <div id="headerV">
                 <p>Here you can vent and hit submit:</p>
             </div>
-            <br />
+            </br>
             <form style="text-align:center">
-                <textarea id="t" style="width:500px; height:100px;"></textarea>
+                <textarea id="tV" style="width:500px; height:100px;"></textarea>
                 <br>
             </form>
-            <div id="submitSelect">
+            <div id="submitSelectV">
                 <button id="button" class="ui-state-default ui-corner-all">Submit</button>
-
-                <br>
-                <br>
+                </br>
+                </br>
                 <select name="effects" id="effectTypes">
 
                     <option value="puff">Animation 1</option>
@@ -75,10 +74,12 @@
         </div>
     </body>
 </html>
+
 @section scripts{
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <script>
         $(function () {
             // run the currently selected effect
@@ -91,13 +92,13 @@
 
                 // Run the effect
                 $(t).val("");
-                $("#t").effect(selectedEffect, options, 800, callback);
+                $("#tV").effect(selectedEffect, options, 800, callback);
             };
 
             // Callback function to bring a hidden box back
             function callback() {
                 setTimeout(function () {
-                    $("#t").removeAttr("style").hide().fadeIn();
+                    $("#tV").removeAttr("style").hide().fadeIn();
                 }, 500);
             };
 
