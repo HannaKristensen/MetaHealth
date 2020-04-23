@@ -1,58 +1,51 @@
-﻿<style>
-    #button {
-        background-color: #EE8535;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        border-radius: 24px;
-    }
-
-    #title {
-        text-align: center;
-        align-content: center;
-        font-family: Verdana;
-        font-weight: 700;
-        font-size: 50px;
-        color: #EE8535;
-        margin: 10px
-    }
-
-    #t {
-        border-radius: 0.5em;
-        resize: none;
-        width: 500px;
-        height: 100px;
-    }
-
-    #header {
-        text-align: center;
-        font-family: Verdana;
-    }
-
-    #submitSelect {
-        text-align: center;
-        position: relative;
-        font-family: Verdana;
-    }
-</style>
-<!DOCTYPE html>
-
+﻿<!DOCTYPE html>
 <html>
-
 <head>
+    <style>
+        #button {
+            background-color: #EE8535;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 24px;
+        }
 
+        #title {
+            text-align: center;
+            align-content: center;
+            font-family: Verdana;
+            font-weight: 700;
+            font-size: 50px;
+            color: #EE8535;
+            margin: 10px
+        }
 
+        #t {
+            border-radius: 0.5em;
+            resize: none;
+            width: 500px;
+            height: 100px;
+        }
+
+        #header {
+            text-align: center;
+            font-family: Verdana;
+        }
+
+        #submitSelect {
+            text-align: center;
+            position: relative;
+            font-family: Verdana;
+        }
+    </style>
 </head>
-
 <body>
-
     <div id="container">
         <p id="title">Venting Space</p>
-
         <div id="header">
             <p>Here you can vent and hit submit:</p>
         </div>
@@ -63,27 +56,19 @@
         </form>
         <div id="submitSelect">
             <button id="button" class="ui-state-default ui-corner-all">Submit</button>
-
-            <br>
-            <br>
+            <br />
+            <br />
             <select name="effects" id="effectTypes">
-
                 <option value="puff">Animation 1</option>
                 <option value="blind">Animation 2</option>
                 <option value="drop">Animation 3</option>
                 <option value="explode">Animation 4</option>
                 <option value="shake">Animation 5</option>
-
             </select>
         </div>
-
     </div>
-
-
 </body>
-
 </html>
-
 @section scripts{
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -94,22 +79,18 @@
             function runEffect() {
                 // get effect type from
                 var selectedEffect = $("#effectTypes").val();
-
                 // Most effect types need no options passed by default
                 var options = {};
-
                 // Run the effect
                 $(t).val("");
                 $("#t").effect(selectedEffect, options, 800, callback);
             };
-
             // Callback function to bring a hidden box back
             function callback() {
                 setTimeout(function () {
                     $("#t").removeAttr("style").hide().fadeIn();
                 }, 500);
             };
-
             // Set effect from select menu value
             $("#button").on("click", function () {
                 runEffect();
