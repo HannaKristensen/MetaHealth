@@ -1,5 +1,5 @@
-﻿@model MetaHealth.Models.SearchViewModel
-
+﻿<link href="@Url.Content("~/Content/Search.css")" rel="stylesheet" type="text/css" />
+@model MetaHealth.Models.SearchViewModel
 @{
     ViewBag.Title = "Search";
 }
@@ -7,57 +7,29 @@
 
 <html>
 <head>
+    <script async src="https://cse.google.com/cse.js?cx=005994238907998624309:1cnohnw9bkd"></script>
     <meta name="viewport" content="width=device-width" />
-    <style>
-        body {
-            font-family: Verdana;
-        }
-        .search {
-            text-align: center;
-        }
-        h1 {
-            font-weight:700;
-            font-size: 50px;
-        }
-        .par {
-            font-size: 20px;
-        }
-        .findHelpButton { 
-             background-color: #49C7CA;
-             border-radius: 28px;
-             border: 1px solid #6C984B;
-             display: inline-block;
-             cursor: pointer;
-             color: #ffffff;
-             font-family: Arial;
-             font-size: 17px;
-             padding: 18px 31px;
-             text-decoration: none;
-             text-shadow: 0px 1px 0px #2f6627;
-        }
-
-        .form-control {
-            border-radius: 36px;
-            height: 50px;
-        }
-    </style>
 </head>
 <body>
-<div class="search">
-    <h1>Find Help</h1>
-    <div class="par">
-        Seeking help is an incredibly proactive approach to making sure you feel your best.
-        HelpAlong would like to help you make the first step. Make your selections from below and we
-        will redirect you to the proper channels as best as we can.
+    <div class="search">
+        <h1>Find Help</h1>
+        <div class="par">
+            Seeking help is an incredibly proactive approach to making sure you feel your best.
+            HelpAlong would like to help you make the first step. Make your selections from below and we
+            will redirect you to the proper channels as best as we can.
+        </div>
+        <br />
+        <br />
+
     </div>
-</div>
     @using (Html.BeginForm("FindTherapist", "Search", FormMethod.Get)) {
-        @Html.AntiForgeryToken()
-        <form class="form-horizontal">
-            <div class="form-group row" id="therapyCat" name="therapyCat">
-                <label class="control-label col-sm-4">
-                    What source of support are you seeking?
-                </label>
+    @Html.AntiForgeryToken()
+    <form class="form-horizontal">
+        <div class="form-group row" name="therapySearch">
+            <label class="control-label col-sm-4" id="therapySearch">
+                What source of support are you seeking?
+            </label>
+            <div class="therapy-dropdown">
                 @Html.DropDownListFor(model => model.therapyCat, new List<SelectListItem> {
                     new SelectListItem{Text="Make a selection...", Value=""},
                     new SelectListItem{Text="Therapist", Value="therapists"},
@@ -65,14 +37,17 @@
                     new SelectListItem{Text="Support group", Value="groups"},
                     new SelectListItem{Text="Treatment Centers", Value="treatment-rehab"}
                 },
-                    new { @class = "form-control col-sm-8" }
+                    new { @class = "form-control col-sm-8", id = "therapySearch" }
                 )
             </div>
+        </div>
 
-            <div class="form-group row" id="therapySpec" name="therapySpec">
-                <label class="control-label col-sm-4">
-                    What issue would you like to focus on?
-                </label>
+
+        <div class="form-group row" name="therapySearch">
+            <label class="control-label col-sm-4" id="therapySearch">
+                What issue would you like to focus on?
+            </label>
+            <div class="therapy-dropdown">
                 @Html.DropDownListFor(model => model.therapySpec, new List<SelectListItem> {
                     new SelectListItem{Text="Make a selection...", Value=""},
                     new SelectListItem{Text="Anxiety", Value="anxiety"},
@@ -85,20 +60,30 @@
                     new SelectListItem{Text="Relationship Issues", Value="relationship-issues"}
 
                     },
-                    new { @class = "form-control col-sm-8" }
+                    new { @class = "form-control col-sm-8", id = "therapySearch" }
                 )
             </div>
+        </div>
 
 
-            <div class="form-group row" id="therapyZipcode" name="therapyZipcode">
-                <label class="control-label col-sm-4">
-                    What is your zipcode?
-                </label>
-                @Html.EditorFor(model => model.therapyZipcode, new { htmlAttributes = new { @class = "form-control col-sm-10" } })
-            </div>
+        <div class="form-group row" name="therapySearch">
+            <label class="control-label col-sm-4" id="therapySearch">
+                What is your zipcode?
+            </label>
+            @Html.EditorFor(model => model.therapyZipcode, new { htmlAttributes = new { @class = "form-control col-sm-10", pattern = "[0-9]*" } })
+        </div>
 
-            <input type="submit" value="Find Help" class="findHelpButton" />
-        </form>
+        <input type="submit" id="submit" value="Find Help" class="findHelpButton" />
+    </form>
     }
+    <br />
+    <br />
+    <br />
+    <div class="disclaimer">
+        If you're looking for more general information on different diagnoses, please feel free to make use of our
+        <a href="~/Home/Resources" style="color:#248D83;">resources</a> page or using the search bar below.
+        HelpAlong is not affiliated with PsychologyToday and only acts as a bridge to their site should our users opt to go that route.
+    </div>
+    <div class="gcse-search" id="customSeachBar"></div>
 </body>
 </html>
