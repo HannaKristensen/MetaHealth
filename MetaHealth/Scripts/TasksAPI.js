@@ -157,8 +157,8 @@ function createCustomTask() {
     }
 }
 
-function editCustom(data) {
-    var tdObj = document.getElementById(data)
+function editCustom(key) {
+    var tdObj = document.getElementById(key)
     var preText = tdObj.textContent.trim();
     var inputObj = $("<input type='text' />");
     tdObj.textContent = "";
@@ -167,6 +167,18 @@ function editCustom(data) {
         if (13 == event.which) { // press ENTER-key
             var text = $(this).val();
             tdObj.textContent = text;
+            var dataSend = JSON.stringify({
+                'customTaskContent': key,
+                'task': text
+            });
+            $.ajax({
+                type: 'POST',
+                contentType: "application/json",
+                data: dataSend,
+                url: '/calendar/EditCustom',
+                success: messageOut,
+                error: errorOnAjax
+            });
         }
         else if (27 == event.which) {  // press ESC-key
             tdObj.textContent = preText;

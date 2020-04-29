@@ -761,5 +761,18 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return View("UpcomingEvents", model);
         }
+
+        [HttpPost]
+        public ActionResult EditCustom(string customTaskContent, string task)
+        {
+            CustomListsController controller = new CustomListsController();
+            CustomList entry = new CustomList();
+            entry.PK = Int32.Parse(customTaskContent);
+            entry.TaskTitle = task;
+            entry.UserID = User.Identity.GetUserId();
+            controller.Edit(entry);
+
+            return Content("");
+        }
     }
 }
