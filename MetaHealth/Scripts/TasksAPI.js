@@ -143,3 +143,16 @@ function showCustomList() {
         list.style.display = 'block';
     }
 }
+
+function createCustomTask() {
+    var list = document.getElementById("addCusTask")
+    var displaySetting = list.style.display;
+
+    if (displaySetting == 'block') {
+        list.style.display = 'none';
+    }
+
+    else {
+        list.style.display = 'block';
+    }
+}

@@ -20,6 +20,7 @@ using Newtonsoft.Json;
 using System.Data.Entity;
 using MetaHealth.Controllers;
 using MetaHealth.DAL;
+using MetaHealth.Models;
 
 namespace Calendar.ASP.NET.MVC5.Controllers
 {
@@ -744,6 +745,20 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 return true;
             }
             else return false;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateCustom(string titleCustom)
+        {
+            CustomListsController controller = new CustomListsController();
+            CustomList entry = new CustomList();
+            entry.TaskTitle = titleCustom;
+            entry.UserID = User.Identity.GetUserId();
+            controller.Create(entry);
+
+            UpcomingEventsViewModel model = await GetCurrentEventsTask();
+
+            return View("UpcomingEvents", model);
         }
     }
 }

@@ -271,6 +271,9 @@ a:visited {
     display: none
 }
 
+#addCusTask {
+    display: none
+}
 /*GOOGLE CALENDAR*/
 #googleCalColumn {
     margin-left: 35px;
@@ -464,6 +467,7 @@ a:visited {
     position: relative;
     font-family: Verdana;
 }
+
 .logButton {
     background-color: #EE8535;
     border: 1.5px solid #DE5C40;
@@ -489,4 +493,3 @@ a:visited {
         opacity: 1;
         transition: 0.5s;
     }
-
