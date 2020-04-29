@@ -755,6 +755,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             entry.TaskTitle = titleCustom;
             entry.UserID = User.Identity.GetUserId();
             controller.Create(entry);
+            ModelState.Clear();
 
             UpcomingEventsViewModel model = await GetCurrentEventsTask();
 
