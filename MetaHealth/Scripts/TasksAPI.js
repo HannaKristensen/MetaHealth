@@ -156,3 +156,26 @@ function createCustomTask() {
         list.style.display = 'block';
     }
 }
+
+function editCustom(data) {
+    var tdObj = document.getElementById(data)
+    var preText = tdObj.textContent.trim();
+    var inputObj = $("<input type='text' />");
+    tdObj.textContent = "";
+    inputObj.val(preText).appendTo(tdObj).trigger("focus").trigger("select");
+    inputObj.keyup(function (event) {
+        if (13 == event.which) { // press ENTER-key
+            var text = $(this).val();
+            tdObj.textContent = text;
+        }
+        else if (27 == event.which) {  // press ESC-key
+            tdObj.textContent = preText;
+        }
+    });
+    inputObj.click(function () {
+        return false;
+    });
+}
+
+function deleteCustom(date) {
+}
