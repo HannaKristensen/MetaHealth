@@ -194,7 +194,6 @@ duration.Value.Minutes >= 2 ? "s" : "")
                         <button class="MarkDownButtons" onclick="createCustomTask()">Create Custom Task</button>
                         <button class="MarkDownButtons" onclick="addCustomTasks()">Add Tasks</button>
                     </p>
-
                     <div id="addCusTask">
                         @using (Html.BeginForm("CreateCustom", "Calendar", FormMethod.Post))
                         {
