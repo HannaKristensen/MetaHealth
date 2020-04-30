@@ -624,12 +624,15 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 calendarEvent.Start = new Google.Apis.Calendar.v3.Data.EventDateTime
                 {
                     DateTime = EventStartDateTime/*new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, StartDate.Hour, StartDate.Minute, StartDate.Second)*/,
+                    
                     TimeZone = "America/Los_Angeles"
                 };
+                calendarEvent.Start.DateTimeRaw = calendarEvent.Start.DateTimeRaw.Replace("Z", "");
                 calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime {
                     DateTime = EventEndDateTime /*new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, EndDate.Hour, EndDate.Minute, EndDate.Second)*/,
                     TimeZone = "America/Los_Angeles"
                 };
+                calendarEvent.End.DateTimeRaw = calendarEvent.End.DateTimeRaw.Replace("Z", "");
                 calendarEvent.Recurrence = new List<string>();
 
                 calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
