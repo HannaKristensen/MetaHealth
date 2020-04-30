@@ -596,8 +596,8 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
             if (databaseName=="AzureDB") 
             {
-                EventStartDateTime = EventStartDateTime.AddHours(-7);
-                EventEndDateTime = EventEndDateTime.AddHours(-7);
+                EventStartDateTime = EventStartDateTime.AddHours(7);
+                EventEndDateTime = EventEndDateTime.AddHours(7);
             }
             var credential = await GetCredentialForApiAsync();
 
