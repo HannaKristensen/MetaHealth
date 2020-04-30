@@ -176,7 +176,6 @@ function editCustom(key) {
                 contentType: "application/json",
                 data: dataSend,
                 url: '/calendar/EditCustom',
-                success: messageOut,
                 error: errorOnAjax
             });
         }
@@ -189,5 +188,37 @@ function editCustom(key) {
     });
 }
 
-function deleteCustom(date) {
+function deleteCustom(key, row) {
+    var dataSend = JSON.stringify({
+        'customTaskContent': key
+    });
+    $.ajax({
+        type: 'POST',
+        contentType: "application/json",
+        data: dataSend,
+        url: '/calendar/DeleteCustom',
+        error: errorOnAjax
+    });
+    document.getElementById("myTable").deleteRow(row);
+}
+
+function addCustom() {
+    var task = document.getElementById("newTask").value;
+    var dataSend = JSON.stringify({
+        'titleCustom': key
+    });
+    $.ajax({
+        type: 'POST',
+        contentType: "application/json",
+        data: dataSend,
+        url: '/calendar/CreateCustom',
+        success: addRow,
+        error: errorOnAjax
+    });
+    //clear input box
+    document.getElementById("newTask").value = "";
+}
+
+function addRow(data) {
+    //add row to table
 }

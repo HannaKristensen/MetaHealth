@@ -748,18 +748,16 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateCustom(string titleCustom)
+        public ActionResult CreateCustom(string titleCustom)
         {
             CustomListsController controller = new CustomListsController();
             CustomList entry = new CustomList();
             entry.TaskTitle = titleCustom;
             entry.UserID = User.Identity.GetUserId();
             controller.Create(entry);
-            ModelState.Clear();
 
-            UpcomingEventsViewModel model = await GetCurrentEventsTask();
-
-            return View("UpcomingEvents", model);
+            //return PK and Task Name after adding
+            return Content("");
         }
 
         [HttpPost]
@@ -772,6 +770,14 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             entry.UserID = User.Identity.GetUserId();
             controller.Edit(entry);
 
+            return Content("");
+        }
+
+        public ActionResult DeleteCustom(string customTaskContent)
+        {
+            CustomListsController controller = new CustomListsController();
+            int key = Int32.Parse(customTaskContent);
+            controller.DeleteConfirmed(key);
             return Content("");
         }
     }
