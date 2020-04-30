@@ -333,5 +333,4 @@ racetimes.csv
 
 ConfigString.config
 AppSettings.config
-MyClientSecrets.cs
-MyClaimTypes.cs
+
