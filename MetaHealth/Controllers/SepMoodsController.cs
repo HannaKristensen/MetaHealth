@@ -21,7 +21,31 @@ namespace MetaHealth.Controllers
             var userId = User.Identity.GetUserId();
             List<SepMood> sepMoods = db.SepMoods.Where(x => x.UserID == userId).OrderByDescending(y => y.Date).ToList();
 
+            DateTime today = DateTime.Today;
+            DateTime week = DateTime.Today.AddDays(-7); 
+
+            List<SepMood> todaysMoods = db.SepMoods.Where(x => x.UserID == userId).Where(y => y.Date.Day == today.Day).OrderByDescending(z => z.Date).ToList();
+
+
+            List<SepMood> thisWeeksMoods = db.SepMoods.Where(x => x.UserID == userId).Where(y => y.Date.Day >= week.Day ).OrderByDescending(z => z.Date).ToList();
+
+            ViewBag.todaysMoods = todaysMoods;
+            ViewBag.weeksMoods = thisWeeksMoods; 
+
+
             return View(sepMoods);
+        }
+
+
+        public ActionResult todaysMoodsP()
+        {
+            var userId = User.Identity.GetUserId();
+            DateTime today = DateTime.Today;
+
+            List<SepMood> todaysMoods = db.SepMoods.Where(x => x.UserID == userId).Where(y => y.Date.Day == today.Day).OrderByDescending(z => z.Date).ToList();
+
+            return View(todaysMoods);
+
         }
 
         // GET: SepMoods/Details/5
