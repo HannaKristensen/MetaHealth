@@ -590,8 +590,15 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         [HttpPost]
         public async Task<ActionResult> AddEvent(string EventSummary, string EventLocation, string EventDescription, string EventStartDate, string EventStartTime, string EventEndDate, string EventEndTime, int Remind)
         {
+            Model context = new Model();
+            string databaseName = context.Database.Connection.Database;
             DateTime EventStartDateTime = Convert.ToDateTime(EventStartDate).Add(TimeSpan.Parse(EventStartTime));
             DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
+            if (databaseName=="AzureDB") 
+            {
+                EventStartDateTime = EventStartDateTime.AddHours(-7);
+                EventEndDateTime = EventEndDateTime.AddHours(-7);
+            }
             var credential = await GetCredentialForApiAsync();
 
             var initializer = new BaseClientService.Initializer()
@@ -616,11 +623,10 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
                 calendarEvent.Start = new Google.Apis.Calendar.v3.Data.EventDateTime
                 {
-                    DateTime = EventStartDateTime /*new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, StartDate.Hour, StartDate.Minute, StartDate.Second)*/,
+                    DateTime = EventStartDateTime/*new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, StartDate.Hour, StartDate.Minute, StartDate.Second)*/,
                     TimeZone = "America/Los_Angeles"
                 };
-                calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime
-                {
+                calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime {
                     DateTime = EventEndDateTime /*new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, EndDate.Hour, EndDate.Minute, EndDate.Second)*/,
                     TimeZone = "America/Los_Angeles"
                 };
