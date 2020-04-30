@@ -594,7 +594,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             string databaseName = context.Database.Connection.Database;
             DateTime EventStartDateTime = Convert.ToDateTime(EventStartDate).Add(TimeSpan.Parse(EventStartTime));
             DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
-            if (databaseName=="AzureDB") 
+            if (databaseName == "AzureDB")
             {
                 EventStartDateTime = EventStartDateTime.AddHours(7);
                 EventEndDateTime = EventEndDateTime.AddHours(7);
@@ -624,15 +624,16 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 calendarEvent.Start = new Google.Apis.Calendar.v3.Data.EventDateTime
                 {
                     DateTime = EventStartDateTime/*new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, StartDate.Hour, StartDate.Minute, StartDate.Second)*/,
-                    
+
                     TimeZone = "America/Los_Angeles"
                 };
-                calendarEvent.Start.DateTimeRaw = calendarEvent.Start.DateTimeRaw.Replace("Z", "");
-                calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime {
+                //calendarEvent.Start.DateTimeRaw = calendarEvent.Start.DateTimeRaw.Replace("Z", "");
+                calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime
+                {
                     DateTime = EventEndDateTime /*new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, EndDate.Hour, EndDate.Minute, EndDate.Second)*/,
                     TimeZone = "America/Los_Angeles"
                 };
-                calendarEvent.End.DateTimeRaw = calendarEvent.End.DateTimeRaw.Replace("Z", "");
+                //calendarEvent.End.DateTimeRaw = calendarEvent.End.DateTimeRaw.Replace("Z", "");
                 calendarEvent.Recurrence = new List<string>();
 
                 calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
