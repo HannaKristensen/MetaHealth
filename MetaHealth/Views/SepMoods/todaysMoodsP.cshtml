@@ -1,0 +1,83 @@
+﻿@model IEnumerable<MetaHealth.Models.SepMood>
+
+<link href="@Url.Content("~/Content/moods.css")" rel="stylesheet" type="text/css" />
+
+
+@section scripts {
+    <script src="~/Scripts/moodhub.js"></script>
+}
+
+
+@if (Model == null)
+{
+    <script>noDaysShow()</script>
+    <h3 style="text-align:center; font-weight:bold ; letter-spacing: 3px" id="noDays">Looks like there are no moods for today yet ! </h3>
+}
+
+<table class="table" style="font-size: 17px" id="todayResults">
+    <tr style="letter-spacing:3px">
+        <th>
+            Mood
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reason)
+        </th>
+        <th></th>
+    </tr>
+
+
+
+    @foreach (var item in Model )
+    {
+
+
+        <tr>
+
+
+            @if (item.MoodNum == 1)
+            {
+                <td>
+                    Horrible
+                </td>
+            }
+
+            @if (item.MoodNum == 2)
+            {
+                <td>
+                    Not Good
+                </td>
+            }
+            @if (item.MoodNum == 3)
+            {
+                <td>
+                    Neutral
+                </td>
+            }
+            @if (item.MoodNum == 4)
+            {
+                <td>
+                    Good
+                </td>
+            }
+            @if (item.MoodNum == 5)
+            {
+                <td>
+                    Fantastic
+                </td>
+            }
+            <td>
+                @item.Date
+            </td>
+            <td>
+                @item.Reason
+            </td>
+            <td id="buttonMaybe">
+                @Html.ActionLink("Edit", "Edit", new { id = item.PK })
+            </td>
+        </tr>
+    }
+
+</table>
