@@ -188,7 +188,7 @@ function editCustom(key) {
     });
 }
 
-function deleteCustom(key, row) {
+function deleteCustom(key) {
     var dataSend = JSON.stringify({
         'customTaskContent': key
     });
@@ -199,13 +199,18 @@ function deleteCustom(key, row) {
         url: '/calendar/DeleteCustom',
         error: errorOnAjax
     });
-    document.getElementById("myTable").deleteRow(row);
+    var table = document.getElementById("myTable");
+    for (var i = 0; i < table.rows.length; i++) {
+        if (table.rows[i].cells[0].id == key) {
+            table.deleteRow(i);
+        }
+    }
 }
 
 function addCustom() {
     var task = document.getElementById("newTask").value;
     var dataSend = JSON.stringify({
-        'titleCustom': key
+        'titleCustom': task
     });
     $.ajax({
         type: 'POST',
@@ -221,4 +226,13 @@ function addCustom() {
 
 function addRow(data) {
     //add row to table
+    var PK = data.PK;
+    var task = data.title;
+    var row = document.getElementById("myTable").insertRow(-1);
+    var len = document.getElementById("myTable").rows.length;
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML = task;
+    cell1.id = PK;
+    cell2.innerHTML = "<button class=\"MarkDownButtons\" onclick=\"editCustom(" + PK + ")\">Edit</button> <button class=\"MarkDownButtons\" onclick =\"deleteCustom(" + PK + ")\" > Delete </button>";
 }

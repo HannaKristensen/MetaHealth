@@ -201,29 +201,28 @@ duration.Value.Minutes >= 2 ? "s" : "")
                             <input class="form-control" id="newTask" type="text" maxlength="200" />
                             <button class="MarkDownButtons" onclick="addCustom()">Add Task</button>
                         </div>
-
-                        <table class="table" id="myTable">
-                            <tr>
-                                <th>
-                                    <h4>Custom List</h4>
-                                </th>
-                                <th></th>
-                            </tr>
-
-                            @for (int i = 0; i < Model.CustomTask.Length; i++)
-                            {
-                                <tr>
-                                    <td id="@Model.PK[i]">
-                                        @Model.CustomTask[i]
-                                    </td>
-                                    <td>
-                                        <button class="MarkDownButtons" onclick="editCustom(@Model.PK[i])">Edit</button>
-                                        <button class="MarkDownButtons" onclick="deleteCustom(@Model.PK[i], @(i+1))">Delete</button>
-                                    </td>
-                                </tr>
-                            }
-                        </table>
                     </div>
+                    <table class="table" id="myTable">
+                        <tr>
+                            <th>
+                                <h4>Custom List</h4>
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @for (int i = 0; i < Model.CustomTask.Length; i++)
+                        {
+                            <tr>
+                                <td id="@Model.PK[i]">
+                                    @Model.CustomTask[i]
+                                </td>
+                                <td>
+                                    <button class="MarkDownButtons" onclick="editCustom(@Model.PK[i])">Edit</button>
+                                    <button class="MarkDownButtons" onclick="deleteCustom(@Model.PK[i])">Delete</button>
+                                </td>
+                            </tr>
+                        }
+                    </table>
                 </div>
             </div>
 

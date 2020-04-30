@@ -763,11 +763,17 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             CustomListsController controller = new CustomListsController();
             CustomList entry = new CustomList();
             entry.TaskTitle = titleCustom;
-            entry.UserID = User.Identity.GetUserId();
+            string userID = User.Identity.GetUserId();
+            entry.UserID = userID;
             controller.Create(entry);
 
-            //return PK and Task Name after adding
-            return Content("");
+            CustomList[] arr = db.CustomLists.Where(x => x.UserID == userID).ToArray();
+            CustomList obj = arr[arr.Length - 1];
+            int pk = obj.PK;
+            string task = obj.TaskTitle;
+            var result = new { PK = pk, title = task };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
