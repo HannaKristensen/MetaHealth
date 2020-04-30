@@ -594,11 +594,11 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             string databaseName = context.Database.Connection.Database;
             DateTime EventStartDateTime = Convert.ToDateTime(EventStartDate).Add(TimeSpan.Parse(EventStartTime));
             DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
-            if (databaseName=="AzureDB") 
-            {
-                EventStartDateTime = EventStartDateTime.AddHours(7);
-                EventEndDateTime = EventEndDateTime.AddHours(7);
-            }
+            //if (databaseName=="AzureDB") 
+            //{
+            //    EventStartDateTime = EventStartDateTime.AddHours(7);
+            //    EventEndDateTime = EventEndDateTime.AddHours(7);
+            //}
             var credential = await GetCredentialForApiAsync();
 
             var initializer = new BaseClientService.Initializer()
@@ -627,6 +627,8 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                     
                     TimeZone = "America/Los_Angeles"
                 };
+  
+                //Trying to split the time zone indicator
                 calendarEvent.Start.DateTimeRaw = calendarEvent.Start.DateTimeRaw.Replace("Z", "");
                 calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime {
                     DateTime = EventEndDateTime /*new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, EndDate.Hour, EndDate.Minute, EndDate.Second)*/,
