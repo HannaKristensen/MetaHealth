@@ -86,8 +86,11 @@ namespace MetaHealth.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PK,UserID,TaskTitle")] CustomList customList)
         {
-            var userId = User.Identity.GetUserId();
-            customList.UserID = userId;
+            if (customList.UserID == null)
+            {
+                var userId = User.Identity.GetUserId();
+                customList.UserID = userId;
+            }
 
             if (ModelState.IsValid)
             {

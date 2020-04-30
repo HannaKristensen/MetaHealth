@@ -39,7 +39,18 @@
                         </div>
                     </div>
 
-                    @Html.ActionLink("Mood Tracker", "Create", "SepMoods")
+                    <div class="my-dropdown">
+                        <button class="my-dropbtn">
+                            Mood
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="my-dropdown-content">
+                            @Html.ActionLink("Add a Mood", "Create", "SepMoods")
+                            @Html.ActionLink("All Moods", "Index", "SepMoods")
+                        </div>
+                    </div>
+
+
 
                     <div class="my-dropdown">
                         <button class="my-dropbtn">

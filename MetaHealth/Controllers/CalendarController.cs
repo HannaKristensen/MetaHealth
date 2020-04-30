@@ -594,6 +594,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             string databaseName = context.Database.Connection.Database;
             DateTime EventStartDateTime = Convert.ToDateTime(EventStartDate).Add(TimeSpan.Parse(EventStartTime));
             DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
+
             //if (databaseName=="AzureDB") 
             //{
             //    EventStartDateTime = EventStartDateTime.AddHours(7);
@@ -624,13 +625,14 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 calendarEvent.Start = new Google.Apis.Calendar.v3.Data.EventDateTime
                 {
                     DateTime = EventStartDateTime/*new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, StartDate.Hour, StartDate.Minute, StartDate.Second)*/,
-                    
+
                     TimeZone = "America/Los_Angeles"
                 };
   
                 //Trying to split the time zone indicator
                 calendarEvent.Start.DateTimeRaw = calendarEvent.Start.DateTimeRaw.Replace("Z", "");
-                calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime {
+                calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime
+                {
                     DateTime = EventEndDateTime /*new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, EndDate.Hour, EndDate.Minute, EndDate.Second)*/,
                     TimeZone = "America/Los_Angeles"
                 };
@@ -759,18 +761,43 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateCustom(string titleCustom)
+        public ActionResult CreateCustom(string titleCustom)
         {
             CustomListsController controller = new CustomListsController();
             CustomList entry = new CustomList();
             entry.TaskTitle = titleCustom;
-            entry.UserID = User.Identity.GetUserId();
+            string userID = User.Identity.GetUserId();
+            entry.UserID = userID;
             controller.Create(entry);
-            ModelState.Clear();
 
-            UpcomingEventsViewModel model = await GetCurrentEventsTask();
+            CustomList[] arr = db.CustomLists.Where(x => x.UserID == userID).ToArray();
+            CustomList obj = arr[arr.Length - 1];
+            int pk = obj.PK;
+            string task = obj.TaskTitle;
+            var result = new { PK = pk, title = task };
 
-            return View("UpcomingEvents", model);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult EditCustom(string customTaskContent, string task)
+        {
+            CustomListsController controller = new CustomListsController();
+            CustomList entry = new CustomList();
+            entry.PK = Int32.Parse(customTaskContent);
+            entry.TaskTitle = task;
+            entry.UserID = User.Identity.GetUserId();
+            controller.Edit(entry);
+
+            return Content("");
+        }
+
+        public ActionResult DeleteCustom(string customTaskContent)
+        {
+            CustomListsController controller = new CustomListsController();
+            int key = Int32.Parse(customTaskContent);
+            controller.DeleteConfirmed(key);
+            return Content("");
         }
     }
 }
