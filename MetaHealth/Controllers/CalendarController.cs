@@ -20,6 +20,7 @@ using Newtonsoft.Json;
 using System.Data.Entity;
 using MetaHealth.Controllers;
 using MetaHealth.DAL;
+using MetaHealth.Models;
 
 namespace Calendar.ASP.NET.MVC5.Controllers
 {
@@ -589,9 +590,17 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         [HttpPost]
         public async Task<ActionResult> AddEvent(string EventSummary, string EventLocation, string EventDescription, string EventStartDate, string EventStartTime, string EventEndDate, string EventEndTime, string Remind  )
         {
-           
+
+            Model context = new Model();
+            string databaseName = context.Database.Connection.Database;
+
             DateTime EventStartDateTime = Convert.ToDateTime(EventStartDate).Add(TimeSpan.Parse(EventStartTime));
             DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
+            if (databaseName=="AzureDB") 
+            {
+                EventStartDateTime = EventStartDateTime.AddHours(7);
+                EventEndDateTime = EventEndDateTime.AddHours(7);
+            }
             var credential = await GetCredentialForApiAsync();
 
             var initializer = new BaseClientService.Initializer()
@@ -615,14 +624,16 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
                 calendarEvent.Start = new Google.Apis.Calendar.v3.Data.EventDateTime
                 {
-                    DateTime = EventStartDateTime /*new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, StartDate.Hour, StartDate.Minute, StartDate.Second)*/,
+                    DateTime = EventStartDateTime/*new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, StartDate.Hour, StartDate.Minute, StartDate.Second)*/,
+                    
                     TimeZone = "America/Los_Angeles"
                 };
-                calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime
-                {
+                calendarEvent.Start.DateTimeRaw = calendarEvent.Start.DateTimeRaw.Replace("Z", "");
+                calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime {
                     DateTime = EventEndDateTime /*new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, EndDate.Hour, EndDate.Minute, EndDate.Second)*/,
                     TimeZone = "America/Los_Angeles"
                 };
+                calendarEvent.End.DateTimeRaw = calendarEvent.End.DateTimeRaw.Replace("Z", "");
                 calendarEvent.Recurrence = new List<string>();
                 if (Remind == "none")
                 {
@@ -864,6 +875,21 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 return true;
             }
             else return false;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateCustom(string titleCustom)
+        {
+            CustomListsController controller = new CustomListsController();
+            CustomList entry = new CustomList();
+            entry.TaskTitle = titleCustom;
+            entry.UserID = User.Identity.GetUserId();
+            controller.Create(entry);
+            ModelState.Clear();
+
+            UpcomingEventsViewModel model = await GetCurrentEventsTask();
+
+            return View("UpcomingEvents", model);
         }
     }
 }

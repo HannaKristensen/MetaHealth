@@ -247,14 +247,12 @@
     <Content Include="Content\resources.css" />
     <Content Include="Content\Search.css" />
     <Content Include="Content\SelfCareQuiz.css" />
-    <Content Include="credentials.json" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="client_secret.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\BreathingSpace.js" />
     <Content Include="Scripts\FlowchartScript.js" />

@@ -208,9 +208,24 @@ duration.Value.Minutes >= 2 ? "s" : "")
                 <div class="row" id="addCustom">
                     &nbsp;
                     <p>
-                        <button class="MarkDownButtons">@Html.ActionLink("Create New", "Create", "CustomLists")</button>
+                        <button class="MarkDownButtons" onclick="createCustomTask()">Create Custom Task</button>
                         <button class="MarkDownButtons" onclick="addCustomTasks()">Add Tasks</button>
                     </p>
+                    <div id="addCusTask">
+                        @using (Html.BeginForm("CreateCustom", "Calendar", FormMethod.Post))
+                        {
+                            <div class="form-group">
+                                @Html.Label("titleCustom", "Task: ")
+                                @Html.TextBox("titleCustom", null, new { @class = "form-control", type = "text", required = "required" })
+                                <br />
+                                <div class="row" style="align-content:center ; text-align:center">
+                                    <button type="submit" class="MarkDownButtons">Add Task</button>
+                                </div>
+                            </div>
+
+                        }
+                        <p>Testing</p>
+                    </div>
                     <table class="table">
                         <tr>
                             <th>
@@ -247,26 +262,24 @@ duration.Value.Minutes >= 2 ? "s" : "")
                 </div>
                 <div class="row">
                     <ul id="preMadeTasks">
-                        <div>
-                            <h4 style="font-weight:bold ; text-align:center">
-                                These are pre-made lists that will add the following tasks to your task list!
-                                Each number represents a level of effort:
-                            </h4>
-                            <li>
-                                @using (Html.BeginForm("AddPreMadeOne", "Calendar", FormMethod.Post))
-                                {
-                                    <div class="form-group">
-                                        <h5 style="font-weight:bold">Level One:</h5>
-                                        <ul>
-                                            <li>Get out of bed</li>
-                                            <li>Drink a glass of water</li>
-                                            <li>Eat a meal</li>
-                                        </ul>
-                                        <br />
-                                        <button type="submit" class="MarkDownButtons">Add Tasks</button>
-                                    </div>
-                                }
-                        </div>
+                        <h4 style="font-weight:bold ; text-align:center">
+                            These are pre-made lists that will add the following tasks to your task list!
+                            Each number represents a level of effort:
+                        </h4>
+                        <li>
+                            @using (Html.BeginForm("AddPreMadeOne", "Calendar", FormMethod.Post))
+                            {
+                                <div class="form-group">
+                                    <h5 style="font-weight:bold">Level One:</h5>
+                                    <ul>
+                                        <li>Get out of bed</li>
+                                        <li>Drink a glass of water</li>
+                                        <li>Eat a meal</li>
+                                    </ul>
+                                    <br />
+                                    <button type="submit" class="MarkDownButtons">Add Tasks</button>
+                                </div>
+                            }
                         </li>
                         <li>
                             <div>
