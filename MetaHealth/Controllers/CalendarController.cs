@@ -103,18 +103,10 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                                group result.evt by result.date into g
                                orderby g.Key
                                select g;
-        //Screwy logic for trying to fix google calendar api's very bad timezone bs
-            //Model context = new Model();
-            //string databaseName = context.Database.Connection.Database;
-            //if (databaseName == "AzureDB") {
-            //    foreach(var item in eventsByDate) {
-            //        item.Key.AddHours(-7);
-            //    }
-            //}
+
             var eventGroups = new List<CalendarEventGroup>();
             foreach (var grouping in eventsByDate)
             {
-                grouping.Key.AddHours(-7);
                 eventGroups.Add(new CalendarEventGroup
                 {
                     GroupTitle = grouping.Key.ToLongDateString(),
@@ -618,12 +610,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             
             DateTime EventStartDateTime = Convert.ToDateTime(EventStartDate).Add(TimeSpan.Parse(EventStartTime));
             DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
-
-            //if (databaseName=="AzureDB")
-            //{
-            //    EventStartDateTime = EventStartDateTime.AddHours(7);
-            //    EventEndDateTime = EventEndDateTime.AddHours(7);
-            //}
             var credential = await GetCredentialForApiAsync();
 
             var initializer = new BaseClientService.Initializer()
@@ -648,16 +634,16 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
                 calendarEvent.Start = new Google.Apis.Calendar.v3.Data.EventDateTime
                 {
-                    DateTimeRaw = EventStartDate,
-                    TimeZone = TimeZone.CurrentTimeZone.StandardName
+                    DateTime = EventStartDateTime,
+                    TimeZone = "America/Los_Angeles"
                 };
 
                 //Trying to split the time zone indicator
                 calendarEvent.Start.DateTimeRaw = calendarEvent.Start.DateTimeRaw.Replace("Z", "");
                 calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime
                 {
-                    DateTimeRaw = EventEndDate,
-                    TimeZone = TimeZone.CurrentTimeZone.StandardName
+                    DateTime = EventEndDateTime,
+                    TimeZone = "America/Los_Angeles"
                 };
                 calendarEvent.End.DateTimeRaw = calendarEvent.End.DateTimeRaw.Replace("Z", "");
                 calendarEvent.Recurrence = new List<string>();
