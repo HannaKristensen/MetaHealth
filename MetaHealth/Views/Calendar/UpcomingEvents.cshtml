@@ -52,29 +52,24 @@
 
             @*Spot for Google Calendar*@
             <div class="col-lg-5" style="background-color: #eeebdd ; display: block; border:5px solid #248D83 ; border-radius: 25px" id="googleCalColumn">
-                @helper FormatEventTime(CalendarData.EventDateTime when)
-                {
-                    // Either Date or DateTime is set, depending on whether or not the event is
-                    // an all-day event.
-                    if (when.DateTime == null)
-                    {
+                @helper FormatEventTime(CalendarData.EventDateTime when) {
+// Either Date or DateTime is set, depending on whether or not the event is
+// an all-day event.
+if (when.DateTime == null) {
                         <text>All day</text>
-                    }
-                    else
-                    {
+}
+else {
                         @:@when.DateTime.Value.ToShortTimeString()
                     }
                 }
 
-                @helper FormatEventLength(CalendarData.EventDateTime start, CalendarData.EventDateTime end)
-                {
-                    var duration = end.DateTime - start.DateTime;
-                    if (duration == null)
-                    {
+
+                @helper FormatEventLength(CalendarData.EventDateTime start, CalendarData.EventDateTime end) {
+var duration = end.DateTime - start.DateTime;
+if (duration == null) {
                         <text>All day</text>
-                    }
-                    else
-                    {
+}
+else {
                         @:@string.Format(
 
 "{0} hour{1} {2} minute{3}",
@@ -83,8 +78,19 @@ duration.Value.TotalHours >= 2 ? "s" : "",
 (int)duration.Value.Minutes,
 duration.Value.Minutes >= 2 ? "s" : "")
 
-                    }
+}
                 }
+     
+    @functions {
+        public static bool IsAllDay(CalendarData.Event item) {
+            var duration = item.End.DateTime - item.Start.DateTime;
+            if (duration == null) {
+                return true;
+            }
+            return false;
+            }
+
+    } 
 
                 <h2 style="text-align:center">Upcoming Events</h2>
                 <hr>
@@ -104,6 +110,12 @@ duration.Value.Minutes >= 2 ? "s" : "")
                             <tr><th colspan="4">@group.GroupTitle</th></tr>
                             @foreach (var item in group.Events)
                             {
+                                if (!IsAllDay(item)) {
+                                    var temp = item.Start.DateTime.Value;
+
+                                    temp=temp.AddHours(-7);
+                                    item.Start.DateTime = temp;
+                                }
 
                                 <tr>
                                     <td>@FormatEventTime(item.Start)</td>
