@@ -103,16 +103,27 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                                group result.evt by result.date into g
                                orderby g.Key
                                select g;
-
+        //Screwy logic for trying to fix google calendar api's very bad timezone bs
+            //Model context = new Model();
+            //string databaseName = context.Database.Connection.Database;
+            //if (databaseName == "AzureDB") {
+            //    foreach(var item in eventsByDate) {
+            //        item.Key.AddHours(-7);
+            //    }
+            //}
             var eventGroups = new List<CalendarEventGroup>();
             foreach (var grouping in eventsByDate)
             {
+                grouping.Key.AddHours(-7);
                 eventGroups.Add(new CalendarEventGroup
                 {
                     GroupTitle = grouping.Key.ToLongDateString(),
                     Events = grouping,
                 });
             }
+
+           
+  
 
             model.EventGroups = eventGroups;
 
@@ -309,6 +320,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         [HttpPost]
         public async Task<ActionResult> UpcomingEvents(string taskTitle)
         {
+  
             var credential = await GetCredentialForApiAsync();
 
             //Add a new task
@@ -603,8 +615,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         #region Add Event
         public async Task<ActionResult> AddEvent(string EventSummary, string EventLocation, string EventDescription, string EventStartDate, string EventStartTime, string EventEndDate, string EventEndTime, int Remind)
         {
-            Model context = new Model();
-            string databaseName = context.Database.Connection.Database;
+            
             DateTime EventStartDateTime = Convert.ToDateTime(EventStartDate).Add(TimeSpan.Parse(EventStartTime));
             DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
 
@@ -645,7 +656,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 calendarEvent.Start.DateTimeRaw = calendarEvent.Start.DateTimeRaw.Replace("Z", "");
                 calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime
                 {
-                    DateTimeRaw = EventEndDate, /*new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, EndDate.Hour, EndDate.Minute, EndDate.Second)*/,
+                    DateTimeRaw = EventEndDate,
                     TimeZone = TimeZone.CurrentTimeZone.StandardName
                 };
                 calendarEvent.End.DateTimeRaw = calendarEvent.End.DateTimeRaw.Replace("Z", "");
