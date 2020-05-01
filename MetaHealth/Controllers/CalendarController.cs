@@ -595,7 +595,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             DateTime EventStartDateTime = Convert.ToDateTime(EventStartDate).Add(TimeSpan.Parse(EventStartTime));
             DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
 
-            //if (databaseName=="AzureDB") 
+            //if (databaseName=="AzureDB")
             //{
             //    EventStartDateTime = EventStartDateTime.AddHours(7);
             //    EventEndDateTime = EventEndDateTime.AddHours(7);
@@ -624,17 +624,16 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
                 calendarEvent.Start = new Google.Apis.Calendar.v3.Data.EventDateTime
                 {
-                    DateTime = EventStartDateTime/*new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, StartDate.Hour, StartDate.Minute, StartDate.Second)*/,
-
-                    TimeZone = "America/Los_Angeles"
+                    DateTimeRaw = EventStartDate,
+                    TimeZone = TimeZone.CurrentTimeZone.StandardName
                 };
-  
+
                 //Trying to split the time zone indicator
                 calendarEvent.Start.DateTimeRaw = calendarEvent.Start.DateTimeRaw.Replace("Z", "");
                 calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime
                 {
-                    DateTime = EventEndDateTime /*new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, EndDate.Hour, EndDate.Minute, EndDate.Second)*/,
-                    TimeZone = "America/Los_Angeles"
+                    DateTimeRaw = EventEndDate, /*new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, EndDate.Hour, EndDate.Minute, EndDate.Second)*/,
+                    TimeZone = TimeZone.CurrentTimeZone.StandardName
                 };
                 calendarEvent.End.DateTimeRaw = calendarEvent.End.DateTimeRaw.Replace("Z", "");
                 calendarEvent.Recurrence = new List<string>();
