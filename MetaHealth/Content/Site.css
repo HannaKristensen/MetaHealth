@@ -378,6 +378,19 @@ a:visited {
         transition: 0.3s;
     }
 
+my-dropbtn-settings, my-dropdown-settings {
+    
+    font-size: 12px;
+    border: none;
+    font-family: Verdana;
+    outline: none;
+    color: #D5CDC6;
+    letter-spacing: 2px;
+    font-weight: bold;
+    padding: 14px 16px;
+    background-color: inherit;
+    margin: 0;
+}
 .my-dropdown-content {
     display: none;
     position: absolute;
