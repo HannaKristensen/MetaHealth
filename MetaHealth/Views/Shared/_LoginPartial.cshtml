@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
-@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/Site.css")
 @*@if (Request.IsAuthenticated)
     {
         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -18,6 +18,20 @@
     }*@
 
 @*@if (Request.IsAuthenticated) {*@
+<style>
+        my-dropbtn-settings, my-dropdown-settings {
+        font-size: 12px;
+        border: none;
+        font-family: Verdana;
+        outline: none;
+        color: #D5CDC6;
+        letter-spacing: 2px;
+        font-weight: bold;
+        padding: 14px 16px;
+        background-color: inherit;
+        margin: 0;
+    }
+</style>
     <div class="my-navbar">
         <div class="my-dropdown-settings">
             <button class="my-dropbtn-settings" style="float:right">

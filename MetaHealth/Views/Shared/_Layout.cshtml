@@ -21,8 +21,7 @@
 
 
             <div class="my-navbar">
-                @if (User.Identity.IsAuthenticated)
-                {
+                @if (User.Identity.IsAuthenticated) {
 
                     @Html.ActionLink("Dashboard", "UpcomingEvents", "Calendar")
 
@@ -64,14 +63,26 @@
                     </div>
                 }
 
-                else
-                {
+                else {
                     @Html.ActionLink("Home", "Index", "Home")
                     @Html.ActionLink("Flowchart", "Flowchart", "Home")
                     @Html.ActionLink("Find Help", "SearchPage", "Search")
                 }
 
-                @Html.Partial("_LoginPartial")
+                <div class="my-dropdown-settings">
+                    <button class="my-dropbtn-settings">
+                        Account Settings
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="my-dropdown-settings-content">
+                        @Html.ActionLink("Edit Name", "Resources", "Home")
+                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm", @class = "form-settings" })) {
+                            @Html.AntiForgeryToken()
+                            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                        }
+                    </div>
+                </div>
+
             </div>
 
 

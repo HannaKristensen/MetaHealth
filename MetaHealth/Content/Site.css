@@ -357,40 +357,77 @@ a:visited {
     letter-spacing: 2px;
 }
 
-    .my-dropdown .my-dropbtn {
-        font-size: 16px;
-        border: none;
-        font-family: Verdana;
-        outline: none;
-        color: #1f1f1f;
-        letter-spacing: 2px;
-        font-weight: bold;
-        padding: 14px 16px;
-        background-color: inherit;
-        font-family: inherit;
-        margin: 0;
-    }
+.my-dropdown .my-dropbtn {
+    font-size: 16px;
+    border: none;
+    font-family: Verdana;
+    outline: none;
+    color: #1f1f1f;
+    letter-spacing: 2px;
+    font-weight: bold;
+    padding: 14px 16px;
+    background-color: #E9E6D4;
+    margin: 0;
+}
 
-    .my-navbar a:hover, .my-dropdown:hover .my-dropbtn {
+    .my-navbar a:hover, .my-dropdown:hover .my-dropbtn, .my-dropdown-settings:hover .my-dropbtn-settings {
         border-radius: 5px;
         color: white;
         opacity: 1;
         transition: 0.3s;
     }
 
-my-dropbtn-settings, my-dropdown-settings {
-    
-    font-size: 12px;
-    border: none;
+.my-dropdown-settings {
+    float: right !important;
+    overflow: hidden;
+    border-radius: 5px;
     font-family: Verdana;
-    outline: none;
-    color: #D5CDC6;
     letter-spacing: 2px;
-    font-weight: bold;
-    padding: 14px 16px;
-    background-color: inherit;
-    margin: 0;
 }
+     .my-dropbtn-settings {
+        font-size: 12px;
+        border: none;
+        font-family: Verdana;
+        outline: none;
+        color: #D5CDC6;
+        letter-spacing: 2px;
+        font-weight: bold;
+        padding: 14px 16px;
+        background-color: inherit;
+        margin: 0;
+    }
+
+.my-dropdown-settings-content {
+    display: none;
+    position:absolute;
+    font-size: 12px;
+    background-color: #f9f9f9;
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 2px;
+    letter-spacing: 2px;
+}
+    .my-dropbtn-settings a {
+        float: none;
+        font-size: 8px;
+        color: #D5CDC6;
+        padding: 10px 14px;
+        text-decoration: none;
+        display:block;
+        text-align: left;
+        letter-spacing: 2px;
+    }
+
+.my-dropdown-settings-content a:hover, .form-settings:hover {
+    color: #4fc5c9;
+    border-radius: 2px;
+    color: white;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+
 .my-dropdown-content {
     display: none;
     position: absolute;
@@ -420,7 +457,7 @@ my-dropbtn-settings, my-dropdown-settings {
             transition: 0.3s;
         }
 
-.my-dropdown:hover .my-dropdown-content {
+.my-dropdown:hover .my-dropdown-content, .my-dropdown-settings:hover .my-dropdown-settings-content {
     opacity: 1;
     animation: fade 0.5s linear;
     display: block;
