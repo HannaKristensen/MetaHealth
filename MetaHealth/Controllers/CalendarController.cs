@@ -602,12 +602,16 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         }
         #endregion
 
+        #region Add Event
         //Add an event
         [HttpPost]
-        #region Add Event
-        public async Task<ActionResult> AddEvent(string EventSummary, string EventLocation, string EventDescription, string EventStartDate, string EventStartTime, string EventEndDate, string EventEndTime, int Remind)
+
+        public async Task<ActionResult> AddEvent(string EventSummary, string EventLocation, string EventDescription, string EventStartDate, string EventStartTime, string EventEndDate, string EventEndTime, string Remind  )
         {
-            
+
+            Model context = new Model();
+            string databaseName = context.Database.Connection.Database;
+
             DateTime EventStartDateTime = Convert.ToDateTime(EventStartDate).Add(TimeSpan.Parse(EventStartTime));
             DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
             var credential = await GetCredentialForApiAsync();
@@ -623,7 +627,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             {
                 var list = calendarService.CalendarList.List().Execute();
                 var listcnt = list.Items;
-                //var calendar = list.Items.SingleOrDefault(c => c.Summary == CustomCalenderName.Trim());
                 var calendarId = "primary";
 
                 Google.Apis.Calendar.v3.Data.Event calendarEvent = new Google.Apis.Calendar.v3.Data.Event();
@@ -647,19 +650,139 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 };
                 calendarEvent.End.DateTimeRaw = calendarEvent.End.DateTimeRaw.Replace("Z", "");
                 calendarEvent.Recurrence = new List<string>();
-
-                calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
+                if (Remind == "none")
                 {
-                    UseDefault = false,
-                    Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
+                    calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
                     {
-                        new Google.Apis.Calendar.v3.Data.EventReminder() {Method = "email", Minutes = Remind}
-                    }
-                };
+                        UseDefault = false
+                    };
+                }
+                else if (Remind == "atTime")
+                {
+                    calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
+                    {
+                        UseDefault = false,
+                        Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
+                            {
 
+                                new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 0 }
+
+                            }
+                    };
+                }
+                else if (Remind == "5Mins")
+                    calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
+                    {
+                        UseDefault = false,
+                        Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
+                            {
+
+                                new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 5 }
+
+                            }
+                    };
+
+                else if (Remind == "10Mins")
+                    calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
+                    {
+                        UseDefault = false,
+                        Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
+                            {
+
+                                new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 10 }
+
+                            }
+                    };
+
+                else if (Remind == "30Mins")
+                {
+                    calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
+                    {
+                        UseDefault = false,
+                        Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
+                            {
+
+                                new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 30 }
+
+                            }
+                    };
+                }
+                else if (Remind == "oneHour")
+                {
+                    calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
+                    {
+                        UseDefault = false,
+                        Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
+                            {
+
+                                new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 60 }
+
+                            }
+                    };
+                }
+                else if (Remind == "twoHours")
+                {
+                    calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
+                    {
+                        UseDefault = false,
+                        Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
+                            {
+
+                                new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 120}
+
+                            }
+                    };
+                }
+                else if (Remind == "oneDay")
+                {
+                    calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
+                    {
+                        UseDefault = false,
+                        Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
+                            {
+
+                                new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 1440 }
+
+                            }
+                    };
+                }
+                else if (Remind == "twoDays")
+                {
+                    calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
+                    {
+                        UseDefault = false,
+                        Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
+                            {
+
+                                new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 2880 }
+
+                            }
+                    };
+                }
+                else if (Remind == "oneWeek")
+                {
+                    calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
+                    {
+                        UseDefault = false,
+                        Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
+                            {
+
+                                new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 10080 }
+
+                            }
+                    };
+                }
+                else
+                {
+                    calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
+                    {
+                        UseDefault = false
+                    };
+                }
                 var newEventRequest = calendarService.Events.Insert(calendarEvent, calendarId);
                 var eventResult = newEventRequest.Execute();
             }
+           
             UpcomingEventsViewModel model = await GetCurrentEventsTask();
             return View("UpcomingEvents", model);
         }

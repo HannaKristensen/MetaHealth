@@ -35,12 +35,12 @@
             @*Empty col to make space between these two modules*@
             <div class="col-sm-1"></div>
             @*Spot for daily self care suggestion*@
-            <div class="col-lg-5" style="background-color: #eeebdd ; height:270px; border:5px solid #49C7CA ; border-radius: 25px; text-align:center" id="selfcare">
-                <div class="row"></div>
-                <div class="selfCareTitle"><h3>Welcome! Today's self care suggestion:</h3></div>
-                <div></div>
-                <div class="randSuggestion" id="suggestion"></div>
-            </div>
+        <div class="col-lg-5" style="background-color: #eeebdd ; height:270px; border:5px solid #49C7CA ; border-radius: 25px; text-align:center" id="selfcare">
+            <div class="row"></div>
+            <div class="selfCareTitle"><h3>Welcome, @User.Identity.Name! Today's self care suggestion:</h3></div>
+            
+            <div class="randSuggestion" id="suggestion"></div>
+        </div>
         </div>
 
         <div class="row">
@@ -137,29 +137,46 @@ duration.Value.Minutes >= 2 ? "s" : "")
 
                 @using (Html.BeginForm("AddEvent", "Calendar", FormMethod.Post))
                 {
-                    <div class="form-group" id="eventAddForm">
-                        @Html.Label("EventSummary", "Event Summary: ")
-                        @Html.TextBox("EventSummary", null, new { @class = "form-control", type = "text", required = "required" })
-                        @Html.Label("EventLocation", "Event Location: ")
-                        @Html.TextBox("EventLocation", null, new { @class = "form-control", type = "text", required = "required" })
-                        @Html.Label("EventDescription", "Event Description: ")
-                        @Html.TextBox("EventDescription", null, new { @class = "form-control", type = "text", required = "required" })
-                        @Html.Label("EventStartDate", "Event Start Date: ")
-                        @Html.TextBox("EventStartDate", null, new { @class = "form-control", type = "date", required = "required" })
-                        @Html.Label("EventStartTime", "Event Start Time: ")
-                        @Html.TextBox("EventStartTime", null, new { @class = "form-control", type = "time", required = "required" })
-                        @Html.Label("EventEndDate", "Event End Date: ")
-                        @Html.TextBox("EventEndDate", null, new { @class = "form-control", type = "date", required = "required" })
-                        @Html.Label("EventEndTime", "Event End Time: ")
-                        @Html.TextBox("EventEndTime", null, new { @class = "form-control", type = "time", required = "required" })
-                        @Html.Label("Remind", "Event Reminder via email (0 to 40320 minutes before): ")
-                        @Html.TextBox("Remind", null, new { @class = "form-control", type = "text", required = "required" })
+            <div class="form-group" id="eventAddForm">
+                @Html.Label("EventSummary", "Event Summary: ")
+                @Html.TextBox("EventSummary", null, new { @class = "form-control", type = "text", required = "required" })
+                @Html.Label("EventLocation", "Event Location(optional): ")
+                @Html.TextBox("EventLocation", null, new { @class = "form-control", type = "text"})
+                @Html.Label("EventDescription", "Event Description(optional): ")
+                @Html.TextBox("EventDescription", null, new { @class = "form-control", type = "text"})
+                @Html.Label("EventStartDate", "Event Start Date: ")
+                @Html.TextBox("EventStartDate", null, new { @class = "form-control", type = "date", required = "required" })
+                @Html.Label("EventStartTime", "Event Start Time: ")
+                @Html.TextBox("EventStartTime", null, new { @class = "form-control", type = "time", required = "required" })
+                @Html.Label("EventEndDate", "Event End Date: ")
+                @Html.TextBox("EventEndDate", null, new { @class = "form-control", type = "date", required = "required" })
+                @Html.Label("EventEndTime", "Event End Time: ")
+                @Html.TextBox("EventEndTime", null, new { @class = "form-control", type = "time", required = "required" })
+                @Html.Label("Remind", "Email Reminder(optional): ")
+                <br />
+                @Html.DropDownList("Remind", new List<SelectListItem> {
+                   new SelectListItem{Text="No Reminder", Value="none"},
+                   new SelectListItem{Text="At time of event", Value="atTime"},
+                   new SelectListItem{Text="5 minutes before", Value="5Mins"},
+                   new SelectListItem{Text="10 minutes before", Value="10Mins"},
+                   new SelectListItem{Text="15 minutes before", Value="15Mins"},
+                   new SelectListItem{Text="30 minutes before", Value="30Mins"},
+                   new SelectListItem{Text="1 hour before", Value="oneHour"},
+                   new SelectListItem{Text="2 hours before", Value="twoHours"},
+                   new SelectListItem{Text="1 day before", Value="oneDay"},
+                   new SelectListItem{Text="2 days before", Value="twoDays"},
+                   new SelectListItem{Text="1 week before", Value="oneWeek"}
+               },
+                   new { @class = "form-control col-sm-8", id = "Remind" }
+               )
 
-                        <br />
-                        <div class="row" style="align-content:center ; text-align:center">
-                            <button type="submit" class="MarkDownButtons">Add This Event</button>
-                        </div>
-                    </div>
+
+                <br />
+                <br />
+                <div class="row" style="align-content:center ; text-align:center">
+                    <button type="submit" class="MarkDownButtons">Add This Event</button>
+                </div>
+            </div>
 
                 }
             </div>
