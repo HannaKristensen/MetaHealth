@@ -1,44 +1,239 @@
 ﻿@model IEnumerable<MetaHealth.Models.SepMood>
 
+<link href="@Url.Content("~/Content/moods.css")" rel="stylesheet" type="text/css" />
 
-@{
-    ViewBag.Title = "Index";
+@section scripts {
+    <script src="~/Scripts/moodhub.js"></script>
 }
 
-<h2>Your Moods</h2>
+<div class="container" id="moodBody">
+    <div class="row" style="text-align:center;">
+        <h1 style="letter-spacing:3px ; font-weight:bold">My Moods</h1>
+    </div>
+    <div class="row">
 
-<table class="table">
-    <tr>
-        <th>
-            Mood
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Reason)
-        </th>
-        <th></th>
-    </tr>
+        <div class="col-sm-2" style="float:right ; margin-top: 11.5px; margin-left: -20px">
+            <select style="border-radius:7px; font-size:13px ; text-align:center ;"  onchange="filter();" id="moodDates">
+                <option value="all" style="border-radius: 7px; font-size: 13px; text-align: center">All Time</option>
+                <option value="week" style="border-radius:7px; font-size:13px ; text-align:center">Last 7 Days</option>
+                <option value="today" style="border-radius:7px; font-size:13px ; text-align:center">Today</option>
+            </select>
+        </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MoodNum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Reason)
-        </td>
-        <td>
-            @Html.ActionLink("Edit","Edit", new { id = item.PK })
-        </td>
-    </tr>
-}
+        <div class="col-sm-4" style="float:right ">
+            <h4 style="letter-spacing:3px ; font-weight:bold; float:right">Viewing moods from:</h4>
+        </div>
 
-</table>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+
+    </div>
+
+    <div class="row" style="height:20px">
+
+    </div>
+
+    <table class="table" style="font-size: 17px" id="allTimeResults">
+        <tr style="letter-spacing:3px">
+            <th>
+                Mood
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reason)
+            </th>
+            <th></th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if (item.MoodNum == 1)
+                {
+                    <td>
+                        Horrible
+                    </td>
+                }
+
+                @if (item.MoodNum == 2)
+                {
+                    <td>
+                        Not Good
+                    </td>
+                }
+                @if (item.MoodNum == 3)
+                {
+                    <td>
+                        Neutral
+                    </td>
+                }
+                @if (item.MoodNum == 4)
+                {
+                    <td>
+                        Good
+                    </td>
+                }
+                @if (item.MoodNum == 5)
+                {
+                    <td>
+                        Fantastic
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reason)
+                </td>
+                <td id="buttonMaybe">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PK })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+    <h3 style="text-align:center; font-weight:bold ; letter-spacing: 3px" id="noDays">Looks like there are no moods here yet ! </h3>
+
+    <table class="table" style="font-size: 17px" id="todayResults">
+        <tr style="letter-spacing:3px">
+            <th>
+                Mood
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reason)
+            </th>
+            <th></th>
+        </tr>
+
+
+
+        @foreach (var item in ViewBag.todaysMoods)
+        {
+
+
+            <tr>
+
+
+                @if (item.MoodNum == 1)
+                {
+                    <td>
+                        Horrible
+                    </td>
+                }
+
+                @if (item.MoodNum == 2)
+                {
+                    <td>
+                        Not Good
+                    </td>
+                }
+                @if (item.MoodNum == 3)
+                {
+                    <td>
+                        Neutral
+                    </td>
+                }
+                @if (item.MoodNum == 4)
+                {
+                    <td>
+                        Good
+                    </td>
+                }
+                @if (item.MoodNum == 5)
+                {
+                    <td>
+                        Fantastic
+                    </td>
+                }
+                <td>
+                    @item.Date
+                </td>
+                <td>
+                    @item.Reason
+                </td>
+                <td id="buttonMaybe">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PK })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <table class="table" style="font-size: 17px" id="thisWeekResults">
+        <tr style="letter-spacing:3px">
+            <th>
+                Mood
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reason)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in ViewBag.weeksMoods)
+        {
+            <tr>
+                @if (item.MoodNum == 1)
+                {
+                    <td>
+                        Horrible
+                    </td>
+                }
+
+                @if (item.MoodNum == 2)
+                {
+                    <td>
+                        Not Good
+                    </td>
+                }
+                @if (item.MoodNum == 3)
+                {
+                    <td>
+                        Neutral
+                    </td>
+                }
+                @if (item.MoodNum == 4)
+                {
+                    <td>
+                        Good
+                    </td>
+                }
+                @if (item.MoodNum == 5)
+                {
+                    <td>
+                        Fantastic
+                    </td>
+                }
+                <td>
+                    @item.Date
+                </td>
+                <td>
+                    @item.Reason
+                </td>
+                <td id="buttonMaybe">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PK })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+    <p id="buttonMaybe">
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+
+
+
+</div>

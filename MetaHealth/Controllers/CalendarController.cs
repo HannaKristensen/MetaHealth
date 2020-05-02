@@ -29,7 +29,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
     {
         private readonly IDataStore dataStore = new FileDataStore(GoogleWebAuthorizationBroker.Folder);
         private Model db = new Model();
-
+        #region GetCredentialForApiAsync
         private async Task<UserCredential> GetCredentialForApiAsync()
         {
             var initializer = new GoogleAuthorizationCodeFlow.Initializer
@@ -50,7 +50,10 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             var token = await dataStore.GetAsync<TokenResponse>(userId); ;
             return new UserCredential(flow, userId, token);
         }
+        #endregion
 
+        //loads the entire dashboard
+        #region UpcomingEvents()
         // GET: For the Home Page
         public async Task<ActionResult> UpcomingEvents()
         {
@@ -110,6 +113,9 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                     Events = grouping,
                 });
             }
+
+           
+  
 
             model.EventGroups = eventGroups;
 
@@ -222,8 +228,10 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return View(model);
         }
+        #endregion
 
         //Marks OFf Tasks Through Ajax
+        #region MarkDownTask()
         [HttpGet]
         public async Task<ActionResult> MarkDownTask()
         {
@@ -297,11 +305,14 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return Content(json);
         }
+        #endregion
 
         //Adding a new Task
+        #region UpcomingEvents()
         [HttpPost]
         public async Task<ActionResult> UpcomingEvents(string taskTitle)
         {
+  
             var credential = await GetCredentialForApiAsync();
 
             //Add a new task
@@ -324,7 +335,9 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return View(model);
         }
+        #endregion
 
+        #region Adding Premade Tasks
         //Adding premade task Level One
         [HttpPost]
         public async Task<ActionResult> AddPreMadeOne()
@@ -414,8 +427,10 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return View("UpcomingEvents", model);
         }
+        #endregion
 
         // Model for the page
+        #region GetCurrentEventsTask()
         public async Task<UpcomingEventsViewModel> GetCurrentEventsTask()
         {
             Dictionary<string, double> dummyDict = new Dictionary<string, double>();
@@ -585,9 +600,12 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return model;
         }
+        #endregion
 
+        #region Add Event
         //Add an event
         [HttpPost]
+
         public async Task<ActionResult> AddEvent(string EventSummary, string EventLocation, string EventDescription, string EventStartDate, string EventStartTime, string EventEndDate, string EventEndTime, string Remind  )
         {
 
@@ -596,11 +614,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             DateTime EventStartDateTime = Convert.ToDateTime(EventStartDate).Add(TimeSpan.Parse(EventStartTime));
             DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
-            if (databaseName=="AzureDB") 
-            {
-                EventStartDateTime = EventStartDateTime.AddHours(7);
-                EventEndDateTime = EventEndDateTime.AddHours(7);
-            }
             var credential = await GetCredentialForApiAsync();
 
             var initializer = new BaseClientService.Initializer()
@@ -624,13 +637,15 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
                 calendarEvent.Start = new Google.Apis.Calendar.v3.Data.EventDateTime
                 {
-                    DateTime = EventStartDateTime/*new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, StartDate.Hour, StartDate.Minute, StartDate.Second)*/,
-                    
+                    DateTime = EventStartDateTime,
                     TimeZone = "America/Los_Angeles"
                 };
+
+                //Trying to split the time zone indicator
                 calendarEvent.Start.DateTimeRaw = calendarEvent.Start.DateTimeRaw.Replace("Z", "");
-                calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime {
-                    DateTime = EventEndDateTime /*new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, EndDate.Hour, EndDate.Minute, EndDate.Second)*/,
+                calendarEvent.End = new Google.Apis.Calendar.v3.Data.EventDateTime
+                {
+                    DateTime = EventEndDateTime,
                     TimeZone = "America/Los_Angeles"
                 };
                 calendarEvent.End.DateTimeRaw = calendarEvent.End.DateTimeRaw.Replace("Z", "");
@@ -771,8 +786,10 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             UpcomingEventsViewModel model = await GetCurrentEventsTask();
             return View("UpcomingEvents", model);
         }
+        #endregion
 
         //function to make sure there are no null events in the list
+        #region CheckEvents()
         public bool CheckEvents(List<string> events)
         {
             foreach (string item in events)
@@ -788,8 +805,10 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             }
             return false;
         }
+        #endregion
 
         //Adding Custom Tasks
+        #region AddCustomTasks()
         [HttpGet]
         public async Task<ActionResult> AddCustomTasks()
         {
@@ -843,7 +862,9 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return Content(json);
         }
+        #endregion
 
+        #region AmountOfEvents()
         public async Task<bool> AmountOfEvents()
         {
             var credential = await GetCredentialForApiAsync();
@@ -876,20 +897,48 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             }
             else return false;
         }
+        #endregion
 
+        #region Create/Editing custom tasks
         [HttpPost]
-        public async Task<ActionResult> CreateCustom(string titleCustom)
+        public ActionResult CreateCustom(string titleCustom)
         {
             CustomListsController controller = new CustomListsController();
             CustomList entry = new CustomList();
             entry.TaskTitle = titleCustom;
-            entry.UserID = User.Identity.GetUserId();
+            string userID = User.Identity.GetUserId();
+            entry.UserID = userID;
             controller.Create(entry);
-            ModelState.Clear();
 
-            UpcomingEventsViewModel model = await GetCurrentEventsTask();
+            CustomList[] arr = db.CustomLists.Where(x => x.UserID == userID).ToArray();
+            CustomList obj = arr[arr.Length - 1];
+            int pk = obj.PK;
+            string task = obj.TaskTitle;
+            var result = new { PK = pk, title = task };
 
-            return View("UpcomingEvents", model);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult EditCustom(string customTaskContent, string task)
+        {
+            CustomListsController controller = new CustomListsController();
+            CustomList entry = new CustomList();
+            entry.PK = Int32.Parse(customTaskContent);
+            entry.TaskTitle = task;
+            entry.UserID = User.Identity.GetUserId();
+            controller.Edit(entry);
+
+            return Content("");
+        }
+
+        public ActionResult DeleteCustom(string customTaskContent)
+        {
+            CustomListsController controller = new CustomListsController();
+            int key = Int32.Parse(customTaskContent);
+            controller.DeleteConfirmed(key);
+            return Content("");
+        }
+        #endregion
     }
 }
