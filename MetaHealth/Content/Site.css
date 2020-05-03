@@ -543,3 +543,23 @@ a:visited {
         opacity: 1;
         transition: 0.5s;
     }
+/*edit user name page*/
+.changeName {
+    background-color: #49C7CA;
+    border-radius: 10px;
+    border: 3px solid #248D83;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Verdana;
+    font-size: 20px;
+    padding: 7px 15px;
+    text-decoration: none;
+    margin-left: 16px;
+    margin-top: 20px;
+}
+
+.editLabel {
+   font-size: 24px;
+   font-family: Verdana;
+   font-weight: lighter;
+}

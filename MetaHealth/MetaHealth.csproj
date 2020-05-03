@@ -330,7 +330,6 @@
     <Content Include="Views\Home\Venting.cshtml" />
     <Content Include="Views\SepMoods\todaysMoodsP.cshtml" />
     <Content Include="Views\AspNetUsers\Edit.cshtml" />
-    <Content Include="Views\AspNetUsers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
