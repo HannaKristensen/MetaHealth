@@ -63,6 +63,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             const int MaxEventsOverall = 50;
             var controller = new SepMoodsController();
             var model = new UpcomingEventsViewModel();
+            
 
             var credential = await GetCredentialForApiAsync();
 
@@ -225,6 +226,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             //JS for opening calendar
             model.EventsOrNah = await AmountOfEvents();
+            model.UserName = db.AspNetUsers.Where(x => x.Id == userId).Select(x => x.UserName).FirstOrDefault();
 
             return View(model);
         }

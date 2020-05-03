@@ -83,12 +83,17 @@ namespace MetaHealth.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "UserName")] AspNetUser aspNetUser)
         {
+            
             aspNetUser.Id = User.Identity.GetUserId();
+            var oldUser = db.AspNetUsers.Find(aspNetUser.Id);
+            var newUser = aspNetUser;
+            aspNetUser = oldUser;
+            aspNetUser.UserName = newUser.UserName;
+            db.Entry(aspNetUser).Property(x => x.UserName).IsModified = true; 
             if (ModelState.IsValid)
             {
-                db.Entry(aspNetUser).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("UpcomingEvents","Caendar");
             }
             return View(aspNetUser);
         }
