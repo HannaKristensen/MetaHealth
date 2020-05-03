@@ -61,6 +61,20 @@
                             @Html.ActionLink("Find Help", "SearchPage", "Search")
                         </div>
                     </div>
+
+                    <div class="my-dropdown-settings">
+                        <button class="my-dropbtn-settings">
+                            Account Settings
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="my-dropdown-settings-content">
+                            @Html.ActionLink("Edit Name", "Edit", "AspNetUsers")
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "form-settings" })) {
+                                @Html.AntiForgeryToken()
+                                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                            }
+                        </div>
+                    </div>
                 }
 
                 else {
@@ -68,20 +82,6 @@
                     @Html.ActionLink("Flowchart", "Flowchart", "Home")
                     @Html.ActionLink("Find Help", "SearchPage", "Search")
                 }
-
-                <div class="my-dropdown-settings">
-                    <button class="my-dropbtn-settings">
-                        Account Settings
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="my-dropdown-settings-content">
-                        @Html.ActionLink("Edit Name", "Resources", "Home")
-                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm", @class = "form-settings" })) {
-                            @Html.AntiForgeryToken()
-                            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-                        }
-                    </div>
-                </div>
 
             </div>
 

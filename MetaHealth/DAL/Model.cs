@@ -18,5 +18,7 @@ namespace MetaHealth.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }
+
+        public System.Data.Entity.DbSet<MetaHealth.AspNetUser> AspNetUsers { get; set; }
     }
 }
