@@ -247,10 +247,11 @@ function AddSuggestion()
         type: 'POST',
         contentType: "application/json",
         async: true,
+        processData: false,
         data: dataSend,
         url: '/calendar/DailySugg',
         success: messageOut,
         error: errorOnAjax
     });
-
+    
 }

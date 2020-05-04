@@ -976,6 +976,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             };
             var service = new TasksService(initializer);
 
+
             // Define parameters of request.
             TasklistsResource.ListRequest listRequest = service.Tasklists.List();
             listRequest.MaxResults = 10;
@@ -1023,6 +1024,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             }
 
             var json = JsonConvert.SerializeObject(taskArr);
+
 
             return Content(json);
         }
