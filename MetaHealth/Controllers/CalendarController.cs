@@ -963,56 +963,56 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             Google.Apis.Tasks.v1.Data.Task newTask = service.Tasks.Insert(task, "@default").Execute();
 
-            // Define parameters of request.
-            /*TasklistsResource.ListRequest listRequest = service.Tasklists.List();
-            listRequest.MaxResults = 10;
+             // Define parameters of request.
+             TasklistsResource.ListRequest listRequest = service.Tasklists.List();
+             listRequest.MaxResults = 10;
 
-            string[] listOtasks = new string[10];
-            // List task lists.
-            IList<TaskList> taskLists = listRequest.Execute().Items;
-            if (taskLists != null)
-            {
-                int i = 0;
-                foreach (var taskList in taskLists)
-                {
-                    listOtasks[i] = taskList.Title;
-                    i++;
-                }
-            }
+             string[] listOtasks = new string[10];
+             // List task lists.
+             IList<TaskList> taskLists = listRequest.Execute().Items;
+             if (taskLists != null)
+             {
+                 int i = 0;
+                 foreach (var taskList in taskLists)
+                 {
+                     listOtasks[i] = taskList.Title;
+                     i++;
+                 }
+             }
 
-            Google.Apis.Tasks.v1.Data.Tasks tasksList = service.Tasks.List("@default").Execute();
-            int amountTask = 0;
-            if (tasksList.Items != null)
-            {
-                foreach (var item in tasks.Items)
-                {
-                    if (item.Status == "needsAction")
-                    {
-                        amountTask++;
-                    }
-                }
-            }
+             Google.Apis.Tasks.v1.Data.Tasks tasksList = service.Tasks.List("@default").Execute();
+             int amountTask = 0;
+             if (tasksList.Items != null)
+             {
+                 foreach (var item in tasks.Items)
+                 {
+                     if (item.Status == "needsAction")
+                     {
+                         amountTask++;
+                     }
+                 }
+             }
 
-            string[,] taskArr = new string[2, amountTask];
-            int indexTask = 0;
+             string[,] taskArr = new string[2, amountTask];
+             int indexTask = 0;
 
-            if (tasksList.Items != null)
-            {
-                for (int i = 0; i < tasksList.Items.Count; i++)
-                {
-                    if (tasksList.Items[i].Status == "needsAction" && tasksList.Items[i].Title != " ")
-                    {
-                        taskArr[1, indexTask] = tasksList.Items[i].Title;
-                        taskArr[0, indexTask] = tasksList.Items[i].Id;
-                        indexTask++;
-                    }
-                }
-            }
+             if (tasksList.Items != null)
+             {
+                 for (int i = 0; i < tasksList.Items.Count; i++)
+                 {
+                     if (tasksList.Items[i].Status == "needsAction" && tasksList.Items[i].Title != " ")
+                     {
+                         taskArr[1, indexTask] = tasksList.Items[i].Title;
+                         taskArr[0, indexTask] = tasksList.Items[i].Id;
+                         indexTask++;
+                     }
+                 }
+             }
 
-            var json = JsonConvert.SerializeObject(taskArr);
+             var json = JsonConvert.SerializeObject(taskArr);
 
-            return Json(json, JsonRequestBehavior.AllowGet);*/
-            return Content(sugg);
+           // return Json(json, JsonRequestBehavior.AllowGet);
+            return Content(json);
         }
         #endregion
     } 
