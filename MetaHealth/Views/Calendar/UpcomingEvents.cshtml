@@ -35,15 +35,14 @@
             @*Empty col to make space between these two modules*@
             <div class="col-sm-1"></div>
             @*Spot for daily self care suggestion*@
-        <div class="col-lg-5" style="background-color: #eeebdd ; height:270px; border:5px solid #49C7CA ; border-radius: 25px; text-align:center" id="selfcare">
-            <div class="row"></div>
-            <div class="selfCareTitle"><h3>Welcome, @User.Identity.Name! Today's self care suggestion:</h3></div>
+            <div class="col-lg-5" style="background-color: #eeebdd ; height:270px; border:5px solid #49C7CA ; border-radius: 25px; text-align:center" id="selfcare">
+                <div class="row"></div>
+                <div class="selfCareTitle"><h3>Welcome, @User.Identity.Name! Today's self care suggestion:</h3></div>
 
-            <div class="randSuggestion" id="suggestion"></div>
-            
-            <button type="submit" onclick="AddSuggestion() ">Add as Task</button>
+                <div class="randSuggestion" id="suggestion"></div>
 
-        </div>
+                <button type="submit" onclick="AddSuggestion() ">Add as Task</button>
+            </div>
         </div>
 
         <div class="row">
@@ -55,24 +54,29 @@
 
             @*Spot for Google Calendar*@
             <div class="col-lg-5" style="background-color: #eeebdd ; display: block; border:5px solid #248D83 ; border-radius: 25px" id="googleCalColumn">
-                @helper FormatEventTime(CalendarData.EventDateTime when) {
-// Either Date or DateTime is set, depending on whether or not the event is
-// an all-day event.
-if (when.DateTime == null) {
+                @helper FormatEventTime(CalendarData.EventDateTime when)
+                {
+                    // Either Date or DateTime is set, depending on whether or not the event is
+                    // an all-day event.
+                    if (when.DateTime == null)
+                    {
                         <text>All day</text>
-}
-else {
+                    }
+                    else
+                    {
                         @:@when.DateTime.Value.ToShortTimeString()
                     }
                 }
 
-
-                @helper FormatEventLength(CalendarData.EventDateTime start, CalendarData.EventDateTime end) {
-var duration = end.DateTime - start.DateTime;
-if (duration == null) {
+                @helper FormatEventLength(CalendarData.EventDateTime start, CalendarData.EventDateTime end)
+                {
+                    var duration = end.DateTime - start.DateTime;
+                    if (duration == null)
+                    {
                         <text>All day</text>
-}
-else {
+                    }
+                    else
+                    {
                         @:@string.Format(
 
 "{0} hour{1} {2} minute{3}",
@@ -81,19 +85,21 @@ duration.Value.TotalHours >= 2 ? "s" : "",
 (int)duration.Value.Minutes,
 duration.Value.Minutes >= 2 ? "s" : "")
 
-}
+                    }
                 }
-     
-    @functions {
-        public static bool IsAllDay(CalendarData.Event item) {
-            var duration = item.End.DateTime - item.Start.DateTime;
-            if (duration == null) {
-                return true;
-            }
-            return false;
-        }
 
-    } 
+                @functions {
+                    public static bool IsAllDay(CalendarData.Event item)
+                    {
+                        var duration = item.End.DateTime - item.Start.DateTime;
+                        if (duration == null)
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+
+                }
 
                 <h2 style="text-align:center">Upcoming Events</h2>
                 <hr>
@@ -113,10 +119,11 @@ duration.Value.Minutes >= 2 ? "s" : "")
                             <tr><th colspan="4">@group.GroupTitle</th></tr>
                             @foreach (var item in group.Events)
                             {
-                                if (!IsAllDay(item)) {
+                                if (!IsAllDay(item))
+                                {
                                     var temp = item.Start.DateTime.Value;
 
-                                    temp=temp.AddHours(-7);
+                                    temp = temp.AddHours(-7);
                                     item.Start.DateTime = temp;
                                 }
 
@@ -140,46 +147,45 @@ duration.Value.Minutes >= 2 ? "s" : "")
 
                 @using (Html.BeginForm("AddEvent", "Calendar", FormMethod.Post))
                 {
-            <div class="form-group" id="eventAddForm">
-                @Html.Label("EventSummary", "Event Summary: ")
-                @Html.TextBox("EventSummary", null, new { @class = "form-control", type = "text", required = "required" })
-                @Html.Label("EventLocation", "Event Location(optional): ")
-                @Html.TextBox("EventLocation", null, new { @class = "form-control", type = "text"})
-                @Html.Label("EventDescription", "Event Description(optional): ")
-                @Html.TextBox("EventDescription", null, new { @class = "form-control", type = "text"})
-                @Html.Label("EventStartDate", "Event Start Date: ")
-                @Html.TextBox("EventStartDate", null, new { @class = "form-control", type = "date", required = "required" })
-                @Html.Label("EventStartTime", "Event Start Time: ")
-                @Html.TextBox("EventStartTime", null, new { @class = "form-control", type = "time", required = "required" })
-                @Html.Label("EventEndDate", "Event End Date: ")
-                @Html.TextBox("EventEndDate", null, new { @class = "form-control", type = "date", required = "required" })
-                @Html.Label("EventEndTime", "Event End Time: ")
-                @Html.TextBox("EventEndTime", null, new { @class = "form-control", type = "time", required = "required" })
-                @Html.Label("Remind", "Email Reminder(optional): ")
-                <br />
-                @Html.DropDownList("Remind", new List<SelectListItem> {
-                   new SelectListItem{Text="No Reminder", Value="none"},
-                   new SelectListItem{Text="At time of event", Value="atTime"},
-                   new SelectListItem{Text="5 minutes before", Value="5Mins"},
-                   new SelectListItem{Text="10 minutes before", Value="10Mins"},
-                   new SelectListItem{Text="15 minutes before", Value="15Mins"},
-                   new SelectListItem{Text="30 minutes before", Value="30Mins"},
-                   new SelectListItem{Text="1 hour before", Value="oneHour"},
-                   new SelectListItem{Text="2 hours before", Value="twoHours"},
-                   new SelectListItem{Text="1 day before", Value="oneDay"},
-                   new SelectListItem{Text="2 days before", Value="twoDays"},
-                   new SelectListItem{Text="1 week before", Value="oneWeek"}
-               },
-                   new { @class = "form-control col-sm-8", id = "Remind" }
-               )
+                    <div class="form-group" id="eventAddForm">
+                        @Html.Label("EventSummary", "Event Summary: ")
+                        @Html.TextBox("EventSummary", null, new { @class = "form-control", type = "text", required = "required" })
+                        @Html.Label("EventLocation", "Event Location(optional): ")
+                        @Html.TextBox("EventLocation", null, new { @class = "form-control", type = "text" })
+                        @Html.Label("EventDescription", "Event Description(optional): ")
+                        @Html.TextBox("EventDescription", null, new { @class = "form-control", type = "text" })
+                        @Html.Label("EventStartDate", "Event Start Date: ")
+                        @Html.TextBox("EventStartDate", null, new { @class = "form-control", type = "date", required = "required" })
+                        @Html.Label("EventStartTime", "Event Start Time: ")
+                        @Html.TextBox("EventStartTime", null, new { @class = "form-control", type = "time", required = "required" })
+                        @Html.Label("EventEndDate", "Event End Date: ")
+                        @Html.TextBox("EventEndDate", null, new { @class = "form-control", type = "date", required = "required" })
+                        @Html.Label("EventEndTime", "Event End Time: ")
+                        @Html.TextBox("EventEndTime", null, new { @class = "form-control", type = "time", required = "required" })
+                        @Html.Label("Remind", "Email Reminder(optional): ")
+                        <br />
+                        @Html.DropDownList("Remind", new List<SelectListItem> {
+                           new SelectListItem{Text="No Reminder", Value="none"},
+                           new SelectListItem{Text="At time of event", Value="atTime"},
+                           new SelectListItem{Text="5 minutes before", Value="5Mins"},
+                           new SelectListItem{Text="10 minutes before", Value="10Mins"},
+                           new SelectListItem{Text="15 minutes before", Value="15Mins"},
+                           new SelectListItem{Text="30 minutes before", Value="30Mins"},
+                           new SelectListItem{Text="1 hour before", Value="oneHour"},
+                           new SelectListItem{Text="2 hours before", Value="twoHours"},
+                           new SelectListItem{Text="1 day before", Value="oneDay"},
+                           new SelectListItem{Text="2 days before", Value="twoDays"},
+                           new SelectListItem{Text="1 week before", Value="oneWeek"}
+                       },
+                           new { @class = "form-control col-sm-8", id = "Remind" }
+                       )
 
-
-                <br />
-                <br />
-                <div class="row" style="align-content:center ; text-align:center">
-                    <button type="submit" class="MarkDownButtons">Add This Event</button>
-                </div>
-            </div>
+                        <br />
+                        <br />
+                        <div class="row" style="align-content:center ; text-align:center">
+                            <button type="submit" class="MarkDownButtons">Add This Event</button>
+                        </div>
+                    </div>
 
                 }
             </div>
@@ -205,6 +211,7 @@ duration.Value.Minutes >= 2 ? "s" : "")
                     </table>
                 </div>
 
+
                 @*Row containing buttons: Add task, refresh/mark done*@
                 <div class="row" id="taskButtons" style="text-align:center ; align-content:center">
                     <button class="MarkDownButtons" onclick="MarkDown()">Mark Done</button>
@@ -220,7 +227,7 @@ duration.Value.Minutes >= 2 ? "s" : "")
                 </div>
 
                 @*Row for adding tasks, appears and dissapears with JS*@
-                <div class="row" id="addCustom">
+                <div id="addCustom" style="">
                     &nbsp;
                     <p>
                         <button class="MarkDownButtons" onclick="createCustomTask()">Create Custom Task</button>
@@ -229,7 +236,7 @@ duration.Value.Minutes >= 2 ? "s" : "")
 
                     <div id="addCusTask">
                         <div class="form-group">
-                            <label>Task:</label>
+                            <label style="align-content:start">Task:</label>
                             <input class="form-control" id="newTask" type="text" maxlength="200" />
                             <button class="MarkDownButtons" onclick="addCustom()">Add Task</button>
                         </div>
@@ -256,7 +263,7 @@ duration.Value.Minutes >= 2 ? "s" : "")
                         }
                     </table>
                 </div>
-            </div>
+
 
             <div class="row" id="addTaskRow">
                 @using (Html.BeginForm("UpcomingEvents", "Calendar", FormMethod.Post))
