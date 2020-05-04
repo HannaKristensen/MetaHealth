@@ -38,8 +38,11 @@
         <div class="col-lg-5" style="background-color: #eeebdd ; height:270px; border:5px solid #49C7CA ; border-radius: 25px; text-align:center" id="selfcare">
             <div class="row"></div>
             <div class="selfCareTitle"><h3>Welcome, @User.Identity.Name! Today's self care suggestion:</h3></div>
-            
+
             <div class="randSuggestion" id="suggestion"></div>
+            
+            <button type="submit" onclick="AddSuggestion() ">Add as Task</button>
+
         </div>
         </div>
 
@@ -88,7 +91,7 @@ duration.Value.Minutes >= 2 ? "s" : "")
                 return true;
             }
             return false;
-            }
+        }
 
     } 
 
