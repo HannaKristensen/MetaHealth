@@ -563,3 +563,8 @@ a:visited {
    font-family: Verdana;
    font-weight: lighter;
 }
+
+.changeName input {
+    font-size:18px;
+    font-family:Verdana;
+}

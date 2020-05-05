@@ -20,7 +20,7 @@
             <div class="form-inline">
                 <div class="col-md-10">
                     @Html.Label("username","Enter your desired username: ", new  { @class = "editLabel" } )
-                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control text-box inline", id="editNameBox" } })
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "changeName" } })
                     @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                 </div>
             </div>
