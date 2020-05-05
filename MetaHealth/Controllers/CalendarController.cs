@@ -29,7 +29,9 @@ namespace Calendar.ASP.NET.MVC5.Controllers
     {
         private readonly IDataStore dataStore = new FileDataStore(GoogleWebAuthorizationBroker.Folder);
         private Model db = new Model();
+
         #region GetCredentialForApiAsync
+
         private async Task<UserCredential> GetCredentialForApiAsync()
         {
             var initializer = new GoogleAuthorizationCodeFlow.Initializer
@@ -50,10 +52,13 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             var token = await dataStore.GetAsync<TokenResponse>(userId); ;
             return new UserCredential(flow, userId, token);
         }
-        #endregion
+
+        #endregion GetCredentialForApiAsync
 
         //loads the entire dashboard
+
         #region UpcomingEvents()
+
         // GET: For the Home Page
         public async Task<ActionResult> UpcomingEvents()
         {
@@ -114,9 +119,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                     Events = grouping,
                 });
             }
-
-           
-  
 
             model.EventGroups = eventGroups;
 
@@ -230,10 +232,13 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return View(model);
         }
-        #endregion
+
+        #endregion UpcomingEvents()
 
         //Marks OFf Tasks Through Ajax
+
         #region MarkDownTask()
+
         [HttpGet]
         public async Task<ActionResult> MarkDownTask()
         {
@@ -307,14 +312,16 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return Content(json);
         }
-        #endregion
+
+        #endregion MarkDownTask()
 
         //Adding a new Task
+
         #region UpcomingEvents()
+
         [HttpPost]
         public async Task<ActionResult> UpcomingEvents(string taskTitle)
         {
-  
             var credential = await GetCredentialForApiAsync();
 
             //Add a new task
@@ -337,9 +344,11 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return View(model);
         }
-        #endregion
+
+        #endregion UpcomingEvents()
 
         #region Adding Premade Tasks
+
         //Adding premade task Level One
         [HttpPost]
         public async Task<ActionResult> AddPreMadeOne()
@@ -429,10 +438,13 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return View("UpcomingEvents", model);
         }
-        #endregion
+
+        #endregion Adding Premade Tasks
 
         // Model for the page
+
         #region GetCurrentEventsTask()
+
         public async Task<UpcomingEventsViewModel> GetCurrentEventsTask()
         {
             Dictionary<string, double> dummyDict = new Dictionary<string, double>();
@@ -602,15 +614,15 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return model;
         }
-        #endregion
+
+        #endregion GetCurrentEventsTask()
 
         #region Add Event
+
         //Add an event
         [HttpPost]
-
-        public async Task<ActionResult> AddEvent(string EventSummary, string EventLocation, string EventDescription, string EventStartDate, string EventStartTime, string EventEndDate, string EventEndTime, string Remind  )
+        public async Task<ActionResult> AddEvent(string EventSummary, string EventLocation, string EventDescription, string EventStartDate, string EventStartTime, string EventEndDate, string EventEndTime, string Remind)
         {
-
             Model context = new Model();
             string databaseName = context.Database.Connection.Database;
 
@@ -666,9 +678,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                         UseDefault = false,
                         Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
                             {
-
                                 new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 0 }
-
                             }
                     };
                 }
@@ -678,24 +688,18 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                         UseDefault = false,
                         Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
                             {
-
                                 new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 5 }
-
                             }
                     };
-
                 else if (Remind == "10Mins")
                     calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
                     {
                         UseDefault = false,
                         Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
                             {
-
                                 new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 10 }
-
                             }
                     };
-
                 else if (Remind == "30Mins")
                 {
                     calendarEvent.Reminders = new Google.Apis.Calendar.v3.Data.Event.RemindersData
@@ -703,9 +707,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                         UseDefault = false,
                         Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
                             {
-
                                 new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 30 }
-
                             }
                     };
                 }
@@ -716,9 +718,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                         UseDefault = false,
                         Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
                             {
-
                                 new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 60 }
-
                             }
                     };
                 }
@@ -729,9 +729,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                         UseDefault = false,
                         Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
                             {
-
                                 new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 120}
-
                             }
                     };
                 }
@@ -742,9 +740,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                         UseDefault = false,
                         Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
                             {
-
                                 new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 1440 }
-
                             }
                     };
                 }
@@ -755,9 +751,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                         UseDefault = false,
                         Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
                             {
-
                                 new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 2880 }
-
                             }
                     };
                 }
@@ -768,9 +762,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                         UseDefault = false,
                         Overrides = new Google.Apis.Calendar.v3.Data.EventReminder[]
                             {
-
                                 new Google.Apis.Calendar.v3.Data.EventReminder() { Method = "email", Minutes = 10080 }
-
                             }
                     };
                 }
@@ -784,14 +776,17 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 var newEventRequest = calendarService.Events.Insert(calendarEvent, calendarId);
                 var eventResult = newEventRequest.Execute();
             }
-           
+
             UpcomingEventsViewModel model = await GetCurrentEventsTask();
             return View("UpcomingEvents", model);
         }
-        #endregion
+
+        #endregion Add Event
 
         //function to make sure there are no null events in the list
+
         #region CheckEvents()
+
         public bool CheckEvents(List<string> events)
         {
             foreach (string item in events)
@@ -807,10 +802,13 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             }
             return false;
         }
-        #endregion
+
+        #endregion CheckEvents()
 
         //Adding Custom Tasks
+
         #region AddCustomTasks()
+
         [HttpGet]
         public async Task<ActionResult> AddCustomTasks()
         {
@@ -864,9 +862,11 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             return Content(json);
         }
-        #endregion
+
+        #endregion AddCustomTasks()
 
         #region AmountOfEvents()
+
         public async Task<bool> AmountOfEvents()
         {
             var credential = await GetCredentialForApiAsync();
@@ -899,9 +899,11 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             }
             else return false;
         }
-        #endregion
+
+        #endregion AmountOfEvents()
 
         #region Create/Editing custom tasks
+
         [HttpPost]
         public ActionResult CreateCustom(string titleCustom)
         {
@@ -941,6 +943,94 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             controller.DeleteConfirmed(key);
             return Content("");
         }
-        #endregion
+
+        #endregion Create/Editing custom tasks
+
+        //Adding daily suggestion to tasks
+
+        #region DailySugg()
+
+        [HttpPost]
+        public async Task<ActionResult> DailySugg(string sugg)
+        {
+            var credential1 = await GetCredentialForApiAsync();
+
+            //Add a new task
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential1,
+                ApplicationName = "MetaHealth",
+            };
+            var service1 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service1.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = sugg };
+
+            Google.Apis.Tasks.v1.Data.Task newTask = service1.Tasks.Insert(task, "@default").Execute();
+
+            var credential = await GetCredentialForApiAsync();
+
+            var initializer = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "MetaHealth",
+            };
+            var service = new TasksService(initializer);
+
+
+            // Define parameters of request.
+            TasklistsResource.ListRequest listRequest = service.Tasklists.List();
+            listRequest.MaxResults = 10;
+
+            string[] listOtasks = new string[10];
+            // List task lists.
+            IList<TaskList> taskLists = listRequest.Execute().Items;
+            if (taskLists != null)
+            {
+                int i = 0;
+                foreach (var taskList in taskLists)
+                {
+                    listOtasks[i] = taskList.Title;
+                    i++;
+                }
+            }
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks1 = service.Tasks.List("@default").Execute();
+            int amountTask = 0;
+            if (tasks1.Items != null)
+            {
+                foreach (var item in tasks1.Items)
+                {
+                    if (item.Status == "needsAction")
+                    {
+                        amountTask++;
+                    }
+                }
+            }
+
+            string[,] taskArr = new string[2, amountTask];
+            int indexTask = 0;
+
+            if (tasks1.Items != null)
+            {
+                for (int i = 0; i < tasks1.Items.Count; i++)
+                {
+                    if (tasks1.Items[i].Status == "needsAction" && tasks1.Items[i].Title != " ")
+                    {
+                        taskArr[1, indexTask] = tasks1.Items[i].Title;
+                        taskArr[0, indexTask] = tasks1.Items[i].Id;
+                        indexTask++;
+                    }
+                }
+            }
+
+            var json = JsonConvert.SerializeObject(taskArr);
+
+
+            return Content(json);
+        }
+
+        #endregion DailySugg()
     }
 }

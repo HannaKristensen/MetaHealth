@@ -236,3 +236,22 @@ function addRow(data) {
     cell1.id = PK;
     cell2.innerHTML = "<button class=\"MarkDownButtons\" onclick=\"editCustom(" + PK + ")\">Edit</button> <button class=\"MarkDownButtons\" onclick =\"deleteCustom(" + PK + ")\" > Delete </button>";
 }
+
+function AddSuggestion()
+{
+    var text = document.getElementById("sugg").innerHTML;
+    var dataSend = JSON.stringify({
+        'sugg': text
+    });
+    $.ajax({
+        type: 'POST',
+        contentType: "application/json",
+        async: true,
+        processData: false,
+        data: dataSend,
+        url: '/calendar/DailySugg',
+        success: messageOut,
+        error: errorOnAjax
+    });
+    
+}

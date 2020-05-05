@@ -24,7 +24,7 @@ var selfCareSuggestions=[
 //so this does log to the console but we're still not properly adding this string to the home page... sooo close
 $("selfcare").ready(function() {
     var randNum=Math.floor(Math.random()*selfCareSuggestions.length);
-    var string="<p>"+selfCareSuggestions[randNum]+"</p>";
+    var string="<p id=\"sugg\">"+selfCareSuggestions[randNum]+"</p>";
     document.getElementById("suggestion").innerHTML=string;
 });
 
