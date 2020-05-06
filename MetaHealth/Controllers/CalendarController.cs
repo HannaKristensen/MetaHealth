@@ -68,7 +68,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             const int MaxEventsOverall = 50;
             var controller = new SepMoodsController();
             var model = new UpcomingEventsViewModel();
-            
 
             var credential = await GetCredentialForApiAsync();
 
@@ -612,6 +611,9 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             //JS for opening calendar
             model.EventsOrNah = await AmountOfEvents();
 
+            //UserName
+            model.UserName = db.AspNetUsers.Where(x => x.Id == userId).Select(x => x.UserName).FirstOrDefault();
+
             return model;
         }
 
@@ -978,7 +980,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             };
             var service = new TasksService(initializer);
 
-
             // Define parameters of request.
             TasklistsResource.ListRequest listRequest = service.Tasklists.List();
             listRequest.MaxResults = 10;
@@ -1026,7 +1027,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             }
 
             var json = JsonConvert.SerializeObject(taskArr);
-
 
             return Content(json);
         }
