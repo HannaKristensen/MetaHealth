@@ -26,5 +26,11 @@ namespace Calendar.ASP.NET.MVC5.Models
         public int[] PK { get; set; }
 
         public bool EventsOrNah { get; set; }
-    }
+        
+        public string UserName { get; set; }
+
+        public string DailyTask { get; set; }
+
+        
+}
 }

@@ -204,6 +204,7 @@
     <Compile Include="App_Start\MyRequestedScopes.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\CustomListsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TestingController.cs" />
@@ -304,7 +305,6 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Home\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Home\ExternalLoginFailure.cshtml" />
@@ -329,6 +329,7 @@
     <Content Include="Views\Search\SearchPage.cshtml" />
     <Content Include="Views\Home\Venting.cshtml" />
     <Content Include="Views\SepMoods\todaysMoodsP.cshtml" />
+    <Content Include="Views\AspNetUsers\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

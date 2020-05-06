@@ -156,3 +156,102 @@ function createCustomTask() {
         list.style.display = 'block';
     }
 }
+
+function editCustom(key) {
+    var tdObj = document.getElementById(key)
+    var preText = tdObj.textContent.trim();
+    var inputObj = $("<input type='text' />");
+    tdObj.textContent = "";
+    inputObj.val(preText).appendTo(tdObj).trigger("focus").trigger("select");
+    inputObj.keyup(function (event) {
+        if (13 == event.which) { // press ENTER-key
+            var text = $(this).val();
+            tdObj.textContent = text;
+            var dataSend = JSON.stringify({
+                'customTaskContent': key,
+                'task': text
+            });
+            $.ajax({
+                type: 'POST',
+                contentType: "application/json",
+                data: dataSend,
+                url: '/calendar/EditCustom',
+                error: errorOnAjax
+            });
+        }
+        else if (27 == event.which) {  // press ESC-key
+            tdObj.textContent = preText;
+        }
+    });
+    inputObj.click(function () {
+        return false;
+    });
+}
+
+function deleteCustom(key) {
+    var dataSend = JSON.stringify({
+        'customTaskContent': key
+    });
+    $.ajax({
+        type: 'POST',
+        contentType: "application/json",
+        data: dataSend,
+        url: '/calendar/DeleteCustom',
+        error: errorOnAjax
+    });
+    var table = document.getElementById("myTable");
+    for (var i = 0; i < table.rows.length; i++) {
+        if (table.rows[i].cells[0].id == key) {
+            table.deleteRow(i);
+        }
+    }
+}
+
+function addCustom() {
+    var task = document.getElementById("newTask").value;
+    var dataSend = JSON.stringify({
+        'titleCustom': task
+    });
+    $.ajax({
+        type: 'POST',
+        contentType: "application/json",
+        data: dataSend,
+        url: '/calendar/CreateCustom',
+        success: addRow,
+        error: errorOnAjax
+    });
+    //clear input box
+    document.getElementById("newTask").value = "";
+}
+
+function addRow(data) {
+    //add row to table
+    var PK = data.PK;
+    var task = data.title;
+    var row = document.getElementById("myTable").insertRow(-1);
+    var len = document.getElementById("myTable").rows.length;
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML = task;
+    cell1.id = PK;
+    cell2.innerHTML = "<button class=\"MarkDownButtons\" onclick=\"editCustom(" + PK + ")\">Edit</button> <button class=\"MarkDownButtons\" onclick =\"deleteCustom(" + PK + ")\" > Delete </button>";
+}
+
+function AddSuggestion()
+{
+    var text = document.getElementById("sugg").innerHTML;
+    var dataSend = JSON.stringify({
+        'sugg': text
+    });
+    $.ajax({
+        type: 'POST',
+        contentType: "application/json",
+        async: true,
+        processData: false,
+        data: dataSend,
+        url: '/calendar/DailySugg',
+        success: messageOut,
+        error: errorOnAjax
+    });
+    
+}

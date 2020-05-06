@@ -6,7 +6,8 @@ namespace MetaHealth.DAL
     public partial class Model : DbContext
     {
         public Model()
-        : base("AzureDB")
+
+         : base("AzureDB")
         //: base("DefaultConnection")
         // : base("HelpAlong")
         {
@@ -18,5 +19,7 @@ namespace MetaHealth.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }
+
+        public System.Data.Entity.DbSet<MetaHealth.AspNetUser> AspNetUsers { get; set; }
     }
 }

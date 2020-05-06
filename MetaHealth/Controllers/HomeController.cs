@@ -1,9 +1,12 @@
-﻿using System.Web.Mvc;
+﻿using MetaHealth.DAL;
+using Microsoft.AspNet.Identity;
+using System.Web.Mvc;
 
 namespace MetaHealth.Controllers
 {
     public class HomeController : Controller
     {
+        private Model db = new Model();
         [AllowAnonymous]
         public ActionResult Index()
         {
@@ -61,6 +64,14 @@ namespace MetaHealth.Controllers
 
         {
             return View();
+        }
+
+        public ActionResult EditName() {
+            //get current logged in user
+
+            //display user name
+            //change it
+            return RedirectToAction("Index", "Home");
         }
     }
 }
