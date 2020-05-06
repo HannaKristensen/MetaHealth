@@ -52,7 +52,7 @@ CREATE TABLE [dbo].[AspNetUsers]
     CONSTRAINT [PK_dbo.AspNetUsers] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 GO
-CREATE UNIQUE NONCLUSTERED INDEX [UserNameIndex] ON [dbo].[AspNetUsers]([UserName] ASC);
+CREATE UNIQUE NONCLUSTERED INDEX [EmailIndex] ON [dbo].[AspNetUsers]([Email] ASC);
 
 -- ############# AspNetUserClaims #############
 CREATE TABLE [dbo].[AspNetUserClaims]

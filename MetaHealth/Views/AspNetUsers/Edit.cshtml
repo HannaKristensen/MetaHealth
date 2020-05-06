@@ -1,0 +1,34 @@
+﻿@model MetaHealth.AspNetUser
+<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Account Settings</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+
+            
+            <div class="form-inline">
+                <div class="col-md-10">
+                    @Html.Label("username","Enter your desired username: ", new  { @class = "editLabel" } )
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "changeName" } })
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10"> 
+                        <input type="submit" value="Save" class="changeName" />  
+                </div>
+            </div>
+        
+    </div>
+}
