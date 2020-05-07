@@ -8,6 +8,7 @@ namespace MetaHealth.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
     }
 
