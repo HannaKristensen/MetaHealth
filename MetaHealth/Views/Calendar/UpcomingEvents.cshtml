@@ -6,7 +6,9 @@
 }
 
 <@Page Async="true">
-
+    <p>
+        &nbsp;
+    </p>
     <div id="redirectInst">
         <div class="col">
             <h1 id="redirectText">Hi there! It looks like you don't have your Google Calendar/Google tasks set up yet. Let's get you set up:</h1>
@@ -35,22 +37,28 @@
             @*Empty col to make space between these two modules*@
             <div class="col-sm-1" id="filler"></div>
             @*Spot for daily self care suggestion*@
-        <div class="col-lg-5" style="background-color: #eeebdd ; height:270px; border:5px solid #49C7CA ; border-radius: 25px; text-align:center" id="selfcare">
+        <div class="col-lg-5" style="background-color: #eeebdd; height: 370px; border:5px solid #49C7CA ; border-radius: 25px; text-align:center; margin: auto;" id="selfcare">
             <div class="row"></div>
 
-           
             <div class="selfCareTitle">
-                <h3>Welcome, @Model.UserName! Today's self care suggestion:</h3>
+                <h2>
+                    Welcome, @Model.UserName!
+                    </h2
+                   <p> 
+                       &nbsp;
+                       &nbsp;
+                    </p>
+                <h3>
+                    Today's self care suggestion:
+                </h3>
             </div>
-            
             <div class="randSuggestion" id="suggestion"></div>
 
-            
             <div class="row" style="text-align:center ; align-content: center">
                 <br />
                 <button class="MarkDownButtons" type="submit" onclick="AddSuggestion() ">Add as Task</button>
             </div>
-            </div>
+        </div>
         </div>
 
         <div class="row">
@@ -219,7 +227,6 @@ duration.Value.Minutes >= 2 ? "s" : "")
                     </table>
                 </div>
 
-
                 @*Row containing buttons: Add task, refresh/mark done*@
                 <div class="row" id="taskButtons" style="text-align:center ; align-content:center">
                     <button class="MarkDownButtons" onclick="MarkDown()">Mark Done</button>
@@ -272,79 +279,78 @@ duration.Value.Minutes >= 2 ? "s" : "")
                     </table>
                 </div>
 
-
-            <div class="row" id="addTaskRow">
-                @using (Html.BeginForm("UpcomingEvents", "Calendar", FormMethod.Post))
-                {
-                    <div class="form-group">
-                        @Html.Label("task", "Add a task: ")
-                        @Html.TextBox("taskTitle", null, new { @class = "form-control", type = "text", required = "required" })
-                        <br />
-                        <button type="submit" class="MarkDownButtons">Add!</button>
-                    </div>
-                }
-            </div>
-            <div class="row">
-                <ul id="preMadeTasks">
-                    <h4 style="font-weight:bold ; text-align:center">
-                        These are pre-made lists that will add the following tasks to your task list!
-                        Each number represents a level of effort:
-                    </h4>
-                    <li>
-                        @using (Html.BeginForm("AddPreMadeOne", "Calendar", FormMethod.Post))
-                        {
-                            <div class="form-group">
-                                <h5 style="font-weight:bold">Level One:</h5>
-                                <ul>
-                                    <li>Get out of bed</li>
-                                    <li>Drink a glass of water</li>
-                                    <li>Eat a meal</li>
-                                </ul>
-                                <br />
-                                <button type="submit" class="MarkDownButtons">Add Tasks</button>
+                <div class="row" id="addTaskRow">
+                    @using (Html.BeginForm("UpcomingEvents", "Calendar", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            @Html.Label("task", "Add a task: ")
+                            @Html.TextBox("taskTitle", null, new { @class = "form-control", type = "text", required = "required" })
+                            <br />
+                            <button type="submit" class="MarkDownButtons">Add!</button>
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    <ul id="preMadeTasks">
+                        <h4 style="font-weight:bold ; text-align:center">
+                            These are pre-made lists that will add the following tasks to your task list!
+                            Each number represents a level of effort:
+                        </h4>
+                        <li>
+                            @using (Html.BeginForm("AddPreMadeOne", "Calendar", FormMethod.Post))
+                            {
+                                <div class="form-group">
+                                    <h5 style="font-weight:bold">Level One:</h5>
+                                    <ul>
+                                        <li>Get out of bed</li>
+                                        <li>Drink a glass of water</li>
+                                        <li>Eat a meal</li>
+                                    </ul>
+                                    <br />
+                                    <button type="submit" class="MarkDownButtons">Add Tasks</button>
+                                </div>
+                            }
+                        </li>
+                        <li>
+                            <div>
+                                @using (Html.BeginForm("AddPreMadeTwo", "Calendar", FormMethod.Post))
+                                {
+                                    <div class="form-group">
+                                        <h5 style="font-weight:bold">Level Two:</h5>
+                                        <ul>
+                                            <li>Take a shower</li>
+                                            <li>Talk to someone</li>
+                                            <li>Brush Teeth</li>
+                                            <li>Put on Deodorant</li>
+                                        </ul>
+                                        <br />
+                                        <button type="submit" class="MarkDownButtons">Add Tasks</button>
+                                    </div>
+                                }
                             </div>
-                        }
-                    </li>
-                    <li>
-                        <div>
-                            @using (Html.BeginForm("AddPreMadeTwo", "Calendar", FormMethod.Post))
-                            {
-                                <div class="form-group">
-                                    <h5 style="font-weight:bold">Level Two:</h5>
-                                    <ul>
-                                        <li>Take a shower</li>
-                                        <li>Talk to someone</li>
-                                        <li>Brush Teeth</li>
-                                        <li>Put on Deodorant</li>
-                                    </ul>
-                                    <br />
-                                    <button type="submit" class="MarkDownButtons">Add Tasks</button>
-                                </div>
-                            }
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            @using (Html.BeginForm("AddPreMadeThree", "Calendar", FormMethod.Post))
-                            {
-                                <div class="form-group">
-                                    <h5 style="font-weight:bold">Level Three:</h5>
-                                    <ul>
-                                        <li>Make your bed</li>
-                                        <li>Talk to someone face to face</li>
-                                        <li>Go on a walk</li>
-                                        <li>Pick up room</li>
-                                    </ul>
-                                    <br />
-                                    <button type="submit" class="MarkDownButtons">Add Tasks</button>
-                                </div>
-                            }
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                        <li>
+                            <div>
+                                @using (Html.BeginForm("AddPreMadeThree", "Calendar", FormMethod.Post))
+                                {
+                                    <div class="form-group">
+                                        <h5 style="font-weight:bold">Level Three:</h5>
+                                        <ul>
+                                            <li>Make your bed</li>
+                                            <li>Talk to someone face to face</li>
+                                            <li>Go on a walk</li>
+                                            <li>Pick up room</li>
+                                        </ul>
+                                        <br />
+                                        <button type="submit" class="MarkDownButtons">Add Tasks</button>
+                                    </div>
+                                }
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
     <script type="text/javascript" src="~/Scripts/TasksAPI.js"></script>

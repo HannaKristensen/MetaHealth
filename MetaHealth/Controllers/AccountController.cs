@@ -365,6 +365,8 @@ namespace MetaHealth.Controllers
             {
                 return RedirectToAction("Index", "Manage");
             }
+            string[] nameArr = model.Email.Split('@');
+            model.UserName = nameArr[0];
 
             if (ModelState.IsValid)
             {
@@ -382,7 +384,7 @@ namespace MetaHealth.Controllers
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToLocal(returnUrl);
+                        return RedirectToAction("Edit", "AspNetUsers");
                     }
                 }
                 AddErrors(result);
@@ -429,7 +431,6 @@ namespace MetaHealth.Controllers
 
             base.Dispose(disposing);
         }
-
 
         #region Helpers
 
