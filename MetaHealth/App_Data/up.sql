@@ -54,6 +54,7 @@ CREATE TABLE [dbo].[AspNetUsers]
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [EmailIndex] ON [dbo].[AspNetUsers]([Email] ASC);
 
+
 -- ############# AspNetUserClaims #############
 CREATE TABLE [dbo].[AspNetUserClaims]
 (
