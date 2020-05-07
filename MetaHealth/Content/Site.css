@@ -568,3 +568,146 @@ a:visited {
     font-size:18px;
     font-family:Verdana;
 }
+
+#moodgraph {
+    margin-left: 35px;
+}
+
+
+/*HOMEPAGE BOXES*/
+#homeBox1 {
+    width: 300px;
+    height: 300px;
+    border: 7px solid #6C984B;
+    text-align: center;
+    border-radius: 15px;
+}
+
+#homeBox2 {
+    width: 300px;
+    height: 300px;
+    border: 7px solid #49C7CA;
+    text-align: center;
+    border-radius: 15px;
+}
+
+#homeBox3 {
+    width: 300px;
+    height: 300px;
+    border: 7px solid #EE8535;
+    text-align: center;
+    border-radius: 15px;
+}
+
+#homeBox4 {
+    width: 300px;
+    height: 300px;
+    border: 7px solid #F0C032;
+    text-align: center;
+    border-radius: 15px;
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+
+    .my-dropdown-settings {
+        float: left !important;
+        overflow: hidden;
+        border-radius: 5px;
+        font-family: Verdana;
+        letter-spacing: 2px;
+    }
+
+    .my-dropbtn-settings {
+        font-size: 16px;
+        border: none;
+        font-family: Verdana;
+        outline: none;
+        color: #1f1f1f;
+        letter-spacing: 2px;
+        font-weight: bold;
+        padding: 14px 16px;
+        background-color: #E9E6D4;
+        margin: 0;
+    }
+
+    .my-dropdown-settings-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 5px;
+        letter-spacing: 2px;
+    }
+
+    .my-dropbtn-settings a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        letter-spacing: 2px;
+    }
+
+    .my-dropdown-settings-content a:hover, .form-settings:hover {
+        background-color: #c4edee;
+        border-radius: 5px;
+        color: white;
+        opacity: 1;
+        transition: 0.3s;
+    }
+
+    #moodgraph {
+        margin-top: 60px;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    #selfcare {
+        margin-top: 10px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    #filler{
+        display:none;
+    }
+
+    #googleCalColumn {
+        margin-top: 10px;
+        margin-left: 0px ; 
+        margin-right: 0px ; 
+    }
+
+    #tasksCol {
+        margin-top: 10px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+
+    #homeBox1 {
+        margin-left: 18%
+    }
+
+    #homeBox2 {
+        margin-left: 18% ;
+        margin-top: 35px ; 
+    }
+
+    #homeBox3 {
+        margin-left: 18%
+    }
+
+    #homeBox4 {
+        margin-left: 18%;
+        margin-top: 35px ;
+
+    }
+
+}

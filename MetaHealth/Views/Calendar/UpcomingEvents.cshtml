@@ -29,11 +29,11 @@
             @if (Model.MoodDictionary.Count != 0)
             {
                 @*Spot for mood graph*@
-                <div class="col-lg-5" style="height:370px; margin-left: 35px ;  background-color: #eeebdd ; border:5px solid #F0C032 ; border-radius: 25px" id="moodgraph">
+                <div class="col-lg-5" style="height:370px;  background-color: #eeebdd ; border:5px solid #F0C032 ; border-radius: 25px" id="moodgraph">
                 </div>
             }
             @*Empty col to make space between these two modules*@
-            <div class="col-sm-1"></div>
+            <div class="col-sm-1" id="filler"></div>
             @*Spot for daily self care suggestion*@
         <div class="col-lg-5" style="background-color: #eeebdd ; height:270px; border:5px solid #49C7CA ; border-radius: 25px; text-align:center" id="selfcare">
             <div class="row"></div>
@@ -199,10 +199,10 @@ duration.Value.Minutes >= 2 ? "s" : "")
             </div>
 
             @*Small empty col to create a space between the tasks and calendar*@
-            <div class="col-sm-1"></div>
+            <div class="col-sm-1" id="filler"></div>
 
             @*Google Tasks Spot*@
-            <div class="col-lg-5" style="background-color: #eeebdd ; border:5px solid #6C984B ; border-radius: 25px">
+            <div class="col-lg-5" style="background-color: #eeebdd ; border:5px solid #6C984B ; border-radius: 25px" id="tasksCol">
                 <h2 style="text-align:center">@Model.MultiList[0]</h2>
                 <hr>
                 <div class="checkMate">
