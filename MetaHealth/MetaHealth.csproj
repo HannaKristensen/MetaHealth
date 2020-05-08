@@ -236,6 +236,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\down.sql" />
+    <Content Include="App_Data\HelpAlong.mdf" />
+    <Content Include="App_Data\HelpAlong_log.ldf">
+      <DependentUpon>HelpAlong.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\seed.sql" />
     <Content Include="App_Data\up.sql" />
     <Content Include="Content\AddMood.css" />
