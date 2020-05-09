@@ -116,6 +116,7 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -195,9 +196,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\MoodsController.cs" />
-    <Compile Include="Controllers\MoodsInBetweensController.cs" />
-    <Compile Include="Models\APIToDoList.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -206,6 +204,10 @@
     <Compile Include="App_Start\MyRequestedScopes.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AspNetUsersController.cs" />
+    <Compile Include="Controllers\CustomListsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\TestingController.cs" />
     <Compile Include="Models\AspNetRole.cs" />
     <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Models\AspNetUserClaim.cs" />
@@ -215,48 +217,48 @@
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Models\CustomLevel.cs" />
     <Compile Include="Controllers\SepMoodsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="DAL\HelpAlongDB.cs" />
-    <Compile Include="Models\List.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CalendarEventGroup.cs" />
     <Compile Include="Models\CalendarViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\CustomList.cs" />
+    <Compile Include="DAL\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Model.cs" />
+    <Compile Include="DAL\Model.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\SepMood.cs" />
-    <Compile Include="Models\TaskViewModel.cs" />
-    <Compile Include="Models\Mood.cs" />
-    <Compile Include="Models\MoodsInBetween.cs" />
-    <Compile Include="Models\PreLevelList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Startup.cs" />
-    <Compile Include="Models\ToDoList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\seed.sql" />
     <Content Include="App_Data\up.sql" />
+    <Content Include="Content\AddMood.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\BreathingSpace.css" />
     <Content Include="Content\Flowchart.css" />
+    <Content Include="Content\moods.css" />
+    <Content Include="Content\resources.css" />
+    <Content Include="Content\Search.css" />
     <Content Include="Content\SelfCareQuiz.css" />
-    <Content Include="credentials.json" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="client_secret.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\BreathingSpace.js" />
     <Content Include="Scripts\FlowchartScript.js" />
+    <Content Include="Scripts\homepage.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -267,6 +269,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moodhub.js" />
+    <Content Include="Scripts\SelfCareSuggestion.js" />
     <Content Include="Scripts\TasksAPI.js" />
     <Content Include="Scripts\SelfCareQuiz.js" />
     <Content Include="Web.config" />
@@ -280,7 +284,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -302,7 +305,6 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Home\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Home\ExternalLoginFailure.cshtml" />
@@ -311,18 +313,23 @@
     <Content Include="Views\Home\FlowchartCheck.cshtml" />
     <Content Include="Views\Home\Flowchart.cshtml" />
     <Content Include="Views\Calendar\UpcomingEvents.cshtml" />
-    <Content Include="Views\Moods\Create.cshtml" />
-    <Content Include="Views\Moods\Delete.cshtml" />
-    <Content Include="Views\Moods\Details.cshtml" />
-    <Content Include="Views\Moods\Edit.cshtml" />
-    <Content Include="Views\Moods\Index.cshtml" />
-    <Content Include="Views\Home\Venting.cshtml" />
     <Content Include="Views\Home\SelfCareQuiz.cshtml" />
     <Content Include="Views\SepMoods\Create.cshtml" />
     <Content Include="Views\SepMoods\Delete.cshtml" />
     <Content Include="Views\SepMoods\Details.cshtml" />
     <Content Include="Views\SepMoods\Edit.cshtml" />
     <Content Include="Views\SepMoods\Index.cshtml" />
+    <Content Include="Views\Home\BreathingSpace.cshtml" />
+    <Content Include="Views\Home\HowToOpen.cshtml" />
+    <Content Include="Views\CustomLists\Create.cshtml" />
+    <Content Include="Views\CustomLists\Delete.cshtml" />
+    <Content Include="Views\CustomLists\Details.cshtml" />
+    <Content Include="Views\CustomLists\Edit.cshtml" />
+    <Content Include="Views\CustomLists\Index.cshtml" />
+    <Content Include="Views\Search\SearchPage.cshtml" />
+    <Content Include="Views\Home\Venting.cshtml" />
+    <Content Include="Views\SepMoods\todaysMoodsP.cshtml" />
+    <Content Include="Views\AspNetUsers\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -337,9 +344,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\AspNetUsers\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

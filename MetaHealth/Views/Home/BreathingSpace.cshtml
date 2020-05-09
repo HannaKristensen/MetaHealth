@@ -1,0 +1,108 @@
+﻿<link href="@Url.Content("~/Content/BreathingSpace.css")" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+<body>
+    <div id="page">
+
+        <h1 id="welcome">Welcome to the breathing space.</h1>
+
+        <br />
+        <br />
+
+
+
+        @* Youtube video row *@
+        <div class="col-sm-6" id="youtubeVidRow" style="height: 1000px">
+
+            <div class="row">
+                <iframe width="350" height="305" src="https://www.youtube.com/embed/hj83cwfOF3Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <div></div>
+
+            <div class="row">
+                <iframe width="350" height="305" src="https://www.youtube.com/embed/FjHGZj2IjBk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <div></div>
+
+            <div class="row">
+                <iframe width="350" height="305" src="https://www.youtube.com/embed/IViW66dxgGA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+        </div>
+
+        <br />
+
+        @* Select a shape row *@
+
+        <div class="col-sm-6" id="shapeRow" style="height: 1000px">
+
+            <div class="row" id="shapeRow">
+                <h3 id="text">Pick a shape: </h3>
+                <br />
+                <button class="heartButton" onclick="heart();"><i class="material-icons md-48">&#xe87d;</i></button>
+                <button class="triButton" onclick="triangle();"><i class="material-icons md-48">&#xe86b;</i></button>
+                <button class="starButton" onclick="star();"><i class="material-icons md-48">&#xe3e4;</i></button>
+                <button class="circleButton" onclick="circle();"><i class="material-icons md-48">&#xe3fa;</i></button>
+            </div>
+
+            <br />
+
+
+            @* Gif row *@
+
+            <div class="row" id="heartRow">
+                <img src="https://media.giphy.com/media/3oxQNhjjZKLPs26Mve/giphy.gif" id="heartGif" width="400" height="400">
+            </div>
+
+            <div class="row" id="triRow">
+                <img src="https://media.giphy.com/media/krP2NRkLqnKEg/giphy.gif" id="triGif" width="400" height="400">
+            </div>
+
+            <div class="row" id="circleRow">
+                <img src="https://media.giphy.com/media/1xVc4s9oZrDhO9BOYt/giphy.gif" id="circleGif" width="400" height="400">
+            </div>
+
+            <div class="row" id="starRow">
+                <img src="https://www.destressmonday.org/wp-content/uploads/2016/03/DestressBreathing2_Final.gif" id="starGif" width="400" height="400">
+            </div>
+
+            <h3 id="breatheText">
+                Take a few minutes to focus your breathing, and clear your head. If you'd like to take it a step further, below are a few short videos on breathing and meditation
+            </h3>
+
+        </div>
+
+        @* Meditation row *@
+
+        <div class="row" id="meditationRow">
+
+            <div class="col-sm-3">
+                <iframe width="350" height="305" src="https://www.youtube.com/embed/inpok4MKVLM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <div class="col-sm-1"></div>
+
+            <div class="col-sm-3">
+                <iframe width="350" height="305" src="https://www.youtube.com/embed/gz4G31LGyog" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <div class="col-sm-1"></div>
+
+            <div class="col-sm-3">
+                <iframe width="350" height="305" src="https://www.youtube.com/embed/JslvBcIVtDg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</body>
+
+@section scripts {
+    <script src="~/Scripts/BreathingSpace.js"></script>
+}
+

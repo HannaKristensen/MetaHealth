@@ -1,0 +1,89 @@
+﻿<link href="@Url.Content("~/Content/Search.css")" rel="stylesheet" type="text/css" />
+@model MetaHealth.Models.SearchViewModel
+@{
+    ViewBag.Title = "Search";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script async src="https://cse.google.com/cse.js?cx=005994238907998624309:1cnohnw9bkd"></script>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div class="search">
+        <h1>Find Help</h1>
+        <div class="par">
+            Seeking help is an incredibly proactive approach to making sure you feel your best.
+            HelpAlong would like to help you make the first step. Make your selections from below and we
+            will redirect you to the proper channels as best as we can.
+        </div>
+        <br />
+        <br />
+
+    </div>
+    @using (Html.BeginForm("FindTherapist", "Search", FormMethod.Get)) {
+    @Html.AntiForgeryToken()
+    <form class="form-horizontal">
+        <div class="form-group row" name="therapySearch">
+            <label class="control-label col-sm-4" id="therapySearch">
+                What source of support are you seeking?
+            </label>
+            <div class="therapy-dropdown">
+                @Html.DropDownListFor(model => model.therapyCat, new List<SelectListItem> {
+                    new SelectListItem{Text="Make a selection...", Value=""},
+                    new SelectListItem{Text="Therapist", Value="therapists"},
+                    new SelectListItem{Text="Psychiatrist", Value="psychiatrists"},
+                    new SelectListItem{Text="Support group", Value="groups"},
+                    new SelectListItem{Text="Treatment Centers", Value="treatment-rehab"}
+                },
+                    new { @class = "form-control col-sm-8", id = "therapySearch" }
+                )
+            </div>
+        </div>
+
+
+        <div class="form-group row" name="therapySearch">
+            <label class="control-label col-sm-4" id="therapySearch">
+                What issue would you like to focus on?
+            </label>
+            <div class="therapy-dropdown">
+                @Html.DropDownListFor(model => model.therapySpec, new List<SelectListItem> {
+                    new SelectListItem{Text="Make a selection...", Value=""},
+                    new SelectListItem{Text="Anxiety", Value="anxiety"},
+                    new SelectListItem{Text="Depression", Value="depression" },
+                    new SelectListItem{Text="OCD", Value="obsessive-compulsive-ocd" },
+                    new SelectListItem{Text="Bipolar Disorder", Value="bipolar-disorder" },
+                    new SelectListItem{Text="Grief", Value="grief"},
+                    new SelectListItem{Text="Borderline Personality", Value="borderline-personality"},
+                    new SelectListItem{Text="General Coping Skills", Value="coping-skills"},
+                    new SelectListItem{Text="Relationship Issues", Value="relationship-issues"}
+
+                    },
+                    new { @class = "form-control col-sm-8", id = "therapySearch" }
+                )
+            </div>
+        </div>
+
+
+        <div class="form-group row" name="therapySearch">
+            <label class="control-label col-sm-4" id="therapySearch">
+                What is your zipcode?
+            </label>
+            @Html.EditorFor(model => model.therapyZipcode, new { htmlAttributes = new { @class = "form-control col-sm-10", pattern = "[0-9]*" } })
+        </div>
+
+        <input type="submit" id="submit" value="Find Help" class="findHelpButton" />
+    </form>
+    }
+    <br />
+    <br />
+    <br />
+    <div class="disclaimer">
+        If you're looking for more general information on different diagnoses, please feel free to make use of our
+        <a href="~/Home/Resources" style="color:#248D83;">resources</a> page or using the search bar below.
+        HelpAlong is not affiliated with PsychologyToday and only acts as a bridge to their site should our users opt to go that route.
+    </div>
+    <div class="gcse-search" id="customSeachBar"></div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+﻿moodBody {
+    font-family:Verdana;
+    font-size:medium;
+}
+
+#noDays{
+    display:none;
+}
+
+#moodDates option:hover {
+    background-color: #c4edee;
+    border-radius: 5px;
+    color: white;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+#buttonMaybe {
+    background-color: #49C7CA;
+    border-radius: 24px;
+    border: 2px solid #248D83;
+    display: inline-block;
+    cursor: pointer;
+    color: white;
+    font-family: Verdana;
+    font-size: 14px;
+    padding: 6px 12px;
+    text-decoration: none;
+}
+
+    #buttonMaybe:hover {
+        background-color: #b0e7e8;
+        opacity:1;
+        transition: 0.5s ;
+        color:white;
+    }
+
+#allTimeResults{
+    display:inline-table;
+}
+
+#thisWeekResults {
+    display:none ; 
+}
+
+#todayResults {
+    display:none;
+}
+
+.saveEdit {
+    background-color: #49C7CA;
+    border-radius: 28px;
+    border: 3px solid #248D83;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Verdana;
+    font-size: 20px;
+    padding: 16px 31px;
+    text-decoration: none;
+}
+
+    .saveEdit:hover {
+        background-color: #b0e7e8;
+        opacity: 1;
+        transition: 0.5s;
+        color: white;
+    }
+#returnButton {
+    background-color: #EE8535;
+    border-radius: 28px;
+    border: 3px solid #eb7114;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Verdana;
+    font-size: 14px;
+    padding: 10px 31px;
+    text-decoration: none;
+}
+
+    #returnButton:hover {
+        background-color: #f5b88a;
+    }

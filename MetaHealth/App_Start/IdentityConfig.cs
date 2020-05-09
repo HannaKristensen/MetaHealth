@@ -27,9 +27,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-
-using Calendar.ASP.NET.MVC5.Models;
-using MetaHealth.Models;
+using MetaHealth.DAL;
 
 namespace Calendar.ASP.NET.MVC5
 {

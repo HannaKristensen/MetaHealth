@@ -10,7 +10,6 @@ ul.physicalSC, ul.emotionalSC, ul.psychSC {
     padding: 0;
     list-style-type: none;
     color: #E9E6D4;
-
     /*Makes the list item unselectable*/
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -18,33 +17,33 @@ ul.physicalSC, ul.emotionalSC, ul.psychSC {
     user-select: none;
 }
 
-ul.physicalSC > li, ul.emotionalSC > li, ul.psychSC > li {
-    padding: 4px;
-}
+    ul.physicalSC > li, ul.emotionalSC > li, ul.psychSC > li {
+        padding: 4px;
+    }
 
 ul.physicalSC {
     background: #ff7733;
 }
 
-ul.physicalSC > li:nth-of-type(even) {
-    background: #ffa366; 
-}
+    ul.physicalSC > li:nth-of-type(even) {
+        background: #ffa366;
+    }
 
 ul.psychSC {
     background: #009900;
 }
 
-ul.psychSC > li:nth-of-type(even) {
-    background: #47d147;
-}
+    ul.psychSC > li:nth-of-type(even) {
+        background: #47d147;
+    }
 
 ul.emotionalSC {
     background: #005ce6;
 }
 
-ul.emotionalSC > li:nth-of-type(even) {
-    background: #4da6ff;
-}
+    ul.emotionalSC > li:nth-of-type(even) {
+        background: #4da6ff;
+    }
 
 ul li:hover {
     color: black;
@@ -67,4 +66,3 @@ li.selected {
     text-decoration: line-through;
     color: black;
 }
-

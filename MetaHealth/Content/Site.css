@@ -8,6 +8,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    font-family: Verdana;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists
@@ -24,31 +25,13 @@ textarea {
     max-width: 280px;
 }
 
+/*MAIN LOG IN PAGE*/
+
 #visionText {
     text-align: center;
     align-content: center;
     font-family: Verdana;
     font-size: 50px;
-}
-
-.resourcesFooter {
-    font-family: Verdana;
-    font-size: 50px;
-}
-
-.resourcesFooter {
-    font-family: 'Verdana';
-    font-size: 15px;
-    list-style: none;
-    color: black
-}
-
-#githubLinks {
-    text-align: center;
-    align-content: center;
-    font-family: Verdana;
-    font-size: 35px;
-    list-style: none;
 }
 
 #visionTitle {
@@ -92,16 +75,25 @@ textarea {
     margin-right: auto;
 }
 
-.navbar {
-    background-color: #E9E6D4;
-    color: black;
+/*FOOTER AND FOOTER LINKS*/
+.resourcesFooter {
     font-family: Verdana;
+    font-size: 50px;
 }
 
-.navbar-inverse {
-    border: none;
-    color: black;
+.resourcesFooter {
+    font-family: 'Verdana';
+    font-size: 15px;
+    list-style: none;
+    color: black
+}
+
+#githubLinks {
+    text-align: center;
+    align-content: center;
     font-family: Verdana;
+    font-size: 35px;
+    list-style: none;
 }
 
 #gitHubPage {
@@ -132,6 +124,7 @@ a:visited {
     list-style: none;
 }
 
+/*RESOURCES PAGE*/
 .resourceButtons {
     background-color: #49C7CA;
     border-radius: 42px;
@@ -166,6 +159,7 @@ a:visited {
     font-size: 40px;
 }
 
+/*CONFIRM LOG IN PAGE*/
 #confirmText {
     text-align: center;
     font-family: Verdana;
@@ -175,7 +169,7 @@ a:visited {
 #confirmEmailBox {
     text-align: center;
     font-family: Verdana;
-    margin: 0 auto;
+    margin-left: 25%
 }
 
 #Email {
@@ -190,11 +184,13 @@ a:visited {
     font-family: Verdana;
 }
 
+/*FLOW CHART TEXT*/
 .textFlowchart {
     font-family: Verdana;
     font-size: 20px;
 }
 
+/*TASK BUTTONS*/
 .MarkDownButtons {
     background-color: #49C7CA;
     border: 4px solid #248D83;
@@ -205,4 +201,513 @@ a:visited {
     font-size: 17px;
     text-decoration: none;
     border-radius: 24px;
+}
+
+/*NON ACTIVATED CALENDAR RE DIRECT*/
+#redirectInst {
+    align-content: center;
+    display: none;
+    text-align: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 50px;
+}
+
+#redirectText {
+    text-align: center;
+    font-family: Verdana;
+    font-weight: bold
+}
+
+.activateButton {
+    background-color: #49C7CA;
+    border-radius: 42px;
+    border: 4px solid #248D83;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Verdana;
+    font-size: 17px;
+    padding: 23px 64px;
+    text-decoration: none;
+}
+
+    .activateButton:hover {
+        background-color: #9ce1e2;
+    }
+
+    .activateButton:active {
+        position: relative;
+        top: 1px;
+    }
+
+/*USER HOME PAGE*/
+#eventsPage {
+    display: block;
+    font-family: Verdana
+}
+
+#homePageRow2 {
+    align-content: center
+}
+
+/*GOOGLE TASKS*/
+#addTaskRow {
+    display: none
+}
+
+#TaskTable {
+    font-size: medium
+}
+
+#preMadeTasks {
+    display: none
+}
+
+#taskButtons {
+    align-content: center
+}
+
+#addCustom {
+    display: none
+}
+
+#addCusTask {
+    display: none
+}
+/*GOOGLE CALENDAR*/
+#googleCalColumn {
+    margin-left: 35px;
+}
+
+#eventAddForm {
+    display: none;
+}
+
+/*Animation For Completing Task*/
+#emitter {
+    visibility: hidden;
+    background-color: #222;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: 40%;
+    left: 0%;
+}
+
+.dot-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: visible;
+    z-index: 5000;
+    pointer-events: none;
+}
+
+.dot {
+    position: absolute;
+    pointer-events: none; /*performance optimization*/
+}
+
+/*Self care suggestion styling*/
+.randSuggestion {
+    background-color: #EE8535;
+    border-radius: 28px;
+    text-align: center;
+    border: 1px solid #DE5C40;
+    display: inline-block;
+    color: #ffffff;
+    font-family: Verdana;
+    font-size: 15px;
+    padding: 25px 25px;
+    text-decoration: none;
+    white-space: normal;
+}
+
+.selfCareTitle {
+    font-family: Verdana;
+    padding-bottom: 5px;
+    font-size: 17px;
+    text-align: center;
+}
+
+/*NAV BAR*/
+.my-navbar {
+    overflow: hidden;
+    background-color: #E9E6D4;
+    font-family: Verdana;
+    letter-spacing: 2px;
+}
+
+    .my-navbar a {
+        font-size: 16px;
+        font-weight: bold;
+        color: #1f1f1f;
+        float: left;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+.my-dropdown {
+    float: left;
+    overflow: hidden;
+    border-radius: 5px;
+    font-family: Verdana;
+    letter-spacing: 2px;
+}
+
+.my-dropdown .my-dropbtn {
+    font-size: 16px;
+    border: none;
+    font-family: Verdana;
+    outline: none;
+    color: #1f1f1f;
+    letter-spacing: 2px;
+    font-weight: bold;
+    padding: 14px 16px;
+    background-color: #E9E6D4;
+    margin: 0;
+}
+
+    .my-navbar a:hover, .my-dropdown:hover .my-dropbtn, .my-dropdown-settings:hover .my-dropbtn-settings {
+        border-radius: 5px;
+        color: white;
+        opacity: 1;
+        transition: 0.3s;
+    }
+
+.my-dropdown-settings {
+    float: right !important;
+    overflow: hidden;
+    border-radius: 5px;
+    font-family: Verdana;
+    letter-spacing: 2px;
+}
+     .my-dropbtn-settings {
+        font-size: 12px;
+        border: none;
+        font-family: Verdana;
+        outline: none;
+        color: #D5CDC6;
+        letter-spacing: 2px;
+        font-weight: bold;
+        padding: 14px 16px;
+        background-color: inherit;
+        margin: 0;
+    }
+
+.my-dropdown-settings-content {
+    display: none;
+    position:absolute;
+    font-size: 12px;
+    background-color: #f9f9f9;
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 2px;
+    letter-spacing: 2px;
+}
+    .my-dropbtn-settings a {
+        float: none;
+        font-size: 8px;
+        color: #D5CDC6;
+        padding: 10px 14px;
+        text-decoration: none;
+        display:block;
+        text-align: left;
+        letter-spacing: 2px;
+    }
+
+.my-dropdown-settings-content a:hover, .form-settings:hover {
+    color: #4fc5c9;
+    border-radius: 2px;
+    color: white;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+
+.my-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    letter-spacing: 2px;
+}
+
+    .my-dropdown-content a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        letter-spacing: 2px;
+    }
+
+        .my-dropdown-content a:hover {
+            background-color: #c4edee;
+            border-radius: 5px;
+            color: white;
+            opacity: 1;
+            transition: 0.3s;
+        }
+
+.my-dropdown:hover .my-dropdown-content, .my-dropdown-settings:hover .my-dropdown-settings-content {
+    opacity: 1;
+    animation: fade 0.5s linear;
+    display: block;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+.navbar-inverse {
+    background-color: #E9E6D4;
+    border-color: white;
+}
+
+#button {
+    background-color: #EE8535;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 24px;
+}
+
+#titleV {
+    text-align: center;
+    align-content: center;
+    font-family: Verdana;
+    font-weight: 700;
+    font-size: 50px;
+    color: #EE8535;
+    margin: 10px
+}
+
+#tV {
+    border-radius: 0.5em;
+    resize: none;
+    width: 500px;
+    height: 100px;
+}
+
+#headerV {
+    text-align: center;
+    font-family: Verdana;
+}
+
+#submitSelectV {
+    text-align: center;
+    position: relative;
+    font-family: Verdana;
+}
+
+.logButton {
+    background-color: #EE8535;
+    border: 1.5px solid #DE5C40;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Verdana;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-decoration: none;
+    white-space: normal;
+    border-radius: 38px;
+    padding: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+    .logButton:hover {
+        background-color: #f5b88a;
+        border: 1.5px solid #DE5C40;
+        color: white;
+        opacity: 1;
+        transition: 0.5s;
+    }
+/*edit user name page*/
+.changeName {
+    background-color: #49C7CA;
+    border-radius: 10px;
+    border: 3px solid #248D83;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Verdana;
+    font-size: 20px;
+    padding: 7px 15px;
+    text-decoration: none;
+    margin-left: 16px;
+    margin-top: 20px;
+}
+
+.editLabel {
+   font-size: 24px;
+   font-family: Verdana;
+   font-weight: lighter;
+}
+
+.changeName input {
+    font-size:18px;
+    font-family:Verdana;
+}
+
+#moodgraph {
+    margin-left: 35px;
+}
+
+
+/*HOMEPAGE BOXES*/
+#homeBox1 {
+    width: 300px;
+    height: 300px;
+    border: 7px solid #6C984B;
+    text-align: center;
+    border-radius: 15px;
+}
+
+#homeBox2 {
+    width: 300px;
+    height: 300px;
+    border: 7px solid #49C7CA;
+    text-align: center;
+    border-radius: 15px;
+}
+
+#homeBox3 {
+    width: 300px;
+    height: 300px;
+    border: 7px solid #EE8535;
+    text-align: center;
+    border-radius: 15px;
+}
+
+#homeBox4 {
+    width: 300px;
+    height: 300px;
+    border: 7px solid #F0C032;
+    text-align: center;
+    border-radius: 15px;
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+
+    .my-dropdown-settings {
+        float: left !important;
+        overflow: hidden;
+        border-radius: 5px;
+        font-family: Verdana;
+        letter-spacing: 2px;
+    }
+
+    .my-dropbtn-settings {
+        font-size: 16px;
+        border: none;
+        font-family: Verdana;
+        outline: none;
+        color: #1f1f1f;
+        letter-spacing: 2px;
+        font-weight: bold;
+        padding: 14px 16px;
+        background-color: #E9E6D4;
+        margin: 0;
+    }
+
+    .my-dropdown-settings-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 5px;
+        letter-spacing: 2px;
+    }
+
+    .my-dropbtn-settings a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        letter-spacing: 2px;
+    }
+
+    .my-dropdown-settings-content a:hover, .form-settings:hover {
+        background-color: #c4edee;
+        border-radius: 5px;
+        color: white;
+        opacity: 1;
+        transition: 0.3s;
+    }
+
+    #moodgraph {
+        margin-top: 60px;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    #selfcare {
+        margin-top: 10px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    #filler{
+        display:none;
+    }
+
+    #googleCalColumn {
+        margin-top: 10px;
+        margin-left: 0px ; 
+        margin-right: 0px ; 
+    }
+
+    #tasksCol {
+        margin-top: 10px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+
+    #homeBox1 {
+        margin-left: 18%
+    }
+
+    #homeBox2 {
+        margin-left: 18% ;
+        margin-top: 35px ; 
+    }
+
+    #homeBox3 {
+        margin-left: 18%
+    }
+
+    #homeBox4 {
+        margin-left: 18%;
+        margin-top: 35px ;
+
+    }
+
 }

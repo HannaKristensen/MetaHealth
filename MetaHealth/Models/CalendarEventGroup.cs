@@ -1,4 +1,5 @@
-﻿/*
+
+/*
 Copyright 2015 Google Inc
 Licensed under the Apache License, Version 2.0(the "License");
 you may not use this file except in compliance with the License.
@@ -18,17 +19,8 @@ using Google.Apis.Calendar.v3.Data;
 
 namespace Calendar.ASP.NET.MVC5.Models
 {
-    /// <summary>
-    /// A labeled group of calendar events.
-    /// </summary>
-    /// <remarks>
-    /// This sample groups calendar events by day, so the group title is a formatted date string.
-    /// </remarks>
     public class CalendarEventGroup
     {
-        /// <summary>
-        /// Gets or sets a string to show above the group of events.
-        /// </summary>
         [Required]
         public string GroupTitle { get; set; }
 

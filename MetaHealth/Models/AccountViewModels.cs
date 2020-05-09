@@ -8,6 +8,8 @@ namespace MetaHealth.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -108,5 +110,10 @@ namespace MetaHealth.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+    }
+
+    public class UserViewModel 
+    { 
+        //try writing a user view model or whatever
     }
 }

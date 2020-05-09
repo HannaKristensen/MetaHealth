@@ -1,81 +1,19 @@
-﻿CREATE TABLE [dbo].[SepMoods]
+﻿CREATE TABLE [dbo].[CustomList]
+(
+    [PK]   INT IDENTITY(1,1) NOT NULL,
+    [UserID]  NVARCHAR (128) NOT NULL,
+    [TaskTitle] NVARCHAR (1000) NOT NULL,
+    CONSTRAINT [PK_dbo.CustomList] PRIMARY KEY CLUSTERED ([PK] ASC),
+);
+
+CREATE TABLE [dbo].[SepMoods]
 (
     [PK]   INT IDENTITY(1,1) NOT NULL,
     [UserID]  NVARCHAR (128) NOT NULL,
     [MoodNum] INT NOT NULL,
     [Date] DATETIME NOT NULL,
+    [Reason] NVARCHAR (1000),
     CONSTRAINT [PK_dbo.SepMoods] PRIMARY KEY CLUSTERED ([PK] ASC),
-);
-
-
-CREATE TABLE [dbo].[MoodsInBetween]
-(
-    [PK]   INT IDENTITY(1,1) NOT NULL,
-    [FK_UserTable] NVARCHAR (128) NOT NULL,
-    CONSTRAINT [PK_dbo.MoodsInBetween] PRIMARY KEY CLUSTERED ([PK] ASC),
-    CONSTRAINT [FK_dbo.MoodsInBetween_dbo.AspNetUsers_UserId] FOREIGN KEY ([FK_UserTable]) REFERENCES [dbo].[AspNetUsers] ([Id])
-
-);
-
-CREATE TABLE [dbo].[Moods]
-(
-    [PK]   INT IDENTITY(1,1) NOT NULL,
-    [FK_MoodsInBetween] INT NOT NULL,
-    [MoodNum] INT NOT NULL,
-    [Date] DATETIME NOT NULL,
-    CONSTRAINT [PK_dbo.Moods] PRIMARY KEY CLUSTERED ([PK] ASC),
-    CONSTRAINT [FK_dbo.Moods_dbo.MoodsInBetween] FOREIGN KEY ([FK_MoodsInBetween]) REFERENCES [dbo].[MoodsInBetween] ([PK])
-
-);
-
-CREATE TABLE [dbo].[List]
-(
-    [PK]   INT IDENTITY(1,1) NOT NULL,
-    [FK_UserTable] NVARCHAR (128) NOT NULL,
-    CONSTRAINT [PK_dbo.List] PRIMARY KEY CLUSTERED ([PK] ASC),
-    CONSTRAINT [FK_dbo.List_dbo.AspNetUsers_UserId] FOREIGN KEY ([FK_UserTable]) REFERENCES [dbo].[AspNetUsers] ([Id])
-
-);
-
-CREATE TABLE [dbo].[CustomLevel]
-(
-    [PK]   INT IDENTITY(1,1) NOT NULL,
-    [FK_List] INT NOT NULL,
-    [Task] NVARCHAR (256) NOT NULL,
-    CONSTRAINT [PK_dbo.CustomLevel] PRIMARY KEY CLUSTERED ([PK] ASC),
-    CONSTRAINT [FK_dbo.CustomLevel_dbo.List] FOREIGN KEY ([FK_List]) REFERENCES [dbo].[List] ([PK])
-
-);
-
-CREATE TABLE [dbo].[ToDoList]
-(
-    [PK]   INT IDENTITY(1,1) NOT NULL,
-    [FK_List] INT NOT NULL,
-    [Task] NVARCHAR (256) NOT NULL,
-    [Checked] BIT NOT NULL,
-    CONSTRAINT [PK_dbo.ToDoList] PRIMARY KEY CLUSTERED ([PK] ASC),
-    CONSTRAINT [FK_dbo.ToDoList_dbo.List] FOREIGN KEY ([FK_List]) REFERENCES [dbo].[List] ([PK])
-
-);
-
-CREATE TABLE [dbo].[APIToDoList]
-(
-    [PK]   INT IDENTITY(1,1) NOT NULL,
-    [FK_List] INT NOT NULL,
-    [CalandarID] NVARCHAR (256) NOT NULL,
-    [EventID] NVARCHAR (256) NOT NULL,
-    [Checked] BIT NOT NULL,
-    CONSTRAINT [PK_dbo.APIToDoList] PRIMARY KEY CLUSTERED ([PK] ASC),
-    CONSTRAINT [FK_dbo.APIToDoList_dbo.List] FOREIGN KEY ([FK_List]) REFERENCES [dbo].[List] ([PK])
-
-);
-
-CREATE TABLE [dbo].[PreLevelList]
-(
-     [PK]   INT IDENTITY(1,1) NOT NULL,
-     [Level] INT NOT NULL,
-     [Task] NVARCHAR (256) NOT NULL,
-     CONSTRAINT [PK_dbo.PreLevelList] PRIMARY KEY CLUSTERED ([PK] ASC)
 );
 
 
@@ -114,7 +52,8 @@ CREATE TABLE [dbo].[AspNetUsers]
     CONSTRAINT [PK_dbo.AspNetUsers] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 GO
-CREATE UNIQUE NONCLUSTERED INDEX [UserNameIndex] ON [dbo].[AspNetUsers]([UserName] ASC);
+CREATE UNIQUE NONCLUSTERED INDEX [EmailIndex] ON [dbo].[AspNetUsers]([Email] ASC);
+
 
 -- ############# AspNetUserClaims #############
 CREATE TABLE [dbo].[AspNetUserClaims]

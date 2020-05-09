@@ -1,47 +1,54 @@
-﻿@model MetaHealth.Models.SepMood
+﻿<link href="@Url.Content("~/Content/AddMood.css")" rel="stylesheet" type="text/css" />
+
+@model MetaHealth.Models.SepMood
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Track Your Mood</h2>
+<h2 style="text-align:center ; font-weight: bold">Track Your Mood!</h2>
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>SepMood</h4>
+
+    <div class="form-horizontal" id="addMoodBody">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.Label("Enter reason for this mood",htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserID, "Field cannot be left blank", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
-            @Html.Label("Mood Scale",htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MoodNum, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MoodNum, "Enter a value between 1 and 5. A higher number indicates a better mood", new { @class = "text-danger" })
+            <div class="row">
+                <h3 style="text-align:center">How are you feeling?</h3>
+                @Html.DropDownListFor(model => Model.MoodNum, new List<SelectListItem>
+                    {
+                    new SelectListItem{ Text = "Fantastic", Value = "5" },
+                    new SelectListItem{ Text = "Good", Value = "4" },
+                    new SelectListItem{ Text = "Neutral", Value = "3" },
+                    new SelectListItem{ Text = "Not good", Value = "2" },
+                    new SelectListItem{ Text = "Horrible", Value = "1" }
+                    }, new { @class = "form-control" })
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="row">
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <h3 style="text-align:center">Enter a reason for this mood:</h3>
+                    @Html.EditorFor(model => model.Reason, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="row" id="cannotBeBlank" style="text-align:center">
+                        @Html.ValidationMessageFor(model => model.Reason, "Field cannot be left blank", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="text-align:center">
+                <input type="submit" value="Add This Mood" class="addMoodButton" />
             </div>
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaHealth", "MetaHealth.csproj", "{5ECB4118-CD3F-40DD-A267-6C138D550EC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestHelpALong", "..\UnitTestHelpALong\UnitTestHelpALong.csproj", "{927FA708-17D8-454E-B530-9C2B1E04294B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,9 @@ Global
 		{5ECB4118-CD3F-40DD-A267-6C138D550EC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ECB4118-CD3F-40DD-A267-6C138D550EC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ECB4118-CD3F-40DD-A267-6C138D550EC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{927FA708-17D8-454E-B530-9C2B1E04294B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{927FA708-17D8-454E-B530-9C2B1E04294B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{927FA708-17D8-454E-B530-9C2B1E04294B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
