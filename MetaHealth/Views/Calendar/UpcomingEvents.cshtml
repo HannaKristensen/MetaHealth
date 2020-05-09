@@ -27,27 +27,31 @@
     <div class="container" id="eventsPage">
         <a href="~/DAL/Model.cs"></a>
         @*First row of content. This includes (from left to right) mood graph and space for daily self care suggestion*@
-        <div class="row" id="homePageRow1">
-            @if (Model.MoodDictionary.Count != 0)
-            {
-                @*Spot for mood graph*@
-                <div class="col-lg-5" style="height:370px;  background-color: #eeebdd ; border:5px solid #F0C032 ; border-radius: 25px" id="moodgraph">
-                </div>
-            }
-            @*Empty col to make space between these two modules*@
-            <div class="col-sm-1" id="filler"></div>
-            @*Spot for daily self care suggestion*@
-        <div class="col-lg-5" style="background-color: #eeebdd; height: 370px; border:5px solid #49C7CA ; border-radius: 25px; text-align:center; margin: auto;" id="selfcare">
-            <div class="row"></div>
-
+    <div class="row" id="homePageRow1">
+        @if (Model.SepMood.Count != 0) {
+            @*Spot for mood graph*@
+            <div class="col-lg-5" style="height:370px;  background-color: #eeebdd; border:5px solid #F0C032; border-radius: 25px" id="moodgraph">
+            </div>
+        }
+        else {
+        <div class="col-lg-5" style="height:370px;  background-color: #eeebdd ; border:5px solid #F0C032 ; border-radius: 25px; font-family:Verdana;font-size:30px;text-align: center;padding: 10px 7px 5px 10px;">
+            <br />
+            <br />
+            Start logging moods in your<a href="~/SepMoods/Create" style="font-weight:bold"> mood tracker</a> to track your progress.
+        </div>
+        }
+        @*Empty col to make space between these two modules*@
+        <div class="col-sm-1" id="filler"></div>
+        @*Spot for daily self care suggestion*@
+        <div class="col-lg-5" style="background-color: #eeebdd; height: 370px; border:5px solid #49C7CA; border-radius: 25px; text-align:center; margin: auto;" id="selfcare">
             <div class="selfCareTitle">
                 <h2>
                     Welcome, @Model.UserName!
-                    </h2
-                   <p> 
-                       &nbsp;
-                       &nbsp;
-                    </p>
+                </h2>
+                <p>
+                    &nbsp;
+                    &nbsp;
+                </p>
                 <h3>
                     Today's self care suggestion:
                 </h3>
@@ -59,7 +63,7 @@
                 <button class="MarkDownButtons" type="submit" onclick="AddSuggestion() ">Add as Task</button>
             </div>
         </div>
-        </div>
+    </div>
 
         <div class="row">
             <p></p>
@@ -95,11 +99,11 @@
                     {
                         @:@string.Format(
 
-"{0} hour{1} {2} minute{3}",
-(int)duration.Value.TotalHours,
-duration.Value.TotalHours >= 2 ? "s" : "",
-(int)duration.Value.Minutes,
-duration.Value.Minutes >= 2 ? "s" : "")
+                            "{0} hour{1} {2} minute{3}",
+                            (int)duration.Value.TotalHours,
+                            duration.Value.TotalHours >= 2 ? "s" : "",
+                            (int)duration.Value.Minutes,
+                            duration.Value.Minutes >= 2 ? "s" : "")
 
                     }
                 }
@@ -387,16 +391,25 @@ duration.Value.Minutes >= 2 ? "s" : "")
                         },
                         toolTip: {
                             shared: true,
-                            content:"Avg mood for {label}"
+                            mode: 'index',
+                            intersect: false,
+                            content:"Avg mood for {label}. Click for more details"
+                        },
+                        hover: {
+                            mode: 'index',
+                            intersect: false
                         },
                         data: [{
                             type: "line",
                             lineColor: "#EE8535",
-                            dataPoints: [@Html.Raw(String.Join(",",Model.MoodDictionary.Select(x=> "{y:"+x.Value+",label:\""+x.Key+"\", color: \"#EE8535\"}")))]
-                        }],
-
+                            dataPoints: [@Html.Raw(String.Join(",",Model.MoodDictionaryAvg.Select(x=> "{y:"+x.Value+",label:\""+x.Key+"\", color: \"#EE8535\", click: onClick}")))]
+                        }]
                     });
                     chart.render();
-                }
+            }
+            
+            function onClick(e) {
+                location.href='@Url.Action("Index","SepMoods")/';
+            }
         </script>
     }
