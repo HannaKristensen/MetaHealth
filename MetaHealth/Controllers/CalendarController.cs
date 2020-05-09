@@ -62,7 +62,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         // GET: For the Home Page
         public async Task<ActionResult> UpcomingEvents()
         {
-            Dictionary<string, double> dummyDict = new Dictionary<string, double>();
+           
             string curUser = User.Identity.GetUserId();
             const int MaxEventsPerCalendar = 20;
             const int MaxEventsOverall = 50;
@@ -180,7 +180,8 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             model.MultiTask = taskArr;
 
             #region Populate data for graph
-
+            Dictionary<string, double> dummyDict = new Dictionary<string, double>();
+            Dictionary<string, List<int>> fakeDict = new Dictionary<string, List<int>>();
             model.SepMood = db.SepMoods.Where(n => n.UserID == curUser).OrderBy(d => d.Date).ToList();
             model.MoodDate = db.SepMoods
                 .Where(n => n.UserID == curUser)
@@ -188,12 +189,14 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 .Distinct()
                 .ToList();
             model.MoodNum = db.SepMoods.Where(n => n.UserID == curUser).Select(n => n.MoodNum).ToList();
-            model.MoodDictionary = dummyDict;
+            model.MoodDictionaryAvg = dummyDict;
+            model.MoodDictionaryByDay = fakeDict;
             Dictionary<DateTime, List<int>> tempDictofValues = new Dictionary<DateTime, List<int>>();
             List<double> tempList = new List<double>();
             foreach (DateTime date in model.MoodDate)
             {
                 tempDictofValues.Add(date, controller.GetMoodsByDate(model.SepMood, date));
+                model.MoodDictionaryByDay.Add(date.Date.ToString(), controller.GetMoodsByDate(model.SepMood, date));
             }
             foreach (var list in tempDictofValues)
             {
@@ -206,7 +209,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             }
             foreach (var key in dictOfMoodAverages)
             {
-                model.MoodDictionary.Add(key.Key.ToShortDateString(), key.Value);
+                model.MoodDictionaryAvg.Add(key.Key.ToShortDateString(), key.Value);
             }
 
             #endregion Populate data for graph
@@ -580,7 +583,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 .Distinct()
                 .ToList();
             model.MoodNum = db.SepMoods.Where(n => n.UserID == curUser).Select(n => n.MoodNum).ToList();
-            model.MoodDictionary = dummyDict;
+            model.MoodDictionaryAvg = dummyDict;
             Dictionary<DateTime, List<int>> tempDictofValues = new Dictionary<DateTime, List<int>>();
             List<double> tempList = new List<double>();
             foreach (DateTime date in model.MoodDate)
@@ -598,7 +601,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             }
             foreach (var key in dictOfMoodAverages)
             {
-                model.MoodDictionary.Add(key.Key.ToShortDateString(), key.Value);
+                model.MoodDictionaryAvg.Add(key.Key.ToShortDateString(), key.Value);
             }
 
             #endregion Populate data for graph

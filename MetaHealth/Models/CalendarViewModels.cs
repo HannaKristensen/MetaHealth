@@ -19,7 +19,8 @@ namespace Calendar.ASP.NET.MVC5.Models
         public List<SepMood> SepMood { get; set; }
         public List<DateTime> MoodDate { get; set; }
         public List<int> MoodNum { get; set; }
-        public Dictionary<string, double> MoodDictionary { get; set; }
+        public Dictionary<string, double> MoodDictionaryAvg { get; set; }
+        public Dictionary<string, List<int>> MoodDictionaryByDay { get; set; }
 
         public string[] CustomTask { get; set; }
         public string[] id { get; set; }
