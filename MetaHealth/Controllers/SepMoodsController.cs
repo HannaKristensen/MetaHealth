@@ -16,27 +16,27 @@ namespace MetaHealth.Controllers
         private Model db = new Model();
 
         // GET: SepMoods
-        public ActionResult Index()
+        public ActionResult Index(DateTime? date)
         {
+            //if date is null just do this shit
             var userId = User.Identity.GetUserId();
             List<SepMood> sepMoods = db.SepMoods.Where(x => x.UserID == userId).OrderByDescending(y => y.Date).ToList();
-
             DateTime today = DateTime.Today;
             DateTime week = DateTime.Today.AddDays(-7);
-
             List<SepMood> todaysMoods = db.SepMoods.Where(x => x.UserID == userId).Where(y => y.Date.Day == today.Day).OrderByDescending(z => z.Date).ToList();
-
-
             List<SepMood> thisWeeksMoods = db.SepMoods.Where(x => x.UserID == userId).Where(y => y.Date >= week ).OrderByDescending(z => z.Date).ToList();
-
             ViewBag.todaysMoods = todaysMoods;
             ViewBag.weeksMoods = thisWeeksMoods;
-
-
-
             return View(sepMoods);
         }
 
+
+
+        public ActionResult MoodsByDate(DateTime? date) {
+            var userId = User.Identity.GetUserId();
+            List<SepMood> sepMoods = db.SepMoods.Where(x => x.UserID == userId).Where(y => y.Date.Day == date.Day).OrderByDescending(z => z.Date).ToList();
+            return View(sepMoods);
+        }
 
         public ActionResult todaysMoodsP()
         {
@@ -88,7 +88,6 @@ namespace MetaHealth.Controllers
             {
                 db.SepMoods.Add(sepMood);
                 db.SaveChanges();
-                //MessageBox.Show("Your mood was added successfully", "Complete!" );
                 return RedirectToAction("UpcomingEvents", "Calendar");
             }
 
