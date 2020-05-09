@@ -37,7 +37,7 @@
         <div class="col-lg-5" style="height:370px;  background-color: #eeebdd ; border:5px solid #F0C032 ; border-radius: 25px; font-family:Verdana;font-size:30px;text-align: center;padding: 10px 7px 5px 10px;">
             <br />
             <br />
-            Start logging moods in your<a href="~/SepMoods/Create" style="font-weight:bold"> mood tracker</a> to see track your progress.
+            Start logging moods in your<a href="~/SepMoods/Create" style="font-weight:bold"> mood tracker</a> to track your progress.
         </div>
         }
         @*Empty col to make space between these two modules*@
@@ -99,11 +99,11 @@
                     {
                         @:@string.Format(
 
-"{0} hour{1} {2} minute{3}",
-(int)duration.Value.TotalHours,
-duration.Value.TotalHours >= 2 ? "s" : "",
-(int)duration.Value.Minutes,
-duration.Value.Minutes >= 2 ? "s" : "")
+                            "{0} hour{1} {2} minute{3}",
+                            (int)duration.Value.TotalHours,
+                            duration.Value.TotalHours >= 2 ? "s" : "",
+                            (int)duration.Value.Minutes,
+                            duration.Value.Minutes >= 2 ? "s" : "")
 
                     }
                 }
@@ -391,17 +391,25 @@ duration.Value.Minutes >= 2 ? "s" : "")
                         },
                         toolTip: {
                             shared: true,
-                            content:"Avg mood for {label}"
-                            //content:
+                            mode: 'index',
+                            intersect: false,
+                            content:"Avg mood for {label}. Click for more details"
+                        },
+                        hover: {
+                            mode: 'index',
+                            intersect: false
                         },
                         data: [{
                             type: "line",
                             lineColor: "#EE8535",
-                            dataPoints: [@Html.Raw(String.Join(",",Model.MoodDictionaryAvg.Select(x=> "{y:"+x.Value+",label:\""+x.Key+"\", color: \"#EE8535\"}")))]
-                        }],
-
+                            dataPoints: [@Html.Raw(String.Join(",",Model.MoodDictionaryAvg.Select(x=> "{y:"+x.Value+",label:\""+x.Key+"\", color: \"#EE8535\", click: onClick}")))]
+                        }]
                     });
                     chart.render();
-                }
+            }
+            
+            function onClick(e) {
+                location.href='@Url.Action("Index","SepMoods")/';
+            }
         </script>
     }
