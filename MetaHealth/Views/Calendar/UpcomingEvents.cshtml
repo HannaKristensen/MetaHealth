@@ -409,7 +409,8 @@
             }
             
             function onClick(e) {
-                location.href='@Url.Action("Index","SepMoods")/';
+                var date=e.dataPoint.label;
+                location.href='@Url.Action("Index","SepMoods")/?Date='+date;
             }
         </script>
     }

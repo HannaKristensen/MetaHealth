@@ -6,7 +6,7 @@
             document.getElementById("allTimeResults").style.display='none';
             document.getElementById("todayResults").style.display='inline-table';
             document.getElementById("thisWeekResults").style.display='none';
-            document.getElementById("specificDate").style.display='none';
+            //document.getElementById("specificDate").style.display='none';
             break;
         }
 
@@ -14,7 +14,7 @@
             document.getElementById("allTimeResults").style.display='none';
             document.getElementById("todayResults").style.display='none';
             document.getElementById("thisWeekResults").style.display='inline-table';
-            document.getElementById("specificDate").style.display='none';
+            //document.getElementById("specificDate").style.display='none';
             break;
         }
 
@@ -22,7 +22,7 @@
             document.getElementById("allTimeResults").style.display='none';
             document.getElementById("todayResults").style.display='none';
             document.getElementById("thisWeekResults").style.display='none';
-            document.getElementById("specificDate").style.display='inline-table';
+            //document.getElementById("specificDate").style.display='inline-table';
             break;
         }
 
@@ -30,7 +30,7 @@
             document.getElementById("allTimeResults").style.display='inline-table';
             document.getElementById("todayResults").style.display='none';
             document.getElementById("thisWeekResults").style.display='none';
-            document.getElementById("specificDate").style.display='none';
+            //document.getElementById("specificDate").style.display='none';
             break;
     }
 }

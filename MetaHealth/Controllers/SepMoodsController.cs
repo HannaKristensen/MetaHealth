@@ -18,9 +18,15 @@ namespace MetaHealth.Controllers
         // GET: SepMoods
         public ActionResult Index(DateTime? date)
         {
-            //if date is null just do this shit
+            List<SepMood> sepMoods = new List<SepMood>();
             var userId = User.Identity.GetUserId();
-            List<SepMood> sepMoods = db.SepMoods.Where(x => x.UserID == userId).OrderByDescending(y => y.Date).ToList();
+            if (date == null || !date.HasValue) {
+                sepMoods = db.SepMoods.Where(x => x.UserID == userId).OrderByDescending(y => y.Date).ToList();
+                //sepMoods= db.SepMoods.Where(x => x.UserID == userId).Where(y=>y.Date==DateTime.Today).ToList();
+            }
+            else {
+                sepMoods = db.SepMoods.Where(x => x.UserID == userId).Where(z=>z.Date.Day==date.Value.Day).OrderByDescending(y => y.Date).ToList();
+            }
             DateTime today = DateTime.Today;
             DateTime week = DateTime.Today.AddDays(-7);
             List<SepMood> todaysMoods = db.SepMoods.Where(x => x.UserID == userId).Where(y => y.Date.Day == today.Day).OrderByDescending(z => z.Date).ToList();
@@ -30,13 +36,6 @@ namespace MetaHealth.Controllers
             return View(sepMoods);
         }
 
-
-
-        public ActionResult MoodsByDate(DateTime? date) {
-            var userId = User.Identity.GetUserId();
-            List<SepMood> sepMoods = db.SepMoods.Where(x => x.UserID == userId).Where(y => y.Date.Day == date.Day).OrderByDescending(z => z.Date).ToList();
-            return View(sepMoods);
-        }
 
         public ActionResult todaysMoodsP()
         {
