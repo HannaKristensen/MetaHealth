@@ -6,13 +6,18 @@ var score;
 
 var grid;
 
-$(document).ready(function () {
-    $("restart").click(function (event) {
-        onRestart(grid);
-        return true;
-    });
+function restartGame() {
+    onRestart(grid);
+    grid = new Array(NUMBER_COLS);
+    for (var currentCol = 0; currentCol < NUMBER_COLS; currentCol++) {
+        grid[currentCol] = new Array(NUMBER_ROWS);
+    }
 
-    $("slot").click(function (event) {
+    onLoad(grid);
+}
+
+$(document).ready(function () {
+    $("img").click(function (event) {
         imageClicked(event, grid);
         return true;
     });
@@ -103,15 +108,15 @@ function setSlotType(x, y, type) {
     var elementId = "slot" + x + "x" + y;
     var img = document.getElementById(elementId);
     if (type == "blank") {
-        img.style.backgroundColor = 'white';
+        img.src = 'https://color-hex.org/colors/e9e6d4.png';
     } else if (type == "red") {
-        img.style.backgroundColor = 'red';
+        img.src = 'https://i.imgur.com/HsghsKC.jpg';
     } else if (type == "yellow") {
-        img.style.backgroundColor = 'yellow';
+        img.src = 'https://www.enasco.com/medias/9723819D-main-530Wx530H?context=bWFzdGVyfHJvb3R8NDU2OXxpbWFnZS9qcGVnfGgyZS9oYjMvODg0NDM5NDU2MTU2Ni5qcGd8NzM0YjgzZTk4MjYwMWU2MDNkZTc5NGQ1OTA5ZTM1MjAzNjNmNDZmNzk5MWU2NWZjY2NlYWNmZWMzOTI1NzdhNA';
     } else if (type == "blue") {
-        img.style.backgroundColor = 'blue';
+        img.src = 'https://www.nafc.uhi.ac.uk/t4-media/one-web/nafc/research/document/marine-spatial-planning/dark-blue-box.png';
     } else if (type == "green") {
-        img.style.backgroundColor = 'green';
+        img.src = 'https://img.buzzfeed.com/buzzfeed-static/static/2020-02/26/18/enhanced/63fa524113ec/enhanced-1674-1582742675-2.png?downsize=600:*&output-format=auto&output-quality=auto';
     }
 }
 

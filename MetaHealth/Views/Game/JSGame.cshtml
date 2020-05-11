@@ -5,36 +5,34 @@
 <html>
 <head>
     <title>Game Time</title>
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="~/Content/GameSheet.css" type="text/css"/>
     <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="~/Scripts/JSGame.js"></script>
 </head>
 <body>
-    <div id="content">
+    <div id="content" style="text-align: center">
         <div id="header"><h1>Recursive Blocks</h1></div>
-        <div id="board">
-            <script type="text/javascript">
-                for (var y = NUMBER_ROWS - 1; y > -1; y--) {
-                    for (var x = 0; x < NUMBER_COLS; x++) {
-                        document.write("<img id=\"slot" + x + "x" + y + "\" width=\"30px\" height=\"30px\"  style=\"backgroundColor: while\" />");
+        <br />
+            <div id="board">
+                <div id="boardDetails">
+                <script type="text/javascript">
+                    for (var y = NUMBER_ROWS - 1; y > -1; y--) {
+                        for (var x = 0; x < NUMBER_COLS; x++) {
+                            document.write("<img id=\"slot" + x + "x" + y + "\" width=\"30px\" height=\"30px\"  style=\"backgroundColor: white\" />");
+                        }
+                        document.write("<br />")
                     }
-                }
-            </script>
-        </div>
-
-        <div id="infopanel">
+                </script>
+                </div>
+            </div>
+        <br />
+        <div>
             <div id="dialog"><p id="dialogText">Some text here</p></div>
-            <div class="playerStats">
+            <div>
                 <p id="scoreTxt"></p>
             </div>
-            <div id="options">
-                <a id="restart">New Game</a>
-            </div>
-            <div id="debug">
-                <h2>Debug</h2>
-                <textarea id="debugText"></textarea>
-                <input type="button" value="Clear Debug" onclick="clearDebug()">
-                <input type="button" value="Hide Debug" onclick="hideDebug()">
+            <div>
+                <button class="MarkDownButtons" onclick="restartGame()">New Game</button>
             </div>
         </div>
     </div>

@@ -246,6 +246,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\BreathingSpace.css" />
     <Content Include="Content\Flowchart.css" />
+    <Content Include="Content\GameSheet.css" />
     <Content Include="Content\moods.css" />
     <Content Include="Content\resources.css" />
     <Content Include="Content\Search.css" />
