@@ -206,6 +206,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\CustomListsController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TestingController.cs" />
     <Compile Include="Models\AspNetRole.cs" />
@@ -268,6 +269,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\JSGame.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\moodhub.js" />
     <Content Include="Scripts\SelfCareSuggestion.js" />
@@ -330,6 +332,7 @@
     <Content Include="Views\Home\Venting.cshtml" />
     <Content Include="Views\SepMoods\todaysMoodsP.cshtml" />
     <Content Include="Views\AspNetUsers\Edit.cshtml" />
+    <Content Include="Views\Game\JSGame.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

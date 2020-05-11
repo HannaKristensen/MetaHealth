@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "JSGame";
+}
+
+<html>
+<head>
+    <title>Game Time</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/JSGame.js"></script>
+</head>
+<body>
+    <div id="content">
+        <div id="header"><h1>Recursive Blocks</h1></div>
+        <div id="board">
+            <script type="text/javascript">
+                for (var y = NUMBER_ROWS - 1; y > -1; y--) {
+                    for (var x = 0; x < NUMBER_COLS; x++) {
+                        document.write("<img id=\"slot" + x + "x" + y + "\" width=\"30px\" height=\"30px\"  style=\"backgroundColor: while\" />");
+                    }
+                }
+            </script>
+        </div>
+
+        <div id="infopanel">
+            <div id="dialog"><p id="dialogText">Some text here</p></div>
+            <div class="playerStats">
+                <p id="scoreTxt"></p>
+            </div>
+            <div id="options">
+                <a id="restart">New Game</a>
+            </div>
+            <div id="debug">
+                <h2>Debug</h2>
+                <textarea id="debugText"></textarea>
+                <input type="button" value="Clear Debug" onclick="clearDebug()">
+                <input type="button" value="Hide Debug" onclick="hideDebug()">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
