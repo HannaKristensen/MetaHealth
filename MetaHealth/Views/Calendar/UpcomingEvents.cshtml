@@ -139,12 +139,14 @@
                             <tr><th colspan="4">@group.GroupTitle</th></tr>
                             @foreach (var item in group.Events)
                             {
-                                if (!IsAllDay(item))
-                                {
-                                    var temp = item.Start.DateTime.Value;
+                                if (!IsAllDay(item)) {
+                                    var tempStart = item.Start.DateTime.Value;
+                                    var tempEnd = item.End.DateTime.Value;
 
-                                    temp = temp.AddHours(-7);
-                                    item.Start.DateTime = temp;
+                                    tempStart = tempStart.AddHours(-7);
+                                    tempEnd = tempEnd.AddHours(-7);
+                                    item.Start.DateTime = tempStart;
+                                    item.End.DateTime = tempEnd;
                                 }
 
                                 <tr>
