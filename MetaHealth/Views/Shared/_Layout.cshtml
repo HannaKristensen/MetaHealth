@@ -12,12 +12,11 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-
             </div>
 
-
             <div class="my-navbar">
-                @if (User.Identity.IsAuthenticated) {
+                @if (User.Identity.IsAuthenticated)
+                {
 
                     @Html.ActionLink("Dashboard", "UpcomingEvents", "Calendar")
 
@@ -31,6 +30,7 @@
                             @Html.ActionLink("Self Care Quiz", "SelfCareQuiz", "Home")
                             @Html.ActionLink("Breathe", "BreathingSpace", "Home")
                             @Html.ActionLink("Flowchart", "Flowchart", "Home")
+                            @Html.ActionLink("Game", "JSGame", "Game")
                         </div>
                     </div>
 
@@ -44,8 +44,6 @@
                             @Html.ActionLink("All Moods", "Index", "SepMoods")
                         </div>
                     </div>
-
-
 
                     <div class="my-dropdown">
                         <button class="my-dropbtn">
@@ -65,7 +63,8 @@
                         </button>
                         <div class="my-dropdown-settings-content">
                             @Html.ActionLink("Edit Name", "Edit", "AspNetUsers")
-                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "form-settings" })) {
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "form-settings" }))
+                            {
                                 @Html.AntiForgeryToken()
                                 <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
                             }
@@ -73,16 +72,14 @@
                     </div>
                 }
 
-                else {
+                else
+                {
                     @Html.ActionLink("Home", "Index", "Home")
                     @Html.ActionLink("Flowchart", "Flowchart", "Home")
                     @Html.ActionLink("Find Help", "SearchPage", "Search")
                 }
-
             </div>
-
-
-            </div>
+        </div>
     </div>
     <div class="container body-content">
         @RenderBody()

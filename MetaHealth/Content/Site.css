@@ -331,6 +331,13 @@ a:visited {
     text-align: center;
 }
 
+.emptyGraph {
+    font-family: Verdana;
+    font-size:17px;
+    text-align: center;
+    padding: 10px 7px 5px 10px;
+}
+
 /*NAV BAR*/
 .my-navbar {
     overflow: hidden;
