@@ -5,16 +5,16 @@
 <html>
 <head>
     <title>Game Time</title>
-    <link rel="stylesheet" href="~/Content/GameSheet.css" type="text/css"/>
+    <link rel="stylesheet" href="~/Content/GameSheet.css" type="text/css" />
     <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="~/Scripts/JSGame.js"></script>
 </head>
 <body>
     <div id="content" style="text-align: center">
-        <div id="header"><h1>Recursive Blocks</h1></div>
         <br />
-            <div id="board">
-                <div id="boardDetails">
+        <br />
+        <div id="board">
+            <div id="boardDetails">
                 <script type="text/javascript">
                     for (var y = NUMBER_ROWS - 1; y > -1; y--) {
                         for (var x = 0; x < NUMBER_COLS; x++) {
@@ -23,14 +23,10 @@
                         document.write("<br />")
                     }
                 </script>
-                </div>
             </div>
+        </div>
         <br />
         <div>
-            <div id="dialog"><p id="dialogText">Some text here</p></div>
-            <div>
-                <p id="scoreTxt"></p>
-            </div>
             <div>
                 <button class="MarkDownButtons" onclick="restartGame()">New Game</button>
             </div>
