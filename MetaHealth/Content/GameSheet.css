@@ -37,6 +37,7 @@ p {
     text-align: center;
     display: flex;
     justify-content: space-around;
+    min-width: 661px;
 }
 
 #boardDetails {
@@ -46,6 +47,7 @@ p {
     border: 8px solid #f1f1f1;
     padding: 10px;
     width: 58%;
+    min-width: 661px;
 }
 
 #infopanel {
@@ -88,3 +90,17 @@ p {
     text-decoration: none;
     border-radius: 24px;
 }
+
+#finished {
+display: none;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+    font-family: Verdana;
+    font-size: 100px;
+}
+

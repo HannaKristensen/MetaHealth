@@ -3,6 +3,7 @@ var NUMBER_COLS = 20;
 var grid;
 
 function restartGame() {
+    document.getElementById("finished").style.display = 'none';
     populateGrid(grid);
     grid = new Array(NUMBER_COLS);
     for (var currentCol = 0; currentCol < NUMBER_COLS; currentCol++) {
@@ -14,7 +15,12 @@ function restartGame() {
 
 $(document).ready(function () {
     $("img").click(function (event) {
-        imageClicked(event, grid);
+        var bool = imageClicked(event, grid);
+        var finished = gameFinished();
+        if (finished == false) {
+            confetti();
+            document.getElementById("finished").style.display = 'block';
+        }
         return true;
     });
 
@@ -37,40 +43,43 @@ function gameFinished() {
             var rightY = y;
             var bottomX = x;
             var bottomY = y - 1;
-            var colorCurrent = grid[x][y];
+            var colorCurrent = grid[y][x];
 
-            if (topX > -1 && topX < NUMBER_ROWS) {
-                if (topY > - 1 && topY < NUMBER_COLS) {
-                    var colorCheck = grid[topY][topX];
-                    if (colorCheck == colorCurrent) {
-                        return true;
+            if (colorCurrent != "blank") {
+
+                if (topX > -1 && topX < NUMBER_ROWS) {
+                    if (topY > - 1 && topY < NUMBER_COLS) {
+                        var colorCheck = grid[topY][topX];
+                        if (colorCheck == colorCurrent) {
+                            return true;
+                        }
                     }
                 }
-            }
 
-            if (leftX > -1 && leftX < NUMBER_ROWS) {
-                if (leftY > - 1 && leftY < NUMBER_COLS) {
-                    var colorCheck = grid[leftY][leftX];
-                    if (colorCheck == colorCurrent) {
-                        return true;
+                if (leftX > -1 && leftX < NUMBER_ROWS) {
+                    if (leftY > - 1 && leftY < NUMBER_COLS) {
+                        var colorCheck = grid[leftY][leftX];
+                        if (colorCheck == colorCurrent) {
+                            return true;
+                        }
                     }
                 }
-            }
 
-            if (rightX > -1 && rightX < NUMBER_ROWS) {
-                if (rightY > - 1 && rightY < NUMBER_COLS) {
-                    var colorCheck = grid[rightY][rightX];
-                    if (colorCheck == colorCurrent) {
-                        return true;
+                if (rightX > -1 && rightX < NUMBER_ROWS) {
+                    if (rightY > - 1 && rightY < NUMBER_COLS) {
+                        var colorCheck = grid[rightY][rightX];
+                        if (colorCheck == colorCurrent) {
+                            return true;
+                        }
                     }
                 }
-            }
 
-            if (bottomX > -1 && bottomX < NUMBER_ROWS) {
-                if (bottomY > - 1 && bottomY < NUMBER_COLS) {
-                    var colorCheck = grid[bottomY][bottomX];
-                    if (colorCheck == colorCurrent) {
-                        return true;
+                if (bottomX > -1 && bottomX < NUMBER_ROWS) {
+                    if (bottomY > - 1 && bottomY < NUMBER_COLS) {
+                        var colorCheck = grid[bottomY][bottomX];
+                        if (colorCheck == colorCurrent) {
+                            return true;
+                        }
                     }
                 }
             }
@@ -91,6 +100,7 @@ function imageClicked(event, grid) {
     var x = parseInt(id.match(/\d+/));
     var y = parseInt(id.match(/\d+$/));
     slotClicked(x, y, grid);
+    return true;
 }
 
 /**
