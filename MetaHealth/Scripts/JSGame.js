@@ -16,7 +16,10 @@ function restartGame() {
 $(document).ready(function () {
     $("img").click(function (event) {
         var bool = imageClicked(event, grid);
-        var finished = gameFinished();
+        if (bool == null) {
+            sleep(1000);
+        }
+        var finished = gameFinished(bool);
         if (finished == false) {
             confetti();
             document.getElementById("finished").style.display = 'block';
@@ -32,7 +35,7 @@ $(document).ready(function () {
     populateGrid(grid);
 });
 
-function gameFinished() {
+function gameFinished(variable) {
     for (var y = 0; y < NUMBER_ROWS; y++) {
         for (var x = 0; x < NUMBER_COLS; x++) {
             var topX = x;
@@ -46,7 +49,6 @@ function gameFinished() {
             var colorCurrent = grid[y][x];
 
             if (colorCurrent != "blank") {
-
                 if (topX > -1 && topX < NUMBER_ROWS) {
                     if (topY > - 1 && topY < NUMBER_COLS) {
                         var colorCheck = grid[topY][topX];
