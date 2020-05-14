@@ -28,9 +28,7 @@ p {
 
 #content {
     margin: auto;
-
 }
-
 
 #board {
     align-content: center;
@@ -69,7 +67,6 @@ p {
     margin-top: 16px;
 }
 
-
 #dialog {
     width: 568px;
     background-color: #FFF47A;
@@ -92,7 +89,7 @@ p {
 }
 
 #finished {
-display: none;
+    display: none;
 }
 
 .centered {
@@ -103,4 +100,3 @@ display: none;
     font-family: Verdana;
     font-size: 100px;
 }
-
