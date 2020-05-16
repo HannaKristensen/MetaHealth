@@ -28,15 +28,14 @@ p {
 
 #content {
     margin: auto;
-
 }
-
 
 #board {
     align-content: center;
     text-align: center;
     display: flex;
     justify-content: space-around;
+    min-width: 661px;
 }
 
 #boardDetails {
@@ -46,6 +45,7 @@ p {
     border: 8px solid #f1f1f1;
     padding: 10px;
     width: 58%;
+    min-width: 661px;
 }
 
 #infopanel {
@@ -67,7 +67,6 @@ p {
     margin-top: 16px;
 }
 
-
 #dialog {
     width: 568px;
     background-color: #FFF47A;
@@ -87,4 +86,25 @@ p {
     font-size: 17px;
     text-decoration: none;
     border-radius: 24px;
+}
+
+#finished {
+    display: none;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+    font-family: Verdana;
+    font-size: 70px;
+}
+
+img {
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
