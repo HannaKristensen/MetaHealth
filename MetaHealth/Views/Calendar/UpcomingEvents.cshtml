@@ -410,7 +410,7 @@
                         data: [{
                             type: "line",
                             lineColor: "#EE8535",
-                            dataPoints: [@Html.Raw(String.Join(",",Model.MoodDictionaryAvg.Select(x=> "{y:"+x.Value+",label:\""+x.Key+"\", color: \"#EE8535\", click: onClick}")))]
+                            dataPoints: [@Html.Raw(String.Join(",",Model.MoodDictionaryAvg.Select(x=> "{y:"+x.Value+",label:\""+x.Key+"\", color: \"#EE8535\", click: onClick}").Skip(Math.Max(0,Model.MoodDictionaryAvg.Count()-5))))]
                         }]
                     });
                     chart.render();

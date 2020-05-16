@@ -182,14 +182,13 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             #region Populate data for graph
             Dictionary<string, double> dummyDict = new Dictionary<string, double>();
             Dictionary<string, List<int>> fakeDict = new Dictionary<string, List<int>>();
-            model.SepMood = db.SepMoods.Where(n => n.UserID == curUser).OrderBy(d => d.Date).Take(5).ToList();
+            model.SepMood = db.SepMoods.Where(n => n.UserID == curUser).OrderBy(d => d.Date).ToList();
             model.MoodDate = db.SepMoods
                 .Where(n => n.UserID == curUser)
                 .Select(n => DbFunctions.TruncateTime(n.Date) ?? DateTime.Now)
                 .Distinct()
-                .Take(5)
                 .ToList();
-            model.MoodNum = db.SepMoods.Where(n => n.UserID == curUser).Select(n => n.MoodNum).Take(5).ToList();
+            model.MoodNum = db.SepMoods.Where(n => n.UserID == curUser).Select(n => n.MoodNum).ToList();
             model.MoodDictionaryAvg = dummyDict;
             model.MoodDictionaryByDay = fakeDict;
             Dictionary<DateTime, List<int>> tempDictofValues = new Dictionary<DateTime, List<int>>();
