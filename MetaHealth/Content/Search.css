@@ -27,7 +27,7 @@ h1 {
     display: inline-block;
     cursor: pointer;
     color: #ffffff;
-    font-family: Arial;
+    font-family: Verdana;
     font-size: 17px;
     padding: 18px 31px;
     text-decoration: none;
@@ -54,13 +54,16 @@ h1 {
     color: white;
 }
 
-label#therapySearch, select#therapySearch {
-    color: #248D83;
+label#therapySearch, select#therapySearch, input[type=text] {
+    font-family: Verdana;
+    font-size: 15px;
+
+
 }
 
-input[type=text] {
-    color: #248D83;
-}
+/*input[type=text] {
+
+}*/
 
 .gcse-search#customSeachBar {
     background-color: #edebe1;
