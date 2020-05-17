@@ -31,7 +31,6 @@
             </label>
             <div class="therapy-dropdown">
                 @Html.DropDownListFor(model => model.therapyCat, new List<SelectListItem> {
-                    new SelectListItem{Text="Make a selection...", Value=""},
                     new SelectListItem{Text="Therapist", Value="therapists"},
                     new SelectListItem{Text="Psychiatrist", Value="psychiatrists"},
                     new SelectListItem{Text="Support group", Value="groups"},
@@ -48,17 +47,21 @@
                 What issue would you like to focus on?
             </label>
             <div class="therapy-dropdown">
-                @Html.DropDownListFor(model => model.therapySpec, new List<SelectListItem> {
-                    new SelectListItem{Text="Make a selection...", Value=""},
-                    new SelectListItem{Text="Anxiety", Value="anxiety"},
-                    new SelectListItem{Text="Depression", Value="depression" },
-                    new SelectListItem{Text="OCD", Value="obsessive-compulsive-ocd" },
-                    new SelectListItem{Text="Bipolar Disorder", Value="bipolar-disorder" },
-                    new SelectListItem{Text="Grief", Value="grief"},
-                    new SelectListItem{Text="Borderline Personality", Value="borderline-personality"},
-                    new SelectListItem{Text="General Coping Skills", Value="coping-skills"},
-                    new SelectListItem{Text="Relationship Issues", Value="relationship-issues"}
-
+                @Html.DropDownListFor(model => model.therapySpec, 
+                    new List<SelectListItem> {
+                        new SelectListItem{Text="Make a selection...", Value=""},
+                        new SelectListItem{Text="Anxiety", Value="anxiety"},
+                        new SelectListItem{Text="Depression", Value="depression" },
+                        new SelectListItem{Text="OCD", Value="obsessive-compulsive-ocd" },
+                        new SelectListItem{Text="Bipolar Disorder", Value="bipolar-disorder" },
+                        new SelectListItem{Text="Grief", Value="grief"},
+                        new SelectListItem{Text="Borderline Personality", Value="borderline-personality"},
+                        new SelectListItem{Text="General Coping Skills", Value="coping-skills"},
+                        new SelectListItem{Text="Relationship Issues", Value="relationship-issues"},
+                        new SelectListItem{Text="Addiction", Value="addiction"},
+                        new SelectListItem{Text="Family issues", Value="family-conflict"},
+                        new SelectListItem{Text="Big Changes", Value="life-transitions"},
+                        new SelectListItem{Text="Eating Disorders", Value="eating-disorders"}
                     },
                     new { @class = "form-control col-sm-8", id = "therapySearch" }
                 )
@@ -70,7 +73,7 @@
             <label class="control-label col-sm-4" id="therapySearch">
                 What is your zipcode?
             </label>
-            @Html.EditorFor(model => model.therapyZipcode, new { htmlAttributes = new { @class = "form-control col-sm-10", pattern = "[0-9]*" } })
+            @Html.EditorFor(model => model.therapyZipcode, new { htmlAttributes = new { @class = "form-control col-sm-10", required="true", pattern = "[0-9]*" } })
         </div>
 
         <input type="submit" id="submit" value="Find Help" class="findHelpButton" />
