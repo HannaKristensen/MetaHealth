@@ -255,3 +255,4 @@ function AddSuggestion()
     });
     
 }
+
