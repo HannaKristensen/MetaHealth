@@ -1,7 +1,9 @@
 ﻿@model MetaHealth.Models.ExternalLoginListViewModel
 @using Microsoft.Owin.Security
 
-<h4>Use another service to log in.</h4>
+    <link href="@Url.Content("~/Content/loginRedirect.css")" rel="stylesheet" type="text/css" />
+
+<h2 style="font-weight:bold; margin-top: 50px ">Oops! Looks like you need to be logged in to view this page.</h2>
 <hr />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
@@ -19,7 +21,7 @@
             <div id="socialLoginList">
                 <p>
                     @foreach (AuthenticationDescription p in loginProviders) {
-                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                    <button type="submit" class="redirectButton" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">Log in or register with @p.AuthenticationType here!</button>
                     }
                 </p>
             </div>

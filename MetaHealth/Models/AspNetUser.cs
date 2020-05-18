@@ -38,7 +38,7 @@ namespace MetaHealth
         public int AccessFailedCount { get; set; }
 
         [Required]
-        [StringLength(256)]
+        [StringLength(30, ErrorMessage="Username must be less then 30 charcters long.")]
         public string UserName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
