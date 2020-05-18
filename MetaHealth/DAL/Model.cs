@@ -9,9 +9,9 @@ namespace MetaHealth.DAL
 
          //: base("AzureDB")
 
-       // : base("AzureDB")
+        : base("AzureDB")
 
-         : base("HelpAlong")
+       //  : base("HelpAlong")
         {
         }
 
