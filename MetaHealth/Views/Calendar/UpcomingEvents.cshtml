@@ -101,11 +101,11 @@
                     {
                         @:@string.Format(
 
-                        "{0} hour{1} {2} minute{3}",
-                        (int)duration.Value.TotalHours,
-                        duration.Value.TotalHours >= 2 ? "s" : "",
-                        (int)duration.Value.Minutes,
-                        duration.Value.Minutes >= 2 ? "s" : "")
+                  "{0} hour{1} {2} minute{3}",
+                  (int)duration.Value.TotalHours,
+                  duration.Value.TotalHours >= 2 ? "s" : "",
+                  (int)duration.Value.Minutes,
+                  duration.Value.Minutes >= 2 ? "s" : "")
 
                     }
                 }
@@ -174,19 +174,19 @@
                 {
                     <div class="form-group" id="eventAddForm">
                         @Html.Label("EventSummary", "Event Summary: ")
-                        @Html.TextBox("EventSummary", null, new { @class = "form-control", type = "text", required = "required" })
+                        @Html.TextBox("EventSummary", null, new { @class = "form-control", type = "text", required = "required", maxlength = 1000 })
                         @Html.Label("EventLocation", "Event Location(optional): ")
-                        @Html.TextBox("EventLocation", null, new { @class = "form-control", type = "text" })
+                        @Html.TextBox("EventLocation", null, new { @class = "form-control", type = "text", maxlength = 1000 })
                         @Html.Label("EventDescription", "Event Description(optional): ")
-                        @Html.TextBox("EventDescription", null, new { @class = "form-control", type = "text" })
+                        @Html.TextBox("EventDescription", null, new { @class = "form-control", type = "text", maxlength = 1000 })
                         @Html.Label("EventStartDate", "Event Start Date: ")
-                        @Html.TextBox("EventStartDate", null, new { @class = "form-control", type = "date", required = "required" })
+                        @Html.TextBox("EventStartDate", null, new { @class = "form-control", type = "date", required = "required", maxlength = 1000 })
                         @Html.Label("EventStartTime", "Event Start Time: ")
-                        @Html.TextBox("EventStartTime", null, new { @class = "form-control", type = "time", required = "required" })
+                        @Html.TextBox("EventStartTime", null, new { @class = "form-control", type = "time", required = "required", maxlength = 1000 })
                         @Html.Label("EventEndDate", "Event End Date: ")
-                        @Html.TextBox("EventEndDate", null, new { @class = "form-control", type = "date", required = "required" })
+                        @Html.TextBox("EventEndDate", null, new { @class = "form-control", type = "date", required = "required", maxlength = 1000 })
                         @Html.Label("EventEndTime", "Event End Time: ")
-                        @Html.TextBox("EventEndTime", null, new { @class = "form-control", type = "time", required = "required" })
+                        @Html.TextBox("EventEndTime", null, new { @class = "form-control", type = "time", required = "required", maxlength = 1000 })
                         @Html.Label("Remind", "Email Reminder(optional): ")
                         <br />
                         @Html.DropDownList("Remind", new List<SelectListItem> {
@@ -261,7 +261,7 @@
                     <div id="addCusTask">
                         <div class="form-group">
                             <label style="align-content:start">Task:</label>
-                            <input class="form-control" id="newTask" type="text" maxlength="200" />
+                            <input class="form-control" id="newTask" type="text" maxlength="1000" />
                             <button class="MarkDownButtons" onclick="addCustom()">Add Task</button>
                         </div>
                     </div>
@@ -293,7 +293,7 @@
                     {
                         <div class="form-group">
                             @Html.Label("task", "Add a task: ")
-                            @Html.TextBox("taskTitle", null, new { @class = "form-control", type = "text", required = "required" })
+                            @Html.TextBox("taskTitle", null, new { @class = "form-control", type = "text", required = "required", maxlength = 1000 })
                             <br />
                             <button type="submit" class="MarkDownButtons">Add!</button>
                         </div>
@@ -393,13 +393,15 @@
                         },
                         animationEnabled: false,
                         title: {
-                            text: "Your Mood Trends"
+                            text: "Your Mood Trends",
+                            fontFamily: "Verdana"
                         },
                         toolTip: {
                             shared: true,
                             mode: 'index',
                             intersect: false,
-                            content:"Avg mood for {label}. Click for more details"
+                            content: "Avg mood for {label}. Click for more details",
+                            fontFamily: "Verdana"
                         },
                         hover: {
                             mode: 'index',
@@ -408,7 +410,7 @@
                         data: [{
                             type: "line",
                             lineColor: "#EE8535",
-                            dataPoints: [@Html.Raw(String.Join(",",Model.MoodDictionaryAvg.Select(x=> "{y:"+x.Value+",label:\""+x.Key+"\", color: \"#EE8535\", click: onClick}")))]
+                            dataPoints: [@Html.Raw(String.Join(",",Model.MoodDictionaryAvg.Select(x=> "{y:"+x.Value+",label:\""+x.Key+"\", color: \"#EE8535\", click: onClick}").Skip(Math.Max(0,Model.MoodDictionaryAvg.Count()-5))))]
                         }]
                     });
                     chart.render();

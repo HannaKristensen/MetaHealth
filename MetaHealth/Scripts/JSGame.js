@@ -1,24 +1,29 @@
-﻿const DEBUG_ENABLED = false;
-const NUMBER_ROWS = 12;
-const NUMBER_COLS = 20;
-
-var score;
-
+﻿var NUMBER_ROWS = 12;
+var NUMBER_COLS = 20;
 var grid;
 
 function restartGame() {
-    onRestart(grid);
+    document.getElementById("finished").style.display = 'none';
+    populateGrid(grid);
     grid = new Array(NUMBER_COLS);
     for (var currentCol = 0; currentCol < NUMBER_COLS; currentCol++) {
         grid[currentCol] = new Array(NUMBER_ROWS);
     }
 
-    onLoad(grid);
+    populateGrid(grid);
 }
 
 $(document).ready(function () {
     $("img").click(function (event) {
-        imageClicked(event, grid);
+        var bool = imageClicked(event, grid);
+        if (bool == null) {
+            sleep(1000);
+        }
+        var finished = gameFinished(bool);
+        if (finished == false) {
+            confetti();
+            document.getElementById("finished").style.display = 'block';
+        }
         return true;
     });
 
@@ -27,34 +32,63 @@ $(document).ready(function () {
         grid[currentCol] = new Array(NUMBER_ROWS);
     }
 
-    onLoad(grid);
+    populateGrid(grid);
 });
 
-/**
- * Function is called when the page has loaded
- * @param grid(Multidimensional array of strings) board state
- * @pre grid has been initialised as a blank multidimensional array
- */
-function onLoad(grid) {
-    if (DEBUG_ENABLED == true) {
-        $("#debug").show();
-    } else {
-        $("#debug").hide();
-    }
-    $("#dialog").hide();
-    setScoreText(0);
-    score = 0;
-    populateGrid(grid);
-}
+function gameFinished(variable) {
+    for (var y = 0; y < NUMBER_ROWS; y++) {
+        for (var x = 0; x < NUMBER_COLS; x++) {
+            var topX = x;
+            var topY = y + 1;
+            var leftX = x - 1;
+            var leftY = y;
+            var rightX = x + 1;
+            var rightY = y;
+            var bottomX = x;
+            var bottomY = y - 1;
+            var colorCurrent = grid[y][x];
 
-/**
- * Function is called when restart link is clicked
- * @param grid(Multidimensional array of strings) board state
- */
-function onRestart(grid) {
-    score = 0;
-    setScoreText(score);
-    populateGrid(grid);
+            if (colorCurrent != "blank") {
+                if (topX > -1 && topX < NUMBER_ROWS) {
+                    if (topY > - 1 && topY < NUMBER_COLS) {
+                        var colorCheck = grid[topY][topX];
+                        if (colorCheck == colorCurrent) {
+                            return true;
+                        }
+                    }
+                }
+
+                if (leftX > -1 && leftX < NUMBER_ROWS) {
+                    if (leftY > - 1 && leftY < NUMBER_COLS) {
+                        var colorCheck = grid[leftY][leftX];
+                        if (colorCheck == colorCurrent) {
+                            return true;
+                        }
+                    }
+                }
+
+                if (rightX > -1 && rightX < NUMBER_ROWS) {
+                    if (rightY > - 1 && rightY < NUMBER_COLS) {
+                        var colorCheck = grid[rightY][rightX];
+                        if (colorCheck == colorCurrent) {
+                            return true;
+                        }
+                    }
+                }
+
+                if (bottomX > -1 && bottomX < NUMBER_ROWS) {
+                    if (bottomY > - 1 && bottomY < NUMBER_COLS) {
+                        var colorCheck = grid[bottomY][bottomX];
+                        if (colorCheck == colorCurrent) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return false;
 }
 
 /**
@@ -68,32 +102,7 @@ function imageClicked(event, grid) {
     var x = parseInt(id.match(/\d+/));
     var y = parseInt(id.match(/\d+$/));
     slotClicked(x, y, grid);
-}
-
-/**
- * Function shows dialog menu with text message
- * @param text(string) message that is displayed in dialog
- */
-function showDialog(text) {
-    var dialogText = document.getElementById("dialogText");
-    dialogText.innerHTML = text;
-    $("#dialog").slideDown("fast");
-}
-
-/**
- * Function hides dialog menu
- */
-function hideDialog() {
-    $("#dialog").slideUp("fast");
-}
-
-/**
- * Function sets the player score text
- * @param score(int) player score to set
- */
-function setScoreText(score) {
-    var scoreText = document.getElementById("scoreTxt");
-    scoreText.innerHTML = "Score: " + score;
+    return true;
 }
 
 /**
@@ -118,30 +127,6 @@ function setSlotType(x, y, type) {
     } else if (type == "green") {
         img.src = 'https://img.buzzfeed.com/buzzfeed-static/static/2020-02/26/18/enhanced/63fa524113ec/enhanced-1674-1582742675-2.png?downsize=600:*&output-format=auto&output-quality=auto';
     }
-}
-
-/**
- * Logs message into text area
- * @param message(string) message to be prepended to contents of textarea
- */
-function log(message) {
-    var debugTextArea = document.getElementById("debugText");
-    debugTextArea.innerHTML = message + "\n" + debugTextArea.innerHTML;
-}
-
-/**
- * Clears debug text area
- */
-function clearDebug() {
-    var debugTextArea = document.getElementById("debugText");
-    debugTextArea.innerHTML = "";
-}
-
-/**
- * Hides the debug div
- */
-function hideDebug() {
-    $("#debug").slideUp();
 }
 
 function populateGrid(grid) {
@@ -172,8 +157,6 @@ function slotClicked(x, y, grid) {
         return;
     }
 
-    score = score + blocksCleared * blocksCleared;
-    setScoreText(score);
     collapseDown(grid);
     collapseAcross(grid);
 }

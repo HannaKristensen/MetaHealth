@@ -22,7 +22,10 @@ namespace MetaHealth.Controllers {
         public ActionResult FindTherapist([Bind(Include = "therapyCat,therapyZipcode,therapySpec")] SearchViewModel formObj) {
             formObj.mainURL = "https://www.psychologytoday.com/us/";
             string url = TherapistURL(formObj);
-            return new RedirectResult(url);
+            if (ModelState.IsValid) {
+                return new RedirectResult(url);
+            }
+            return new RedirectResult(formObj.mainURL);
         }
 
         [AllowAnonymous]

@@ -160,7 +160,7 @@ function createCustomTask() {
 function editCustom(key) {
     var tdObj = document.getElementById(key)
     var preText = tdObj.textContent.trim();
-    var inputObj = $("<input type='text' />");
+    var inputObj = $("<input class=\"form-control\" type=\"text\" maxlength=\"1000\" />");
     tdObj.textContent = "";
     inputObj.val(preText).appendTo(tdObj).trigger("focus").trigger("select");
     inputObj.keyup(function (event) {
@@ -237,8 +237,7 @@ function addRow(data) {
     cell2.innerHTML = "<button class=\"MarkDownButtons\" onclick=\"editCustom(" + PK + ")\">Edit</button> <button class=\"MarkDownButtons\" onclick =\"deleteCustom(" + PK + ")\" > Delete </button>";
 }
 
-function AddSuggestion()
-{
+function AddSuggestion() {
     var text = document.getElementById("sugg").innerHTML;
     var dataSend = JSON.stringify({
         'sugg': text
@@ -253,5 +252,4 @@ function AddSuggestion()
         success: messageOut,
         error: errorOnAjax
     });
-    
 }
