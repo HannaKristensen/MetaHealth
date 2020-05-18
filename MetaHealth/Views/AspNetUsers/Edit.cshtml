@@ -19,8 +19,11 @@
             
             <div class="form-inline">
                 <div class="col-md-10">
-                    @Html.Label("username","Enter your desired username: ", new  { @class = "editLabel" } )
+                    @Html.Label("username", "Enter your desired username: ", new { @class = "editLabel" })
                     @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "changeName" } })
+                    <br />
+
+                    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
                     @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                 </div>
             </div>

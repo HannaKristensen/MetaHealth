@@ -1,0 +1,34 @@
+﻿#socialloginform{
+    text-align:center; 
+    font-family: Verdana;
+
+}
+
+.redirectButton {
+    background-color: #6C984B;
+    border-radius: 18px;
+    border: 1px solid #496732;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 20px;
+    padding: 16px 31px;
+    text-decoration: none;
+}
+
+    .redirectButton:hover {
+        background-color: #a2c587;
+        opacity: 1 ;
+        transition: 0.5s ease ; 
+    }
+
+    .redirectButton:active {
+        position: relative;
+        top: 1px;
+    }
+
+#redirectRow{
+    text-align: center;
+    font-family: Verdana;
+}
