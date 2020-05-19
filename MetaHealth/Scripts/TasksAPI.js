@@ -252,10 +252,5 @@ function AddSuggestion() {
         success: messageOut,
         error: errorOnAjax
     });
-<<<<<<< HEAD
-    
-}
 
-=======
 }
->>>>>>> origin/develop
