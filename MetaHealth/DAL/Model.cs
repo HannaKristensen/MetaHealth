@@ -7,9 +7,11 @@ namespace MetaHealth.DAL
     {
         public Model()
 
+         //: base("AzureDB")
+
         : base("AzureDB")
-        //: base("DefaultConnection")
-        // : base("HelpAlong")
+
+        //: base("HelpAlong")
         {
         }
 
