@@ -13,7 +13,6 @@ namespace MetaHealth.Controllers
             return View();
         }
 
-
         public ActionResult SelfCareQuiz()
         {
             return View();
@@ -42,14 +41,9 @@ namespace MetaHealth.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult About()
-        {
-            return View();
-        }
-
-        [AllowAnonymous]
         public ActionResult Contact()
         {
+            ViewBag.Message = "Contact page.";
 
             return View();
         }

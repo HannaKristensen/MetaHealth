@@ -203,18 +203,6 @@ a:visited {
     border-radius: 24px;
 }
 
-.MarkDownButtonsTwo {
-    background-color: #6C984B;
-    border: 1px solid #55783b;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 17px;
-    text-decoration: none;
-    border-radius: 27px;
-}
-
 /*NON ACTIVATED CALENDAR RE DIRECT*/
 #redirectInst {
     align-content: center;
