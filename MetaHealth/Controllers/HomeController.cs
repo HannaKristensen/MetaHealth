@@ -8,6 +8,7 @@ namespace MetaHealth.Controllers
     {
         private Model db = new Model();
         [AllowAnonymous]
+        [HandleError]
         public ActionResult Index()
         {
             return View();
@@ -35,7 +36,7 @@ namespace MetaHealth.Controllers
             return View();
         }
 
-        [AllowAnonymous]
+
         public ActionResult Resources()
         {
             return View();
