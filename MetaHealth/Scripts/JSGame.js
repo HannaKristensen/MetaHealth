@@ -1,5 +1,7 @@
-﻿var NUMBER_ROWS = 12;
-var NUMBER_COLS = 20;
+﻿var NUMBER_ROWS;
+var NUMBER_COLS;
+
+
 
 var types1 = new Array("blue", "green", "red", "yellow");
 var types2 = new Array("darkgreen", "blue", "yellow", "orange");
@@ -10,7 +12,7 @@ var types3 = new Array("maroon", "orange", "pink", "purple");
 console.log(NUMBER_ROWS + "," + NUMBER_COLS);
 var grid;
 
-function restartGame() {
+function newBoard() {
 
     var b = document.getElementById("boardSize");
     var choice = b.options[b.selectedIndex].value;
@@ -29,6 +31,20 @@ function restartGame() {
         NUMBER_COLS = 5;
     }
 
+
+}
+
+function restartGame() {
+
+    newBoard();
+
+   /*for (var y = NUMBER_ROWS - 1; y > -1; y--) {
+        for (var x = 0; x < NUMBER_COLS; x++) {
+            document.getElementById("board").innerHTML = ("<img id=\"slot" + x + "x" + y + "\" width=\"30px\" height=\"30px\"  style=\"backgroundColor: white\" />");
+        }
+        document.getElementById("board").innerHTML = ("<br />")
+    }*/
+
     document.getElementById("finished").style.display = 'none';
     var a = document.getElementById("color");
     var option = a.options[a.selectedIndex].value;
@@ -43,7 +59,7 @@ function restartGame() {
     else if (option == "three") {
         types = types3;
     }
-    populateGrid(grid, types);
+   
     grid = new Array(NUMBER_COLS);
     for (var currentCol = 0; currentCol < NUMBER_COLS; currentCol++) {
         grid[currentCol] = new Array(NUMBER_ROWS);
