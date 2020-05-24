@@ -6,8 +6,8 @@ namespace MetaHealth
     {
         public HelpAlongDB()
 
-        //: base("AzureDB")
-        : base("HelpAlong")
+        : base("AzureDB")
+        //: base("HelpAlong")
 
         {
         }
