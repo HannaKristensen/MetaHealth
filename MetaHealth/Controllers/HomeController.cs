@@ -67,6 +67,7 @@ namespace MetaHealth.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Venting()
 
         {
