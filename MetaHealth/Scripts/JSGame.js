@@ -1,15 +1,11 @@
 ﻿var NUMBER_ROWS;
 var NUMBER_COLS;
 
-
-
 var types1 = new Array("blue", "green", "red", "yellow");
 var types2 = new Array("darkgreen", "blue", "yellow", "orange");
 var types3 = new Array("maroon", "orange", "pink", "purple");
 
-
-
-console.log(NUMBER_ROWS + "," + NUMBER_COLS);
+//console.log(NUMBER_ROWS + "," + NUMBER_COLS);
 var grid;
 
 function newBoard() {
@@ -17,7 +13,7 @@ function newBoard() {
     var b = document.getElementById("boardSize");
     var choice = b.options[b.selectedIndex].value;
 
-    console.log(choice);
+    //console.log(choice);
     if (choice == "one") {
         NUMBER_ROWS = 12;
         NUMBER_COLS = 20;
@@ -38,14 +34,14 @@ function restartGame() {
 
     newBoard();
 
-   /*for (var y = NUMBER_ROWS - 1; y > -1; y--) {
+   for (var y = NUMBER_ROWS - 1; y > -1; y--) {
         for (var x = 0; x < NUMBER_COLS; x++) {
             document.getElementById("board").innerHTML = ("<img id=\"slot" + x + "x" + y + "\" width=\"30px\" height=\"30px\"  style=\"backgroundColor: white\" />");
         }
         document.getElementById("board").innerHTML = ("<br />")
-    }*/
+    }
 
-    document.getElementById("finished").style.display = 'none';
+    //document.getElementById("finished").style.display = 'none';
     var a = document.getElementById("color");
     var option = a.options[a.selectedIndex].value;
     var types;
@@ -81,22 +77,7 @@ $(document).ready(function () {
         }
         return true;
     });
-    var b = document.getElementById("boardSize");
-    var choice = b.options[b.selectedIndex].value;
-
-    console.log(choice);
-    if (choice == "one") {
-        NUMBER_ROWS = 12;
-        NUMBER_COLS = 20;
-    }
-    else if (choice == "two") {
-        NUMBER_ROWS = 6;
-        NUMBER_COLS = 10;
-    }
-    else if (choice == "three") {
-        NUMBER_ROWS = 3;
-        NUMBER_COLS = 5;
-    }
+    newBoard();
     grid = new Array(NUMBER_COLS);
     for (var currentCol = 0; currentCol < NUMBER_COLS; currentCol++) {
         grid[currentCol] = new Array(NUMBER_ROWS);
@@ -119,22 +100,7 @@ $(document).ready(function () {
 
 function gameFinished(variable) {
 
-    var b = document.getElementById("boardSize");
-    var choice = b.options[b.selectedIndex].value;
-
-    console.log(choice);
-    if (choice == "one") {
-        NUMBER_ROWS = 12;
-        NUMBER_COLS = 20;
-    }
-    else if (choice == "two") {
-        NUMBER_ROWS = 6;
-        NUMBER_COLS = 10;
-    }
-    else if (choice == "three") {
-        NUMBER_ROWS = 3;
-        NUMBER_COLS = 5;
-    }
+    newBoard();
     for (var y = 0; y < NUMBER_ROWS; y++) {
         for (var x = 0; x < NUMBER_COLS; x++) {
             var topX = x;
@@ -241,22 +207,7 @@ function setSlotType(x, y, type) {
 
 
 function populateGrid(grid, types) {
-    var b = document.getElementById("boardSize");
-    var choice = b.options[b.selectedIndex].value;
-
-    console.log(choice);
-    if (choice == "one") {
-        NUMBER_ROWS = 12;
-        NUMBER_COLS = 20;
-    }
-    else if (choice == "two") {
-        NUMBER_ROWS = 6;
-        NUMBER_COLS = 10;
-    }
-    else if (choice == "three") {
-        NUMBER_ROWS = 3;
-        NUMBER_COLS = 5;
-    }
+    newBoard();
 
     var a = document.getElementById("color");
     var option = a.options[a.selectedIndex].value;
@@ -270,7 +221,7 @@ function populateGrid(grid, types) {
     else if (option == "three") {
         types = types3;
     }
-
+    newBoard();
     for (var currentCol = 0; currentCol < NUMBER_COLS; currentCol++) {
         for (var currentRow = 0; currentRow < NUMBER_ROWS; currentRow++) {
             var type = types[Math.floor(Math.random() * types.length)];
@@ -324,22 +275,7 @@ function checkNeighbor(x, y, type, grid) {
 }
 
 function isOfType(x, y, type, grid) {
-    var b = document.getElementById("boardSize");
-    var choice = b.options[b.selectedIndex].value;
-
-    console.log(choice);
-    if (choice == "one") {
-        NUMBER_ROWS = 12;
-        NUMBER_COLS = 20;
-    }
-    else if (choice == "two") {
-        NUMBER_ROWS = 6;
-        NUMBER_COLS = 10;
-    }
-    else if (choice == "three") {
-        NUMBER_ROWS = 3;
-        NUMBER_COLS = 5;
-    }
+    newBoard();
 
     if (x < 0 || x >= NUMBER_COLS ||
         y < 0 || y >= NUMBER_ROWS) {
@@ -349,22 +285,7 @@ function isOfType(x, y, type, grid) {
 }
 
 function collapseDown(grid) {
-    var b = document.getElementById("boardSize");
-    var choice = b.options[b.selectedIndex].value;
-
-    console.log(choice);
-    if (choice == "one") {
-        NUMBER_ROWS = 12;
-        NUMBER_COLS = 20;
-    }
-    else if (choice == "two") {
-        NUMBER_ROWS = 6;
-        NUMBER_COLS = 10;
-    }
-    else if (choice == "three") {
-        NUMBER_ROWS = 3;
-        NUMBER_COLS = 5;
-    }
+    newBoard();
     for (var x = 0; x < NUMBER_COLS; x++) {
         var numberEmptySpaces = 0;
         for (var y = 0; y < NUMBER_ROWS; y++) {
@@ -381,22 +302,7 @@ function collapseDown(grid) {
 }
 
 function collapseAcross(grid) {
-        var b = document.getElementById("boardSize");
-    var choice = b.options[b.selectedIndex].value;
-
-    console.log(choice);
-    if (choice == "one") {
-        NUMBER_ROWS = 12;
-        NUMBER_COLS = 20;
-    }
-    else if (choice == "two") {
-        NUMBER_ROWS = 6;
-        NUMBER_COLS = 10;
-    }
-    else if (choice == "three") {
-        NUMBER_ROWS = 3;
-        NUMBER_COLS = 5;
-    }
+    newBoard();
     var blankColumns = 0;
     for (var x = 0; x < NUMBER_COLS; x++) {
         var isBlank = true;
