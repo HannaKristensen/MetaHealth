@@ -11,7 +11,16 @@ namespace MetaHealth.Controllers
         [HandleError]
         public ActionResult Index()
         {
-            return View();
+            if(User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("UpcomingEvents", "Calendar");
+            }
+
+            else
+            {
+                return View();
+            }
+
         }
 
 
