@@ -1,16 +1,67 @@
-﻿var NUMBER_ROWS = 12;
-var NUMBER_COLS = 20;
+﻿var NUMBER_ROWS;
+var NUMBER_COLS;
+
+var types1 = new Array("blue", "green", "red", "yellow");
+var types2 = new Array("darkgreen", "blue", "yellow", "orange");
+var types3 = new Array("maroon", "orange", "pink", "purple");
+
+//console.log(NUMBER_ROWS + "," + NUMBER_COLS);
 var grid;
 
+function newBoard() {
+
+    var b = document.getElementById("boardSize");
+    var choice = b.options[b.selectedIndex].value;
+
+    //console.log(choice);
+    if (choice == "one") {
+        NUMBER_ROWS = 12;
+        NUMBER_COLS = 20;
+    }
+    else if (choice == "two") {
+        NUMBER_ROWS = 6;
+        NUMBER_COLS = 10;
+    }
+    else if (choice == "three") {
+        NUMBER_ROWS = 3;
+        NUMBER_COLS = 5;
+    }
+
+
+}
+
 function restartGame() {
+
+    newBoard();
+
+   /*for (var y = NUMBER_ROWS - 1; y > -1; y--) {
+        for (var x = 0; x < NUMBER_COLS; x++) {
+            document.getElementById("board").innerHTML = ("<img id=\"slot" + x + "x" + y + "\" width=\"30px\" height=\"30px\"  style=\"backgroundColor: white\" />");
+        }
+        document.getElementById("board").innerHTML = ("<br />")
+    }*/
+
     document.getElementById("finished").style.display = 'none';
-    populateGrid(grid);
+    var a = document.getElementById("color");
+    var option = a.options[a.selectedIndex].value;
+    var types;
+
+    if (option == "one") {
+        types = types1;
+    }
+    else if (option == "two") {
+        types = types2;
+    }
+    else if (option == "three") {
+        types = types3;
+    }
+   
     grid = new Array(NUMBER_COLS);
     for (var currentCol = 0; currentCol < NUMBER_COLS; currentCol++) {
         grid[currentCol] = new Array(NUMBER_ROWS);
     }
 
-    populateGrid(grid);
+    populateGrid(grid, types);
 }
 
 $(document).ready(function () {
@@ -26,16 +77,30 @@ $(document).ready(function () {
         }
         return true;
     });
-
+    newBoard();
     grid = new Array(NUMBER_COLS);
     for (var currentCol = 0; currentCol < NUMBER_COLS; currentCol++) {
         grid[currentCol] = new Array(NUMBER_ROWS);
     }
+    var a = document.getElementById("color");
+    var option = a.options[a.selectedIndex].value;
+    var types;
 
-    populateGrid(grid);
+    if (option == "one") {
+        types = types1;
+    }
+    else if (option == "two") {
+        types = types2;
+    }
+    else if (option == "three") {
+        types = types3;
+    }
+    populateGrid(grid, types);
 });
 
 function gameFinished(variable) {
+
+    newBoard();
     for (var y = 0; y < NUMBER_ROWS; y++) {
         for (var x = 0; x < NUMBER_COLS; x++) {
             var topX = x;
@@ -126,12 +191,37 @@ function setSlotType(x, y, type) {
         img.src = 'https://www.nafc.uhi.ac.uk/t4-media/one-web/nafc/research/document/marine-spatial-planning/dark-blue-box.png';
     } else if (type == "green") {
         img.src = 'https://img.buzzfeed.com/buzzfeed-static/static/2020-02/26/18/enhanced/63fa524113ec/enhanced-1674-1582742675-2.png?downsize=600:*&output-format=auto&output-quality=auto';
-    }
+    } else if (type == "orange") {
+        img.src = 'http://m.sweetclipart.com/wp-content/uploads/Ffc000-Color-Square-Orange-Clip-Art.png';
+    } else if (type == "purple") {
+        img.src = 'https://www.americasfinestlabels.com/includes/work/image_cache/907b65fdc3cc8579cc07b49c65317dda.thumb.jpg';
+    } else if (type == "pink") {
+        img.src = 'https://matthewelonis.com/wp-content/uploads/2018/07/same-coloured-paper-l-light-pink-13.8-inch-34.5-cm-squared-10-sheets-c209o-9694-p.jpg';
+    } else if (type == "darkgreen") {
+        img.src = 'https://i0.wp.com/avenuesixty.com/wp-content/uploads/2012/12/color-green-square.jpg?fit=2000%2C2118&ssl=1';
+    } else if (type == "maroon") {
+        img.src = 'https://static.bhphoto.com/images/images500x500/Rosco_110084014812_26_26_Light_Red_Fluorescent_1252489597_107135.jpg';
+    } 
 }
 
-function populateGrid(grid) {
-    var types = new Array("blue", "green", "red", "yellow");
 
+
+function populateGrid(grid, types) {
+    newBoard();
+
+    var a = document.getElementById("color");
+    var option = a.options[a.selectedIndex].value;
+
+    if (option == "one") {
+        types = types1;
+    }
+    else if (option == "two") {
+        types = types2;
+    }
+    else if (option == "three") {
+        types = types3;
+    }
+    
     for (var currentCol = 0; currentCol < NUMBER_COLS; currentCol++) {
         for (var currentRow = 0; currentRow < NUMBER_ROWS; currentRow++) {
             var type = types[Math.floor(Math.random() * types.length)];
@@ -185,6 +275,8 @@ function checkNeighbor(x, y, type, grid) {
 }
 
 function isOfType(x, y, type, grid) {
+    newBoard();
+
     if (x < 0 || x >= NUMBER_COLS ||
         y < 0 || y >= NUMBER_ROWS) {
         return false;
@@ -193,6 +285,7 @@ function isOfType(x, y, type, grid) {
 }
 
 function collapseDown(grid) {
+    newBoard();
     for (var x = 0; x < NUMBER_COLS; x++) {
         var numberEmptySpaces = 0;
         for (var y = 0; y < NUMBER_ROWS; y++) {
@@ -207,8 +300,8 @@ function collapseDown(grid) {
         }
     }
 }
-
 function collapseAcross(grid) {
+    newBoard();
     var blankColumns = 0;
     for (var x = 0; x < NUMBER_COLS; x++) {
         var isBlank = true;
