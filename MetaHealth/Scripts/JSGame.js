@@ -34,14 +34,14 @@ function restartGame() {
 
     newBoard();
 
-   for (var y = NUMBER_ROWS - 1; y > -1; y--) {
+   /*for (var y = NUMBER_ROWS - 1; y > -1; y--) {
         for (var x = 0; x < NUMBER_COLS; x++) {
             document.getElementById("board").innerHTML = ("<img id=\"slot" + x + "x" + y + "\" width=\"30px\" height=\"30px\"  style=\"backgroundColor: white\" />");
         }
         document.getElementById("board").innerHTML = ("<br />")
-    }
+    }*/
 
-    //document.getElementById("finished").style.display = 'none';
+    document.getElementById("finished").style.display = 'none';
     var a = document.getElementById("color");
     var option = a.options[a.selectedIndex].value;
     var types;
@@ -221,7 +221,7 @@ function populateGrid(grid, types) {
     else if (option == "three") {
         types = types3;
     }
-    newBoard();
+    
     for (var currentCol = 0; currentCol < NUMBER_COLS; currentCol++) {
         for (var currentRow = 0; currentRow < NUMBER_ROWS; currentRow++) {
             var type = types[Math.floor(Math.random() * types.length)];
@@ -300,7 +300,6 @@ function collapseDown(grid) {
         }
     }
 }
-
 function collapseAcross(grid) {
     newBoard();
     var blankColumns = 0;
