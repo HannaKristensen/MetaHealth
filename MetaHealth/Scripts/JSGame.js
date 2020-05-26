@@ -1,47 +1,43 @@
-﻿var NUMBER_ROWS;
-var NUMBER_COLS;
+﻿var NUMBER_ROWS = 12;
+var NUMBER_COLS = 20;
 
 var types1 = new Array("blue", "green", "red", "yellow");
 var types2 = new Array("darkgreen", "blue", "yellow", "orange");
 var types3 = new Array("maroon", "orange", "pink", "purple");
 
-//console.log(NUMBER_ROWS + "," + NUMBER_COLS);
+var currentBoard = "boardDetails12x20";
+
 var grid;
 
-function newBoard() {
-
-    var b = document.getElementById("boardSize");
-    var choice = b.options[b.selectedIndex].value;
-
-    //console.log(choice);
-    if (choice == "one") {
-        NUMBER_ROWS = 12;
-        NUMBER_COLS = 20;
-    }
-    else if (choice == "two") {
-        NUMBER_ROWS = 6;
-        NUMBER_COLS = 10;
-    }
-    else if (choice == "three") {
-        NUMBER_ROWS = 3;
-        NUMBER_COLS = 5;
-    }
-
-
-}
-
 function restartGame() {
-
-    newBoard();
-
-   /*for (var y = NUMBER_ROWS - 1; y > -1; y--) {
-        for (var x = 0; x < NUMBER_COLS; x++) {
-            document.getElementById("board").innerHTML = ("<img id=\"slot" + x + "x" + y + "\" width=\"30px\" height=\"30px\"  style=\"backgroundColor: white\" />");
-        }
-        document.getElementById("board").innerHTML = ("<br />")
-    }*/
-
     document.getElementById("finished").style.display = 'none';
+    var a = document.getElementById("boardSize");
+    var option = a.options[a.selectedIndex].value;
+    if (option == "one") {
+        NUMBER_COLS = 20;
+        NUMBER_ROWS = 12;
+        document.getElementById("boardDetails12x20").style.display = 'block';
+        document.getElementById("boardDetails6x10").style.display = 'none';
+        document.getElementById("boardDetails3x5").style.display = 'none';
+        currentBoard = "boardDetails12x20";
+    }
+    else if (option == "two") {
+        NUMBER_COLS = 10;
+        NUMBER_ROWS = 6;
+        document.getElementById("boardDetails6x10").style.display = 'block';
+        document.getElementById("boardDetails12x20").style.display = 'none';
+        document.getElementById("boardDetails3x5").style.display = 'none';
+        currentBoard = "boardDetails6x10";
+    }
+    else if (option == "three") {
+        NUMBER_COLS = 5;
+        NUMBER_ROWS = 3;
+        document.getElementById("boardDetails3x5").style.display = 'block';
+        document.getElementById("boardDetails12x20").style.display = 'none';
+        document.getElementById("boardDetails6x10").style.display = 'none';
+        currentBoard = "boardDetails3x5";
+    }
+
     var a = document.getElementById("color");
     var option = a.options[a.selectedIndex].value;
     var types;
@@ -55,12 +51,11 @@ function restartGame() {
     else if (option == "three") {
         types = types3;
     }
-   
+
     grid = new Array(NUMBER_COLS);
     for (var currentCol = 0; currentCol < NUMBER_COLS; currentCol++) {
         grid[currentCol] = new Array(NUMBER_ROWS);
     }
-
     populateGrid(grid, types);
 }
 
@@ -77,11 +72,14 @@ $(document).ready(function () {
         }
         return true;
     });
-    newBoard();
+
     grid = new Array(NUMBER_COLS);
     for (var currentCol = 0; currentCol < NUMBER_COLS; currentCol++) {
         grid[currentCol] = new Array(NUMBER_ROWS);
     }
+
+    populateGrid(grid, types);
+
     var a = document.getElementById("color");
     var option = a.options[a.selectedIndex].value;
     var types;
@@ -99,8 +97,6 @@ $(document).ready(function () {
 });
 
 function gameFinished(variable) {
-
-    newBoard();
     for (var y = 0; y < NUMBER_ROWS; y++) {
         for (var x = 0; x < NUMBER_COLS; x++) {
             var topX = x;
@@ -178,8 +174,8 @@ function imageClicked(event, grid) {
  * @pre   x is between 0-19 inclusive and y is between 0-11 inclusive
  * @pre   type is either "blank", "blue", "green", "red", "yellow"
  */
-function setSlotType(x, y, type) {
-    var elementId = "slot" + x + "x" + y;
+function setSlotType(x, y, type, board) {
+    var elementId = board + "slot" + x + "x" + y;
     var img = document.getElementById(elementId);
     if (type == "blank") {
         img.src = 'https://color-hex.org/colors/e9e6d4.png';
@@ -201,14 +197,25 @@ function setSlotType(x, y, type) {
         img.src = 'https://i0.wp.com/avenuesixty.com/wp-content/uploads/2012/12/color-green-square.jpg?fit=2000%2C2118&ssl=1';
     } else if (type == "maroon") {
         img.src = 'https://static.bhphoto.com/images/images500x500/Rosco_110084014812_26_26_Light_Red_Fluorescent_1252489597_107135.jpg';
-    } 
+    }
 }
 
+function boardSize() {
+    var board;
+    if (currentBoard == "boardDetails12x20") {
+        board = "L";
+    }
+    else if (currentBoard == "boardDetails6x10") {
+        board = "M";
+    }
+    else if (currentBoard == "boardDetails3x5") {
+        board = "S";
+    }
 
+    return board;
+}
 
 function populateGrid(grid, types) {
-    newBoard();
-
     var a = document.getElementById("color");
     var option = a.options[a.selectedIndex].value;
 
@@ -221,12 +228,14 @@ function populateGrid(grid, types) {
     else if (option == "three") {
         types = types3;
     }
-    
+
+    var board = boardSize();
+
     for (var currentCol = 0; currentCol < NUMBER_COLS; currentCol++) {
         for (var currentRow = 0; currentRow < NUMBER_ROWS; currentRow++) {
             var type = types[Math.floor(Math.random() * types.length)];
             grid[currentCol][currentRow] = type;
-            setSlotType(currentCol, currentRow, type);
+            setSlotType(currentCol, currentRow, type, board);
         }
     }
 }
@@ -241,8 +250,9 @@ function populateGrid(grid, types) {
 function slotClicked(x, y, grid) {
     var type = grid[x][y];
     var blocksCleared = checkNeighbor(x, y, type, grid);
+    var board = boardSize();
     if (blocksCleared == 1) {
-        setSlotType(x, y, type);
+        setSlotType(x, y, type, board);
         grid[x][y] = type;
         return;
     }
@@ -253,7 +263,8 @@ function slotClicked(x, y, grid) {
 
 function checkNeighbor(x, y, type, grid) {
     var numberMatches = 1;
-    setSlotType(x, y, "blank");
+    var board = boardSize();
+    setSlotType(x, y, "blank", board);
     grid[x][y] = "blank";
 
     if (isOfType(x - 1, y, type, grid) == true) {
@@ -275,8 +286,6 @@ function checkNeighbor(x, y, type, grid) {
 }
 
 function isOfType(x, y, type, grid) {
-    newBoard();
-
     if (x < 0 || x >= NUMBER_COLS ||
         y < 0 || y >= NUMBER_ROWS) {
         return false;
@@ -285,7 +294,7 @@ function isOfType(x, y, type, grid) {
 }
 
 function collapseDown(grid) {
-    newBoard();
+    var board = boardSize();
     for (var x = 0; x < NUMBER_COLS; x++) {
         var numberEmptySpaces = 0;
         for (var y = 0; y < NUMBER_ROWS; y++) {
@@ -293,16 +302,16 @@ function collapseDown(grid) {
                 numberEmptySpaces = numberEmptySpaces + 1;
             } else if (numberEmptySpaces > 0) {
                 grid[x][y - numberEmptySpaces] = grid[x][y];
-                setSlotType(x, y - numberEmptySpaces, grid[x][y]);
+                setSlotType(x, y - numberEmptySpaces, grid[x][y], board);
                 grid[x][y] = "blank";
-                setSlotType(x, y, "blank");
+                setSlotType(x, y, "blank", board);
             }
         }
     }
 }
 function collapseAcross(grid) {
-    newBoard();
     var blankColumns = 0;
+    var board = boardSize();
     for (var x = 0; x < NUMBER_COLS; x++) {
         var isBlank = true;
         for (var y = 0; y < NUMBER_ROWS; y++) {
@@ -311,9 +320,9 @@ function collapseAcross(grid) {
             }
             var gridStatus = grid[x][y];
             grid[x][y] = "blank";
-            setSlotType(x, y, "blank");
+            setSlotType(x, y, "blank", board);
             grid[x - blankColumns][y] = gridStatus;
-            setSlotType(x - blankColumns, y, gridStatus);
+            setSlotType(x - blankColumns, y, gridStatus, board);
         }
         if (isBlank == true) {
             blankColumns = blankColumns + 1;
