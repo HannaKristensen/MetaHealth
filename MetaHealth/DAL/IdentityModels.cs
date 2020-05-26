@@ -20,7 +20,7 @@ namespace MetaHealth.DAL
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-             : base("HelpAlong", throwIfV1Schema: false)
+             : base("AzureDB", throwIfV1Schema: false)
         //: base("AzureDB", throwIfV1Schema: false)
         //: base("DefaultConnection", throwIfV1Schema: false)
         {
