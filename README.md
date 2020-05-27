@@ -56,3 +56,6 @@ In the Web.config file you will need to add th file to AppSetting like this:
 Under the Connection String you will need to add your database connection string and change the context in all of the files in the DAL folder
 
 4. Then you are all ready to go!
+
+# E-R Diagram
+![E-R Diagram](/Team%20Info/E-R-Diagram.PNG)
