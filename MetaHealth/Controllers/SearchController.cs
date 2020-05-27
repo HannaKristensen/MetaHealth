@@ -6,7 +6,6 @@ using System;
 namespace MetaHealth.Controllers {
 
     public class SearchController : Controller {
-        FormCollection formObj = new FormCollection();
 
         // GET: Search
         public ActionResult Index() {

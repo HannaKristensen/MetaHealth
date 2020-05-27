@@ -36,7 +36,8 @@
                 "text": "Looks like the best thing here would be some relaxation techniques."+" "+
                     "A good place to start would be some yoga poses."+" "+
                     "Click <a href='https://www.youtube.com/watch?v=BiWDsfZ3zbo'><em style='color:blue'>here</a></em>"+" "+
-                    "to be taken to a routine"
+                    "to be taken to a routine",
+                "AddTask":"add this to your task"
             },
             "ExcessEnergy": {
                 "text": "Sometimes when we're feeling stagnant it helps to do something physical. Take a walk and make it a point to "+
@@ -124,9 +125,9 @@
 //BODY
 //#####################################################################################
     "Body": {
-        "text":"First thing's first... Have you eaten recently?",
+        "text":"First thing's first. Have you eaten recently?",
         "outcomes": {
-            "No... I haven't":"NoFood",
+            "No. I haven't":"NoFood",
             "Yes I've eaten":"YesFood"
         }
     },
@@ -134,7 +135,7 @@
             "text": "Is this because you're feeling anxious?",
             "outcomes": {
                 "Yes. It's hard to eat when I'm stressed.": "Anxious",
-                "No... I just haven't had time today":"Physiological"
+                "No. I just haven't had time today":"Physiological"
             }
         },
         "Physiological": {
@@ -143,16 +144,16 @@
                 "not about to attack so you need to address your immediate physiological needs before being able to move foward."
         },
         "YesFood": {
-            "text": "Good! Ideally it was a healthy snack but the fact that you took the time to fuel up is great! BUT... what's the last thing you drank?",
+            "text": "Good! Ideally it was a healthy snack but the fact that you took the time to fuel up is great! What's the last thing you drank?",
             "outcomes": {
                 "Water":"YesWater",
-                "...Not water...":"NoWater"
+                "Not water":"NoWater"
             }
     },
             "NoWater": {
-                "text": "I think you know what I'm going to say next.",
+                "text": "Before we go any further, it might be nice to at least have a glass near by.",
                 "outcomes": {
-                    "okay...":"YesWater"
+                    "Okay.":"YesWater"
                 }
             },
             "YesWater": {
@@ -181,7 +182,7 @@
         "text": "Have you slept recently?",
         "outcomes": {
             "Yeah I slept.":"YesSleep",
-            "Not really...":"NoSleep"
+            "Not really.":"NoSleep"
         }
     },
             "YesSleep": {
@@ -262,7 +263,7 @@
             "NoSupport": {
                 "text": "It's easy to feel like we have no one to talk to you. This may or may not be true.",
                 "outcomes": {
-                    "I can think of maybe one person...": "YesConnectToPerson",
+                    "I can think of maybe one person": "YesConnectToPerson",
                     "No I think I'm honestly alone":"Alone"
                 }
             },
@@ -322,27 +323,29 @@ function runFlowchart(arg) {
     var prompt = ('<div class="textFlowchart">' + map.text + '</div>');
     $("#chartText").html(prompt);
     $("#buttons").empty();
+    $("#addToTaskList").empty();
     for (var choice in choices)
     {
-        if (choices.hasOwnProperty(choice))
-        {
-            var $button = $('<input type="button" button class="btn btn-default" value="' + choice + '"/>');
-            //              orange   dk orange   yellow      blue     dark blue    green
-            var colors = ['#EE8535', '#ED5441', '#F0C032', '#49C7CA', '#248D83', '#6C984B']
-            var randomColor = generateColor(colors);
-            while (colorArr.includes(randomColor))
-            {
-                randomColor = generateColor(colors);
+        if(choices.hasOwnProperty(choice)) {
+            var $button=$('<input type="button" button class="btn btn-default" value="'+choice+'"/>');
+            //           orange   dk orange   yellow    blue     dark blue    green
+            var colors=['#EE8535','#ED5441','#F0C032','#49C7CA','#248D83','#6C984B']
+            var randomColor=generateColor(colors);
+            while(colorArr.includes(randomColor)) {
+                randomColor=generateColor(colors);
             }
             colorArr.push(randomColor);
-            $button.css("background-color", randomColor);
-            $button.css("border", "1px solid " + randomColor);
-            $button.click({ "nextsit": choices[choice] }, function (evt) {
-                situation = evt.data.nextsit;
-                colorArr.length = 0;//empty out array after buttons are added
+            $button.css("background-color",randomColor);
+            $button.css("border","1px solid "+randomColor);
+            $button.click({ "nextsit": choices[choice] },function(evt) {
+                situation=evt.data.nextsit;
+                colorArr.length=0;//empty out array after buttons are added
                 runFlowchart(situation);
             });
             $("#buttons").append($button);
+        }
+        else {
+            //add task here I guess.. idfk
         }
     }
 }
