@@ -6,13 +6,7 @@ using System;
 namespace MetaHealth.Controllers {
 
     public class SearchController : Controller {
-        FormCollection formObj = new FormCollection();
 
-        // GET: Search
-        public ActionResult Index() {
-            //This will be used for the error page
-            return View();
-        }
        [AllowAnonymous] 
         public ActionResult SearchPage() {
             return View();
