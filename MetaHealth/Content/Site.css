@@ -403,7 +403,7 @@ a:visited {
     font-family: Verdana;
     letter-spacing: 2px;
 }
-     .my-dropbtn-settings {
+    .my-dropdown-settings .my-dropbtn-settings {
         font-size: 12px;
         border: none;
         font-family: Verdana;
@@ -418,33 +418,31 @@ a:visited {
 
 .my-dropdown-settings-content {
     display: none;
-    position:absolute;
-    font-size: 12px;
+    position: absolute;
     background-color: #f9f9f9;
-    min-width: 130px;
+    min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    border-radius: 2px;
+    border-radius: 5px;
     letter-spacing: 2px;
 }
-    .my-dropbtn-settings a {
-        float: none;
-        font-size: 8px;
-        color: #D5CDC6;
-        padding: 10px 14px;
-        text-decoration: none;
-        display:block;
-        text-align: left;
-        letter-spacing: 2px;
-    }
-
-.my-dropdown-settings-content a:hover, .form-settings:hover {
-    color: #4fc5c9;
-    border-radius: 2px;
-    color: white;
-    opacity: 1;
-    transition: 0.3s;
+.my-dropdown-settings-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    letter-spacing: 2px;
 }
+
+        .my-dropdown-settings-content a:hover, .form-settings:hover, .my-dropbtn-settings a:hover {
+            background-color: #c4edee;
+            border-radius: 5px;
+            color: white;
+            opacity: 1;
+            transition: 0.3s;
+        }
 
 
 .my-dropdown-content {
