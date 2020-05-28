@@ -116,3 +116,10 @@ img {
     -webkit-user-select: none;
     user-select: none;
 }
+
+.selectList {
+    text-align: center;
+    position: relative;
+    font-family: Verdana;
+    padding: 4px;
+}
