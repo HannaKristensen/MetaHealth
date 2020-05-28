@@ -73,11 +73,11 @@
                         {
                             @:@string.Format(
 
-    "{0} hour{1} {2} minute{3}",
-    (int)duration.Value.TotalHours,
-    duration.Value.TotalHours >= 2 ? "s" : "",
-    (int)duration.Value.Minutes,
-    duration.Value.Minutes >= 2 ? "s" : "")
+  "{0} hour{1} {2} minute{3}",
+  (int)duration.Value.TotalHours,
+  duration.Value.TotalHours >= 2 ? "s" : "",
+  (int)duration.Value.Minutes,
+  duration.Value.Minutes >= 2 ? "s" : "")
 
                         }
                     }
@@ -348,8 +348,8 @@
                                         @Model.CustomTask[i]
                                     </td>
                                     <td>
-                                        <button class="MarkDownButtonsThree" onclick="editCustom(@Model.PK[i])">Edit</button> &nbsp; &nbsp; &nbsp;
                                         <button class="MarkDownButtonsThree" onclick="deleteCustom(@Model.PK[i])">Delete</button>
+                                        <button class="MarkDownButtonsThree" onclick="editCustom(@Model.PK[i])">Edit</button>
                                     </td>
                                 </tr>
                             }
