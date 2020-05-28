@@ -1,21 +1,16 @@
-
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 @model Calendar.ASP.NET.MVC5.Models.UpcomingEventsViewModel
 @using CalendarData = Google.Apis.Calendar.v3.Data;
 
-
-
 @{
     ViewBag.Title = "Upcoming Events";
 }
-
 
 <@Page Async="true">
     <p>
         &nbsp;
     </p>
-
 
     <div id="redirectInst">
         <div class="col">
@@ -78,26 +73,11 @@
                         {
                             @:@string.Format(
 
-        "{0} hour{1} {2} minute{3}",
-        (int)duration.Value.TotalHours,
-        duration.Value.TotalHours >= 2 ? "s" : "",
-        (int)duration.Value.Minutes,
-        duration.Value.Minutes >= 2 ? "s" : "")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      "{0} hour{1} {2} minute{3}",
+      (int)duration.Value.TotalHours,
+      duration.Value.TotalHours >= 2 ? "s" : "",
+      (int)duration.Value.Minutes,
+      duration.Value.Minutes >= 2 ? "s" : "")
 
                         }
                     }
@@ -206,7 +186,6 @@
 
                     }
                 </div>
-
             </div>
             <div class="col-sm-1" style="width: 5%">
             </div>
@@ -265,7 +244,6 @@
 
                     @*Row for adding tasks, appears and dissapears with JS*@
 
-
                     <div class="row" id="addTaskRow">
                         @using (Html.BeginForm("UpcomingEvents", "Calendar", FormMethod.Post))
                         {
@@ -282,7 +260,6 @@
                                     <button type="submit" class="MarkDownButtons">Add!</button>
                                 </div>
                             </div>
-
 
                         }
                     </div>
@@ -348,13 +325,15 @@
                     </div>
                 </div>
                 <div class="row" style="background-color: #eeebdd ; display: block ; border:5px solid  #F0C032 ;  margin: auto; margin-top: 30px ; border-radius: 25px;  ">
-                    <h2 style="text-align:center;">My Custom List</h2> 
+                    <h2 style="text-align:center;">My Custom List</h2>
                     <button class="helpButton" onclick="showHelp()">?</button>
 
                     <div id="helpCustom" style="background-color: #f6f5ee ; border:5px solid  #49C7CA;  margin: auto; border-radius: 25px; text-align: center; height: 300px ; width: 400px; padding: 20px; margin-bottom: 30px ; ">
-                    <h4 style="font-weight: bold">Welcome to your custom list!</h4>
-                        <h5>This custom list is intended for your every day tasks that don't change. This way, you can add your daily tasks as a group instead of
-                        having to re-enter in your daily to do's one at a time every single day. </h5>
+                        <h4 style="font-weight: bold">Welcome to your custom list!</h4>
+                        <h5>
+                            This custom list is intended for your every day tasks that don't change. This way, you can add your daily tasks as a group instead of
+                            having to re-enter in your daily to do's one at a time every single day.
+                        </h5>
                         <p>The <b>Add A Task </b> button lets you add to your current list</p>
                         <p>The <b>Add Custom List To My Tasks</b> adds your current list to your daily task list</p>
                     </div>
@@ -370,6 +349,8 @@
                                     </td>
                                     <td>
                                         <button class="MarkDownButtonsThree" onclick="editCustom(@Model.PK[i])">Edit</button>
+                                    </td>
+                                    <td>
                                         <button class="MarkDownButtonsThree" onclick="deleteCustom(@Model.PK[i])">Delete</button>
                                     </td>
                                 </tr>
@@ -394,17 +375,11 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
-
-
-
     </div>
 
     <script type="text/javascript" src="~/Scripts/TasksAPI.js"></script>
