@@ -12,10 +12,19 @@
     <div id="chartText"></div>
     <div id="buttons"></div>
     @*@if(User.Identity!=null) {*@
-        <div id="addToTaskList"></div>
-    @*}*@
+    <div id="addToTaskList"></div>
+    @using (Html.BeginForm("UpcomingEvents", "Calendar", FormMethod.Post, new { id = "addTaskForm" })) {
+        <div class="form-group">
+            @Html.Label("task", "Add a task: ")
+            @Html.TextBox("taskTitle", null, new { @class = "form-control", type = "text", required = "required", maxlength = 1000 })
+            <br />
+            <button type="submit" class="MarkDownButtons">Add!</button>
+        </div>
+    }
+    @* }*@
     <p> </p>
     <button class="btn" onclick="startScript()">Restart</button>
+
 </div>
 
 @section scripts {

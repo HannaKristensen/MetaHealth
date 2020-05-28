@@ -1,4 +1,10 @@
-﻿var flowchartMap={
+﻿$(document).ready(function() {
+    var form=document.getElementById("addTaskForm");
+    form.style.display="none";
+});
+
+
+var flowchartMap={
     "start": {
         "text": "Where would you like to begin?",
         "outcomes": {
@@ -309,6 +315,12 @@ function startScript()
     runFlowchart(situation);
 }
 
+function addTaskScript() {
+    var $taskButton=$('<input type="button" button class=btn btn-default value="Add to my task list"/>');
+    $taskButton.css("background-color","#49C7CA");
+    $("#addToTaskList").append($taskButton);
+}
+
 //Takes in string "arg" that indicates the starting point in the map
 function runFlowchart(arg) {
     var div = document.getElementById("startFlowchart");//entry point for function
@@ -320,7 +332,7 @@ function runFlowchart(arg) {
     var colorArr = [];
     var map = flowchartMap[arg];
     var choices = map.outcomes;
-    var prompt = ('<div class="textFlowchart">' + map.text + '</div>');
+    var prompt=('<div class="textFlowchart">'+map.text+'</div>');
     $("#chartText").html(prompt);
     $("#buttons").empty();
     $("#addToTaskList").empty();
@@ -343,9 +355,9 @@ function runFlowchart(arg) {
                 runFlowchart(situation);
             });
             $("#buttons").append($button);
-        }
-        else {
-            //add task here I guess.. idfk
-        }
+        }  
+    }
+    if(choices==null) {
+        addTaskScript();
     }
 }
