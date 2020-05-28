@@ -109,7 +109,7 @@ function showPreMadeTasks() {
     var multiTask = document.getElementById("preMadeTasks")
     var text = document.getElementById("premadeTaskText")
     var displaySetting = multiTask.style.display;
-    var textDisplay = text.style.display; 
+    var textDisplay = text.style.display;
 
     if (displaySetting == 'block' && textDisplay == 'block') {
         multiTask.style.display = 'none';
@@ -141,14 +141,14 @@ function showHelp() {
     var displaySetting = help.style.display;
     var displayTaskSetting = tasks.style.display;
 
-    if (displaySetting == 'block' && displayTaskSetting == 'none' ) {
+    if (displaySetting == 'block' && displayTaskSetting == 'none') {
         help.style.display = 'none';
-        tasks.style.display = 'block'; 
+        tasks.style.display = 'block';
     }
 
     else {
         help.style.display = 'block';
-        tasks.style.display = 'none'; 
+        tasks.style.display = 'none';
     }
 }
 
@@ -242,7 +242,7 @@ function addRow(data) {
     var cell2 = row.insertCell(1);
     cell1.innerHTML = task;
     cell1.id = PK;
-    cell2.innerHTML = "<button class=\"MarkDownButtonsThree\" onclick=\"editCustom(" + PK + ")\">Edit</button> <button class=\"MarkDownButtonsThree\" onclick =\"deleteCustom(" + PK + ")\" > Delete </button>";
+    cell2.innerHTML = "<button class=\"MarkDownButtonsThree\" onclick =\"deleteCustom(" + PK + ")\" > Delete </button><button class=\"MarkDownButtonsThree\" onclick=\"editCustom(" + PK + ")\">Edit</button>";
 }
 
 function AddSuggestion() {
@@ -260,5 +260,4 @@ function AddSuggestion() {
         success: messageOut,
         error: errorOnAjax
     });
-
 }
