@@ -6,7 +6,9 @@
 
 var flowchartMap={
     "start": {
-        "text": "Where would you like to begin?",
+        "text": "Sometimes when we're feeling overwhelmed it can be tough to figure out what it is we need. "+ 
+            "With this tool, we can help you narrow down what your priority should be in this moment. When you're done, "+
+            "you can use your suggestion to add a task to your list (if you're logged in with us). Where would you like to begin?",
         "outcomes": {
             "Mind": "Mind",
             "Body": "Body",
@@ -43,12 +45,11 @@ var flowchartMap={
                     "A good place to start would be some yoga poses."+" "+
                     "Click <a href='https://www.youtube.com/watch?v=BiWDsfZ3zbo'><em style='color:blue'>here</a></em>"+" "+
                     "to be taken to a routine",
-                "AddTask":"add this to your task"
             },
             "ExcessEnergy": {
                 "text": "Sometimes when we're feeling stagnant it helps to do something physical. Take a walk and make it a point to "+
                     "to take pictures of 5 things that catch your eye while you're out. Combining creativity with a physical activity engages "+
-                    "multiple parts of your brain and helps you stay engaged with the world around you."
+                    "multiple parts of your brain and helps you stay connected to the world around you."
             },
         "Unmotivated": {
             "text": "Are you feeling like you're unmotivated intellectually or in a more external way?",
@@ -96,7 +97,7 @@ var flowchartMap={
                     "objective as possible."
             },
         "Anxious": {
-            "text": "Anxiety is not a fun feeling. If you had to choose, would you say you're anxiety is coming from external forces or internal forces?",
+            "text": "Anxiety is not a fun feeling. If you had to choose, would you say your anxiety is coming from external forces or internal forces?",
             "outcomes": {
                 "Internal": "Internal",
                 "External":"External"
@@ -105,7 +106,7 @@ var flowchartMap={
             "Internal": {
                 "text": "General anxiety about your abilities is common. See if you can list three times that you've done something "+
                     "that proves this fear wrong. If you're having a hard time coming up with something like that, list three things you "+
-                    "know you're really good at. Focusing on our positive qualities helps us face negative feelings in a more productiv way."
+                    "know you're really good at. Focusing on our positive qualities helps us face negative feelings in a more productive way."
             },
             "External": {
                 "text": "Can anything be currently done about what is making you anxious?",
@@ -133,7 +134,7 @@ var flowchartMap={
     "Body": {
         "text":"First thing's first. Have you eaten recently?",
         "outcomes": {
-            "No. I haven't":"NoFood",
+            "No I haven't":"NoFood",
             "Yes I've eaten":"YesFood"
         }
     },
@@ -194,7 +195,7 @@ var flowchartMap={
             "YesSleep": {
                 "text": "Sometimes we don't realize how exhausting being a human can be. If you've been eating well and drinking water as well as "+
                     "getting regular sleep of at least 7 hours a night and still are feeling tired, the answer might lie in a number of areas. "+
-                    "You might want to consider introducing multivitamins into your morning routine. Sometimes chronic fatigue can come from stress "+
+                    "You might want to consider introducing vitamin D into your morning routine. Sometimes chronic fatigue can come from stress "+
                     "that we might not even know we're experiencing. It's our body's way of telling us to slow down."
             },
             "NoSleep": {
@@ -247,8 +248,8 @@ var flowchartMap={
             },
                 "SeekProfSupport": {
                     "text": "Sometimes even our loved ones don't have the tools necessary to help us cope. While it's good that you feel connected, "+
-                        "it's not unusal to also need a professional. Seek out local counselor in your area. You can log in or create an account to find "+
-                        "a local counselor in your price range."
+                        "it's not unusal to also need a professional. Seek out local counselor in your area. You can use our Therapy Finder tool to find "+
+                        "a local counselor for your needs."
                 },
                 "ConnectToSelf": {
                     "text": "Sometimes when we feel disconnected even when we're with people it's because we're trying to rehydrate from a dried up lake "+
@@ -258,7 +259,7 @@ var flowchartMap={
         "SeekSupport": {
             "text": "Is there someone you feel safe talking to?",
             "outcomes": {
-                "I think so": "MaybeSupport",
+                "Yes I believe so": "MaybeSupport",
                 "I'm not sure":"NoSupport"
             }
         },
@@ -279,7 +280,7 @@ var flowchartMap={
                 },
                 "Alone": {
                     "text": " If you've really thought about the people you know and came up with no one to talk to, then it may be time "+
-                        "to seek out resource groups in your area. Log in or make an account to find a professional counselor. "+
+                        "to seek out resource groups in your area. You can use our Therapy Finder tool to find a professional counselor. "+
                         "In the meantime,giving someone else a positive interaction can do wonders for mood. "+
                         "Self care can be something as simple as being sure that you leave people in a better mood than when you found them."
                 },
@@ -291,7 +292,7 @@ var flowchartMap={
         }
     },
             "GoalsAreGood": {
-                "text": "That's great that you're feeling good about your goals! Perhaps the answer lies externally. Perhaps now would be the "+
+                "text": "That's great that you're feeling good about your goals! Perhaps the answer lies externally. Maybe now would be the "+
                     "time to donate your time and/or money to a local charity. Non profits are always needing help in some way or another. Check out "+
                     "local businesses that could benefit from you. It's good for the community and good for the soul."
             },
@@ -315,9 +316,19 @@ function startScript()
     runFlowchart(situation);
 }
 
+function showForm() {
+    var div=document.getElementById("addTaskForm");
+    if(div.style.display!="none") {
+        div.style.display="none";
+    }
+    else {
+        div.style.display="inherit";
+    }
+}
+
 function addTaskScript() {
-    var $taskButton=$('<input type="button" button class=btn btn-default value="Add to my task list"/>');
-    $taskButton.css("background-color","#49C7CA");
+    var $taskButton=$('<input type="button" button class=btn btn-default onclick="showForm()" value="Add to my task list"/>');
+    $taskButton.css("padding","5px");
     $("#addToTaskList").append($taskButton);
 }
 
