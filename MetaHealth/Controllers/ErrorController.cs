@@ -21,6 +21,7 @@ namespace MetaHealth.Controllers
         public ActionResult Error(int statusCode, Exception exception)
         {
             Response.StatusCode = statusCode;
+            ViewBag.ErrorNumber = statusCode;
             ViewBag.StatusCode = statusCode + " error has occured ";
             return View();
         }

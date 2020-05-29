@@ -7,11 +7,6 @@ namespace MetaHealth.Controllers {
 
     public class SearchController : Controller {
 
-        // GET: Search
-        public ActionResult Index() {
-            //This will be used for the error page
-            return View();
-        }
        [AllowAnonymous] 
         public ActionResult SearchPage() {
             return View();

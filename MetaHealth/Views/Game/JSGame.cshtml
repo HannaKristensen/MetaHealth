@@ -15,24 +15,56 @@
         <br />
         <br />
         <div id="board">
-            <div id="boardDetails">
+            <div class="centered" id="finished">You Finished!</div>
+            <div id="boardDetails12x20">
                 <script type="text/javascript">
-                    for (var y = NUMBER_ROWS - 1; y > -1; y--) {
-                        for (var x = 0; x < NUMBER_COLS; x++) {
-                            document.write("<img id=\"slot" + x + "x" + y + "\" width=\"30px\" height=\"30px\"  style=\"backgroundColor: white\" />");
+                    for (var y = 12 - 1; y > -1; y--) {
+                        for (var x = 0; x < 20; x++) {
+                            document.write("<img id=\"Lslot" + x + "x" + y + "\" width=\"30px\" height=\"30px\"  style=\"backgroundColor: white\" />");
                         }
                         document.write("<br />")
                     }
                 </script>
-                <div class="centered" id="finished">You Finished!</div>
+            </div>
+            <div id="boardDetails6x10">
+                <script type="text/javascript">
+                    for (var y = 6 - 1; y > -1; y--) {
+                        for (var x = 0; x < 10; x++) {
+                            document.write("<img id=\"Mslot" + x + "x" + y + "\" width=\"30px\" height=\"30px\"  style=\"backgroundColor: white\" />");
+                        }
+                        document.write("<br />")
+                    }
+                </script>
+            </div>
+            <div id="boardDetails3x5">
+                <script type="text/javascript">
+                    for (var y = 3 - 1; y > -1; y--) {
+                        for (var x = 0; x < 5; x++) {
+                            document.write("<img id=\"Sslot" + x + "x" + y + "\" width=\"30px\" height=\"30px\"  style=\"backgroundColor: white\" />");
+                        }
+                        document.write("<br />")
+                    }
+                </script>
             </div>
         </div>
         <br />
+        &nbsp;
         <div>
-            <div>
-                <button class="MarkDownButtons" onclick="restartGame()">New Game</button>
-            </div>
+            <button class="MarkDownButtons" onclick="restartGame()">New Game</button>
+
+            <select name="colors" id="color" class="selectList">
+                <option value="one">Blue, Green, Red, Yellow</option>
+                <option value="two">Darkgreen, Blue, Yellow, Orange</option>
+                <option value="three">Maroon, Orange, Pink, Purple</option>
+            </select>
+
+            <select name="size" id="boardSize" class="selectList">
+                <option value="one" selected>12 X 20</option>
+                <option value="two">6 X 10</option>
+                <option value="three">3 X 5</option>
+            </select>
         </div>
+        <br />
     </div>
 </body>
 </html>

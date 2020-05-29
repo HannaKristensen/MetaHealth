@@ -92,9 +92,17 @@ p {
     display: none;
 }
 
+#boardDetails6x10 {
+    display: none;
+}
+
+#boardDetails3x5 {
+    display: none;
+}
+
 .centered {
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -80%);
     font-family: Verdana;
@@ -107,4 +115,11 @@ img {
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+}
+
+.selectList {
+    text-align: center;
+    position: relative;
+    font-family: Verdana;
+    padding: 4px;
 }
