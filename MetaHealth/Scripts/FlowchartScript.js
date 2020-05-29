@@ -1,6 +1,14 @@
-﻿var flowchartMap={
+﻿$(document).ready(function() {
+    var form=document.getElementById("addTaskForm");
+    form.style.display="none";
+});
+
+
+var flowchartMap={
     "start": {
-        "text": "Where would you like to begin?",
+        "text": "Sometimes when we're feeling overwhelmed it can be tough to figure out what it is we need. "+ 
+            "With this tool, we can help you narrow down what your priority should be in this moment. When you're done, "+
+            "you can use your suggestion to add a task to your list (if you're logged in with us). Where would you like to begin?",
         "outcomes": {
             "Mind": "Mind",
             "Body": "Body",
@@ -36,12 +44,12 @@
                 "text": "Looks like the best thing here would be some relaxation techniques."+" "+
                     "A good place to start would be some yoga poses."+" "+
                     "Click <a href='https://www.youtube.com/watch?v=BiWDsfZ3zbo'><em style='color:blue'>here</a></em>"+" "+
-                    "to be taken to a routine"
+                    "to be taken to a routine",
             },
             "ExcessEnergy": {
                 "text": "Sometimes when we're feeling stagnant it helps to do something physical. Take a walk and make it a point to "+
                     "to take pictures of 5 things that catch your eye while you're out. Combining creativity with a physical activity engages "+
-                    "multiple parts of your brain and helps you stay engaged with the world around you."
+                    "multiple parts of your brain and helps you stay connected to the world around you."
             },
         "Unmotivated": {
             "text": "Are you feeling like you're unmotivated intellectually or in a more external way?",
@@ -89,7 +97,7 @@
                     "objective as possible."
             },
         "Anxious": {
-            "text": "Anxiety is not a fun feeling. If you had to choose, would you say you're anxiety is coming from external forces or internal forces?",
+            "text": "Anxiety is not a fun feeling. If you had to choose, would you say your anxiety is coming from external forces or internal forces?",
             "outcomes": {
                 "Internal": "Internal",
                 "External":"External"
@@ -98,7 +106,7 @@
             "Internal": {
                 "text": "General anxiety about your abilities is common. See if you can list three times that you've done something "+
                     "that proves this fear wrong. If you're having a hard time coming up with something like that, list three things you "+
-                    "know you're really good at. Focusing on our positive qualities helps us face negative feelings in a more productiv way."
+                    "know you're really good at. Focusing on our positive qualities helps us face negative feelings in a more productive way."
             },
             "External": {
                 "text": "Can anything be currently done about what is making you anxious?",
@@ -124,9 +132,9 @@
 //BODY
 //#####################################################################################
     "Body": {
-        "text":"First thing's first... Have you eaten recently?",
+        "text":"First thing's first. Have you eaten recently?",
         "outcomes": {
-            "No... I haven't":"NoFood",
+            "No I haven't":"NoFood",
             "Yes I've eaten":"YesFood"
         }
     },
@@ -134,7 +142,7 @@
             "text": "Is this because you're feeling anxious?",
             "outcomes": {
                 "Yes. It's hard to eat when I'm stressed.": "Anxious",
-                "No... I just haven't had time today":"Physiological"
+                "No. I just haven't had time today":"Physiological"
             }
         },
         "Physiological": {
@@ -143,16 +151,16 @@
                 "not about to attack so you need to address your immediate physiological needs before being able to move foward."
         },
         "YesFood": {
-            "text": "Good! Ideally it was a healthy snack but the fact that you took the time to fuel up is great! BUT... what's the last thing you drank?",
+            "text": "Good! Ideally it was a healthy snack but the fact that you took the time to fuel up is great! What's the last thing you drank?",
             "outcomes": {
                 "Water":"YesWater",
-                "...Not water...":"NoWater"
+                "Not water":"NoWater"
             }
     },
             "NoWater": {
-                "text": "I think you know what I'm going to say next.",
+                "text": "Before we go any further, it might be nice to at least have a glass near by.",
                 "outcomes": {
-                    "okay...":"YesWater"
+                    "Okay.":"YesWater"
                 }
             },
             "YesWater": {
@@ -181,13 +189,13 @@
         "text": "Have you slept recently?",
         "outcomes": {
             "Yeah I slept.":"YesSleep",
-            "Not really...":"NoSleep"
+            "Not really.":"NoSleep"
         }
     },
             "YesSleep": {
                 "text": "Sometimes we don't realize how exhausting being a human can be. If you've been eating well and drinking water as well as "+
                     "getting regular sleep of at least 7 hours a night and still are feeling tired, the answer might lie in a number of areas. "+
-                    "You might want to consider introducing multivitamins into your morning routine. Sometimes chronic fatigue can come from stress "+
+                    "You might want to consider introducing vitamin D into your morning routine. Sometimes chronic fatigue can come from stress "+
                     "that we might not even know we're experiencing. It's our body's way of telling us to slow down."
             },
             "NoSleep": {
@@ -240,8 +248,8 @@
             },
                 "SeekProfSupport": {
                     "text": "Sometimes even our loved ones don't have the tools necessary to help us cope. While it's good that you feel connected, "+
-                        "it's not unusal to also need a professional. Seek out local counselor in your area. You can log in or create an account to find "+
-                        "a local counselor in your price range."
+                        "it's not unusal to also need a professional. Seek out local counselor in your area. You can use our Therapy Finder tool to find "+
+                        "a local counselor for your needs."
                 },
                 "ConnectToSelf": {
                     "text": "Sometimes when we feel disconnected even when we're with people it's because we're trying to rehydrate from a dried up lake "+
@@ -251,7 +259,7 @@
         "SeekSupport": {
             "text": "Is there someone you feel safe talking to?",
             "outcomes": {
-                "I think so": "MaybeSupport",
+                "Yes I believe so": "MaybeSupport",
                 "I'm not sure":"NoSupport"
             }
         },
@@ -262,7 +270,7 @@
             "NoSupport": {
                 "text": "It's easy to feel like we have no one to talk to you. This may or may not be true.",
                 "outcomes": {
-                    "I can think of maybe one person...": "YesConnectToPerson",
+                    "I can think of maybe one person": "YesConnectToPerson",
                     "No I think I'm honestly alone":"Alone"
                 }
             },
@@ -272,7 +280,7 @@
                 },
                 "Alone": {
                     "text": " If you've really thought about the people you know and came up with no one to talk to, then it may be time "+
-                        "to seek out resource groups in your area. Log in or make an account to find a professional counselor. "+
+                        "to seek out resource groups in your area. You can use our Therapy Finder tool to find a professional counselor. "+
                         "In the meantime,giving someone else a positive interaction can do wonders for mood. "+
                         "Self care can be something as simple as being sure that you leave people in a better mood than when you found them."
                 },
@@ -284,7 +292,7 @@
         }
     },
             "GoalsAreGood": {
-                "text": "That's great that you're feeling good about your goals! Perhaps the answer lies externally. Perhaps now would be the "+
+                "text": "That's great that you're feeling good about your goals! Perhaps the answer lies externally. Maybe now would be the "+
                     "time to donate your time and/or money to a local charity. Non profits are always needing help in some way or another. Check out "+
                     "local businesses that could benefit from you. It's good for the community and good for the soul."
             },
@@ -308,6 +316,22 @@ function startScript()
     runFlowchart(situation);
 }
 
+function showForm() {
+    var div=document.getElementById("addTaskForm");
+    if(div.style.display!="none") {
+        div.style.display="none";
+    }
+    else {
+        div.style.display="inherit";
+    }
+}
+
+function addTaskScript() {
+    var $taskButton=$('<input type="button" button class=btn btn-default onclick="showForm()" value="Add to my task list"/>');
+    $taskButton.css("padding","5px");
+    $("#addToTaskList").append($taskButton);
+}
+
 //Takes in string "arg" that indicates the starting point in the map
 function runFlowchart(arg) {
     var div = document.getElementById("startFlowchart");//entry point for function
@@ -319,30 +343,32 @@ function runFlowchart(arg) {
     var colorArr = [];
     var map = flowchartMap[arg];
     var choices = map.outcomes;
-    var prompt = ('<div class="textFlowchart">' + map.text + '</div>');
+    var prompt=('<div class="textFlowchart">'+map.text+'</div>');
     $("#chartText").html(prompt);
     $("#buttons").empty();
+    $("#addToTaskList").empty();
     for (var choice in choices)
     {
-        if (choices.hasOwnProperty(choice))
-        {
-            var $button = $('<input type="button" button class="btn btn-default" value="' + choice + '"/>');
-            //              orange   dk orange   yellow      blue     dark blue    green
-            var colors = ['#EE8535', '#ED5441', '#F0C032', '#49C7CA', '#248D83', '#6C984B']
-            var randomColor = generateColor(colors);
-            while (colorArr.includes(randomColor))
-            {
-                randomColor = generateColor(colors);
+        if(choices.hasOwnProperty(choice)) {
+            var $button=$('<input type="button" button class="btn btn-default" value="'+choice+'"/>');
+            //           orange   dk orange   yellow    blue     dark blue    green
+            var colors=['#EE8535','#ED5441','#F0C032','#49C7CA','#248D83','#6C984B']
+            var randomColor=generateColor(colors);
+            while(colorArr.includes(randomColor)) {
+                randomColor=generateColor(colors);
             }
             colorArr.push(randomColor);
-            $button.css("background-color", randomColor);
-            $button.css("border", "1px solid " + randomColor);
-            $button.click({ "nextsit": choices[choice] }, function (evt) {
-                situation = evt.data.nextsit;
-                colorArr.length = 0;//empty out array after buttons are added
+            $button.css("background-color",randomColor);
+            $button.css("border","1px solid "+randomColor);
+            $button.click({ "nextsit": choices[choice] },function(evt) {
+                situation=evt.data.nextsit;
+                colorArr.length=0;//empty out array after buttons are added
                 runFlowchart(situation);
             });
             $("#buttons").append($button);
-        }
+        }  
+    }
+    if(choices==null) {
+        addTaskScript();
     }
 }
