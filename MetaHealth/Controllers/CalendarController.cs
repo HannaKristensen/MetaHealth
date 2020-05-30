@@ -62,7 +62,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         // GET: For the Home Page
         public async Task<ActionResult> UpcomingEvents()
         {
-           
             string curUser = User.Identity.GetUserId();
             const int MaxEventsPerCalendar = 20;
             const int MaxEventsOverall = 50;
@@ -180,6 +179,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             model.MultiTask = taskArr;
 
             #region Populate data for graph
+
             Dictionary<string, double> dummyDict = new Dictionary<string, double>();
             Dictionary<string, List<int>> fakeDict = new Dictionary<string, List<int>>();
             model.SepMood = db.SepMoods.Where(n => n.UserID == curUser).OrderBy(d => d.Date).ToList();
@@ -633,6 +633,14 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             DateTime EventStartDateTime = Convert.ToDateTime(EventStartDate).Add(TimeSpan.Parse(EventStartTime));
             DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
+
+            if (EventStartDateTime > EventEndDateTime)
+            {
+                UpcomingEventsViewModel modelError = await GetCurrentEventsTask();
+                modelError.ErrorDate = "Error";
+                return View("UpcomingEvents", modelError);
+            }
+
             var credential = await GetCredentialForApiAsync();
 
             var initializer = new BaseClientService.Initializer()
@@ -781,6 +789,8 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 var newEventRequest = calendarService.Events.Insert(calendarEvent, calendarId);
                 var eventResult = newEventRequest.Execute();
             }
+
+            ModelState.Clear();
 
             UpcomingEventsViewModel model = await GetCurrentEventsTask();
             return View("UpcomingEvents", model);
@@ -1036,7 +1046,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
         #endregion DailySugg()
 
-
         #region QuizTask11()
 
         [HttpPost]
@@ -1059,8 +1068,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             Google.Apis.Tasks.v1.Data.Task newTask = service1.Tasks.Insert(task, "@default").Execute();
 
             return Content("");
-
-  
         }
 
         #endregion QuizTask11()
@@ -1117,7 +1124,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
         #endregion QuizTask13()
 
-
         #region QuizTask21()
 
         [HttpPost]
@@ -1164,7 +1170,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = result2title2 };
 
             Google.Apis.Tasks.v1.Data.Task newTask = service1.Tasks.Insert(task, "@default").Execute();
-            
+
             return Content("");
         }
 
@@ -1195,7 +1201,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         }
 
         #endregion QuizTask23()
-
 
         #region QuizTask31()
 
@@ -1275,7 +1280,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
         #endregion QuizTask33()
 
-
         #region QuizTask41()
 
         [HttpPost]
@@ -1322,7 +1326,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = result4title2 };
 
             Google.Apis.Tasks.v1.Data.Task newTask = service1.Tasks.Insert(task, "@default").Execute();
-            
+
             return Content("");
         }
 

@@ -73,11 +73,11 @@
                         {
                             @:@string.Format(
 
-  "{0} hour{1} {2} minute{3}",
-  (int)duration.Value.TotalHours,
-  duration.Value.TotalHours >= 2 ? "s" : "",
-  (int)duration.Value.Minutes,
-  duration.Value.Minutes >= 2 ? "s" : "")
+"{0} hour{1} {2} minute{3}",
+(int)duration.Value.TotalHours,
+duration.Value.TotalHours >= 2 ? "s" : "",
+(int)duration.Value.Minutes,
+duration.Value.Minutes >= 2 ? "s" : "")
 
                         }
                     }
@@ -152,9 +152,19 @@
                             @Html.Label("EventDescription", "Event Description(optional): ")
                             @Html.TextBox("EventDescription", null, new { @class = "form-control", type = "text", maxlength = 1000 })
                             @Html.Label("EventStartDate", "Event Start Date: ")
-                            @Html.TextBox("EventStartDate", null, new { @class = "form-control", type = "date", required = "required", maxlength = 1000 })
+                            @Html.TextBox("EventStartDate", null, new { @class = "form-control", type = "date", required = "required", maxlength = 1000, @id = "startdate" })
                             @Html.Label("EventStartTime", "Event Start Time: ")
-                            @Html.TextBox("EventStartTime", null, new { @class = "form-control", type = "time", required = "required", maxlength = 1000 })
+                            @Html.TextBox("EventStartTime", null, new { @class = "form-control", type = "time", required = "required", maxlength = 1000, @id = "enddate" })
+                            @{
+                                if (Model.ErrorDate == "Error")
+                                {
+                                    <div id="Error" style="color: darkred">Start Date needs to be less then End Date</div>
+                                    <script>
+                                        document.getElementById("eventAddForm").style.display = 'block';
+                                        document.getElementById("Error").scrollIntoView();
+                                    </script>
+                                }
+                            }
                             @Html.Label("EventEndDate", "Event End Date: ")
                             @Html.TextBox("EventEndDate", null, new { @class = "form-control", type = "date", required = "required", maxlength = 1000 })
                             @Html.Label("EventEndTime", "Event End Time: ")
