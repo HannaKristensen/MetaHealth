@@ -178,25 +178,25 @@ function setSlotType(x, y, type, board) {
     var elementId = board + "slot" + x + "x" + y;
     var img = document.getElementById(elementId);
     if (type == "blank") {
-        img.src = 'https://color-hex.org/colors/e9e6d4.png';
+        img.src = 'https://i.imgur.com/UMIZ0d0.png';
     } else if (type == "red") {
-        img.src = 'https://i.imgur.com/HsghsKC.jpg';
+        img.src = 'https://i.imgur.com/7WeXiuv.png';
     } else if (type == "yellow") {
-        img.src = 'https://www.enasco.com/medias/9723819D-main-530Wx530H?context=bWFzdGVyfHJvb3R8NDU2OXxpbWFnZS9qcGVnfGgyZS9oYjMvODg0NDM5NDU2MTU2Ni5qcGd8NzM0YjgzZTk4MjYwMWU2MDNkZTc5NGQ1OTA5ZTM1MjAzNjNmNDZmNzk5MWU2NWZjY2NlYWNmZWMzOTI1NzdhNA';
+        img.src = 'https://i.imgur.com/EmjfFnJ.png';
     } else if (type == "blue") {
-        img.src = 'https://www.nafc.uhi.ac.uk/t4-media/one-web/nafc/research/document/marine-spatial-planning/dark-blue-box.png';
+        img.src = 'https://i.imgur.com/hVkRu5R.png';
     } else if (type == "green") {
-        img.src = 'https://img.buzzfeed.com/buzzfeed-static/static/2020-02/26/18/enhanced/63fa524113ec/enhanced-1674-1582742675-2.png?downsize=600:*&output-format=auto&output-quality=auto';
+        img.src = 'https://i.imgur.com/P9F1H3S.png';
     } else if (type == "orange") {
-        img.src = 'http://m.sweetclipart.com/wp-content/uploads/Ffc000-Color-Square-Orange-Clip-Art.png';
+        img.src = 'https://i.imgur.com/udrVRla.png';
     } else if (type == "purple") {
-        img.src = 'https://www.americasfinestlabels.com/includes/work/image_cache/907b65fdc3cc8579cc07b49c65317dda.thumb.jpg';
+        img.src = 'https://i.imgur.com/JiHUV6U.png';
     } else if (type == "pink") {
-        img.src = 'https://matthewelonis.com/wp-content/uploads/2018/07/same-coloured-paper-l-light-pink-13.8-inch-34.5-cm-squared-10-sheets-c209o-9694-p.jpg';
+        img.src = 'https://i.imgur.com/WyrqQit.png';
     } else if (type == "darkgreen") {
-        img.src = 'https://i0.wp.com/avenuesixty.com/wp-content/uploads/2012/12/color-green-square.jpg?fit=2000%2C2118&ssl=1';
+        img.src = 'https://i.imgur.com/KzshRz8.png';
     } else if (type == "maroon") {
-        img.src = 'https://static.bhphoto.com/images/images500x500/Rosco_110084014812_26_26_Light_Red_Fluorescent_1252489597_107135.jpg';
+        img.src = 'https://i.imgur.com/tcuoLlW.png';
     }
 }
 
