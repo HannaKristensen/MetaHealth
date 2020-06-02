@@ -206,6 +206,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\CustomListsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TestingController.cs" />
@@ -314,9 +315,9 @@
     <Content Include="Views\Home\HowToOpen.cshtml" />
     <Content Include="Views\Search\SearchPage.cshtml" />
     <Content Include="Views\Home\Venting.cshtml" />
-    <Content Include="Views\SepMoods\todaysMoodsP.cshtml" />
     <Content Include="Views\AspNetUsers\Edit.cshtml" />
     <Content Include="Views\Game\JSGame.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

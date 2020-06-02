@@ -107,14 +107,18 @@ function showAddTask() {
 
 function showPreMadeTasks() {
     var multiTask = document.getElementById("preMadeTasks")
+    var text = document.getElementById("premadeTaskText")
     var displaySetting = multiTask.style.display;
+    var textDisplay = text.style.display;
 
-    if (displaySetting == 'block') {
+    if (displaySetting == 'block' && textDisplay == 'block') {
         multiTask.style.display = 'none';
+        text.style.display = 'none';
     }
 
     else {
         multiTask.style.display = 'block';
+        text.style.display = 'block';
     }
 }
 
@@ -131,16 +135,20 @@ function showAddEvent() {
     }
 }
 
-function showCustomList() {
-    var list = document.getElementById("addCustom")
-    var displaySetting = list.style.display;
+function showHelp() {
+    var help = document.getElementById("helpCustom");
+    var tasks = document.getElementById("addCustom");
+    var displaySetting = help.style.display;
+    var displayTaskSetting = tasks.style.display;
 
-    if (displaySetting == 'block') {
-        list.style.display = 'none';
+    if (displaySetting == 'block' && displayTaskSetting == 'none') {
+        help.style.display = 'none';
+        tasks.style.display = 'block';
     }
 
     else {
-        list.style.display = 'block';
+        help.style.display = 'block';
+        tasks.style.display = 'none';
     }
 }
 
@@ -234,7 +242,7 @@ function addRow(data) {
     var cell2 = row.insertCell(1);
     cell1.innerHTML = task;
     cell1.id = PK;
-    cell2.innerHTML = "<button class=\"MarkDownButtons\" onclick=\"editCustom(" + PK + ")\">Edit</button> <button class=\"MarkDownButtons\" onclick =\"deleteCustom(" + PK + ")\" > Delete </button>";
+    cell2.innerHTML = "<button class=\"MarkDownButtonsThree\" onclick =\"deleteCustom(" + PK + ")\" > Delete </button><button class=\"MarkDownButtonsThree\" onclick=\"editCustom(" + PK + ")\">Edit</button>";
 }
 
 function AddSuggestion() {

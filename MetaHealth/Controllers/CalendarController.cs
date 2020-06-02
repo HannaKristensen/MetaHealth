@@ -62,7 +62,6 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         // GET: For the Home Page
         public async Task<ActionResult> UpcomingEvents()
         {
-           
             string curUser = User.Identity.GetUserId();
             const int MaxEventsPerCalendar = 20;
             const int MaxEventsOverall = 50;
@@ -180,6 +179,7 @@ namespace Calendar.ASP.NET.MVC5.Controllers
             model.MultiTask = taskArr;
 
             #region Populate data for graph
+
             Dictionary<string, double> dummyDict = new Dictionary<string, double>();
             Dictionary<string, List<int>> fakeDict = new Dictionary<string, List<int>>();
             model.SepMood = db.SepMoods.Where(n => n.UserID == curUser).OrderBy(d => d.Date).ToList();
@@ -633,6 +633,14 @@ namespace Calendar.ASP.NET.MVC5.Controllers
 
             DateTime EventStartDateTime = Convert.ToDateTime(EventStartDate).Add(TimeSpan.Parse(EventStartTime));
             DateTime EventEndDateTime = Convert.ToDateTime(EventEndDate).Add(TimeSpan.Parse(EventEndTime));
+
+            if (EventStartDateTime > EventEndDateTime)
+            {
+                UpcomingEventsViewModel modelError = await GetCurrentEventsTask();
+                modelError.ErrorDate = "Error";
+                return View("UpcomingEvents", modelError);
+            }
+
             var credential = await GetCredentialForApiAsync();
 
             var initializer = new BaseClientService.Initializer()
@@ -781,6 +789,8 @@ namespace Calendar.ASP.NET.MVC5.Controllers
                 var newEventRequest = calendarService.Events.Insert(calendarEvent, calendarId);
                 var eventResult = newEventRequest.Execute();
             }
+
+            ModelState.Clear();
 
             UpcomingEventsViewModel model = await GetCurrentEventsTask();
             return View("UpcomingEvents", model);
@@ -1035,5 +1045,317 @@ namespace Calendar.ASP.NET.MVC5.Controllers
         }
 
         #endregion DailySugg()
+
+        #region QuizTask11()
+
+        [HttpPost]
+        public async Task<ActionResult> QuizTask11(string result1title1)
+        {
+            var credential1 = await GetCredentialForApiAsync();
+
+            //Add a new task
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential1,
+                ApplicationName = "MetaHealth",
+            };
+            var service1 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service1.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = result1title1 };
+
+            Google.Apis.Tasks.v1.Data.Task newTask = service1.Tasks.Insert(task, "@default").Execute();
+
+            return Content("");
+        }
+
+        #endregion QuizTask11()
+
+        #region QuizTask12()
+
+        [HttpPost]
+        public async Task<ActionResult> QuizTask12(string result1title2)
+        {
+            var credential1 = await GetCredentialForApiAsync();
+
+            //Add a new task
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential1,
+                ApplicationName = "MetaHealth",
+            };
+            var service1 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service1.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = result1title2 };
+
+            Google.Apis.Tasks.v1.Data.Task newTask = service1.Tasks.Insert(task, "@default").Execute();
+
+            return Content("");
+        }
+
+        #endregion QuizTask12()
+
+        #region QuizTask13()
+
+        [HttpPost]
+        public async Task<ActionResult> QuizTask13(string result1title3)
+        {
+            var credential1 = await GetCredentialForApiAsync();
+
+            //Add a new task
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential1,
+                ApplicationName = "MetaHealth",
+            };
+            var service1 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service1.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = result1title3 };
+
+            Google.Apis.Tasks.v1.Data.Task newTask = service1.Tasks.Insert(task, "@default").Execute();
+
+            return Content("");
+        }
+
+        #endregion QuizTask13()
+
+        #region QuizTask21()
+
+        [HttpPost]
+        public async Task<ActionResult> QuizTask21(string result2title1)
+        {
+            var credential1 = await GetCredentialForApiAsync();
+
+            //Add a new task
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential1,
+                ApplicationName = "MetaHealth",
+            };
+            var service1 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service1.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = result2title1 };
+
+            Google.Apis.Tasks.v1.Data.Task newTask = service1.Tasks.Insert(task, "@default").Execute();
+
+            return Content("");
+        }
+
+        #endregion QuizTask21()
+
+        #region QuizTask22()
+
+        [HttpPost]
+        public async Task<ActionResult> QuizTask22(string result2title2)
+        {
+            var credential1 = await GetCredentialForApiAsync();
+
+            //Add a new task
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential1,
+                ApplicationName = "MetaHealth",
+            };
+            var service1 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service1.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = result2title2 };
+
+            Google.Apis.Tasks.v1.Data.Task newTask = service1.Tasks.Insert(task, "@default").Execute();
+
+            return Content("");
+        }
+
+        #endregion QuizTask22()
+
+        #region QuizTask23()
+
+        [HttpPost]
+        public async Task<ActionResult> QuizTask23(string result2title3)
+        {
+            var credential1 = await GetCredentialForApiAsync();
+
+            //Add a new task
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential1,
+                ApplicationName = "MetaHealth",
+            };
+            var service1 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service1.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = result2title3 };
+
+            Google.Apis.Tasks.v1.Data.Task newTask = service1.Tasks.Insert(task, "@default").Execute();
+
+            return Content("");
+        }
+
+        #endregion QuizTask23()
+
+        #region QuizTask31()
+
+        [HttpPost]
+        public async Task<ActionResult> QuizTask31(string result3title1)
+        {
+            var credential1 = await GetCredentialForApiAsync();
+
+            //Add a new task
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential1,
+                ApplicationName = "MetaHealth",
+            };
+            var service1 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service1.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = result3title1 };
+
+            Google.Apis.Tasks.v1.Data.Task newTask = service1.Tasks.Insert(task, "@default").Execute();
+
+            return Content("");
+        }
+
+        #endregion QuizTask31()
+
+        #region QuizTask32()
+
+        [HttpPost]
+        public async Task<ActionResult> QuizTask32(string result3title2)
+        {
+            var credential1 = await GetCredentialForApiAsync();
+
+            //Add a new task
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential1,
+                ApplicationName = "MetaHealth",
+            };
+            var service1 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service1.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = result3title2 };
+
+            Google.Apis.Tasks.v1.Data.Task newTask = service1.Tasks.Insert(task, "@default").Execute();
+
+            return Content("");
+        }
+
+        #endregion QuizTask32()
+
+        #region QuizTask33()
+
+        [HttpPost]
+        public async Task<ActionResult> QuizTask33(string result3title3)
+        {
+            var credential1 = await GetCredentialForApiAsync();
+
+            //Add a new task
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential1,
+                ApplicationName = "MetaHealth",
+            };
+            var service1 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service1.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = result3title3 };
+
+            Google.Apis.Tasks.v1.Data.Task newTask = service1.Tasks.Insert(task, "@default").Execute();
+
+            return Content("");
+        }
+
+        #endregion QuizTask33()
+
+        #region QuizTask41()
+
+        [HttpPost]
+        public async Task<ActionResult> QuizTask41(string result4title1)
+        {
+            var credential1 = await GetCredentialForApiAsync();
+
+            //Add a new task
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential1,
+                ApplicationName = "MetaHealth",
+            };
+            var service1 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service1.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = result4title1 };
+
+            Google.Apis.Tasks.v1.Data.Task newTask = service1.Tasks.Insert(task, "@default").Execute();
+
+            return Content("");
+        }
+
+        #endregion QuizTask41()
+
+        #region QuizTask42()
+
+        [HttpPost]
+        public async Task<ActionResult> QuizTask42(string result4title2)
+        {
+            var credential1 = await GetCredentialForApiAsync();
+
+            //Add a new task
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential1,
+                ApplicationName = "MetaHealth",
+            };
+            var service1 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service1.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = result4title2 };
+
+            Google.Apis.Tasks.v1.Data.Task newTask = service1.Tasks.Insert(task, "@default").Execute();
+
+            return Content("");
+        }
+
+        #endregion QuizTask42()
+
+        #region QuizTask43()
+
+        [HttpPost]
+        public async Task<ActionResult> QuizTask43(string result4title3)
+        {
+            var credential1 = await GetCredentialForApiAsync();
+
+            //Add a new task
+            var initializer3 = new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential1,
+                ApplicationName = "MetaHealth",
+            };
+            var service1 = new TasksService(initializer3);
+
+            Google.Apis.Tasks.v1.Data.Tasks tasks = service1.Tasks.List("@default").Execute();
+
+            Google.Apis.Tasks.v1.Data.Task task = new Google.Apis.Tasks.v1.Data.Task { Title = result4title3 };
+
+            Google.Apis.Tasks.v1.Data.Task newTask = service1.Tasks.Insert(task, "@default").Execute();
+
+            return Content("");
+        }
+
+        #endregion QuizTask43()
     }
 }

@@ -8,10 +8,21 @@ namespace MetaHealth.Controllers
     {
         private Model db = new Model();
         [AllowAnonymous]
+        [HandleError]
         public ActionResult Index()
         {
-            return View();
+            if(User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("UpcomingEvents", "Calendar");
+            }
+
+            else
+            {
+                return View();
+            }
+
         }
+
 
         public ActionResult SelfCareQuiz()
         {
@@ -34,8 +45,14 @@ namespace MetaHealth.Controllers
             return View();
         }
 
-        [AllowAnonymous]
+
         public ActionResult Resources()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult About()
         {
             return View();
         }
@@ -43,7 +60,6 @@ namespace MetaHealth.Controllers
         [AllowAnonymous]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Contact page.";
 
             return View();
         }
@@ -60,6 +76,7 @@ namespace MetaHealth.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Venting()
 
         {

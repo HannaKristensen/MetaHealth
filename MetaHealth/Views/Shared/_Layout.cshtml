@@ -77,6 +77,9 @@
                     @Html.ActionLink("Home", "Index", "Home")
                     @Html.ActionLink("Flowchart", "Flowchart", "Home")
                     @Html.ActionLink("Find Help", "SearchPage", "Search")
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Log in", "Login", "Account")</li>
+                    </ul>
                 }
             </div>
         </div>
@@ -87,14 +90,15 @@
         <footer>
             <div class="col-sm-5">
                 <ul class="resourcesFooter">
-                    <li>@Html.ActionLink("Team GitHub Information", "gitHubResources", "Home", new { Style = "color:black" })</li>
+                    <li>@Html.ActionLink("Team GitHub Information", "gitHubResources", "Home")</li>
                     <li><a href="https://www.mentalhealth.gov/get-help/immediate-help">Immediate Mental Health Assistance</a></li>
                     <li><a href="https://policies.google.com/privacy?hl=en-US">Google Privacy Policy</a></li>
                 </ul>
             </div>
             <div class="col-sm-5">
                 <ul class="resourcesFooter">
-                    <li>@Html.ActionLink("Contact Us", "Contact", "Home", new { Style = "color:black" })</li>
+                    <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("About Us", "About", "Home" )</li>
                 </ul>
             </div>
         </footer>

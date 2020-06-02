@@ -193,7 +193,7 @@ a:visited {
 /*TASK BUTTONS*/
 .MarkDownButtons {
     background-color: #49C7CA;
-    border: 4px solid #248D83;
+    border: 2.5px solid #248D83;
     display: inline-block;
     cursor: pointer;
     color: #ffffff;
@@ -201,6 +201,57 @@ a:visited {
     font-size: 17px;
     text-decoration: none;
     border-radius: 24px;
+}
+
+.MarkDownButtonsTwo {
+    background-color: #6C984B;
+    border: 1px solid #55783b;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Verdana;
+    font-size: 17px;
+    text-decoration: none;
+    border-radius: 27px;
+}
+
+.helpButton {
+    background-color: #f4d371;
+    border-radius: 42px;
+    border: 2.5px solid #F0C032;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    float: right;
+    font-family: Verdana;
+    font-size: 14px;
+    margin-right: 7px;
+    margin-bottom: 7px;
+    font-weight: bold;
+    padding: 6px 10px;
+    text-decoration: none;
+}
+
+
+
+.MarkDownButtonsThree {
+    border: 1px solid #49C7CA;
+    background-color: #74d6d8;
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 2px;
+    color: white;
+    float: right;
+    margin: auto;
+    font-family: Verdana;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 20px;
+    margin: 5px;
+}
+
+#helpCustom{
+    display: none; 
 }
 
 /*NON ACTIVATED CALENDAR RE DIRECT*/
@@ -249,10 +300,18 @@ a:visited {
 #homePageRow2 {
     align-content: center
 }
+#homePageRow3 {
+    align-content: center
+}
+
 
 /*GOOGLE TASKS*/
 #addTaskRow {
     display: none
+}
+
+#premadeTaskText{
+    display: none;
 }
 
 #TaskTable {
@@ -267,18 +326,11 @@ a:visited {
     align-content: center
 }
 
-#addCustom {
-    display: none
-}
 
 #addCusTask {
     display: none
 }
 /*GOOGLE CALENDAR*/
-#googleCalColumn {
-    margin-left: 35px;
-}
-
 #eventAddForm {
     display: none;
 }
@@ -391,7 +443,7 @@ a:visited {
     font-family: Verdana;
     letter-spacing: 2px;
 }
-     .my-dropbtn-settings {
+    .my-dropdown-settings .my-dropbtn-settings {
         font-size: 12px;
         border: none;
         font-family: Verdana;
@@ -406,33 +458,31 @@ a:visited {
 
 .my-dropdown-settings-content {
     display: none;
-    position:absolute;
-    font-size: 12px;
+    position: absolute;
     background-color: #f9f9f9;
-    min-width: 130px;
+    min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    border-radius: 2px;
+    border-radius: 5px;
     letter-spacing: 2px;
 }
-    .my-dropbtn-settings a {
-        float: none;
-        font-size: 8px;
-        color: #D5CDC6;
-        padding: 10px 14px;
-        text-decoration: none;
-        display:block;
-        text-align: left;
-        letter-spacing: 2px;
-    }
-
-.my-dropdown-settings-content a:hover, .form-settings:hover {
-    color: #4fc5c9;
-    border-radius: 2px;
-    color: white;
-    opacity: 1;
-    transition: 0.3s;
+.my-dropdown-settings-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    letter-spacing: 2px;
 }
+
+        .my-dropdown-settings-content a:hover, .form-settings:hover, .my-dropbtn-settings a:hover {
+            background-color: #c4edee;
+            border-radius: 5px;
+            color: white;
+            opacity: 1;
+            transition: 0.3s;
+        }
 
 
 .my-dropdown-content {
@@ -576,9 +626,6 @@ a:visited {
     font-family:Verdana;
 }
 
-#moodgraph {
-    margin-left: 35px;
-}
 
 
 /*HOMEPAGE BOXES*/

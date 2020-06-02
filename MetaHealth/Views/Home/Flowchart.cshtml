@@ -11,10 +11,22 @@
     <div class="textFlowchart"></div>
     <div id="chartText"></div>
     <div id="buttons"></div>
-    <p> </p>
-    <button class="btn" onclick="startScript()">Restart</button>
+    <button class="btn" style="padding:5px;"onclick="startScript()">Restart</button>
+    <br /><br />
+    <div id="addToTaskList"></div>
+    <br /><br />
+     @using (Html.BeginForm("UpcomingEvents", "Calendar", FormMethod.Post, new { id = "addTaskForm" })) {
+        <div class="center-block">
+            <div class="form-group">
+                @Html.Label("task", "Add a task: ")
+                @Html.TextBox("taskTitle", null, new { @class = "form-inline", type = "text", required = "required", maxlength = 1000 })
+                <br />
+                <button type="submit" class="MarkDownButtons">Add!</button>
+            </div>
+        </div>  
+     }
 </div>
-
+     
 @section scripts {
     <script src="~/Scripts/FlowchartScript.js"></script>
 }

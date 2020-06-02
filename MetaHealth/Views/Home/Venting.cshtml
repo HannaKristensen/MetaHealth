@@ -3,7 +3,7 @@
 <head>
     <style>
         #button {
-            background-color: #EE8535;
+            background-color: #6C984B;
             border: none;
             color: white;
             padding: 15px 32px;
@@ -12,6 +12,7 @@
             display: inline-block;
             font-size: 16px;
             border-radius: 24px;
+            outline:none;
         }
 
         #title {
@@ -20,25 +21,41 @@
             font-family: Verdana;
             font-weight: 700;
             font-size: 50px;
-            color: #EE8535;
+            color: #248D83;
             margin: 10px
         }
 
-        #t {
-            border-radius: 0.5em;
-            width: 100%;
-            height: 100%;
+        textarea {
+          box-sizing:content-box;
+          width: 100%;
+          height:250px;
+          border-color:#F0C032;
+          border-width:3px;
+          border-radius:28px;
+          padding-top:20px;
+          outline:none;
+          resize:none;
         }
 
         #header {
             text-align: center;
             font-family: Verdana;
+            font-size:20px;
         }
 
         #submitSelect {
             text-align: center;
             position: relative;
             font-family: Verdana;
+            font-size: 18px;
+        }
+
+        #effectTypes {
+          font-family: Verdana;
+          width:100px;
+          outline:none;
+          border-width:0;
+          height: 30px;
         }
     </style>
 </head>
@@ -46,24 +63,36 @@
     <div id="container">
         <p id="title">Venting Space</p>
         <div id="header">
-            <p>Here you can vent and hit submit:</p>
+            <p>
+                Expresing yourself can be incredibly therapeutic. We encourage you to write down any
+                unpleasant thoughts or emotions you're experiencing. When you're ready, you can click 'Submit'
+                and watch your troubles disappear with whatever visual you prefer.
+            </p>
         </div>
         <br />
-        <form style="text-align:center;">
-            <textarea id="t"></textarea>
-            <br>
-        </form>
+        <div class="row">
+            <div class="col-sm-12">
+                <form style="text-align:center;">
+                    <textarea id="t"></textarea>
+                    <br />
+                    <br />
+
+                </form>
+            </div>
+        </div>
         <div id="submitSelect">
-            <button id="button" class="ui-state-default ui-corner-all">Submit</button>
-            <br />
-            <br />
-            <select name="effects" id="effectTypes">
+           Preferred effect: <select name="effects" id="effectTypes">
                 <option value="puff">Puff</option>
                 <option value="blind">Blind</option>
                 <option value="drop">Drop</option>
                 <option value="explode">Explode</option>
                 <option value="shake">Shake</option>
             </select>
+            <br />
+            <br />
+            <button id="button" class="ui-state-default ui-corner-all">Submit</button>
+            <br />
+            <br />
         </div>
     </div>
 </body>
@@ -86,14 +115,14 @@
             };
             // Callback function to bring a hidden box back
             function callback() {
-                setTimeout(function () {
+                setTimeout(function() {
                     $("#t").removeAttr("style").hide().fadeIn();
                 }, 500);
             };
             // Set effect from select menu value
             $("#button").on("click", function () {
                 runEffect();
-                return false;
+                //return false;
             });
         });
     </script>
